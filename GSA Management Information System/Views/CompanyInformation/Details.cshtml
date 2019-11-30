@@ -1,0 +1,139 @@
+﻿@model GSA_Management_Information_System.Models.CompanyInformation
+
+@{
+    ViewBag.Title = "Details";
+    
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CompanyInformation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Company_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Company_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Branch_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Branch_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Branch_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Branch_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Company_Tin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company_Tin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Company_Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company_Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Company_Postcode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company_Postcode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Company_City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company_City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Company_Country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company_Country)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Company_ContacNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company_ContacNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Company_Fax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company_Fax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Company_Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company_Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Company_Web)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company_Web)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Company_Dialogue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company_Dialogue)
+        </dd>
+
+        <dt>
+            
+        </dt>
+
+        <dd>
+            <img src="@Url.Content(Model.Company_ImagePath)" width="250" height="250"  />
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CompanyID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

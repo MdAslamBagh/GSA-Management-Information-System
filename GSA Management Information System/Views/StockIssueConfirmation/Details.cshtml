@@ -1,0 +1,85 @@
+﻿@model GSA_Management_Information_System.Models.StockIssueConfirmation
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>StockIssueConfirmation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SIssued_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SIssued_Code)
+        </dd>
+
+  
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Airlines_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Airlines_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.From_TicketNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.From_TicketNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.To_TicketNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.To_TicketNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket_Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ticket_Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Remarks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Confirm_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Confirm_Date)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CIssueId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

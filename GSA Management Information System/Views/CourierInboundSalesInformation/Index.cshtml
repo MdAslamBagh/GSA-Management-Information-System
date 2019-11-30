@@ -1,0 +1,262 @@
+﻿@model IEnumerable<GSA_Management_Information_System.Models.CargoSalesInformation>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Invoice_Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MAWB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Check_Digit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Flight_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Airway_No)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Freighter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Origin_Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dest_Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Continent_Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentMode_Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CFPaymode_Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Route_Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer_Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cargo_Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UType_Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HBL_Qty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AMS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gross_Weight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Chargeable_Weight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rate_Charge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.B_Rate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Agent_Commission)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AIT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.THC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SSC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FSC_Charge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ISS_Charge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HDS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Others)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Consignee_Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Consignor_Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Receivable_From_Agent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Currency)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Exchange_Rate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Receivable_Amount_BDT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Payable_Agent_CC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks_B_Bank)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Entry_Date)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Invoice_Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MAWB)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Check_Digit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Flight_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Airway_No)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Freighter)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Origin_Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dest_Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Continent_Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaymentMode_Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CFPaymode_Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Route_Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer_Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cargo_Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UType_Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HBL_Qty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AMS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gross_Weight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Chargeable_Weight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rate_Charge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.B_Rate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Agent_Commission)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AIT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.THC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SSC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FSC_Charge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ISS_Charge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HDS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Others)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Consignee_Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Consignor_Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Receivable_From_Agent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remarks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Currency)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Exchange_Rate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Receivable_Amount_BDT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Payable_Agent_CC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remarks_B_Bank)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Entry_Date)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Slno }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Slno }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Slno })
+        </td>
+    </tr>
+}
+
+</table>

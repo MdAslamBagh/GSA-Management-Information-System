@@ -1,0 +1,58 @@
+﻿@model GSA_Management_Information_System.Models.AirlinesInformation
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AirlinesInformation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Airlines_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Airlines_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Long_Desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Long_Desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Default_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Default_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entry_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entry_Date)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AirlinesId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

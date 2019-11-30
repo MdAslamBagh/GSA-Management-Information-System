@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "Air Lines";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h4>New Air Line</h4>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="col-md-4">
+                            <label for="airLineCode">Air Line Code</label><font size="4px" color="red"> *</font>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" id="airLineCode" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-4">
+                            <label for="airLineName">Air Line Name</label><font size="4px" color="red"> *</font>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" id="airLineName" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="row">
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-info" onclick="location.href = '@Url.Action("Index", "AirLineAdd")'">Back To List</button>
+                </div>
+                <div class="col-md-2">
+                    <input type="button" id="btnSubmit" value="Submit" class="btn btn-success" />
+                </div>
+                <div class="col-md-8">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#btnSubmit").click(function () {
+
+            var airCode = $("#airLineCode").val();
+            var airLineName = $("#airLineName").val();
+
+            if (airCode == "" || airCode == null) {
+                swal("Error", "Please Enter Air Line Code");
+                return false;
+            }
+            if (airLineName == "" || airLineName == null) {
+                swal("Error", "Please Enter Air Line Name");
+                return false;
+            }
+            var airLine = {
+                AriLineName: airLineName,
+                Code: airCode
+            };
+
+            $.ajax({
+                url: '/AirLineAdd/Create',
+                type: 'POST',
+                dataType: "json",
+                contentType: 'application/json',
+                data: JSON.stringify(airLine),
+                success: function (res) {
+
+                    if (res.Success) {
+                        swal("Success", res.Message);
+                        var href = '@Url.Action("AirLines", "Index")';
+                        return false;
+                    }
+                    else {
+                        swal("Exception", res.Message);
+                        return false;
+                    }
+
+                }
+            });
+        });
+
+    });
+</script>

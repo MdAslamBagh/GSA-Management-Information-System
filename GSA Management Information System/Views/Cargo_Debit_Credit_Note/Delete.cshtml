@@ -1,0 +1,105 @@
+﻿@model GSA_Management_Information_System.Models.Cargo_Debit_Credit_Note
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Cargo_Debit_Credit_Note</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Trans_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Trans_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Reference_No)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Reference_No)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Currency)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Currency)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Exchange_Rate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Exchange_Rate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount_USD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount_USD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount_BDT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount_BDT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Remarks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entry_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entry_Date)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

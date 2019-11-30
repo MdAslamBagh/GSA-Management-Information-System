@@ -1,0 +1,1389 @@
+﻿@model GSA_Management_Information_System.Models.CourierOutboundSalesInformation
+
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Courier Outbound Sales Information</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="form-group">
+                <label for="MAWB" class="col-md-2 col-sm-2">MAWB<span class="required"><font size="2px" color="red">*</font></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="mawb" name="MAWB" placeholder="MAWB" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Sales Slno" class="col-md-2 col-sm-2">Sales Slno</label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="salesslno" name="SalesSlno" placeholder="Sales Slno" class="form-control" type="text">
+                </div>
+            </div>            
+        </div>
+          <div class="row">
+              <div class="form-group">
+                  <label for="Issue Code" class="col-md-2 col-sm-2">Issue Code<span class="required"></span></label>
+                  <div class="col-md-4 col-sm-5">
+                      <input id="issuecode" name="Issue_Code" placeholder="Issue Code" class="form-control" type="text">
+                  </div>
+              </div>
+                  <div class="form-group">
+                      @Html.LabelFor(model => model.Flight_Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                      <div class="col-md-4">
+                          @Html.EditorFor(model => model.Flight_Date, new { htmlAttributes = new { @class = "form-control" } })
+                          @Html.ValidationMessageFor(model => model.Flight_Date, "", new { @class = "text-danger" })
+                      </div>
+                  </div>                   
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <label for="Carrier" class="col-md-2 col-sm-2">Carrier<span class="required"><font size="2px" color="red">*</font></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="carrier" name="Long_Desc" placeholder="Carrier" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Consignor_Code" class="col-md-2 col-sm-2">Consignor Code<span class="required"></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="consignorcode" name="Consignor_Code" placeholder="Consignor Code" class="form-control" type="text" value="@ViewBag.Consignor_Code">
+                </div>
+            </div>
+        </div>
+
+
+        
+        <div class="row">
+            <div class="form-group">
+                <label for="Carrier_Code" class="col-md-2 col-sm-2">Carrier_Code<span class="required"><font size="2px" color="red">*</font></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="carriercode" name="Airlines_Code" placeholder="Carrier_Code" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Consignor_Code" class="col-md-2 col-sm-2">.....<span class="required"></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="consignorcode" name="Consignor_Code" placeholder="Consignor Code" class="form-control" type="text" value="@ViewBag.Consignor_Code">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="form-group">
+                <label for="Check_Digit" class="col-md-2 col-sm-2">Check Digit<span class="required"><font size="2px" color="red">*</font></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="checkdigit" name="Check_Digit" placeholder="Check Digit" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="Consignor Name" class="col-md-2 col-sm-2">Consignor Name<span class="required"><font size="2px" color="red">*</font></span></label>
+                    <div class="col-md-4 col-sm-5">
+                        <input id="consignorname" name="Consignor_Name" placeholder="Consignor Name" class="form-control" type="text"value="@ViewBag.Consignor_Name">
+                    </div>
+                </div>              
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="form-group">
+                <label for="Freighter" class="col-md-2 col-sm-2">Freighter<span class="required"><font size="2px" color="red">*</font></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="freighter" name="Long_Desc" placeholder="Freighter" class="form-control" type="text" value="@ViewBag.Freighter_Name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Consignor_Code" class="col-md-2 col-sm-2">Consignor Code<span class="required"></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="consignorcode" name="Consignor_Code" placeholder="Consignor Code" class="form-control" type="text"value="@ViewBag.Consignor_Code">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <label for="Freighter_Code" class="col-md-2 col-sm-2">Freighter Code<span class="required"></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="freightercode" name="Freighter_Code" placeholder="Freighter Code" class="form-control" type="text"value="@ViewBag.Freighter_Code">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Consignor_Address" class="col-md-2 col-sm-2">Consignor Address<span class="required"></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <textarea id="consignoraddress" rows="5" cols="50" name="Consignor_Address" placeholder="Consignor Address" class="form-control" type="text"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <label for="Origin Name" class="col-md-2 col-sm-2">Origin Name <span class="required"><font size="2px" color="red">*</font></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="originname" name="Long_Desc" placeholder="Origin Name" class="form-control" type="text"value="@ViewBag.Origin_Name">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="Consignee_Name" class="col-md-2 col-sm-2">Consignee_Name<span class="required"><font size="2px" color="red">*</font></span></label>
+                    <div class="col-md-4 col-sm-5">
+                        <input id="consigneename" name="Consignee_Name" placeholder="Consignee Name" class="form-control" type="text"value="@ViewBag.Consignee_Name">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <label for="Origin_Code" class="col-md-2 col-sm-2">Origin Code<span class="required"></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="origincode" name="Origin_Code" placeholder="Origin Code" class="form-control" type="text" value="@ViewBag.Origin_Code">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Consignee_Code" class="col-md-2 col-sm-2">Consignee Code<span class="required"></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="consigneecode" name="Consignee_Code" placeholder="Consignee Code" class="form-control" type="text"value="@ViewBag.Consignee_Code">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <label for="Destination Name" class="col-md-2 col-sm-2">Destination Name <span class="required"><font size="2px" color="red">*</font></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="destinationname" name="Long_Desc" placeholder="Destination Name" class="form-control" type="text" value="@ViewBag.Destination_Name">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Consignee_Address" class="col-md-2 col-sm-2">Consignee Address<span class="required"></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <textarea id="consigneeaddress" rows="5" cols="50" name="Consignee_Address" placeholder="Consignee Address" class="form-control" type="text"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <label for="Dest_Code" class="col-md-2 col-sm-2">Dest Code<span class="required"></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="destcode" name="Dest_Code" placeholder="Dest Code" class="form-control" type="text"value="@ViewBag.Destination_Code">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Receivable_From_Agent" class="col-md-2 col-sm-2">Receivable_From_Agent<span class="required"></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="receibeleagent" name="Receivable_From_Agent" placeholder="Receivable_From_Agent" class="form-control" type="text">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <label for="Continent" class="col-md-2 col-sm-2">Continent<span class="required"><font size="2px" color="red">*</font></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="continent" name="Long_Desc" placeholder="Continent" class="form-control" type="text" value="@ViewBag.Continent_Name">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="Remarks" class="col-md-2 col-sm-2">Remarks<span class="required"></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <textarea id="remarks" rows="5" cols="50" name="Remarks" placeholder="Remarks" class="form-control" type="text"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <label for="Continent_Code" class="col-md-2 col-sm-2">Continent Code<span class="required"></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="continentcode" name="Continent_Code" placeholder="Continent Code" class="form-control" type="text"value="@ViewBag.Continent_Code">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="Currency" class="col-md-2 col-sm-2">Currency<span class="required"></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="currency" name="Currency" placeholder="Currency" class="form-control" type="text">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <label for="Payment Name" class="col-md-2 col-sm-2">Payment Name <span class="required"><font size="2px" color="red">*</font></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="paymentname" name="Long_Desc" placeholder="Payment Name" class="form-control" type="text" value="@ViewBag.Payment_Name">
+                </div>
+            </div>
+                <div class="form-group">
+                    <label for="Exchange Rate" class="col-md-2 col-sm-2">Exchange_Rate</label>
+                    <div class="col-md-4 col-sm-5">
+                        <input id="exchangerate" name="Exchange_Rate" class="form-control" type="text" value="@ViewBag.Exchange_Rate">
+                    </div>
+                </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <label for="Paymemt_Mode" class="col-md-2 col-sm-2">Payment Mode<span class="required"></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="paymentmode" name="Payment_Mode" placeholder="Payment Mode" class="form-control" type="text"value="@ViewBag.Payment_Code">
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="Receivable_Amount_BDT" class="col-md-2 col-sm-2">Receivable_Amount_BD<span class="required"></span></label>
+                        <div class="col-md-4 col-sm-5">
+                            <input id="receivable_amount_bd" name="Receivable_Amount_BDT" placeholder="Receivable_Amount_BD" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="Freight Paymode" class="col-md-2 col-sm-2">Freight Paymode<span class="required"></span></label>
+                    <div class="col-md-4 col-sm-5">
+                        <input id="freightpaymode" name="Long_Desc" placeholder="Freight Paymode" class="form-control" type="text" value="@ViewBag.Cargofreight_Name">
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="Payable_Agent_CC" class="col-md-2 col-sm-2">Payable_Agent_CC<span class="required"></span></label>
+                    <div class="col-md-4 col-sm-5">
+                        <input id="payableagentcc" name="Payable_Agent_CC" placeholder="Payable_Agent_CC" class="form-control" type="text">
+                    </div>
+                </div>
+
+                </div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="Freight Code" class="col-md-2 col-sm-2">Freight Code<span class="required"></span></label>
+                    <div class="col-md-4 col-sm-5">
+                        <input id="freightpaymodecode" name="CFPaymode_Code" placeholder="Freight Code" class="form-control" type="text" value="@ViewBag.Cargofreight_Code">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="Remarks_B_Bank" class="col-md-2 col-sm-2">Remarks_B_Bank<span class="required"></span></label>
+                    <div class="col-md-4 col-sm-5">
+                        <textarea id="remarksbbank" rows="5" cols="50" name="Remarks_B_Bank" placeholder="Remarks_B_Bank" class="form-control" type="text"></textarea>
+                    </div>
+                </div>
+            </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="Route_Name" class="col-md-2 col-sm-2">Sector<span class="required"></span></label>
+                        <div class="col-md-4 col-sm-5">
+                            <input id="routename" name="Long_Desc" placeholder="Sector" class="form-control" type="text"value="@ViewBag.Route_Name">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="THC" class="col-md-2 col-sm-2">THC<span class="required"></span></label>
+                        <div class="col-md-4 col-sm-5">
+                            <input id="THC" name="THC" placeholder="THC" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="Route_Code" class="col-md-2 col-sm-2">Sector Code<span class="required"></span></label>
+                        <div class="col-md-4 col-sm-5">
+                            <input id="routecode" name="Route_Code" placeholder="Sector Code" class="form-control" type="text"value="@ViewBag.Route_Code">
+                        </div>
+                    </div>
+              
+                    <div class="form-group">
+                        <label for="SSC" class="col-md-2 col-sm-2">SSC<span class="required"></span></label>
+                        <div class="col-md-4 col-sm-5">
+                            <input id="SSC" name="SSC" placeholder="SSC" class="form-control" type="text">
+                        </div>
+                    </div>
+                   
+                </div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="Customer Name" class="col-md-2 col-sm-2">Customer Name<span class="required"><font size="2px" color="red">*</font></span></label>
+                    <div class="col-md-4 col-sm-5">
+                        <input id="customername" name="Customer_Name" placeholder="Customer Name" class="form-control" type="text"value="@ViewBag.Customer_Name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="SSC 15% VAT" class="col-md-2 col-sm-2">SSC 15% VAT<span class="required"></span></label>
+                    <div class="col-md-4 col-sm-5">
+                        <input id="sscvat" name="SSC_VAT" placeholder="SSC 15% VAT" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="Customer_Code" class="col-md-2 col-sm-2">Customer Code<span class="required"></span></label>
+                    <div class="col-md-4 col-sm-5">
+                        <input id="customercode" name="Customer_Code" placeholder="Customer Code" class="form-control" type="text" value="@ViewBag.Customer_Code">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="FSC" class="col-md-2 col-sm-2">FSC<span class="required"></span></label>
+                    <div class="col-md-4 col-sm-5">
+                        <input id="FSC" name="FSC_Charge" placeholder="FSC" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="Cargo Type" class="col-md-2 col-sm-2">Cargo Type<span class="required"></span></label>
+                        <div class="col-md-4 col-sm-5">
+                            <input id="cargotype" name="Long_Desc" placeholder="Cargo Type" class="form-control" type="text"value="@ViewBag.Cargo_Name">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ISS" class="col-md-2 col-sm-2">ISS<span class="required"></span></label>
+                        <div class="col-md-4 col-sm-5">
+                            <input id="ISS" name="ISS_Charge" placeholder="ISS" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="Cargo_Code" class="col-md-2 col-sm-2">Cargo Code<span class="required"></span></label>
+                    <div class="col-md-4 col-sm-5">
+                        <input id="cargocode" name="Cargo_Code" placeholder="Cargo Code" class="form-control" type="text"value="@ViewBag.Cargo_Code">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="Total USD" class="col-md-2 col-sm-2">Total USD<span class="required"></span></label>
+                    <div class="col-md-4 col-sm-5">
+                        <input id="totalusd" name="Total_USD" placeholder="Total USD" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="Upliment_Type" class="col-md-2 col-sm-2">Upliment Type<span class="required"></span></label>
+                    <div class="col-md-4 col-sm-5">
+                        <input id="uplimenttype" name="Long_Desc" placeholder="Upliment Type" class="form-control" type="text"value="@ViewBag.Upliment_Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Total SSC" class="col-md-2 col-sm-2">Total SSC<span class="required"></span></label>
+                    <div class="col-md-4 col-sm-5">
+                        <input id="Total SSC" name="Total_SSC" placeholder="Total SSC" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="UType_Code" class="col-md-2 col-sm-2">UType_Code<span class="required"></span></label>
+                    <div class="col-md-4 col-sm-5">
+                        <input id="utypecode" name="UType_Code" placeholder="UType Code" class="form-control" type="text"value="@ViewBag.Upliment_Code">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Cargo Type" class="col-md-2 col-sm-2">....<span class="required"></span></label>
+                    <div class="col-md-4 col-sm-5">
+                        <input id="cargotype" name="Long_Desc" placeholder="..." class="form-control" type="text">
+                    </div>
+                </div>
+             
+            </div>
+                <div class="row">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.HDS, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.HDS, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.HDS, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Others, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Others, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Others, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.AMS, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.AMS, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.AMS, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        @Html.LabelFor(model => model.HBL_Qty, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.HBL_Qty, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.HBL_Qty, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Gross_Weight, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Gross_Weight, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Gross_Weight, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Agent_Commission, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Agent_Commission, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Agent_Commission, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Chargeable_Weight, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Chargeable_Weight, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Chargeable_Weight, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AIT, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.AIT, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.AIT, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Rate_Charge, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Rate_Charge, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Rate_Charge, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.B_Rate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.B_Rate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.B_Rate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                
+             
+                <div class="row">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Entry_Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Entry_Date, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Entry_Date, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Airway_No, htmlAttributes: new { @class = "hidden" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.Airway_No, new { htmlAttributes = new { @class = "hidden" } })
+                        @Html.ValidationMessageFor(model => model.Airway_No, "", new { @class = "hidden" })
+                    </div>
+                </div>
+            </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <div align="right">
+                                <input type="submit" value="submit" class="btn btn-primary" />
+                                <input type="reset" value="reset" class="btn btn-warning" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+@section Scripts{
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/bundles/jqueryval"> </script>
+    <script>
+
+        $("#consignorname").keyup(function () {
+            var consignordata = $("#consignorname").val();
+            if (consignordata === '') {
+                $('#consignorcode').val('');
+                $('#consignoraddress').val('');
+            }
+            var jsonData = { consignorname: consignordata };
+            $("#ReceivedIdErrorMessage").text("");
+            $.ajax({
+                type: "POST",
+                url: "/CourierOutboundSalesInformation/GetConsignorCodeById",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(jsonData),
+                dataType: "json",
+                success: function (data) {
+                    //  alert("Success ");
+                    $("#consignorcode").val(data.Consignor_Code);
+                    $("#consignoraddress").val(data.Consignor_Address);
+
+                },
+            });
+
+            return false;
+        });
+
+
+
+
+        $("#Consignor_Name").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/CourierOutboundSalesInformation/Get_Consignor_Name",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+
+                    success: function (data) {
+
+                        response($.map(data, function (item) {
+
+                            return {
+                                label: item.Consignor_Name,
+                                value: item.Consignor_Name,
+
+
+
+
+
+                            };
+
+
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "",
+                results: function (count) {
+                    return count + (count > 1 ? ' results' : ' result ') + ' found';
+                }
+            }
+        });
+</script>
+<script>
+        $("#consigneename").keyup(function () {
+            var consigneedata = $("#consigneename").val();
+            if (consigneedata === '') {
+                $('#consigneecode').val('');
+                $('#consigneeaddress').val('');
+            } 
+            else
+            var jsonData = { consigneename: consigneedata };
+            $("#ReceivedIdErrorMessage").text("");
+            $.ajax({
+                type: "POST",
+                url: "/CourierOutboundSalesInformation/GetConsigneeCodeById",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(jsonData),
+                dataType: "json",
+                success: function (data) {
+                    //  alert("Success ");
+                    $("#consigneecode").val(data.Consignee_Code);
+                    $("#consigneeaddress").val(data.Consignee_Address);
+
+                },
+            });
+
+            return false;
+        });
+            $("#consigneename").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/CourierOutboundSalesInformation/Get_Consignee_Name",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+
+                    success: function (data) {
+
+                        response($.map(data, function (item) {
+
+                            return {
+                                label: item.Consignee_Name,
+                                value: item.Consignee_Name,
+
+                            };
+
+
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "",
+                results: function (count) {
+                    return count + (count > 1 ? ' results' : ' result ') + ' found';
+                }
+            }
+        });
+
+</script>
+
+<script>
+      
+            $("#customername").keyup(function () {          
+                var customerdata = $("#customername").val();
+            if (customerdata === '') {
+                $('#customercode').val('');
+                $("#customeraddress").val('');
+            }
+            else
+                var jsonData = { customername: customerdata };
+            $("#ReceivedIdErrorMessage").text("");
+            $.ajax({
+                type: "POST",
+                url: "/CourierOutboundSalesInformation/GetCustomerCodeById",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(jsonData),
+                dataType: "json",
+                success: function (data) {
+                    //  alert("Success ");
+                    $("#customercode").val(data.Customer_Code);
+                    $("#customeraddress").val(data.Address);
+                    
+
+                },
+            });
+
+            return false;
+     
+        });
+
+
+            $("#customername").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/CourierOutboundSalesInformation/Get_Customer_Name",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+
+                    success: function (data) {
+
+                        response($.map(data, function (item) {
+
+                            return {
+                                label: item.Customer_Name,
+                                value: item.Customer_Name,
+
+
+
+
+
+                            };
+
+
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "",
+                results: function (count) {
+                    return count + (count > 1 ? ' results' : ' result ') + ' found';
+                }
+            }
+      
+        });
+
+</script>
+<script>
+
+            $("#originname").keyup(function () {
+                var origindata = $("#originname").val();
+                if (origindata === '') {
+                    $('#origincode').val('');
+                }
+                else
+                    var jsonData = { originname: origindata };
+                $("#ReceivedIdErrorMessage").text("");
+                $.ajax({
+                    type: "POST",
+                    url: "/CourierOutboundSalesInformation/GetOriginCodeById",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(jsonData),
+                    dataType: "json",
+                    success: function (data) {
+                        //  alert("Success ");
+                        $("#origincode").val(data.Origin_Code);
+
+
+                    },
+                });
+
+                return false;
+
+            });
+
+          
+                $("#originname").autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            url: "/CourierOutboundSalesInformation/Get_Origin_Name",
+                            type: "POST",
+                            dataType: "json",
+                            data: { Prefix: request.term },
+
+                            success: function (data) {
+
+                                response($.map(data, function (item) {
+
+                                    return {
+                                        label: item.Long_Desc,
+                                        value: item.Long_Desc,
+                                    };
+
+
+                                }))
+
+                            }
+                        })
+                    },
+                    messages: {
+                        noResults: "",
+                        results: function (count) {
+                            return count + (count > 1 ? ' results' : ' result ') + ' found';
+                        }
+                    }
+         
+
+            });
+
+</script>
+
+<script>
+
+                $("#destinationname").keyup(function () {                 
+                    var destinationData = $("#destinationname").val();
+                    if (destinationData === '') {
+                        $('#destcode').val('');
+                    }
+                    else
+                        var jsonData = { destinationname: destinationData };
+                    $("#ReceivedIdErrorMessage").text("");
+                    $.ajax({
+                        type: "POST",
+                        url: "/CourierOutboundSalesInformation/GetDestinationCodeById",
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify(jsonData),
+                        dataType: "json",
+                        success: function (data) {
+                            //  alert("Success ");
+                            $("#destcode").val(data.Dest_Code);
+
+                        },
+                    });
+
+                    return false;
+
+                });
+
+
+                $("#destinationname").autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            url: "/CourierOutboundSalesInformation/Get_Destination_Name",
+                            type: "POST",
+                            dataType: "json",
+                            data: { Prefix: request.term },
+
+                            success: function (data) {
+
+                                response($.map(data, function (item) {
+
+                                    return {
+                                        label: item.Long_Desc,
+                                        value: item.Long_Desc,
+                                    };
+
+
+                                }))
+
+                            }
+                        })
+                    },
+                    messages: {
+                        noResults: "",
+                        results: function (count) {
+                            return count + (count > 1 ? ' results' : ' result ') + ' found';
+                        }
+                    }
+
+                });
+
+</script>
+
+<script>
+
+                $("#paymentname").keyup(function () {
+                    var paymentData = $("#paymentname").val();
+                    if (paymentData === '') {
+                        $('#paymentmode').val('');
+                    }
+                    else
+                        var jsonData = { paymentname: paymentData };
+                    $("#ReceivedIdErrorMessage").text("");
+                    $.ajax({
+                        type: "POST",
+                        url: "/CourierOutboundSalesInformation/GetpaymentCodeById",
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify(jsonData),
+                        dataType: "json",
+                        success: function (data) {
+                            //  alert("Success ");
+                            $("#paymentmode").val(data.Payment_Mode);
+
+
+                        },
+                    });
+
+                    return false;
+
+                });
+
+
+                $("#paymentname").autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            url: "/CourierOutboundSalesInformation/Get_payment_Name",
+                            type: "POST",
+                            dataType: "json",
+                            data: { Prefix: request.term },
+
+                            success: function (data) {
+
+                                response($.map(data, function (item) {
+
+                                    return {
+                                        label: item.Long_Desc,
+                                        value: item.Long_Desc,
+
+
+
+
+
+                                    };
+
+
+                                }))
+
+                            }
+                        })
+                    },
+                    messages: {
+                        noResults: "",
+                        results: function (count) {
+                            return count + (count > 1 ? ' results' : ' result ') + ' found';
+                        }
+                    }
+
+                });
+
+</script>
+
+<script>
+
+                $("#uplimenttype").keyup(function () {
+                    var uplimentData = $("#uplimenttype").val();
+                    if (uplimentData === '') {
+                        $('#utypecode').val('');
+                    }
+                    else
+                        var jsonData = { uplimenttype_Name: uplimentData };
+                    $("#ReceivedIdErrorMessage").text("");
+                    $.ajax({
+                        type: "POST",
+                        url: "/CourierOutboundSalesInformation/GetuplimenttypeCodeById",
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify(jsonData),
+                        dataType: "json",
+                        success: function (data) {                           
+                            // alert("Success ");
+                            $("#utypecode").val(data.UType_Code);
+
+                        },
+                    });
+
+                    return false;
+
+                });
+
+
+                $("#uplimenttype").autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            url: "/CourierOutboundSalesInformation/Get_UplimentType_Name",
+                            type: "POST",
+                            dataType: "json",
+                            data: { Prefix: request.term },
+
+                            success: function (data) {
+
+                                response($.map(data, function (item) {
+
+                                    return {
+                                        label: item.Long_Desc,
+                                        value: item.Long_Desc,
+
+
+
+
+
+                                    };
+
+
+                                }))
+
+                            }
+                        })
+                    },
+                    messages: {
+                        noResults: "",
+                        results: function (count) {
+                            return count + (count > 1 ? ' results' : ' result ') + ' found';
+                        }
+                    }
+
+                });
+
+</script>
+
+<script>
+
+                $("#freighter").keyup(function () {
+                    var freighterData = $("#freighter").val();
+                    if (freighterData === '') {
+                        $('#freightercode').val('');
+                    }
+                    else
+                        var jsonData = { freightername: freighterData };
+                    $("#ReceivedIdErrorMessage").text("");
+                    $.ajax({
+                        type: "POST",
+                        url: "/CourierOutboundSalesInformation/GetfreighterCodeById",
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify(jsonData),
+                        dataType: "json",
+                        success: function (data) {
+                            // alert("Success ");
+                            $("#freightercode").val(data.Freighter_Code);
+
+                        },
+                    });
+
+                    return false;
+
+                });
+
+
+                $("#freighter").autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            url: "/CourierOutboundSalesInformation/Get_Freighter_Name",
+                            type: "POST",
+                            dataType: "json",
+                            data: { Prefix: request.term },
+
+                            success: function (data) {
+
+                                response($.map(data, function (item) {
+
+                                    return {
+                                        label: item.Long_Desc,
+                                        value: item.Long_Desc,
+
+
+
+
+
+                                    };
+
+
+                                }))
+
+                            }
+                        })
+                    },
+                    messages: {
+                        noResults: "",
+                        results: function (count) {
+                            return count + (count > 1 ? ' results' : ' result ') + ' found';
+                        }
+                    }
+
+                });
+
+</script>
+
+<script>
+
+                $("#routename").keyup(function () {
+                    var routeData = $("#routename").val();
+                    if (routeData === '') {
+                        $('#routecode').val('');
+                    }
+                    else
+                        var jsonData = { sectorname: routeData };
+                    $("#ReceivedIdErrorMessage").text("");
+                    $.ajax({
+                        type: "POST",
+                        url: "/CourierOutboundSalesInformation/GetrouteCodeById",
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify(jsonData),
+                        dataType: "json",
+                        success: function (data) {
+                            // alert("Success ");
+                            $("#routecode").val(data.Route_Code);
+
+                        },
+                    });
+
+                    return false;
+
+                });
+
+                $(document).ready(function () {
+                $("#routename").autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            url: "/CourierOutboundSalesInformation/Get_Route_Name",
+                            type: "POST",
+                            dataType: "json",
+                            data: { Prefix: request.term },
+
+                            success: function (data) {
+
+                                response($.map(data, function (item) {
+
+                                    return {
+                                        label: item.Long_Desc,
+                                        value: item.Long_Desc,
+
+
+                                    };
+
+
+                                }))
+
+                            }
+                        })
+                    },
+                    messages: {
+                        noResults: "",
+                        results: function (count) {
+                            return count + (count > 1 ? ' results' : ' result ') + ' found';
+                        }
+                    }
+                })
+                });
+
+</script>
+
+<script>
+
+                $("#cargotype").keyup(function () {
+                    var cargotypeData = $("#cargotype").val();
+                    if (cargotypeData === '') {
+                        $('#cargocode').val('');
+                    }
+                    else
+                        var jsonData = { cargotype_Name: cargotypeData };
+                    $("#ReceivedIdErrorMessage").text("");
+                    $.ajax({
+                        type: "POST",
+                        url: "/CourierOutboundSalesInformation/GetcargotypeCodeById",
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify(jsonData),
+                        dataType: "json",
+                        success: function (data) {
+                            // alert("Success ");
+                            $("#cargocode").val(data.Cargo_Code);
+
+                        },
+                    });
+
+                    return false;
+
+                });
+
+                $(document).ready(function () {
+                    $("#cargotype").autocomplete({
+                        source: function (request, response) {
+                            $.ajax({
+                                url: "/CourierOutboundSalesInformation/Get_CargoType_Name",
+                                type: "POST",
+                                dataType: "json",
+                                data: { Prefix: request.term },
+
+                                success: function (data) {
+
+                                    response($.map(data, function (item) {
+
+                                        return {
+                                            label: item.Long_Desc,
+                                            value: item.Long_Desc,
+
+
+                                        };
+
+
+                                    }))
+
+                                }
+                            })
+                        },
+                        messages: {
+                            noResults: "",
+                            results: function (count) {
+                                return count + (count > 1 ? ' results' : ' result ') + ' found';
+                            }
+                        }
+                    })
+                });
+
+</script>
+
+<script>
+
+                $("#continent").keyup(function () {
+                    var continentData = $("#continent").val();
+                    if (continentData === '') {
+                        $('#continentcode').val('');
+                    }
+                    else
+                        var jsonData = { continentname: continentData };
+                    $("#ReceivedIdErrorMessage").text("");
+                    $.ajax({
+                        type: "POST",
+                        url: "/CourierOutboundSalesInformation/GetContinentCodeById",
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify(jsonData),
+                        dataType: "json",
+                        success: function (data) {
+                            // alert("Success ");
+                            $("#continentcode").val(data.Continent_Code);
+
+                        },
+                    });
+
+                    return false;
+
+                });
+
+                $(document).ready(function () {
+                    $("#continent").autocomplete({
+                        source: function (request, response) {
+                            $.ajax({
+                                url: "/CourierOutboundSalesInformation/Get_Continent_Name",
+                                type: "POST",
+                                dataType: "json",
+                                data: { Prefix: request.term },
+
+                                success: function (data) {
+
+                                    response($.map(data, function (item) {
+
+                                        return {
+                                            label: item.Long_Desc,
+                                            value: item.Long_Desc,
+
+
+                                        };
+
+
+                                    }))
+
+                                }
+                            })
+                        },
+                        messages: {
+                            noResults: "",
+                            results: function (count) {
+                                return count + (count > 1 ? ' results' : ' result ') + ' found';
+                            }
+                        }
+                    })
+                });
+
+</script>
+<script>
+
+                $("#freightpaymode").keyup(function () {
+                    var cfpaymodeData = $("#freightpaymode").val();
+                    if (cfpaymodeData === '') {
+                        $('#freightpaymodecode').val('');
+                    }
+                    else
+                        var jsonData = { cfpaymodename: cfpaymodeData };
+                    $("#ReceivedIdErrorMessage").text("");
+                    $.ajax({
+                        type: "POST",
+                        url: "/CourierOutboundSalesInformation/GetCFpaymodeById",
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify(jsonData),
+                        dataType: "json",
+                        success: function (data) {
+                            // alert("Success ");
+                            $("#freightpaymodecode").val(data.CFPaymode_Code);
+
+                        },
+                    });
+
+                    return false;
+
+                });
+
+                $(document).ready(function () {
+                    $("#freightpaymode").autocomplete({
+                        source: function (request, response) {
+                            $.ajax({
+                                url: "/CourierOutboundSalesInformation/Get_CFpaymode_Name",
+                                type: "POST",
+                                dataType: "json",
+                                data: { Prefix: request.term },
+
+                                success: function (data) {
+
+                                    response($.map(data, function (item) {
+
+                                        return {
+                                            label: item.Long_Desc,
+                                            value: item.Long_Desc,
+
+
+                                        };
+
+
+                                    }))
+
+                                }
+                            })
+                        },
+                        messages: {
+                            noResults: "",
+                            results: function (count) {
+                                return count + (count > 1 ? ' results' : ' result ') + ' found';
+                            }
+                        }
+                    })
+                });
+
+</script>
+
+
+<script>
+
+                $("#mawb").keyup(function () {
+                    var mawbData = $("#mawb").val();
+                    if (mawbData === '') {
+                        $('#issuecode').val('');
+                    }
+                    else
+                        var jsonData = { mawbcode: mawbData };
+                    $("#ReceivedIdErrorMessage").text("");
+                    $.ajax({
+                        type: "POST",
+                        url: "/CourierOutboundSalesInformation/GetMAWBCodeById",
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify(jsonData),
+                        dataType: "json",
+                        success: function (data) {
+                            // alert("Success ");
+                            $("#issuecode").val(data.SIssued_Code);
+                            $("#carrier").val(data.Long_Desc);
+                            $("#carriercode").val(data.Airlines_Code);
+                        },
+                    });
+
+                    return false;
+
+                });
+
+                $(document).ready(function () {
+                    $("#mawb").autocomplete({
+                        source: function (request, response) {
+                            $.ajax({
+                                url: "/CourierOutboundSalesInformation/Get_MAWB",
+                                type: "POST",
+                                dataType: "json",
+                                data: { Prefix: request.term },
+
+                                success: function (data) {
+
+                                    response($.map(data, function (item) {
+
+                                        return {
+                                            label: item.Ticket_No,
+                                            value: item.Ticket_No,
+
+
+                                        };
+
+
+                                    }))
+
+                                }
+                            })
+                        },
+                        messages: {
+                            noResults: "",
+                            results: function (count) {
+                                return count + (count > 1 ? ' results' : ' result ') + ' found';
+                            }
+                        }
+                    })
+                });
+
+</script>
+
+}

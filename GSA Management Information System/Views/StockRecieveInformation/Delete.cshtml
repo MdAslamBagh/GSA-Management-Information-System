@@ -1,0 +1,113 @@
+﻿@model GSA_Management_Information_System.Models.StockRecieveInformation
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>StockRecieveInformation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SR_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SR_Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Trans_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Trans_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Airlines_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Airlines_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.From_TicketNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.From_TicketNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.To_TicketNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.To_TicketNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket_Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ticket_Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Remarks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Transaction_Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Issued)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Issued)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entry_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entry_Date)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

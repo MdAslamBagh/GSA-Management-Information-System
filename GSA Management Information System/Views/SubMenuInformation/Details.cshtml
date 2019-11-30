@@ -1,0 +1,58 @@
+﻿@model GSA_Management_Information_System.Models.SubMenuInformation
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SubMenuInformation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Access_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Access_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MenuItemId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MenuItemId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Controller_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Controller_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Action_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Action_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsVisible)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsVisible)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SubMenuId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

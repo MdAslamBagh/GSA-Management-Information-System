@@ -1,0 +1,223 @@
+﻿@{
+    ViewBag.Title = "AccessList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    fieldset.scheduler-border {
+        border: 1px groove #ddd !important;
+        padding: 0 1.4em 1.4em 1.4em !important;
+        margin: 0 0 1.5em 0 !important;
+        -webkit-box-shadow: 0px 0px 0px 0px #000;
+        box-shadow: 0px 0px 0px 0px #000;
+    }
+
+    legend.scheduler-border {
+        font-size: 1.2em !important;
+        font-weight: bold !important;
+        text-align: left !important;
+    }
+</style>
+<h2>Group Permission</h2>
+<div class="list-group">
+    <div class="list-group-item">
+        <div class="editor-field" style="width: 400px">
+            <label style="width: 200px">Admin User Group Name:</label>
+            @Html.DropDownList("RoleID", null, htmlAttributes: new { @class = "form-control" })
+            @*@Html.DropDownList("Id", new SelectList(ViewBag.Id, "Id", "Name"), new { @class = "form-control readonly", @disabled = "disabled" })*@
+        </div>
+        <br />
+        <div class="list-group-item">
+            <div class="editor-field">
+                <input id='Checkbox' type="checkbox" /> Check All
+                <br />
+                <br />
+                <div id="accessBox"></div>
+
+            </div>
+        </div>
+        <br />
+        <button type="button" class="btn btn-info btn-icon icon-left pull-left" onclick="location.href = '@Url.Action("Index", "TaxGroup")'">
+            <i class=" entypo-back">
+            </i>Back To List
+        </button>
+        <button type="button" id="adminUserGroupSave" class="btn btn-success btn-icon icon-left pull-right">
+            <i class="entypo-check">
+            </i>Save
+        </button>
+        <br />
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/bundles/jqueryval"> </script>
+
+    <script>
+    $(document).ready(function () {
+
+            $.ajax({
+                url: "/AccessInformation/PermisssionList",
+                type: 'GET',
+                success: function (res) {
+                    console.log(res);
+
+                    //alert(res);
+                    var aaa = $("#listOfValue").val();
+                    var check = 0;
+                    var strOfCheck = "";
+                    var a = 1;
+                    var rowDiv = 0;
+                    for (var i = 0; i < res.length; i++) {
+                        if (rowDiv == 0) {
+                            //alert(rowDiv + "sss");
+                            strOfCheck += "<div class='row'>";
+                        }
+
+                        if (res[i].MenuItemId != check) {
+
+                            if (a != 1) {
+                                strOfCheck += "</div>";
+                                strOfCheck += "</div>";
+                                strOfCheck += "</fieldset>";
+                                strOfCheck += "</div>";
+
+                                if (rowDiv % 3 == 0) {
+                                    strOfCheck += "</div>";
+                                    strOfCheck += "<div class='row'>";
+                                    //rowDiv = 0;
+                                }
+                            }
+                            strOfCheck += "<div class='col-md-4'>";
+                            strOfCheck += "<fieldset class='scheduler- border'> <legend class='scheduler- border'>" + res[i].Menu_Name+"</legend>";
+                            strOfCheck += "<div class='control- group'>";
+                            a++;
+                            strOfCheck += "<div class='col-md-12'>";
+                            strOfCheck += "<input id='Checkbox" + res[i].SubMenuId + "' class='Checkbox' type='checkbox' name='v' value=" + res[i].SubMenuId + ">";
+                            strOfCheck += " " + res[i].Access_Name + " <label> </label> <br />";
+                            check = res[i].MenuItemId;
+                            rowDiv++;
+                            //alert(rowDiv);
+                        }
+                        else {
+                            strOfCheck += "<input id='Checkbox" + res[i].SubMenuId + "' class='Checkbox' type='checkbox' name='v' value=" + res[i].SubMenuId + ">";
+                            strOfCheck += " " + res[i].Access_Name + " <label> </label> <br />";
+                            check = res[i].MenuItemId;
+                        }
+                    }
+                    strOfCheck += "</div>";
+                    //console.log(strOfCheck);
+                    $("#accessBox").append(strOfCheck);
+
+                    $.ajax({
+                        url: "/AccessInformation/PermisssionListById",
+                        type: 'GET',
+                        data: { id: id },
+                        success: function (res) {
+                            console.log(res);
+                            //alert(res);
+                            for (var j = 0; j < res.length; j++) {
+                                var varaibleId = "#Checkbox" + res[j];
+                                $(varaibleId).prop('checked', true);
+                                //$('#Checkbox'+aaa[j].accessID).not(this).prop('checked', this.checked);
+                            }
+                        }
+                    });
+
+                }
+            });
+            var id = "@ViewBag.Id";
+
+
+            $("#Checkbox").click(function () {
+                $('input:checkbox').not(this).prop('checked', this.checked);
+            });
+            $('#adminUserGroupSave').click(function () {
+
+                if ($('#RoleID').val() === '') {
+                    //bootbox.alert({
+                    //    size: 'small',
+                    //    message: "name can not be empty!"
+                    //});
+                    return false;
+                } else {
+                    var userGroupname = $('#RoleID').val();
+                    var isActive = 1; // default value active
+
+                    var moduleActionName = $('.Checkbox:checked').map(function () { return this.value; }).get().join(',');
+
+                    var accessInfoViewModel = {
+                        RoleId: id, //not needed
+                        SubMenuList: moduleActionName
+                    };
+                    if (moduleActionName.length <= 0) {
+                        //swal("No Access Selected");
+                        sweetAlert("No Access Selected...", "You must select at least one access !!!", "warning");
+                        //alert("No Access Selected")
+                        return false;
+                    }
+                    console.log(accessInfoViewModel);
+
+                    $.ajax({
+                        data: accessInfoViewModel,
+                        url: '/AccessInformation/AccessList',
+                        method: 'POST',
+                        //data: {
+                        //    email: Email,
+                        //    password: $('#Password').val(),
+                        //    confirmpassword: $('#Reapet-Password').val(),
+                        //},
+                        dataType: 'json',
+                        success: function (response) {
+                            //if (response.Message === "ok") {
+                            //    bootbox.alert({
+                            //        size: 'small',
+                            //        message: "saved successfully",
+                            //        callback: function () {
+                            //            window.open('/Authorization/Index', '_self');
+                            //        }
+                            //    });
+                            //} else {
+                            //    bootbox.alert({
+                            //        size: 'small',
+                            //        message: "something went wrong!"
+                            //    });
+                            //}
+                            //console.log("WTF");
+                            //var msg = "Group Access Updated !! ";
+                            //window.location.href = "/Home/Message" + "?msg=" + msg ;
+                            @*window.location.replace("@Url.Action("Message", "Home", new { msg = "Group Access Updated !!" })");*@
+                            console.log(response);
+                            //swal({
+                            //    title: "Success!",
+                            //    text: "Save Succesful",
+                            //    icon: "success",
+                            //    button: "Ok",
+                            //})
+                            //    .then((willDelete) => {
+                            //        if (willDelete) {
+                            //            window.location.href = "/PmsGroup/Index";
+                            //            //swal("Poof! Your imaginary file has been deleted!", {
+                            //            //    icon: "success",
+                            //            //});
+                            //        } else {
+                            //            swal("Your imaginary file is safe!");
+                            //        }
+                            //    });
+                            //return false;
+                            window.location.href = "/GsaGroup/Index";
+                        },
+                        error: function (error) {
+                            //bootbox.alert({
+                            //    size: 'small',
+                            //    message: "error!!!"
+                            //});
+                        }
+                    }); //ajax call ends here
+
+                } // else ends here
+
+            });
+
+    }); //document ready ends here
+    </script>
+}

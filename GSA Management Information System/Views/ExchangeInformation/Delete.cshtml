@@ -1,0 +1,73 @@
+﻿@model GSA_Management_Information_System.Models.ExchangeInformation
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ExchangeInformation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Exchange_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Exchange_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Long_Desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Long_Desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Exchange_Rate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Exchange_Rate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Default_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Default_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entry_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entry_Date)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

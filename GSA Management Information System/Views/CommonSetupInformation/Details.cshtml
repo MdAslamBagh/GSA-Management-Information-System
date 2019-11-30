@@ -1,0 +1,67 @@
+﻿@model GSA_Management_Information_System.Models.CommonSetupInformation
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CommonSetupInformation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SerialNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SerialNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Particulars)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Particulars)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Particular_Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Particular_Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Minimum_Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Minimum_Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entry_By)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entry_By)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CommonId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

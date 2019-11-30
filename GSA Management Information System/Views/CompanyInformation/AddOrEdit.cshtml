@@ -1,0 +1,140 @@
+﻿@model GSA_Management_Information_System.Models.CompanyInformation
+@{
+    ViewBag.Title = "AddOrEdit";
+    Layout = null;
+}
+@using (Html.BeginForm("AddOrEdit", "CompanyInformation", FormMethod.Post, new { enctype = "multipart/form-data", onSubmit = "return jQueryAjaxPost(this);", data_restUrl = Url.Action("AddOrEdit", "CompanyInformation", new { id = 0 }) }))//data-reset
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(model => model.CompanyID)
+            @Html.HiddenFor(model => model.Company_ImagePath)
+
+            <div class="col-md-10">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Company_Name, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Company_Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Company_Name)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Company_Code, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Company_Code, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Company_Code)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Branch_Name, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Branch_Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Branch_Name)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Branch_Code, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Branch_Code, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Branch_Code)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Company_Tin, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Company_Tin, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Company_Tin)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Company_Address, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Company_Address, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Company_Address)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Company_Postcode, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Company_Postcode, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Company_Postcode)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Company_City, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Company_City, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Company_City)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Company_Country, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Company_Country, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Company_Country)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Company_ContacNo, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Company_ContacNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Company_ContacNo)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Company_Fax, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Company_Fax, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Company_Fax)
+                    </div>
+                </div>
+                 <div class="form-group">
+                    @Html.LabelFor(model => model.Company_Email, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Company_Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Company_Email)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Company_Web, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Company_Web, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Company_Web)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Company_Dialogue, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Company_Dialogue, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Company_Dialogue)
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Company_ImagePath, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <img src="@Url.Content(Model.Company_ImagePath)" style="margin:10px" height="200" width="200" id="imagePreview" />
+                            <input type="file" name="Company_ImageUpload" accept="image/jpeg, image/png" onchange="ShowImagePreview(this,document.getElementById('imagePreview'))" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Submit" class="btn btn-default" />
+                        @if (Model.CompanyID != 0)
+                        {
+                            <a class="btn btn-success" onclick="refreshAddNewTab('@Url.Action("AddOrEdit","CompanyInformation",new{id=0})',false)"><i class="fa fa-plus"></i> Add New</a>
+                        }
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+}

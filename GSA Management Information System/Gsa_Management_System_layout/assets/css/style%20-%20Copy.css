@@ -1,0 +1,22 @@
+#salesslno {
+    height: 32px;
+    width: 130px;
+}
+#checkdigit {
+    height: 32px;
+}
+#txtmawb {
+    height: 32px;
+}
+#txtissuecode {
+    height: 32px;
+}
+
+label[for="levelentrydate"] {
+    display: none
+}
+
+/*label[for="flightdate"] {
+    height: 30px;
+}*/
+

@@ -1,0 +1,51 @@
+﻿@model GSA_Management_Information_System.Models.StockIssueInformation
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>StockIssueInformation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SIssued_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SIssued_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Issue_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Issue_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SRecieved_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SRecieved_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Remarks)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SIssueId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

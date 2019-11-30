@@ -1,0 +1,640 @@
+﻿@model GSA_Management_Information_System.Models.TicketSalesInformation
+
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Add", "TicketSalesInformation", FormMethod.Post, new { @id = "validationForm", @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Ticket Sales Information</h4>
+        <hr />
+        <input type="hidden" name="SalesSlno" value="@ViewBag.SalesSlno" />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="form-group">
+                @Html.Label("Sales_Slno", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    @Html.Editor("Sales_Slno", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.Sales_Slno, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <label for="Airlines" class="col-md-2 col-sm-2">Airlines<span class="required"><font size="2px" color="red">*</font></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="airlinesname" name="Long_Desc" placeholder="Airlines" class="form-control" type="text">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <label for="Airlines_Code" class="col-md-2 col-sm-2">Airlines Code<span class="required"><font size="2px" color="red">*</font></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="airlinescode" name="Airlines_Code" placeholder="Airlines Code" class="form-control" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Ticket_Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.Editor("Ticket_Date", new { htmlAttributes = new { @class = "datepicker1" } })
+                    @Html.ValidationMessageFor(model => model.Ticket_Date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <label for="Ticket_No" class="col-md-2 col-sm-2">Ticket_No<span class="required"><font size="2px" color="red">*</font></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="Ticket_No" name="Ticket_No" placeholder="Ticket_No" class="form-control" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <label for="Customer Name" class="col-md-2 col-sm-2">Customer Name<span class="required"><font size="2px" color="red">*</font></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="customername" name="Customer_Name" placeholder="Customer Name" class="form-control" type="text" value="@ViewBag.Customer_Name">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <label for="Customer_Code" class="col-md-2 col-sm-2">Customer Code<span class="required"></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="customercode" name="Customer_Code" placeholder="Customer Code" class="form-control" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <label for="Payment Name" class="col-md-2 col-sm-2">Payment Name <span class="required"><font size="2px" color="red">*</font></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="paymentname" name="Long_Desc" placeholder="Payment Name" class="form-control" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <label for="Paymemt_Mode" class="col-md-2 col-sm-2">Payment Mode<span class="required"></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="paymentmode" name="Payment_Mode" placeholder="Payment Mode" class="form-control" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <label for="Bank Name" class="col-md-2 col-sm-2">Bank Name<span class="required"><font size="2px" color="red">*</font></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="bankname" name="Long_Desc" placeholder="Bank Name" class="form-control" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <label for="Bank_Code" class="col-md-2 col-sm-2">Bank_Code<span class="required"><font size="2px" color="red">*</font></span></label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="bankcode" name="Bank_Code" placeholder="Bank Code" class="form-control" type="text">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <label for="Exchange Rate" class="col-md-2 col-sm-2">Exchange_Rate</label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="exchangerate" name="Exchange_Rate"class="form-control" type="text" value="@ViewBag.Exchange_Rate">
+                </div>
+            </div>
+        </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="Sales_Value_USD" class="col-md-2 col-sm-2">Sales_Value_USD</label>
+                        <div class="col-md-4 col-sm-5">
+                            <input id="salesvalueusd" value="" type="text"  onkeyup="sales()" class="form-control"  name="Sales_Value_USD">
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="Sales_Value_BDT" class="col-md-2 col-sm-2">Sales_Value_BDT</label>
+                        <div class="col-md-4 col-sm-5">
+                            <input id="salesvaluebdt" name="Sales_Value_BDT" placeholder="BDT" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="Commison" class="col-md-2 col-sm-2">Commison(%)</label>
+                        <div class="col-md-4 col-sm-5">
+                            <input value="7" id="commison" name="Commison" placeholder="BDT" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="Commison_Amount" class="col-md-2 col-sm-2">Commison_Amount</label>
+                        <div class="col-md-4 col-sm-5">
+                            <input id="commisonamount" name="Commison_Amount" placeholder="BDT" class="form-control" type="text">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="Emb_Tax" class="col-md-2 col-sm-2">Emb_Tax</label>
+                        <div class="col-md-4 col-sm-5">
+                            <input id="embtax" value="" type="text" onkeyup="embTax()"placeholder="BDT" class="form-control"  name="Emb_Tax">
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="Travel_Tax" class="col-md-2 col-sm-2">Travel_Tax</label>
+                        <div class="col-md-4 col-sm-5">
+                            <input id="traveltax" value="" type="text" onkeyup="travelTax()" placeholder="BDT" class="form-control" name="Travel_Tax">  
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="Fuel_Charge" class="col-md-2 col-sm-2">Fuel_Charge</label>
+                        <div class="col-md-4 col-sm-5">
+                            <input id="fuelcharge" value="" type="text" onkeyup="fuelCharge()" placeholder="BDT" class="form-control" name="Fuel_Charge">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="Hk_Tax" class="col-md-2 col-sm-2">Hk_Tax</label>
+                        <div class="col-md-4 col-sm-5">
+                            <input id="hktax" value="" type="text" onkeyup="hkTax()" placeholder="BDT" class="form-control"  name="Hk_Tax">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="Xt_Charge" class="col-md-2 col-sm-2">Xt_Charge</label>
+                        <div class="col-md-4 col-sm-5">
+                            <input id="xtcharge" value="" type="text" onkeyup="xtCharge()" placeholder="BDT" class="form-control"  name="Xt_Charge">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="Other_Charge" class="col-md-2 col-sm-2">Other_Charge</label>
+                        <div class="col-md-4 col-sm-5">
+                            <input id="othercharge" value="" type="text" onkeyup="otherCharge()" placeholder="BDT" class="form-control" name="Other_Charge">
+                        </div>
+                    </div>
+                </div>
+
+        <div class="row">
+            <div class="form-group">
+                <label for="Discount" class="col-md-2 col-sm-2">Discount</label>
+                <div class="col-md-4 col-sm-5">
+                    <input id="discount" value="" type="text" onkeyup="disCount()" placeholder="BDT" class="form-control"  name="Discount">
+                </div>
+            </div>
+        </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="Net_Receivable_Amount" class="col-md-2 col-sm-2">Net_Receivable_Amount</label>
+                        <div class="col-md-4 col-sm-5">
+                            <input id="netreceiveable" value="" type="text" onkeyup="netreceiveableAmount()" placeholder="BDT" class="form-control" name="Net_Receivable_Amount">
+
+                        </div>
+                    </div>
+    
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="Received_Amount" class="col-md-2 col-sm-2">Received_Amount</label>
+                        <div class="col-md-4 col-sm-5">
+                            <input id="receivedamount" value="" type="text" onkeyup="receivedAmount()" placeholder="BDT" class="form-control"  name="Received_Amount">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="Amount_In_PPRS" class="col-md-2 col-sm-2">Amount_In_PPRS</label>
+                        <div class="col-md-4 col-sm-5">
+                            <input id="amountinpprs" name="Amount_In_PPRS" placeholder="BDT" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="Remarks" class="col-md-2 col-sm-2">Remarks<span class="required"></span></label>
+                        <div class="col-md-4 col-sm-5">
+                            <textarea id="remarks" rows="5" cols="50" name="Remarks" placeholder="Remarks" class="form-control" type="text"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-6">
+                    <div align="right">
+                        <input type="submit" value="submit" id="submitbutton" class="btn btn-primary" />
+                        <input type="reset" value="reset" class="btn btn-warning" />
+                    </div>
+                </div>
+            </div>
+        </div>
+            </div>
+
+            }
+
+            <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+
+            
+
+
+
+@section scripts{
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/bundles/jqueryval"> </script>
+<script>
+    //<script src="~/Scripts/Validation.js">//
+    $("#airlinesname").keyup(function () {
+        var airlinesdata = $("#airlinesname").val();
+        if (airlinesdata === '') {
+            $('#airlinescode').val('');
+
+        }
+        else
+            var jsonData = { airlinesname: airlinesdata };
+        $("#ReceivedIdErrorMessage").text("");
+        $.ajax({
+            type: "POST",
+            url: "/TicketSalesInformation/GetAirlinesCodeById",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(jsonData),
+            dataType: "json",
+            success: function (data) {
+                //  alert("Success ");
+                $("#airlinescode").val(data.Airlines_Code);
+
+            },
+        });
+
+        return false;
+    });
+    $(document).ready(function () {
+    $("#airlinesname").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: "/TicketSalesInformation/Get_Airlines_Name",
+                type: "POST",
+                dataType: "json",
+                data: { Prefix: request.term },
+
+                success: function (data) {
+
+                    response($.map(data, function (item) {
+
+                        return {
+                            label: item.Long_Desc,
+                            value: item.Long_Desc,
+
+
+                        };
+
+
+                    }))
+
+                }
+            })
+        },
+        messages: {
+            noResults: "",
+            results: function (count) {
+                return count + (count > 1 ? ' results' : ' result ') + ' found';
+            }
+        }
+        })
+    });
+
+</script>
+<script>
+
+        $("#customername").keyup(function () {
+            var customerdata = $("#customername").val();
+            if (customerdata === '') {
+                $('#customercode').val('');
+                $("#customeraddress").val('');
+            }
+            else
+                var jsonData = { customername: customerdata };
+            $("#ReceivedIdErrorMessage").text("");
+            $.ajax({
+                type: "POST",
+                url: "/TicketSalesInformation/GetCustomerCodeById",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(jsonData),
+                dataType: "json",
+                success: function (data) {
+                    //  alert("Success ");
+                    $("#customercode").val(data.Customer_Code);
+                    $("#customeraddress").val(data.Address);
+
+
+                },
+            });
+
+            return false;
+
+        });
+
+
+        $("#customername").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/TicketSalesInformation/Get_Customer_Name",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+
+                    success: function (data) {
+
+                        response($.map(data, function (item) {
+
+                            return {
+                                label: item.Customer_Name,
+                                value: item.Customer_Name,
+
+
+
+
+
+                            };
+
+
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "",
+                results: function (count) {
+                    return count + (count > 1 ? ' results' : ' result ') + ' found';
+                }
+            }
+
+        });
+
+</script>
+<script>
+
+        $("#paymentname").keyup(function () {
+            var paymentData = $("#paymentname").val();
+            if (paymentData === '') {
+                $('#paymentmode').val('');
+            }
+            else
+                var jsonData = { paymentname: paymentData };
+            $("#ReceivedIdErrorMessage").text("");
+            $.ajax({
+                type: "POST",
+                url: "/TicketSalesInformation/GetpaymentCodeById",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(jsonData),
+                dataType: "json",
+                success: function (data) {
+                    //  alert("Success ");
+                    $("#paymentmode").val(data.Payment_Mode);
+
+
+                },
+            });
+
+            return false;
+
+        });
+
+
+        $("#paymentname").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/TicketSalesInformation/Get_payment_Name",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+
+                    success: function (data) {
+
+                        response($.map(data, function (item) {
+
+                            return {
+                                label: item.Long_Desc,
+                                value: item.Long_Desc,
+
+
+
+
+
+                            };
+
+
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "",
+                results: function (count) {
+                    return count + (count > 1 ? ' results' : ' result ') + ' found';
+                }
+            }
+
+        });
+
+</script>
+<script>
+
+        $("#bankname").keyup(function () {
+            var bankdata = $("#bankname").val();
+            if (bankdata === '') {
+                $('#bankcode').val('');
+            }
+            else
+                var jsonData = { bankname: bankdata };
+            $("#ReceivedIdErrorMessage").text("");
+            $.ajax({
+                type: "POST",
+                url: "/TicketSalesInformation/GetBankCodeById",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(jsonData),
+                dataType: "json",
+                success: function (data) {
+                    //  alert("Success ");
+                    $("#bankcode").val(data.Bank_Code);
+
+
+                },
+            });
+
+            return false;
+
+        });
+
+
+        $("#bankname").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/TicketSalesInformation/Get_Bank_Name",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+
+                    success: function (data) {
+
+                        response($.map(data, function (item) {
+
+                            return {
+                                label: item.Long_Desc,
+                                value: item.Long_Desc,
+
+                            };
+
+
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "",
+                results: function (count) {
+                    return count + (count > 1 ? ' results' : ' result ') + ' found';
+                }
+            }
+
+        });
+
+</script>
+
+
+                <script>
+                    $(function () {
+                        $(function () {
+                            $(".datepicker1").datepicker({
+                                dateFormat: "mm/dd/yy",
+                                changemonth: true,
+                                changeyear: true,
+                                minDate: new Date(2018, 0, 1),
+                                maxDate: new Date(2020, 0, 1),
+                                showOn: "both",
+                                buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+                                buttonText: "Calender"
+                            });
+                        });
+                        $(".datepicker2").datepicker({
+                            dateFormat: "mm/dd/yy",
+                            changemonth: true,
+                            changeyear: true,
+                            minDate: new Date(2018, 0, 1),
+                            maxDate: new Date(2020, 0, 1),
+                            showOn: "both",
+                            buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+                            buttonText: "Calender"
+                        });
+                    });
+
+                </script>
+           
+
+<script>
+
+                    function sales() {
+                        var salesusd = $("#salesvalueusd").val();
+                        var exchangerate = $("#exchangerate").val();
+                        var salesbdt = salesusd * exchangerate;
+                        var commison = $("#commison").val();
+                        var commisonresultfloat = (salesbdt * commison) / 100;
+                        var commisonresult = parseInt(commisonresultfloat);
+                        var commisonamnt = $("#commisonamount").val();
+                        $('#salesvaluebdt').val(salesbdt);          
+                        $('#commisonamount').val(commisonresult);
+                        netreceiveableAmount();    
+
+                    };
+
+                    function embTax() {
+
+                        var embtx = $('#embtax').val();
+                        netreceiveableAmount();
+                    };
+                    function travelTax() {
+
+                        var traveltx = $('#traveltax').val();
+                        netreceiveableAmount();
+                    };
+                    function fuelCharge(){
+
+                        var fuelcharge = $('#fuelcharge').val();
+                        netreceiveableAmount();
+                    };
+                    function hkTax() {
+                        var hktax = $('#hktax').val();
+                        netreceiveableAmount();
+                    };
+                    function xtCharge() {
+                        var xtcharge = $('#xtcharge').val();
+                        netreceiveableAmount();
+                    };
+                    function otherCharge() {
+                        var othercharge = $('#othercharge').val();
+                        netreceiveableAmount();
+                    };
+                    function disCount() {
+                        var discount = $('#discount').val();
+                        netreceiveableAmount();
+                    };
+                    function netreceiveableAmount() {
+                        var salesbdt = $('#salesvaluebdt').val();
+                        var embtx = $('#embtax').val();
+                        var traveltx = $('#traveltax').val();
+                        var fuelcharge = $('#fuelcharge').val();
+                        var hktax = $('#hktax').val();
+                        var xtcharge = $('#xtcharge').val();
+                        var othercharge = $('#othercharge').val();
+                        var commisonrslt = $('#commisonamount').val();
+                        var discount = $('#discount').val();
+                        var receiveableammount = (((parseFloat(salesbdt) || 0) + (parseFloat(embtx) || 0) + (parseFloat(traveltx) || 0) + (parseFloat(fuelcharge) || 0) + (parseFloat(hktax) || 0) + (parseFloat(xtcharge) || 0) + (parseFloat(othercharge) || 0)) - ((parseFloat(commisonrslt) || 0) + (parseFloat(discount) || 0)));
+                        $('#netreceiveable').val(receiveableammount);
+                        $('#amountinpprs').val(receiveableammount);
+
+                    };
+
+
+
+
+
+</script>
+
+}

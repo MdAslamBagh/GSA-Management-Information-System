@@ -1,0 +1,136 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/Content/LoginContent/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginContent/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginContent/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginContent/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginContent/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginContent/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginContent/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginContent/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginContent/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginContent/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginContent/css/main.css">
+    <link href="~/assets/css/sweetalert.css" rel="stylesheet" />
+    <!--===============================================================================================-->
+    <script src="~/Content/jquery-1.10.0.min.js"></script>
+</head>
+<body>
+    <div class="limiter">
+        <div class="container-login100" style="background-image: url('/Content/LoginContent/images/viagem-background-1.jpg');">
+            <div class="wrap-login100 p-t-30 p-b-50">
+                <span class="login100-form-title p-b-41">
+                    @*<img src="~/assets/images/kazi.png" style="width: auto;height: 150px;">*@
+                    @*<img src="~/assets/images/flemingo.png" style="width: 400px;height: 65px;">*@
+                    @*<img src="~/assets/images/algazi.png" style="width: 400px;height: 65px;">*@
+                    @*<img src="~/assets/images/innoglobe.png" style="width: 322px;height: 107px;">*@
+                    @*<img src="~/app-assets/images/logo/gsamanagements.png" style="width: 380px;height: 80px;">*@
+                    <img src="~/Gsa_Management_System_layout/assets/imagess/globalaviation.png" style="width: 380px;height: 80px;">
+                    @*<img src="~/assets/images/GoZayaanLogin.png" style="width: 255px;height: 70px;">*@
+                    @*<img src="~/assets/images/LatifTravels.png" style="width: 360px;height: 100px;">*@
+                    @*<img src="~/assets/images/flightale01.png" style="width: 400px;height: 160px;">*@
+                </span>
+                <!-- <span class="login100-form-title p-b-41">
+                    Account Login
+                </span> -->
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <form class="login100-form validate-form p-b-33 p-t-5" method="post" action="@Url.Action("Login","Account",new { ReturnUrl = ViewBag.ReturnUrl })">
+                    @Html.AntiForgeryToken()
+                    <div class="wrap-input100 validate-input" data-validate="Enter username">
+                        <input class="input100" type="text" name="Email" id="Email" placeholder="Email" required>
+                        <span class="focus-input100" data-placeholder="&#xe82a;"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Enter password">
+                        <input class="input100" type="password" name="Password" id="Password" placeholder="Password" src="~/assets/images/showPassIcon.png" required>
+                        <span class="focus-input100" data-placeholder="&#xe80f;"></span>
+                    </div>
+                    <div class="container-login100-form-btn m-t-32">
+                        <button class="login100-form-btn">
+                            Login
+                        </button>
+                    </div>
+                    <ul class="login-more p-t-20">
+                        <li class="m-b-8">
+                            <span class="txt1">
+                                Forgot
+                            </span>
+
+                            <a href="/ccl/change-password" class="txt2">
+                                Username / Password?
+                            </a>
+                        </li>
+
+                        <li>
+                            <span class="txt1">
+                               Not a Member ?
+                            </span>
+                            <a href="@Url.Action("Register", "Account")" class="txt2">
+                                Sign up now
+                            </a>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="dropDownSelect1"></div>
+    @*<script src="~/Content/LoginContent/vendor/jquery/jquery-3.2.1.min.js"></script>*@
+    <!--===============================================================================================-->
+    <!--===============================================================================================-->
+    <script src="~/Content/LoginContent/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/LoginContent/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/Content/LoginContent/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/LoginContent/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/LoginContent/vendor/daterangepicker/moment.min.js"></script>
+    <script src="vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/LoginContent/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/LoginContent/js/main.js"></script>
+    <script src="~/Scripts/sweetalert.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        var msg = '@ViewBag.msg';
+        if (msg != "") {
+            swal({
+                title: "Warning!",
+                text: msg,
+                icon: "warning",
+                button: "OK!"
+            });
+            return false;
+        }
+    })
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

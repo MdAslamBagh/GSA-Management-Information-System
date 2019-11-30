@@ -1,0 +1,367 @@
+﻿@*@using GSA_Management_Information_System.Extensions*@
+<!DOCTYPE html>
+<html lang="en" data-textdirection="ltr" class="loading">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <title>Project Dashboard - GSA Management Information System Template</title>
+    <link rel="apple-touch-icon" sizes="60x60" href="~/Gsa_Management_System_layout/app-assets/images/ico/apple-icon-60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/Gsa_Management_System_layout/app-assets/images/ico/apple-icon-76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/Gsa_Management_System_layout/app-assets/images/ico/apple-icon-120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/Gsa_Management_System_layout/app-assets/images/ico/apple-icon-152.png">
+    <link rel="shortcut icon" type="image/x-icon" href="~/Gsa_Management_System_layout/app-assets/images/ico/favicon.ico">
+    <link rel="shortcut icon" type="image/png" href="~/Gsa_Management_System_layout/app-assets/images/ico/favicon-32.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <!-- BEGIN VENDOR CSS-->
+
+    <link rel="stylesheet" type="text/css" href="~/Gsa_Management_System_layout/app-assets/css/bootstrap.css">
+
+    @*<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />*@
+   
+    <!-- font icons-->
+    <link rel="stylesheet" type="text/css" href="~/Gsa_Management_System_layout/app-assets/fonts/icomoon.css">
+    <link rel="stylesheet" type="text/css" href="~/Gsa_Management_System_layout/app-assets/fonts/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Gsa_Management_System_layout/app-assets/vendors/css/extensions/pace.css">
+    <!-- END VENDOR CSS-->
+    <!-- BEGIN ROBUST CSS-->
+    <link rel="stylesheet" type="text/css" href="~/Gsa_Management_System_layout/app-assets/css/bootstrap-extended.css">
+    <link rel="stylesheet" type="text/css" href="~/Gsa_Management_System_layout/app-assets/css/app.css">
+    <link rel="stylesheet" type="text/css" href="~/Gsa_Management_System_layout/app-assets/css/colors.css">
+    <!-- END ROBUST CSS-->
+    <!-- BEGIN Page Level CSS-->
+    <link rel="stylesheet" type="text/css" href="~/Gsa_Management_System_layout/app-assets/css/core/menu/menu-types/vertical-menu.css">
+    <link rel="stylesheet" type="text/css" href="~/Gsa_Management_System_layout/app-assets/css/core/menu/menu-types/vertical-overlay-menu.css">
+    <link rel="stylesheet" type="text/css" href="~/Gsa_Management_System_layout/app-assets/css/core/colors/palette-gradient.css">
+    <!-- END Page Level CSS-->
+    <!-- BEGIN Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="~/Gsa_Management_System_layout/assets/css/style.css">
+    <!-- END Custom CSS-->
+</head>
+<body data-open="click" data-menu="vertical-menu" data-col="2-columns" class="vertical-layout vertical-menu 2-columns  fixed-navbar">
+
+    <!-- navbar-fixed-top-->
+    <nav class="header-navbar navbar navbar-with-menu navbar-fixed-top navbar-dark bg-teal bg-darken-5 border-teal border-darken-4">
+        <div class="navbar-wrapper">
+            <div class="navbar-header">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item mobile-menu hidden-md-up float-xs-left"><a class="nav-link nav-menu-main menu-toggle hidden-xs"><i class="icon-menu5 font-large-1"></i></a></li>
+                    <li class="nav-item"><a href="@Url.Action("Index", "Home")" class="navbar-brand nav-link"><img alt="branding logo" src="../../Gsa_Management_System_layout/app-assets/images/logo/Capture.png" data-expand="../../Gsa_Management_System_layout/app-assets/images/logo/gsamanagements.png" data-collapse="../../Gsa_Management_System_layout/app-assets/images/logo/Capture.png" class="brand-logo"></a></li>
+                    <li class="nav-item hidden-md-up float-xs-right"><a data-toggle="collapse" data-target="#navbar-mobile" class="nav-link open-navbar-container"><i class="icon-ellipsis pe-2x icon-icon-rotate-right-right"></i></a></li>
+                </ul>
+            </div>
+            <div class="navbar-container content container-fluid">
+                <div id="navbar-mobile" class="collapse navbar-toggleable-sm">
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item hidden-sm-down"><a class="nav-link nav-menu-main menu-toggle hidden-xs"><i class="icon-menu5">         </i></a></li>
+
+                    </ul>
+                    <ul class="nav navbar-nav float-xs-right">
+                        @*<li class="dropdown dropdown-notification nav-item">
+                            <a href="#">Button</a>
+                        </li>  
+                        <li class="dropdown dropdown-notification nav-item">
+                            <a href="@Url.Action("Add", "CityInformation")" class="nav-link nav-link-label"><i class="ficon icon-bell4"></i><span class="tag tag-pill tag-default tag-danger tag-default tag-up">5</span></a>
+                            </li>*@
+                        <li class="dropdown dropdown-notification nav-item">
+                            <a href="#" data-toggle="dropdown" class="nav-link nav-link-label"><i class="ficon icon-bell4"></i><span class="tag tag-pill tag-default tag-danger tag-default tag-up">5</span></a>
+                            <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
+                                <li class="dropdown-menu-header">
+                                    <h6 class="dropdown-header m-0"><span class="grey darken-2">Notifications</span><span class="notification-tag tag tag-default tag-danger float-xs-right m-0">5 New</span></h6>
+                                </li>
+                                <li class="list-group scrollable-container">
+                                    <a href="javascript:void(0)" class="list-group-item">
+                                        <div class="media">
+                                            <div class="media-left valign-middle"><i class="icon-cart3 icon-bg-circle bg-cyan"></i></div>
+                                            <div class="media-body">
+                                                <h6 class="media-heading">You have new order!</h6>
+                                                <p class="notification-text font-small-3 text-muted">Lorem ipsum dolor sit amet, consectetuer elit.</p><small>
+                                                    <time datetime="2015-06-11T18:29:20+08:00" class="media-meta text-muted">30 minutes ago</time>
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </a><a href="javascript:void(0)" class="list-group-item">
+                                        <div class="media">
+                                            <div class="media-left valign-middle"><i class="icon-monitor3 icon-bg-circle bg-red bg-darken-1"></i></div>
+                                            <div class="media-body">
+                                                <h6 class="media-heading red darken-1">99% Server load</h6>
+                                                <p class="notification-text font-small-3 text-muted">Aliquam tincidunt mauris eu risus.</p><small>
+                                                    <time datetime="2015-06-11T18:29:20+08:00" class="media-meta text-muted">Five hour ago</time>
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </a><a href="javascript:void(0)" class="list-group-item">
+                                        <div class="media">
+                                            <div class="media-left valign-middle"><i class="icon-server2 icon-bg-circle bg-yellow bg-darken-3"></i></div>
+                                            <div class="media-body">
+                                                <h6 class="media-heading yellow darken-3">Warning notifixation</h6>
+                                                <p class="notification-text font-small-3 text-muted">Vestibulum auctor dapibus neque.</p><small>
+                                                    <time datetime="2015-06-11T18:29:20+08:00" class="media-meta text-muted">Today</time>
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </a><a href="javascript:void(0)" class="list-group-item">
+                                        <div class="media">
+                                            <div class="media-left valign-middle"><i class="icon-check2 icon-bg-circle bg-green bg-accent-3"></i></div>
+                                            <div class="media-body">
+                                                <h6 class="media-heading">Complete the task</h6><small>
+                                                    <time datetime="2015-06-11T18:29:20+08:00" class="media-meta text-muted">Last week</time>
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </a><a href="javascript:void(0)" class="list-group-item">
+                                        <div class="media">
+                                            <div class="media-left valign-middle"><i class="icon-bar-graph-2 icon-bg-circle bg-teal"></i></div>
+                                            <div class="media-body">
+                                                <h6 class="media-heading">Generate monthly report</h6><small>
+                                                    <time datetime="2015-06-11T18:29:20+08:00" class="media-meta text-muted">Last month</time>
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="dropdown-menu-footer"><a href="javascript:void(0)" class="dropdown-item text-muted text-xs-center">Read all notifications</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown dropdown-notification nav-item">
+                            <a href="#" data-toggle="dropdown" class="nav-link nav-link-label"><i class="ficon icon-mail6"></i><span class="tag tag-pill tag-default tag-info tag-default tag-up">8</span></a>
+                            <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
+                                <li class="dropdown-menu-header">
+                                    <h6 class="dropdown-header m-0"><span class="grey darken-2">Messages</span><span class="notification-tag tag tag-default tag-info float-xs-right m-0">4 New</span></h6>
+                                </li>
+                                <li class="list-group scrollable-container">
+                                    <a href="javascript:void(0)" class="list-group-item">
+                                        <div class="media">
+                                            <div class="media-left"><span class="avatar avatar-sm avatar-online rounded-circle"><img src="../../Gsa_Management_System_layout/app-assets/images/portrait/small/avatar-s-1.png" alt="avatar"><i></i></span></div>
+                                            <div class="media-body">
+                                                <h6 class="media-heading">Margaret Govan</h6>
+                                                <p class="notification-text font-small-3 text-muted">I like your portfolio, let's start the project.</p><small>
+                                                    <time datetime="2015-06-11T18:29:20+08:00" class="media-meta text-muted">Today</time>
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </a><a href="javascript:void(0)" class="list-group-item">
+                                        <div class="media">
+                                            <div class="media-left"><span class="avatar avatar-sm avatar-busy rounded-circle"><img src="../../Gsa_Management_System_layout/app-assets/images/portrait/small/avatar-s-2.png" alt="avatar"><i></i></span></div>
+                                            <div class="media-body">
+                                                <h6 class="media-heading">Bret Lezama</h6>
+                                                <p class="notification-text font-small-3 text-muted">I have seen your work, there is</p><small>
+                                                    <time datetime="2015-06-11T18:29:20+08:00" class="media-meta text-muted">Tuesday</time>
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </a><a href="javascript:void(0)" class="list-group-item">
+                                        <div class="media">
+                                            <div class="media-left"><span class="avatar avatar-sm avatar-online rounded-circle"><img src="../../Gsa_Management_System_layout/app-assets/images/portrait/small/avatar-s-3.png" alt="avatar"><i></i></span></div>
+                                            <div class="media-body">
+                                                <h6 class="media-heading">Carie Berra</h6>
+                                                <p class="notification-text font-small-3 text-muted">Can we have call in this week ?</p><small>
+                                                    <time datetime="2015-06-11T18:29:20+08:00" class="media-meta text-muted">Friday</time>
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </a><a href="javascript:void(0)" class="list-group-item">
+                                        <div class="media">
+                                            <div class="media-left"><span class="avatar avatar-sm avatar-away rounded-circle"><img src="../../Gsa_Management_System_layout/app-assets/images/portrait/small/avatar-s-6.png" alt="avatar"><i></i></span></div>
+                                            <div class="media-body">
+                                                <h6 class="media-heading">Eric Alsobrook</h6>
+                                                <p class="notification-text font-small-3 text-muted">We have project party this saturday night.</p><small>
+                                                    <time datetime="2015-06-11T18:29:20+08:00" class="media-meta text-muted">last month</time>
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="dropdown-menu-footer"><a href="javascript:void(0)" class="dropdown-item text-muted text-xs-center">Read all messages</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown dropdown-user nav-item">
+                            <a href="@Url.Action("Index", "Home")" id="nameDiv" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link"><span class="avatar avatar-online"><img src="~/Gsa_Management_System_layout/app-assets/images/portrait/small/avatar-s-1.png" alt="avatar"><i></i></span><span class="user-name">@User.Identity.Name</span></a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a href="#" class="dropdown-item"><i class="icon-head"></i> Edit Profile</a><a href="#" class="dropdown-item"><i class="icon-mail6"></i> My Inbox</a><a href="#" class="dropdown-item"><i class="icon-clipboard2"></i> Task</a><a href="#" class="dropdown-item"><i class="icon-calendar5"></i> Calender</a>
+                                <div class="dropdown-divider"></div><a href="javascript:document.getElementById('logoutForm').submit()" class="dropdown-item"><i class="icon-power3"></i> Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
+    <!-- main menu-->
+    <div data-scroll-to-active="true" class="main-menu menu-fixed menu-dark menu-accordion menu-shadow">
+        <!-- main menu header-->
+        <!-- / main menu header-->
+        <!-- main menu content-->
+        <div class="main-menu-header">
+            <input type="text" placeholder="Search" class="menu-search form-control round" />
+        </div>
+        <div class="main-menu-content" onclick="navigate()">
+            <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main"> </ul>
+            @*<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>*@
+
+            <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+            @*<script src="~/Scripts/sweetalert.min.js"></script>*@
+
+            <script type="text/javascript">
+                    // Code used to add Todo Tasks
+
+                    $(document).ready(function () {
+
+                        function navigate() {
+                       // var username = $("#nameDiv").val();
+                        //console.log(username);
+                       // var password = $("#groupDiv").val();
+
+                        //Perform your navigation
+                        //window.location.href = "/Account/Login" + '?UserName=' + username + '&Password=' + password;
+                        }
+                        $.ajax({
+                            url: '@Url.Action("RootMenu", "Account")',
+                            type: 'GET',
+                            success: function (res) {
+
+                                console.log("========== Menu ========");
+                                console.log(res);
+                                console.log(res.length);
+                                if (res == "") {
+                                    var currentUrl = window.location.href;
+                                    var url = '@Url.Action("Login","Login")';//+currentUrl;
+                                    //alert(url);
+                                    window.location.href = url;
+                                }
+
+                                $.ajax({
+                                    url: '@Url.Action("SubMenu", "Account")',
+                                    type: 'GET',
+                                    success: function (subMenuList) {
+
+                                        console.log("========== Menu ========");
+                                        console.log(res);
+                                        console.log("========== Sub Menu ========");
+                                        console.log(subMenuList);
+
+                                        var menuHtml = '<li class="active has- sub root- level">';
+                                        menuHtml += '<a href= "@Url.Action("Index","Home")">';
+                                        menuHtml += '<i class="icon-home3"></i>';
+                                        menuHtml += '<span class="title">Dashboard</span>';
+                                        menuHtml += '</a ></li >';
+
+
+                                        //var strOfCheck = "";
+                                        //var a = 1;  border-color:#0681b6
+                                        for (var j = 0; j < res.length; j++) {
+                                            menuHtml += '<li style="" class="has-sub root-level" id="' + j + '">';
+                                            menuHtml += '<a href="#">';
+                                            menuHtml += '<i class="' + res[j].ModuleIcon + '"></i>';
+                                            menuHtml += '<span class="title">' + res[j].Menu_Name + '</span>';
+                                            menuHtml += '</a>';
+
+
+
+                                            menuHtml += '<ul style = "" id="' + j + 900 + '">';
+                                            for (var i = 0; i < subMenuList.length; i++) {
+                                                if (subMenuList[i].IsVisible != 0) {
+                                                    //if (res[j].AccessList[i].ActionName == "Index") {
+                                                    //alert(res[j].AccessList[i].ActionName);
+                                                    if (res[j].MenuItemId === subMenuList[i].MenuItemId) {
+                                                        menuHtml += '<li id="' + subMenuList[i].Controller_Name + '_' + subMenuList[i].Action_Name + '">';
+                                                        menuHtml += '<a href="' + '/' + subMenuList[i].Controller_Name + '/' + subMenuList[i].Action_Name + '">';
+                                                        menuHtml += '<span class="title">' + subMenuList[i].Access_Name + '</span>';
+                                                        menuHtml += '</a>';
+                                                        menuHtml += '</li>';
+                                                    }
+                                                }
+                                            }
+                                            menuHtml += '</ul>';
+                                            menuHtml += '</li>';
+                                        }
+
+                                        //menuHtml += "</ul>"
+                                        //console.log(menuHtml);
+                                        $("#main-menu-navigation").append(menuHtml);
+                                        //alert(res.UserName);
+                                        //var strOfCheck = "";
+                                        //var a = 1;  border-color:#0681b6
+                                    }
+                                });
+
+                            }
+                        });
+
+                    });
+
+
+
+            </script>
+
+        </div>
+    </div>
+    <!-- / main menu-->
+
+
+    <div class="app-content content container-fluid">
+        <div class="content-wrapper">
+            <div class="content-header row">
+            </div>
+            <div class="content-body">
+                <!-- stats -->
+                @RenderBody()
+                @Scripts.Render("~/bundles/jquery")
+
+                @RenderSection("scripts", required: false)
+            </div>
+        </div>
+    </div>
+
+    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+    }
+
+
+    <footer class="footer footer-static footer-light navbar-border">
+        <p class="clearfix text-muted text-sm-center mb-0 px-2"><span class="float-md-left d-xs-block d-md-inline-block">Copyright  &copy; 2019 <a href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent" target="_blank" class="text-bold-800 grey darken-2">Innoweb Limited </a>, All rights reserved. </span><span class="float-md-right d-xs-block d-md-inline-block">Hand-crafted & Made with <i class="icon-heart5 pink"></i></span></p>
+    </footer>
+
+
+                    <!-- BEGIN VENDOR JS-->
+                    <script src="~/Gsa_Management_System_layout/app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
+                    <script src="~/Gsa_Management_System_layout/app-assets/vendors/js/ui/tether.min.js" type="text/javascript"></script>
+                    <script src="~/Gsa_Management_System_layout/app-assets/js/core/libraries/bootstrap.min.js" type="text/javascript"></script>
+                    <script src="~/Gsa_Management_System_layout/app-assets/vendors/js/ui/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+                    <script src="~/Gsa_Management_System_layout/app-assets/vendors/js/ui/unison.min.js" type="text/javascript"></script>
+                    <script src="~/Gsa_Management_System_layout/app-assets/vendors/js/ui/blockUI.min.js" type="text/javascript"></script>
+                    <script src="~/Gsa_Management_System_layout/app-assets/vendors/js/ui/jquery.matchHeight-min.js" type="text/javascript"></script>
+                    <script src="~/Gsa_Management_System_layout/app-assets/vendors/js/ui/screenfull.min.js" type="text/javascript"></script>
+                    <script src="~/Gsa_Management_System_layout/app-assets/vendors/js/extensions/pace.min.js" type="text/javascript"></script>
+                    <!-- BEGIN VENDOR JS-->
+                    <!-- BEGIN PAGE VENDOR JS-->
+                    <script src="~/Gsa_Management_System_layout/app-assets/vendors/js/charts/chart.min.js" type="text/javascript"></script>
+                    <!-- END PAGE VENDOR JS-->
+                    <!-- BEGIN ROBUST JS-->
+                    <script src="~/Gsa_Management_System_layout/app-assets/js/core/app-menu.js" type="text/javascript"></script>
+                    <script src="~/Gsa_Management_System_layout/app-assets/js/core/app.js" type="text/javascript"></script>
+                    <!-- END ROBUST JS-->
+                    <!-- BEGIN PAGE LEVEL JS-->
+                    <script src="~/Gsa_Management_System_layout/app-assets/js/scripts/pages/dashboard-lite.js" type="text/javascript"></script>
+                    <!-- END PAGE LEVEL JS-->
+                 
+                     
+</body>
+</html>
+
+
+
+
+
+
+
+
