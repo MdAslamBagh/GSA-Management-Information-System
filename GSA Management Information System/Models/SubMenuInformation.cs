@@ -15,6 +15,7 @@ namespace GSA_Management_Information_System.Models
         public string Controller_Name { get; set; }
         public string Action_Name { get; set; }
         public byte IsVisible { get; set; }
+        public string Entry_By { get; set; }
 
 
 

@@ -1,42 +1,64 @@
 ﻿@model GSA_Management_Information_System.Models.GsaGroup
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Create";
 }
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<h2>Edit</h2>
-
-
-@using (Html.BeginForm())
-{
+@using (Html.BeginForm("Edit", "GsaGroup", FormMethod.Post, new { onSubmit = "return SubmitForm(this)" }))
+            {
     @Html.AntiForgeryToken()
-    
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
     <div class="form-horizontal">
-        <h4>GsaGroup</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+        <div class="container">
+            <div class="card ">
+                <div class="card-header bg-info">Edit</div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="accessname" class="col-md-3 col-sm-5">Menu Name<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <div class="col-md-10">
+                                <div align="center">
+                                    <a class="btn btn-primary" style="margin-left:10px" onclick="location.href='@Url.Action("Index", "GsaGroup")'"><i class="fa fa-plus"></i>Back To List</a>
+                                    <input type="submit" value="submit" class="btn btn-info" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
 
-@section Scripts {
+@section scripts{
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script>
+           $(function () {
+               $(".datepicker").datepicker({
+                   dateFormat: "mm/dd/yy",
+                   changemonth: true,
+                   changeyear: true,
+                   minDate: new Date(2018, 0, 1),
+                   maxDate: new Date(2020, 0, 1),
+                   showOn: "both",
+                   buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+                   buttonText: "Calender"
+               });
+           });
+    </script>
     @Scripts.Render("~/bundles/jqueryval")
+
 }

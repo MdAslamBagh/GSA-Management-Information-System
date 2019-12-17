@@ -392,6 +392,10 @@ namespace GSA_Management_Information_System.Controllers
 
         //
         // POST: /Account/Register
+
+
+
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -423,9 +427,53 @@ namespace GSA_Management_Information_System.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+
+
+        //
+        // GET: /Account/Create
+        [AllowAnonymous]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Account/Create
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create(CreateViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                //model.UserType="Admin";
+                model.Status = "Active";
+                //model.UserType = "User";
+                //model.Status = "Inactive";
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, FullName = model.FullName, Status = model.Status };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+                    // Send an email with this link
+                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                    return RedirectToAction("Index", "Home");
+                }
+                AddErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
         // GET: /Users/Edit/1
         // [CustomAuthorize]
-        public async Task<ActionResult> EditUser(string id)
+        public async Task<ActionResult> Edit(string id)
         {
             if (id == null)
             {
@@ -443,8 +491,11 @@ namespace GSA_Management_Information_System.Controllers
             return View(new EditUserViewModel()
             {
                 Id = user.Id,
+                FullName=user.FullName,
                 UserName = user.UserName,
                 Email = user.Email,
+                Password=user.PasswordHash,
+                ConfirmPassword=user.PasswordHash,
                 RolesList = RoleManager.Roles.ToList().Select(x => new SelectListItem()
                 {
                     Selected = userRoles.Contains(x.Name),

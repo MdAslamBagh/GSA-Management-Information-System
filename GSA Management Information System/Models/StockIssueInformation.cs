@@ -38,6 +38,7 @@ namespace GSA_Management_Information_System.Models
         public string Transaction_Status { get; set; }
         public string Confirm_Status { get; set; }
         public DateTime Entry_Date { get; set; }
+        public string Entry_By { get; set; }
 
 
     }

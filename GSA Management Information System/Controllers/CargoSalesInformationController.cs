@@ -7,11 +7,15 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using GSA_Management_Information_System.Models;
+using System.Data.SqlClient;
+using System.Configuration;
+
 
 namespace GSA_Management_Information_System.Controllers
 {
     public class CargoSalesInformationController : Controller
     {
+        CargoRepository cargo = new CargoRepository();
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: CargoSalesInformation
@@ -19,19 +23,159 @@ namespace GSA_Management_Information_System.Controllers
         {
             return View(db.CargoSalesInformations.ToList());
         }
-        
+ 
         public ActionResult AddSplitter()
         {
             return View();
         }
-        public ActionResult GetData()
-        {
-            List<CargoSalesInformation> cargodata = db.CargoSalesInformations.ToList<CargoSalesInformation>();
-            return Json(new { data = cargodata }, JsonRequestBehavior.AllowGet);
 
+     
+
+        //private void Connection() {
+
+        //public List<CargoSalesInformation> ListAll()
+        //{
+        //    string cs =
+        //   System.Configuration.ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString; // Here is your connection string
+        //    List < CargoSalesInformation> lst = new List<CargoSalesInformation>();
+        //    using (SqlConnection con = new SqlConnection(cs))
+        //    {
+        //        con.Open();
+        //        SqlCommand com = new SqlCommand("spCargoSalesDetails", con);
+        //        com.CommandType = CommandType.StoredProcedure;
+        //        SqlDataReader rdr = com.ExecuteReader();
+        //        while (rdr.Read())
+        //        {
+        //            lst.Add(new CargoSalesInformation
+        //            {
+        //                //EmployeeID = Convert.ToInt32(rdr["EmployeeId"]),
+        //                MAWB = rdr["MAWB"].ToString(),
+        //                Airway_No = rdr["Airway_No"].ToString(),
+        //                //Airway_No = Convert.ToInt32(rdr["Age"]),
+        //                //State = rdr["State"].ToString(),
+        //                //Country = rdr["Country"].ToString(),
+        //            });
+        //        }
+        //        return lst;
+        //    }
+        //}
+        //}
+
+        //    public DataSet showData()
+        //{
+        //    string cnnString = System.Configuration.ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString; // Here is your connection string
+        //    SqlConnection cnn = new SqlConnection(cnnString);
+        //    SqlCommand cmd = new SqlCommand("spCargoSalesDetails", cnn);
+        //     cmd.CommandType =CommandType.StoredProcedure;
+        //    SqlDataAdapter da = new SqlDataAdapter(cmd);
+        //    DataSet ds = new DataSet();
+        //    da.Fill(ds);
+        //    return ds;
+
+
+        //}
+
+
+
+
+        public JsonResult GetData()
+        {
+
+            CargoRepository CargoRepo = new CargoRepository();
+            ModelState.Clear();
+            var CargoList = CargoRepo.GetAllCargo();
+            
+
+
+            //SqlConnection con;
+            //string constr = ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ToString();
+            //con = new SqlConnection(constr);
+            //List<CargoViewModel> CargoList = new List<CargoViewModel>();
+            //SqlCommand com = new SqlCommand("spCargoSalesDetails", con);
+            //com.CommandType = CommandType.StoredProcedure;
+            //SqlDataAdapter da = new SqlDataAdapter(com);
+            //DataTable dt = new DataTable();
+            //con.Open();
+            //da.Fill(dt);
+            //con.Close();
+
+            ////Bind EmpModel generic list using LINQ 
+            //CargoList = (from DataRow dr in dt.Rows
+
+            //             select new CargoViewModel()
+            //             {
+            //                 CargoSalesId = Convert.ToInt32(dr["CargoSalesId"]),
+            //                 MAWB = Convert.ToString(dr["MAWB"]),
+            //                 Check_Digit = Convert.ToString(dr["Check_Digit"]),
+            //                 Airway_No = Convert.ToString(dr["Airway_No"]),
+            //                 Origin_Code = Convert.ToString(dr["Origin_Code"]),
+            //                 Origin_Name = Convert.ToString(dr["OriginName"]),
+            //                 // Address = Convert.ToString(dr["Address"])
+            // }).ToList();
+
+
+            // return CargoList;
+
+             return Json(new { data = CargoList }, JsonRequestBehavior.AllowGet);
+
+            //CargoRepository CargoRepo = new CargoRepository();
+            //ModelState.Clear();
+            //var cargoData = CargoRepo.GetAllCargo();
+            // return View(EmpRepo.GetAllEmployees());
+            //      string cnnString = System.Configuration.ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString; // Here is your connection string
+            //    SqlConnection cnn = new SqlConnection(cnnString);
+            //    SqlCommand cmd = new SqlCommand("spCargoSalesDetails", cnn);
+            //     cmd.CommandType =CommandType.StoredProcedure;
+            //    SqlDataAdapter da = new SqlDataAdapter(cmd);
+            //    DataSet ds = new DataSet();
+            //    da.Fill(ds);
+            //return ds;
+            // DataSet ds=
+            //using (var db=new ApplicationDbContext()) { 
+            // //// var cargolist = db.CargoSalesInformations.SqlQuery("select * from CargoSalesInformations").ToList();
+
+            // var cargolist = db.CargoSalesInformations.ToList();
+            //      var results = db.CargoSalesInformations.SqlQuery("exec spCargoSalesDetails").ToList();
+            //      var ss=db.car
+
+            //      //     var db = new ss();
+            //      //     var data = db.spCargoSalesDetails();
+            // return Json(new { data = cargolist }, JsonRequestBehavior.AllowGet);
+
+
+            //CargoSalesInformation cargo = new CargoSalesInformation();
+            // return Json(cargo.ListAll(), JsonRequestBehavior.AllowGet);
         }
+    
+
+
+            //    List<CargoSalesInformation> cargolist = new List<CargoSalesInformation>();
+
+            //       string cnnString =
+            //System.Configuration.ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString; // Here is your connection string
+            //       SqlConnection cnn = new SqlConnection(cnnString);
+            //       SqlCommand cmd = new SqlCommand();
+            //       cmd.Connection = cnn;
+            //       cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            //       cmd.CommandText = "spCargoSalesDetails"; // Here is the name of your stored procedure
+            //       cnn.Open();
+
+            //List<CargoSalesInformation> cargodata = db.CargoSalesInformations.ToList<CargoSalesInformation>();
+
+
+            //var cargolist = from cargosales in db.CargoSalesInformations join origin in db.OriginInformations on cargosales.Origin_Code equals origin.Origin_Code
+            //                                                             join freighter in db.FreighterInformations on cargosales.Freighter_Code equals freighter.Freighter_Code
+            //                                                          select new {
+            //                                                          cargosales.MAWB,
+            //                                                          cargosales.Airway_No,
+            //                                                          origin.Long_Desc,
+            //                                                          Frieghter_Name=freighter.Long_Desc};
+
+
+
+        
         // GET: CargoSalesInformation/Create
-        public ActionResult Add()
+        public ActionResult Create()
 
         {
            // String today = DateTime.Now.ToString("MM/dd/yyyy");
@@ -105,9 +249,9 @@ namespace GSA_Management_Information_System.Controllers
             PaymentModeInformation paymentmode = new PaymentModeInformation();
             paymentmode = paymentmodeInformations.FirstOrDefault();
             string pm_Name = paymentmode.Long_Desc;
-            string pm_Code = paymentmode.Payment_Code.ToString();
+            string pm_mode = paymentmode.Payment_Mode;
             ViewBag.Payment_Name = pm_Name;
-            ViewBag.Payment_Code = pm_Code;
+            ViewBag.Payment_Mode = pm_mode;
 
             //Cargo Freight paymode
             List<CargoFreightPaymodeInformation> cfInformations = db.CargoFreightPaymodeInformations.Where(a => a.Default_Code == true).ToList<CargoFreightPaymodeInformation>();
@@ -199,11 +343,37 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add(CargoSalesInformation cargoSalesInformation)
+        public ActionResult Create(CargoSalesInformation cargoSalesInformation)
         {
             if (!ModelState.IsValid)
             {
-                 cargoSalesInformation.Airway_No = cargoSalesInformation.MAWB + cargoSalesInformation.Check_Digit;
+
+
+
+                //return ("GetCargoBackup");
+                CargoRepository CargoRepo = new CargoRepository();
+                // ModelState.Clear();
+                var ssss = CargoRepo.GetCargoBackup(cargoSalesInformation);
+
+                CargoSalesTransactionBackup transactionsss = ssss.FirstOrDefault();
+                transactionsss.Trans_Type = "Save";
+                db.CargoSalesTransactionBackups.Add(transactionsss);
+                // transactionsss.Trans_Type = "Update";
+                db.SaveChanges();
+
+                //CargoSalesTransactionBackup cargoSalestransactionbackup = new CargoSalesTransactionBackup();
+
+                //cargoSalestransactionbackup.CargoSalesId = cargoSalesInformation.CargoSalesId;
+                //cargoSalestransactionbackup.SalesSlno = cargoSalesInformation.SalesSlno;
+                //cargoSalestransactionbackup.MAWB = cargoSalesInformation.MAWB;
+                //cargoSalestransactionbackup.Check_Digit = cargoSalesInformation.Check_Digit;
+                //cargoSalestransactionbackup.Trans_Type="Save";
+                ////transaction.Airway_No = cargoSalesInformation.Airway_No;
+                //db.CargoSalesTransactionBackups.Add(cargoSalestransactionbackup);
+                //db.SaveChanges();
+
+
+                cargoSalesInformation.Airway_No = cargoSalesInformation.MAWB + cargoSalesInformation.Check_Digit;
                  StockIssueDetailInformations stockIssueDetailInformations = new StockIssueDetailInformations();
                  stockIssueDetailInformations = db.StockIssueDetailInformations.Where(a => a.Ticket_No.ToString() == cargoSalesInformation.MAWB).FirstOrDefault();
                  db.CargoSalesInformations.Add(cargoSalesInformation);
@@ -215,7 +385,7 @@ namespace GSA_Management_Information_System.Controllers
 
             return View(cargoSalesInformation);
         }
-        public ActionResult Create()
+        public ActionResult Adddd()
         {
             return View();
         }
@@ -477,59 +647,183 @@ namespace GSA_Management_Information_System.Controllers
         // GET: CargoSalesInformation/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CargoSalesInformation cargoSalesInformation = db.CargoSalesInformations.Find(id);
-            if (cargoSalesInformation == null)
-            {
-                return HttpNotFound();
-            }
-            return View(cargoSalesInformation);
+
+            CargoRepository CargoRepo = new CargoRepository();
+
+
+            return View(CargoRepo.GetAllCargo().Find(Cargo => Cargo.CargoSalesId == id));
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            //CargoSalesInformation cargoSalesInformation = db.CargoSalesInformations.Find(id);
+            //if (cargoSalesInformation == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //return View(cargoSalesInformation);
         }
+
+
+        //public ActionResult Backup(int? id)
+        //{
+
+        //    CargoRepository CargoRepo = new CargoRepository();
+
+
+        //    return View(CargoRepo.GetAllCargo().Find(Cargo => Cargo.CargoSalesId == id));
+        //    //if (id == null)
+        //    //{
+        //    //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    //}
+        //    //CargoSalesInformation cargoSalesInformation = db.CargoSalesInformations.Find(id);
+        //    //if (cargoSalesInformation == null)
+        //    //{
+        //    //    return HttpNotFound();
+        //    //}
+        //    //return View(cargoSalesInformation);
+        //}
+
+
+
 
         // POST: CargoSalesInformation/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SalesSlno,Invoice_Type,MAWB,Check_Digit,Flight_Date,Airway_No,Freighter,Origin_Code,Dest_Code,Continent_Code,PaymentMode_Code,CFPaymode_Code,Route_Code,Customer_Code,Cargo_Code,UType_Code,HBL_Qty,AMS,Gross_Weight,Chargeable_Weight,Rate_Charge,B_Rate,Agent_Commission,AIT,THC,SSC,FSC_Charge,ISS_Charge,HDS,Others,Consignee_Code,Consignor_Code,Receivable_From_Agent,Remarks,Currency,Exchange_Rate,Receivable_Amount_BDT,Payable_Agent_CC,Remarks_B_Bank,Entry_Date")] CargoSalesInformation cargoSalesInformation)
+        public ActionResult Edit(CargoSalesInformation cargoSalesInformation)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
+             
+                
+                cargoSalesInformation.Airway_No = cargoSalesInformation.MAWB + cargoSalesInformation.Check_Digit;
                 db.Entry(cargoSalesInformation).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+
+
+                CargoSalesTransactionBackup cargoSalesTransaction = new CargoSalesTransactionBackup();
+
+
+
+                //return ("GetCargoBackup");
+                CargoRepository CargoRepo = new CargoRepository();
+               // ModelState.Clear();
+                 var ssss=CargoRepo.GetCargoBackup(cargoSalesInformation);
+
+                CargoSalesTransactionBackup transactionsss = ssss.FirstOrDefault();
+                transactionsss.Trans_Type = "Update";
+                db.CargoSalesTransactionBackups.Add(transactionsss);
+               // transactionsss.Trans_Type = "Update";
+                db.SaveChanges();
+
+                //object obj = CargoList;
+                //CargoRepository CargoRepo = new CargoRepository();
+
+                //CargoRepo.GetCargoBackup();
+
+
+               // db.CargoSalesTransactionBackups.Attach(obj);
+        
+
+                
+
+                // var CargoBackup = (CargoRepo.GetCargoBackup().Find(Cargo => Cargo.CargoSalesId == cargoSalesInformation.CargoSalesId));
+               // CargoSalesTransactionBackup transactionsss = new CargoSalesTransactionBackup();
+               // transactionsss = transaction;
+                //transactionsss = CargoRepo.GetCargoBackup(cargoSalesInformation);
+
+                //db.CargoSalesTransactionBackups.Add(transactionsss);
+                //transaction = CargoBackup;
+
+
+
+                //cargosss = ssss;
+                //db.CargoSalesTransactionBackups.Add(cargosss);
+                //transaction.SalesSlno = cargoSalesInformation.SalesSlno;
+                //transaction.MAWB = cargoSalesInformation.MAWB;
+                //transaction.Check_Digit = cargoSalesInformation.Check_Digit;
+                //transaction.Airway_No = cargoSalesInformation.Airway_No;
+                //transaction.Freighter_Code = cargoSalesInformation.Freighter_Code;
+                //transaction.Origin_Code = cargoSalesInformation.Origin_Code;
+                //transaction.Dest_Code = cargoSalesInformation.Dest_Code;
+                //transaction.Continent_Code = cargoSalesInformation.Continent_Code;
+                //transaction.CFPaymode_Code = cargoSalesInformation.CFPaymode_Code;
+                //transaction.Route_Code = cargoSalesInformation.Route_Code;
+                //transaction.Customer_Code = cargoSalesInformation.Customer_Code;
+                //transaction.Cargo_Code = cargoSalesInformation.Cargo_Code;
+                //transaction.UType_Code = cargoSalesInformation.UType_Code ;
+                //transaction.MAWB = cargoSalesInformation.MAWB;
+                //transaction.Check_Digit = cargoSalesInformation.Check_Digit;
+                //transaction.Airway_No = cargoSalesInformation.Airway_No;
+
+
+
+                //CargoSalesTransactionBackup ststs = new CargoSalesTransactionBackup();
+                //ststs = CargoBackupData
+                //db.CargoSalesTransactionBackups.Add(CargoBackupData);
+
+
+
+
+
+
+                //db.CargoSalesTransactionBackups.Add(cargoSalesInformation);
+                //return RedirectToAction("Index");
             }
             return View(cargoSalesInformation);
         }
+
+       
+        //public List<CargoSalesTransactionBackup> GetCargoBackup(CargoSalesInformation cargoSalesInformation)
+        //{
+
+        //    //CargoSalesInformation cargoSalesInformation = new CargoSalesInformation();
+
+        //    List<CargoSalesTransactionBackup> CargoBackupList = new List<CargoSalesTransactionBackup>();
+        //    CargoSalesTransactionBackup transaction = new CargoSalesTransactionBackup();
+        //    transaction.CargoSalesId = cargoSalesInformation.CargoSalesId;
+        //    transaction.SalesSlno = cargoSalesInformation.SalesSlno;
+        //    transaction.MAWB = cargoSalesInformation.MAWB;
+        //    transaction.Check_Digit = cargoSalesInformation.Check_Digit;
+
+
+        //    CargoBackupList.Add(transaction);
+
+
+        //    return CargoBackupList;
+
+
+
+        //}
 
         // GET: CargoSalesInformation/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Return(int id)
         {
-            if (id == null)
+            using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            
+                CargoSalesInformation Informations = db.CargoSalesInformations.Where(x => x.CargoSalesId == id).FirstOrDefault<CargoSalesInformation>();
+                db.CargoSalesInformations.Remove(Informations);
+                db.SaveChanges();
+
+                CargoRepository CargoRepo = new CargoRepository();
+                // ModelState.Clear();
+                var ssss = CargoRepo.GetCargoBackup(Informations);
+
+                CargoSalesTransactionBackup transactionsss = ssss.FirstOrDefault();
+                transactionsss.Trans_Type = "Return";
+                db.CargoSalesTransactionBackups.Add(transactionsss);
+                // transactionsss.Trans_Type = "Update";
+                db.SaveChanges();
+                return Json(new { success = true, message = "Deleted Successfully" }, JsonRequestBehavior.AllowGet);
             }
-            CargoSalesInformation cargoSalesInformation = db.CargoSalesInformations.Find(id);
-            if (cargoSalesInformation == null)
-            {
-                return HttpNotFound();
-            }
-            return View(cargoSalesInformation);
+
+
         }
 
-        // POST: CargoSalesInformation/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            CargoSalesInformation cargoSalesInformation = db.CargoSalesInformations.Find(id);
-            db.CargoSalesInformations.Remove(cargoSalesInformation);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {

@@ -33,6 +33,14 @@ namespace GSA_Management_Information_System.Models
             : base("ApplicationDbContext")
         {
         }
+
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+            
+        //    modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+        //    base.OnModelCreating(modelBuilder);
+        //    modelBuilder.Entity<CargoSalesInformation>().MapToStoredProcedures();
+        //}
         public System.Data.Entity.DbSet<GSA_Management_Information_System.Models.CompanyInformation> CompanyInformations { get; set; }
         public System.Data.Entity.DbSet<GSA_Management_Information_System.Models.UserInformation> UserInformations { get; set; }
         public System.Data.Entity.DbSet<GSA_Management_Information_System.Models.CustomerTypeInformation> CustomerTypeInformations { get; set; }
@@ -104,7 +112,8 @@ namespace GSA_Management_Information_System.Models
         public System.Data.Entity.DbSet<GSA_Management_Information_System.Models.AccessInformation> AccessInformations { get; set; }
         public System.Data.Entity.DbSet<GSA_Management_Information_System.Models.MenuItemInformation> MenuInformations { get; set; }
         public System.Data.Entity.DbSet<GSA_Management_Information_System.Models.SubMenuInformation> SubMenuInformations { get; set; }
-
+        public System.Data.Entity.DbSet<GSA_Management_Information_System.Models.CargoSalesTransactionBackup> CargoSalesTransactionBackups { get; set; }
+        
 
 
 

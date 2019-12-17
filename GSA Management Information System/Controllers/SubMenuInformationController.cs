@@ -20,6 +20,19 @@ namespace GSA_Management_Information_System.Controllers
             return View(db.SubMenuInformations.ToList());
         }
 
+        public ActionResult GetData()
+        {
+
+            //var submenulist = db.SubMenuInformations.Include(c => c.SubMenuId).Include(c => c.MenuItemId);
+            //var s = submenulist.ToList();
+            //return View(classRoomAllocations.ToList());
+            var submenulist= from menu in db.MenuInformations join submenu in db.SubMenuInformations on menu.MenuItemId equals submenu.MenuItemId select new {submenu.SubMenuId, submenu.Access_Name,menu.Menu_Name,submenu.Controller_Name,submenu.Action_Name,submenu.IsVisible};
+            //var s = submenulist.ToList();
+            // List<SubMenuInformation> sebmenu = db.SubMenuInformations.ToList<SubMenuInformation>();
+            return Json(new { data = submenulist }, JsonRequestBehavior.AllowGet);
+
+        }
+
         // GET: SubMenuInformation/Details/5
         public ActionResult Details(int? id)
         {
@@ -62,6 +75,7 @@ namespace GSA_Management_Information_System.Controllers
         // GET: SubMenuInformation/Edit/5
         public ActionResult Edit(int? id)
         {
+            ViewBag.MenuItemId = new SelectList(db.MenuInformations, "MenuItemId", "Menu_Name");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -71,6 +85,7 @@ namespace GSA_Management_Information_System.Controllers
             {
                 return HttpNotFound();
             }
+            //ViewBag.MenuItemId = new SelectList(db.MenuInformations, "MenuItemId", "IsVisble");
             return View(subMenuInformation);
         }
 
@@ -91,29 +106,17 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         // GET: SubMenuInformation/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
+            using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                SubMenuInformation Informations = db.SubMenuInformations.Where(x => x.SubMenuId == id).FirstOrDefault<SubMenuInformation>();
+                db.SubMenuInformations.Remove(Informations);
+                db.SaveChanges();
+                return Json(new { success = true, message = "Deleted Successfully" }, JsonRequestBehavior.AllowGet);
             }
-            SubMenuInformation subMenuInformation = db.SubMenuInformations.Find(id);
-            if (subMenuInformation == null)
-            {
-                return HttpNotFound();
-            }
-            return View(subMenuInformation);
-        }
 
-        // POST: SubMenuInformation/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            SubMenuInformation subMenuInformation = db.SubMenuInformations.Find(id);
-            db.SubMenuInformations.Remove(subMenuInformation);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+
         }
 
         protected override void Dispose(bool disposing)

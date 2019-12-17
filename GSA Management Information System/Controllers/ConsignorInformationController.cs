@@ -28,8 +28,9 @@ namespace GSA_Management_Information_System.Controllers
 
         }
 
+        // GET: ConsignorInformation/Create
         [HttpGet]
-        public ActionResult Add()
+        public ActionResult Create()
         {
             // Console.WriteLine(DateTime.Now.ToString("dd/MM/yyyy"));
             //String today = DateTime.Now.ToString("MM/dd/yyyy");
@@ -37,7 +38,11 @@ namespace GSA_Management_Information_System.Controllers
             //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
             ViewBag.Entry_Date = today;
 
-            List <ConsignorInformation> consignorInformations = db.ConsignorInformations.OrderByDescending(a => a.ConsignorId).ToList<ConsignorInformation>();
+            var LogedInUser = User.Identity.Name;
+            ViewBag.Entry_By = LogedInUser;
+
+
+            List<ConsignorInformation> consignorInformations = db.ConsignorInformations.OrderByDescending(a => a.ConsignorId).ToList<ConsignorInformation>();
 
             try
             {
@@ -85,8 +90,13 @@ namespace GSA_Management_Information_System.Controllers
          
         }
 
+
+        // POST: ConsignorInformation/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [ValidateAntiForgeryToken]
         [HttpPost]
-        public ActionResult Add(ConsignorInformation consignorInformation)
+        public ActionResult Create(ConsignorInformation consignorInformation)
         {
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
@@ -139,34 +149,16 @@ namespace GSA_Management_Information_System.Controllers
             return View(consignorInformation);
         }
 
-        // GET: ConsignorInformation/Create
-        public ActionResult Create()
-        {
-            var list = new List<string>() { "Active", "Inactive" };
-            ViewBag.list = list;
-            return View();
-        }
+        
+    
 
-        // POST: ConsignorInformation/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ConsignorId,Consignor_Code,Consignor_Name,Consignor_Address,Email,Status,Default_Code,Entry_Date")] ConsignorInformation consignorInformation)
-        {
-            if (ModelState.IsValid)
-            {
-                db.ConsignorInformations.Add(consignorInformation);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(consignorInformation);
-        }
-
+      
         // GET: ConsignorInformation/Edit/5
         public ActionResult Edit(int? id)
         {
+            var LogedInUser = User.Identity.Name;
+            ViewBag.Entry_By = LogedInUser;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -187,7 +179,7 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ConsignorId,Consignor_Code,Consignor_Name,Consignor_Address,Email,Status,Default_Code,Entry_Date")] ConsignorInformation consignorInformation)
+        public ActionResult Edit(ConsignorInformation consignorInformation)
         {
             if (ModelState.IsValid)
             {

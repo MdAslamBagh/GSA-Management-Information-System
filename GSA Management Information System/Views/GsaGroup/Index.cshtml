@@ -1,68 +1,91 @@
-﻿@*@model IEnumerable<Tax_Return_BD_System.Models.RoleViewModel>*@
+﻿@model IEnumerable<GSA_Management_Information_System.Models.GsaGroup>
 
 @{
     ViewBag.Title = "Index";
+
 }
-<link href="~/Project_Template/assets/css/legendcss.css" rel="stylesheet" />
-@*<a href="@Url.Action("Export","CustomerTypeInformation")">Export Report</a>*@
+<style>
+    th {
+        background-color: #6495ED;
+        line-height: 1.5;
+    }
+</style>
 
-<div class="container ">
+<div class="container">
+    <div class="card ">
+        <div class="card-header bg-info">Group Information</div>
+        <br />
+        <div class="row">
 
-    <a class="btn btn-success" style="margin-bottom:10px" onclick="location.href='@Url.Action("Create", "GsaGroup")'"><i class="fa fa-plus"></i>Add New Group</a>
+            <div class="btn-group">
+                <a class="btn btn-success" style="margin-left:30px" onclick="location.href='@Url.Action("Create", "GsaGroup")'"><i class="fa fa-plus"></i>Add New Group</a>
+            </div>
+            <br />
+            <br />
+        </div>
+        <div class="card " style="margin-left: 15px; margin-right: 15px">
+            <div class="row" style="margin-left: 10px; margin-right: 10px">
+                <table id="example" class="table table-striped table-bordered table-sm " cellspacing="0"
+                       width="900">
+                    <thead>
+                        <tr>
+                            <th width="60%">Group Name </th>
+                            <th width="40%">Action</th>
+                        </tr>
+                    </thead>
+                </table>
 
-    <fieldset class="scheduler-border">
-        <legend class="scheduler-border"></legend>
-        <table id="example" class="table table-striped table-bordered" style="width:100%">
-            <thead>
-                <tr>
-                    <th width="60%">Group Name </th>
-                    <th width="40%">Action</th>
-                </tr>
-            </thead>
-        </table>
 
 
-        <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+                <div class="row">
+                    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css" rel="stylesheet" />
 
-        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-        @section scripts{
-            <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-            <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
-            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-            <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-
-            <script>
+                    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+                    @section scripts{
+                        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+                        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+                        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+                        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+                        <link rel="stylesheet" type="text/css" href="/DataTables/datatables.css">
+                        <script type="text/javascript" charset="utf8" src="/DataTables/datatables.js"></script>
+                        <script src="~/Scripts/notify.min.js"></script>
+                        <script>
             var Popup, dataTables;
-                jQuery.noConflict()(function ($) {
-                    $(document).ready(function () {
-                        dataTables = $("#example").DataTable({
-                            "ajax": {
-                                "url": "/GsaGroup/GetGroupData",
-                                "type": "GET",
-                                "datatype": "JSON"
+            jQuery.noConflict()(function ($) {
+                $(document).ready(function () {
+                    dataTables = $("#example").DataTable({
+                        //"serverSide": true,
+                        "scrollX": true,
+                        "scrollY": "300px",
+                        "scrollCollapse": true,
+                        "paging": true,
+                        "ajax": {
+                            "url": "/GsaGroup/GetGroupData",
+                            "type": "GET",
+                            "datatype": "JSON"
 
-                            },
+                        },
 
                             "columns": [
-                                { "data": "RoleName" },
+                                { "data": "RoleName"},
                                 { "data": "RoleId", "render": function (data) {
                                     return "<a class='btn btn-info ' button type='button' onclick=location.href='@Url.Action("Edit", "GsaGroup")/" + data + "'><i class='fa fa-pencil'></i> Edit</a><a class='btn btn-primary 'style='margin-left:5px'button type='button' onclick=location.href='@Url.Action("AccessList", "GsaGroup")/" + data + "'><i class='fa fa-address-book'></i> Permission</a>"
                                     },
-                                    "orderable": false,
-                                    "searchable": false,
-                                    "width": "150px"
-                                }
-
-
-                            ],
-
-
-                            "language": {
-                                "emptyTable": "No data found, please click on <b>Add New</b> Button"
+                                "orderable": false,
+                                "searchable": false,
+                                "width": "150px"
                             }
-                        });
+
+
+                        ],
+
+
+                        "language": {
+                            "emptyTable": "No data found, please click on <b>Add New</b> Button"
+                        }
                     });
                 });
+            });
 
 
                     function SubmitForm(form) {
@@ -72,6 +95,7 @@
                             data: $(form).serialize(),
                             success: function (data) {
                                 if (data.success) {
+                                    alert("I am alert box!");
                                     dataTables.ajax.reload();
                                     $.notify(data.message, {
                                         globalPosition: "top center",
@@ -94,17 +118,17 @@
 
 
 
-            function Delete(id) {
 
-                        if (confirm('Are you sure you want to delete this customer type record ?'))
+                    function Delete(id) {
+
+                        if (confirm('Are you sure you want to delete this Consignee record ?'))
                         {
-
                             $.ajax({
                                 type: "post",
-                                url: '@Url.Action("Delete", "CustomerTypeInformation")/' + id,
+                                url: '@Url.Action("Delete","ConsigneeInformation")/' + id,
                                 success: function (data) {
-                                    if (data.success) {
 
+                                    if (data.success) {
                                         dataTables.ajax.reload();
 
                                         $.notify(data.message, {
@@ -116,15 +140,45 @@
 
                                     }
                                 }
+                                    });
+                                }
+                            }
+
+                        </script>
+
+                        <script type="text/javascript">
+
+                            $('table table-striped table-bordered table-sm').each(function () {
+                                var currentPage = 0;
+                                var numPerPage = 10;
+                                var $table = $(this);
+                                $table.bind('repaginate', function () {
+                                    $table.find('tbody tr').hide().slice(currentPage * numPerPage, (currentPage + 1) * numPerPage).show();
+                                });
+                                $table.trigger('repaginate');
+                                var numRows = $table.find('tbody tr').length;
+                                var numPages = Math.ceil(numRows / numPerPage);
+                                var $pager = $('<div class="pager"></div>');
+                                for (var page = 0; page < numPages; page++) {
+                                    $('<span class="page-number"></span>').text(page + 1).bind('click', {
+                                        newPage: page
+                                    }, function (event) {
+                                        currentPage = event.data['newPage'];
+                                        $table.trigger('repaginate');
+                                        $(this).addClass('active').siblings().removeClass('active');
+                                    }).appendTo($pager).addClass('clickable');
+                                }
+
+                                $pager.insertAfter($table).find('span.page-number:first').addClass('active');
+
+
                             });
-                        }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+
                     }
 
-            </script>
-
-
-        }
-    </fieldset>
-
-
-</div>
+                </div>

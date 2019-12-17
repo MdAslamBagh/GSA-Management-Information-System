@@ -1,67 +1,1962 @@
-﻿@model GSA_Management_Information_System.Models.CustomerGroupInformation
+﻿@model GSA_Management_Information_System.Models.CargoSalesInformation
 
 @{
     ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Gsa_Management_System_layout/assets/css/legendcss.css" rel="stylesheet" />
+<link href="~/Gsa_Management_System_layout/assets/css/style - Copy.css" rel="stylesheet" />
+@*<link href="~/assets/css/style - Copy.css" rel="stylesheet" />*@
+@*<link href="~/assets/css/legendcss.css" rel="stylesheet" />*@
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        <div class="container">
+            <div class="card ">
+                <div class="card-header bg-info">Cargo Sales Information</div>
+                <div class="card text-white  mb-3">
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label for="firstName">
+                                        MAWB
+                                        <span id="txtFirstNameEsteric" style="color:#FF0000;">*</span>
+                                    </label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="required">
+                                        <input name="MAWB" textbox id="mawb" placeholder="MAWB" class="form-control" type="text">
+                                        @*<input id="mawb"  name="MAWB" type="text" class="form-control" maxlength="50" onkeyup="changeEstericColor(this.id);" placeholder="MAWB">*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <div class="col-sm-20">
+                                <div class="required">
+                                    <input name="Issue_Code" textbox id="issuecode" placeholder="Issue Code" class="form-control" type="text" readonly="readonly">
+                                    @*<input id="Issue_Code" name="Issue_Code" type="text" maxlength="50" class="form-control" onkeyup="changeEstericColor(this.id);" placeholder="Issue Code" readonly="readonly">*@
+                                </div>
+
+                            </div>
+                        </div>
+                        </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <label for="CheckDigit">
+                                        Check Digit
+                                        <span id="txtLastNameEsteric" style="color:#FF0000;">*</span>
+                                    </label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="required">
+                                        <input name="Check_Digit" textbox id="checkdigit" type="text" maxlength="1" value="" class="form-control" onkeyup="changeEstericColor(this.id);">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <label for="flightdate">
+                                        Flight Date
+                                        <span id="txtLastNameEsteric" style="color:#FF0000;"></span>
+                                    </label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="required">
+                                        <input name="Flight_Date" id="flightdate" type="datetime" maxlength="50" value="@ViewBag.Flight_Date" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label for="SalesSlNo">
+                                        Slno:
+                                        <span id="txtSalesSlNo" style="color:#FF0000;"></span>
+                                    </label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <input name="SalesSlno" textbox id="salesslno" type="text" maxlength="50" value="@ViewBag.SalesSlno" class="form-control" readonly="readonly" onkeyup="changeEstericColor(this.id);">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label for="levelentrydate">
+                                        E_Dte
+                                        <span id="txtLastNameEsteric" style="color:#FF0000;"></span>
+                                    </label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="required">
+                                        <input name="Entry_Date" id="id=" entrydate"" type="hidden" maxlength="50" class="form-control" onkeyup="changeEstericColor(this.id);" placeholder="Last Name" value="@ViewBag.Entry_Date">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="appli-form">
+                            <form action="?Y1pn6v10=P10641yyr4&amp;S14zNp6v10=N22yvpn6v10V05r46" method="post" name="frmApplication" id="frmApplication">
+
+                                <input type="hidden" id="ID" name="ID" value="">
+                                <input type="hidden" id="PHOTOURL" name="PHOTOURL" value="">
+
+                                <fieldset class="scheduler-border">
+                                    <legend class="scheduler-border">Cargo Information</legend>
+
+                                    <div class="uf">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label for="FreighterName">
+                                                                Freighter
+                                                                <span id="txtFreighterName" style="color:#FF0000;">*</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-sm-5">
+                                                            <div class="required">
+
+                                                                <input id="freighter" name="Long_Desc" placeholder="Freighter" class="form-control" type="text" value="@ViewBag.Freighter_Name">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <div class="required">
+
+                                                                <input id="freightercode" name="Freighter_Code" placeholder="Freighter Code" class="form-control" type="text" value="@ViewBag.Freighter_Code" readonly="readonly">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label for="Origin">
+                                                                Origin
+                                                                <span id="txtoriginname" style="color:#FF0000;">*</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-sm-5">
+                                                            <div class="required">
+
+                                                                <input id="originname" name="Long_Desc" placeholder="Origin Name" class="form-control" type="text" value="@ViewBag.Origin_Name">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <div class="required">
+
+                                                                <input id="origincode" name="Origin_Code" placeholder="Origin Code" class="form-control" type="text" value="@ViewBag.Origin_Code" readonly="readonly">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label for="DestinationName">
+                                                                Destination
+                                                                <span id="txtdestination" style="color:#FF0000;">*</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-sm-5">
+                                                            <div class="required">
+
+                                                                <input id="destinationname" name="Long_Desc" placeholder="Destination Name" class="form-control" type="text" value="@ViewBag.Destination_Name">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <div class="required">
+
+                                                                <input id="destcode" name="Dest_Code" placeholder="Dest Code" class="form-control" type="text" value="@ViewBag.Destination_Code" readonly="readonly">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label for="Continent">
+                                                                Continent
+                                                                <span id="txtContinent" style="color:#FF0000;">*</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-sm-5">
+                                                            <div class="required">
+                                                                <input id="continent" name="Long_Desc" placeholder="Continent" class="form-control" type="text" value="@ViewBag.Continent_Name">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <div class="required">
+                                                                <input id="continentcode" name="Continent_Code" placeholder="Continent Code" class="form-control" type="text" value="@ViewBag.Continent_Code" readonly="readonly">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label for="PaymentMode">
+                                                                Payment
+                                                                <span id="txtPayment" style="color:#FF0000;">*</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-sm-5">
+                                                            <div class="required">
+                                                                <input id="paymentname" name="Long_Desc" placeholder="Payment Name" class="form-control" type="text" value="@ViewBag.Payment_Name">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <div class="required">
+                                                                <input id="paymentmode" name="Payment_Mode" placeholder="Payment Mode" class="form-control" type="text" value="@ViewBag.Payment_Mode" readonly="readonly">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label for="FathersName">
+                                                                Freight Paymode
+                                                                <span id="txtFatherNameEsteric" style="color:#FF0000;">*</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-sm-5">
+                                                            <div class="required">
+                                                                <input id="freightpaymode" name="Long_Desc" placeholder="Freight Paymode" class="form-control" type="text" value="@ViewBag.Cargofreight_Name">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <div class="required">
+                                                                <input id="freightpaymodecode" name="CFPaymode_Code" placeholder="Freight Code" class="form-control" type="text" value="@ViewBag.Cargofreight_Code" readonly="readonly">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label for="PaymentMode">
+                                                                Sector
+                                                                <span id="txtPaymentMode" style="color:#FF0000;">*</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-sm-5">
+                                                            <div class="required">
+
+                                                                <input id="routename" name="Long_Desc" placeholder="Sector" class="form-control" type="text" value="@ViewBag.Route_Name">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <div class="required">
+                                                                <input id="routecode" name="Route_Code" placeholder="Sector Code" class="form-control" type="text" value="@ViewBag.Route_Code" readonly="readonly">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label for="Customer">
+                                                                Customer
+                                                                <span id="txtCustomer" style="color:#FF0000;">*</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-sm-5">
+                                                            <div class="required">
+
+                                                                <input id="customername" name="Customer_Name" placeholder="Customer Name" class="form-control" type="text" value="@ViewBag.Customer_Name">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <div class="required">
+                                                                <input id="customercode" name="Customer_Code" placeholder="Customer Code" class="form-control" type="text" value="@ViewBag.Customer_Code" readonly="readonly">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label for="CargoType">
+                                                                Cargo Type
+                                                                <span id="txtCargoType" style="color:#FF0000;">*</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-sm-5">
+                                                            <div class="required">
+                                                                <input id="cargotype" name="Long_Desc" placeholder="Cargo Type" class="form-control" type="text" value="@ViewBag.Cargo_Name">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <div class="required">
+                                                                <input id="cargocode" name="Cargo_Code" placeholder="Cargo Code" class="form-control" type="text" value="@ViewBag.Cargo_Code" readonly="readonly">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label for="Customer">
+                                                                Upliment Type
+                                                                <span id="txtUplimentType" style="color:#FF0000;">*</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-sm-5">
+                                                            <div class="required">
+                                                                <input id="uplimenttype" name="Long_Desc" placeholder="Upliment Type" class="form-control" type="text" value="@ViewBag.Upliment_Name">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <div class="required">
+                                                                <input id="utypecode" name="UType_Code" placeholder="UType Code" class="form-control" type="text" value="@ViewBag.Upliment_Code" readonly="readonly">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </fieldset>
+
+                                <fieldset class="scheduler-border">
+                                    <legend class="scheduler-border">Consignee & Consignor</legend>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <h4 class="title">Consigneee-Information</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label for="ref1Name">
+                                                            Consignee Name
+                                                            <span id="txtReferenceName1Esteric" style="color:#FF0000;">*</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <div class="required">
+                                                            <input id="consigneename" name="Consignee_Name" placeholder="Consignee Name" class="form-control" type="text" value="@ViewBag.Consignee_Name">
+
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+
+                                                    <div class="col-sm-4">
+                                                        <label for="ref1Position">
+                                                            Consignee Code
+                                                            <span id="txtReferencePosition1Esteric" style="color:#FF0000;"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <div class="required">
+                                                            <input id="consigneecode" name="Consignee_Code" placeholder="Consignee Code" readonly="readonly" class="form-control" type="text" value="@ViewBag.Consignee_Code">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="row">
+
+                                                    <div class="col-sm-4">
+                                                        <label for="CorrespondenceAddress">
+                                                            Consignee Address
+                                                            <span id="txtContactAddressEsteric" style="color:#FF0000;"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <div class="required">
+
+                                                            <textarea id="consigneeaddress" placeholder="Consignee  Address" class="form-control" readonly="readonly" name="Consignee_Address" cols="56" rows="3" onkeyup="countLetter(this.form, this.name,250); changeEstericColor(this.id);" onchange="countLetter(this.form, this.name,255)" value="@ViewBag.Consignee_Address"></textarea>
+                                                            <br>
+                                                            <span id="txtContactAddress_sp1" name="txtContactAddress_sp1"></span>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <h4 class="title">Consignor-Information</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label for="ref2rence">
+                                                            Consignor Name
+                                                            <span id="txtReferenceName2Esteric" style="color:#FF0000;">*</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <div class="required">
+                                                            <input id="consignorname" name="Consignor_Name" placeholder="Consignor Name" class="form-control" type="text" value="@ViewBag.Consignor_Name">
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+
+                                                    <div class="col-sm-4">
+                                                        <label for="ref2Position">
+                                                            Consignor Code
+                                                            <span id="txtReferencePosition2Esteric" style="color:#FF0000;"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <div class="required">
+
+                                                            <input id="consignorcode" name="Consignor_Code" placeholder="Consignor Code" class="form-control" type="text" value="@ViewBag.Consignor_Code" readonly="readonly">
+
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+
+                                                    <div class="col-sm-4">
+                                                        <label for="CorrespondenceAddress">
+                                                            Consignor Address
+                                                            <span id="txtContactAddressEsteric" style="color:#FF0000;"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <div class="required">
+
+                                                            <textarea id="consignoraddress" class="form-control" name="Consignor_Address" placeholder="Consignor Address" readonly="readonly" cols="56" rows="3" onkeyup="countLetter(this.form, this.name,250); changeEstericColor(this.id);" onchange="countLetter(this.form, this.name,255)" value="@ViewBag.Consignor_Address"></textarea>
+                                                            <br>
+                                                            <span id="txtContactAddress_sp1" name="txtContactAddress_sp1"></span>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+
+                                <fieldset class="scheduler-border">
+                                    <legend class="scheduler-border">Charge Information</legend>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        @*<h4 class="title">Consigneee-Information</h4>*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label for="ref1Name">
+                                                            HDS
+                                                            <span id="txtReferenceName1Esteric" style="color:#FF0000;">*</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <div class="required">
+                                                            <input id="hds" name="HDS" min="0" onkeyup="totalSub()" placeholder="HDS" class="form-control" type="text" value="">
+
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+
+                                                    <div class="col-sm-4">
+                                                        <label for="ref1Position">
+                                                            OTHERS
+                                                            <span id="txtReferencePosition1Esteric" style="color:#FF0000;">*</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <div class="required">
+                                                            <input id="others" name="Others" min="0" onkeyup="totalSub()" placeholder="Others" class="form-control" type="text">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+
+                                                    <div class="col-sm-4">
+                                                        <label for="ref1Address">
+                                                            AMS
+                                                            <span id="txtReferenceAddress1Esteric" style="color:#FF0000;">*</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <div class="required">
+                                                            <input id="ams" name="AMS" min="0" onkeyup="totalSub()" placeholder="AMS" class="form-control" type="text">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label for="ref1ContactPhone">
+                                                            HBL Qty
+                                                            <span id="txtReferencePhone1Esteric" style="color:#FF0000;">*</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <div class="required">
+                                                            <input id="hblqty" name="HBL_Qty" placeholder="HBL Qty" class="form-control" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label for="ref1Email">Gross Weight</label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <div class="required">
+                                                            <input id="grossweight" name="Gross_Weight" onkeyup="totalSub()" placeholder="Gross Weight" class="form-control" type="text">
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        @*<h4 class="title">Consignor-Information</h4>*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label for="ref2rence">
+                                                            Chargeable Weight
+                                                            <span id="txtReferenceName2Esteric" style="color:#FF0000;">*</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <div class="required">
+                                                            <input id="chargeableweight" name="Chargeable_Weight" onkeyup="totalSub()" placeholder="Chargeable_Weight" class="form-control" type="text">
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label for="ref2Position">
+                                                            Rate Charge
+                                                            <span id="txtReferencePosition2Esteric" style="color:#FF0000;">*</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <div class="required">
+                                                            <input id="ratecharge" name="Rate_Charge" onkeyup="totalSub()" placeholder="Rate Charge" class="form-control" type="text">
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+
+                                                    <div class="col-sm-4">
+                                                        <label for="ref2Address">
+                                                            B.B.Rate
+                                                            <span id="txtReferenceAddress2Esteric" style="color:#FF0000;">*</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <div class="required">
+                                                            <input id="bbrate" name="B_Rate" onkeyup="totalSub()" placeholder="B.B_Rate" class="form-control" type="text">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label for="ref2ContactPhone">
+                                                            Agent Comm.
+                                                            <span id="txtReferencePhone2Esteric" style="color:#FF0000;">*</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <div class="required">
+                                                            <input id="agentcommison" name="Agent_Commission" onkeyup="totalSub()" placeholder="Agent_Commission" class="form-control" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label for="ref2Email">AIT</label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <div class="required">
+                                                            <input id="ait" name="AIT" placeholder="AIT" class="form-control" type="text">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="card">
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label for="THC">
+                                                                THC
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <div class="required">
+                                                                <input id="thc" name="THC" onkeyup="totalSub()" placeholder="THC" class="form-control" type="text" readonly="readonly">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label for="SSC">
+                                                                SSC
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <div class="required">
+                                                                <input id="ssc" name="SSC" onkeyup="totalSub()" placeholder="SSC" class="form-control" type="text" readonly="readonly">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <label for="lastName">
+                                                                SSC Vat(15%)
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="required">
+                                                                <input type="checkbox" onkeyup="totalSub()" name="CheckSSCVat" id="checksscvat">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <label for="SscWithVat">
+                                                                SSC With Vat
+
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="required">
+                                                                <input id="sscwithvat" name="SSC_VAT" onkeyup="totalSub()" placeholder="SSC 15% VAT" class="form-control" type="text" readonly="readonly">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label for="FSC">
+                                                                FSC
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <div class="required">
+                                                                <input id="fsc" name="FSC_Charge" onkeyup="totalSub()" placeholder="FSC Charge" class="form-control" type="text" readonly="readonly">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label for="lastName">
+                                                                ISS
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <div class="required">
+                                                                <input id="iss" name="ISS_Charge" onkeyup="totalSub()" placeholder="ISS" class="form-control" type="text" readonly="readonly">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <label for="TotalUsd">
+                                                                Total USD
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="required">
+                                                                <input value="2.10" id="totalusd" name="Total_USD" placeholder="Total USD" class="form-control" type="text" readonly="readonly">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <label for="lastName">
+                                                                Total $(SSC VAT)
+
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="required">
+                                                                <input id="totalusdwithsscvat" name="Receivable_Amount_USD_With_SSC_VAT" onkeyup="totalSub()" placeholder="Total $" class="form-control" type="text" readonly="readonly" value="2.10">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label for="Currency">
+                                                                Currency
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <div class="required">
+                                                                <input id="currency" name="Currency_Code" placeholder="Currency" class="form-control" type="text" value="@ViewBag.Currency" readonly="readonly">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <label for="ExchangeRate">
+                                                                Exc_Rate
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <div class="required">
+                                                                <input id="exchangerate" name="Exchange_Rate" placeholder="Exchange Rate" class="form-control" type="text" value="@ViewBag.Exchange_Rate" readonly="readonly">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-3">
+                                                            <label for="firstName">
+                                                                Receivable BDT
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <div class="required">
+                                                                <input id="receiveableamountbdt" onkeyup="totalSub() " name="Receivable_Amount_BDT" placeholder="Receivable_Amount_BDT" class="form-control" type="text" readonly="readonly">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <label for="firstName">
+                                                                Receivable (SSC)
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <div class="required">
+                                                                <input name="ReceivableamountVat" id="receivableamountwithsscvat" type="text" class="form-control" maxlength="50" onkeyup="totalSub()" placeholder="With SSC VAT" readonly="readonly">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-2">
+                                                            <label for="firstName">
+                                                                Remarks
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-sm-10">
+                                                            <div class="required">
+
+                                                                <textarea id="remarks" placeholder="Remarks" class="form-control" name="Remarks" cols="56" rows="3" onkeyup="countLetter(this.form, this.name,250); changeEstericColor(this.id);" onchange="countLetter(this.form, this.name,255)"></textarea>
+                                                                <br>
+                                                                <span id="txtContactAddress_sp1" name="txtContactAddress_sp1"></span>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-3">
+                                                            <label for="firstName">
+                                                                Remarks B.Bank
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-sm-9">
+                                                            <div class="required">
+
+                                                                <textarea id="remarksbbank" placeholder="Remarks for B.Bank" class="form-control" name="Remarks_B_Bank" cols="56" rows="3" onkeyup="countLetter(this.form, this.name,250); changeEstericColor(this.id);" onchange="countLetter(this.form, this.name,255)"></textarea>
+                                                                <br>
+                                                                <span id="txtContactAddress_sp1" name="txtContactAddress_sp1"></span>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-10 col-sm-12 ">
+                                            <div class="col-md-12">
+                                                <div align="center">
+                                                    <input type="submit" value="submit" class="btn btn-primary" />
+                                                    <input type="reset" value="reset" class="btn btn-warning" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+
+                            </form>
+                            <!-- <div class="submt-btn">
+                  <a href="1.html" class="more-feature">submit your resume</a>
+                </div> -->
+                        </div>
+                    </div>
+
+                </div>
+        </div>
+    </div>
+
 }
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-<div class="container">
-    <h1 class="well">Registration Form</h1>
-    <div class="col-lg-12 well">
-        <div class="row">
-            <form>
-                <div class="col-sm-12">
-                    <div class="row">
-                        <div class="col-sm-6 form-group">
-                            <label>First Name</label>
-                            <input type="text" placeholder="Enter First Name Here.." class="form-control">
-                        </div>
-                        <div class="col-sm-6 form-group">
-                            <label>Last Name</label>
-                            <input type="text" placeholder="Enter Last Name Here.." class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-6 form-group">
-                            <label>First Name</label>
-                            <input type="text" placeholder="Enter First Name Here.." class="form-control">
-                        </div>
-                        <div class="col-sm-6 form-group">
-                            <label>Last Name</label>
-                            <input type="text" placeholder="Enter Last Name Here.." class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 form-group">
-                            <label>First Name</label>
-                            <input type="text" placeholder="Enter First Name Here.." class="form-control">
-                        </div>
-                        <div class="col-sm-6 form-group">
-                            <label>Last Name</label>
-                            <input type="text" placeholder="Enter Last Name Here.." class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 form-group">
-                            <label>First Name</label>
-                            <input type="text" placeholder="Enter First Name Here.." class="form-control">
-                        </div>
-                        <div class="col-sm-6 form-group">
-                            <label>Last Name</label>
-                            <input type="text" placeholder="Enter Last Name Here.." class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <button type="button" class="btn btn-lg btn-info">Submit</button>
-        </div>
-        </form>
-    </div>
-</div>
-	</div>
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+
+
+
+@section Scripts{
+@*<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+<!-- Load jQuery JS -->
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<!-- Load jQuery UI Main JS  -->
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
+
+
+
+    <script>
+
+        //Date
+        //$(document).ready(function () {
+           
+        //        $("#flightdate").datepicker({
+        //            dateFormat: "mm/dd/yy",
+        //            changemonth: true,
+        //            changeyear: true,
+        //            minDate: new Date(2018, 0, 1),
+        //            maxDate: new Date(2020, 0, 1)
+        //            //showOn: "both",
+        //            //buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+        //            //buttonText: "Calender"
+        //        });
+   
+        //});
+      
+
+        //$(function () {
+        //    $("#entrydate").datepicker({
+        //        dateFormat: "mm/dd/yy",
+        //        changemonth: true,
+        //        changeyear: true,
+        //        minDate: new Date(2018, 0, 1),
+        //        maxDate: new Date(2020, 0, 1)
+        //        //showOn: "both",
+        //        //buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+        //        //buttonText: "Calender"
+        //    });
+        //});
+
+
+        ///window collapse
+    
+        $(document).ready(function () {
+            window.onload = function () {
+                $("body").attr('class', 'vertical-layout vertical-menu 2-columns  fixed-navbar  pace-done menu-collapsed');
+            }
+        });
+        jQuery.noConflict()(function ($) {
+        //mawb
+        $("#mawb").keyup(function () {
+            var mawbData = $("#mawb").val();
+            if (mawbData === '') {
+                $('#issuecode').val('');
+            }
+            else
+                var jsonData = { mawbcode: mawbData };
+            $("#ReceivedIdErrorMessage").text("");
+            $.ajax({
+                type: "POST",
+                url: "/CargoSalesInformation/GetMAWBCodeById",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(jsonData),
+                dataType: "json",
+                success: function (data) {
+                    // alert("Success ");
+                    $("#issuecode").val(data.SIssued_Code);
+                    $("#carrier").val(data.Long_Desc);
+                    $("#carriercode").val(data.Airlines_Code);
+                },
+            });
+
+            return false;
+
+        });
+        
+            //$(document).ready(function () {
+                $("#mawb").autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            url: "/CargoSalesInformation/Get_MAWB",
+                            type: "POST",
+                            dataType: "json",
+                            data: { Prefix: request.term },
+
+                            success: function (data) {
+
+                                response($.map(data, function (item) {
+
+                                    return {
+                                        label: item.Ticket_No,
+                                        value: item.Ticket_No,
+
+
+                                    };
+
+
+                                }))
+
+                            }
+                        })
+                    },
+                    messages: {
+                        noResults: "",
+                        results: function (count) {
+                            return count + (count > 1 ? ' results' : ' result ') + ' found';
+                        }
+                    }
+                })
+            
+        //});
+
+
+        //freighter
+        $("#freighter").keyup(function () {
+            var freighterData = $("#freighter").val();
+            if (freighterData === '') {
+                $('#freightercode').val('');
+            }
+            else
+                var jsonData = { freightername: freighterData };
+            $("#ReceivedIdErrorMessage").text("");
+            $.ajax({
+                type: "POST",
+                url: "/CargoSalesInformation/GetfreighterCodeById",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(jsonData),
+                dataType: "json",
+                success: function (data) {
+                    // alert("Success ");
+                    $("#freightercode").val(data.Freighter_Code);
+
+                },
+            });
+
+            return false;
+
+        });
+        $("#freighter").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/CargoSalesInformation/Get_Freighter_Name",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+
+                    success: function (data) {
+
+                        response($.map(data, function (item) {
+
+                            return {
+                                label: item.Long_Desc,
+                                value: item.Long_Desc,
+
+
+
+
+
+                            };
+
+
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "",
+                results: function (count) {
+                    return count + (count > 1 ? ' results' : ' result ') + ' found';
+                }
+            }
+
+        });
+
+      
+        //Origin
+        $("#originname").keyup(function () {
+            var origindata = $("#originname").val();
+            if (origindata === '') {
+                $('#origincode').val('');
+            }
+            else
+                var jsonData = { originname: origindata };
+            $("#ReceivedIdErrorMessage").text("");
+            $.ajax({
+                type: "POST",
+                url: "/CargoSalesInformation/GetOriginCodeById",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(jsonData),
+                dataType: "json",
+                success: function (data) {
+                    //  alert("Success ");
+                    $("#origincode").val(data.Origin_Code);
+
+                },
+            });
+
+            return false;
+
+        });
+        $("#originname").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/CargoSalesInformation/Get_Origin_Name",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+
+                    success: function (data) {
+
+                        response($.map(data, function (item) {
+
+                            return {
+                                label: item.Long_Desc,
+                                value: item.Long_Desc,
+                            };
+
+
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "",
+                results: function (count) {
+                    return count + (count > 1 ? ' results' : ' result ') + ' found';
+                }
+            }
+
+
+        });
+
+
+        //Destination
+        $("#destinationname").keyup(function () {
+            var destinationData = $("#destinationname").val();
+            if (destinationData === '') {
+                $('#destcode').val('');
+            }
+            else
+                var jsonData = { destinationname: destinationData };
+            $("#ReceivedIdErrorMessage").text("");
+            $.ajax({
+                type: "POST",
+                url: "/CargoSalesInformation/GetDestinationCodeById",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(jsonData),
+                dataType: "json",
+                success: function (data) {
+                    //  alert("Success ");
+                    $("#destcode").val(data.Dest_Code);
+
+                },
+            });
+
+            return false;
+
+        });
+        $("#destinationname").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/CargoSalesInformation/Get_Destination_Name",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+
+                    success: function (data) {
+
+                        response($.map(data, function (item) {
+
+                            return {
+                                label: item.Long_Desc,
+                                value: item.Long_Desc,
+                            };
+
+
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "",
+                results: function (count) {
+                    return count + (count > 1 ? ' results' : ' result ') + ' found';
+                }
+            }
+
+        });
+
+        //continent
+        $("#continent").keyup(function () {
+            var continentData = $("#continent").val();
+            if (continentData === '') {
+                $('#continentcode').val('');
+            }
+            else
+                var jsonData = { continentname: continentData };
+            $("#ReceivedIdErrorMessage").text("");
+            $.ajax({
+                type: "POST",
+                url: "/CargoSalesInformation/GetContinentCodeById",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(jsonData),
+                dataType: "json",
+                success: function (data) {
+                    // alert("Success ");
+                    $("#continentcode").val(data.Continent_Code);
+
+                },
+            });
+
+            return false;
+
+        });
+        $(document).ready(function () {
+            $("#continent").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/CargoSalesInformation/Get_Continent_Name",
+                        type: "POST",
+                        dataType: "json",
+                        data: { Prefix: request.term },
+
+                        success: function (data) {
+
+                            response($.map(data, function (item) {
+
+                                return {
+                                    label: item.Long_Desc,
+                                    value: item.Long_Desc,
+
+
+                                };
+
+
+                            }))
+
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "",
+                    results: function (count) {
+                        return count + (count > 1 ? ' results' : ' result ') + ' found';
+                    }
+                }
+            })
+        });
+
+        //payment
+        $("#paymentname").keyup(function () {
+            var paymentData = $("#paymentname").val();
+            if (paymentData === '') {
+                $('#paymentmode').val('');
+            }
+            else
+                var jsonData = { paymentname: paymentData };
+            $("#ReceivedIdErrorMessage").text("");
+            $.ajax({
+                type: "POST",
+                url: "/CargoSalesInformation/GetpaymentCodeById",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(jsonData),
+                dataType: "json",
+                success: function (data) {
+                    //  alert("Success ");
+                    $("#paymentmode").val(data.Payment_Mode);
+
+
+                },
+            });
+
+            return false;
+
+        });
+        $("#paymentname").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/CargoSalesInformation/Get_payment_Name",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+
+                    success: function (data) {
+
+                        response($.map(data, function (item) {
+
+                            return {
+                                label: item.Long_Desc,
+                                value: item.Long_Desc,
+
+
+
+
+
+                            };
+
+
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "",
+                results: function (count) {
+                    return count + (count > 1 ? ' results' : ' result ') + ' found';
+                }
+            }
+
+        });
+
+
+        //freigher paymode
+        $("#freightpaymode").keyup(function () {
+            var cfpaymodeData = $("#freightpaymode").val();
+            if (cfpaymodeData === '') {
+                $('#freightpaymodecode').val('');
+            }
+            else
+                var jsonData = { cfpaymodename: cfpaymodeData };
+            $("#ReceivedIdErrorMessage").text("");
+            $.ajax({
+                type: "POST",
+                url: "/CargoSalesInformation/GetCFpaymodeById",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(jsonData),
+                dataType: "json",
+                success: function (data) {
+                    // alert("Success ");
+                    $("#freightpaymodecode").val(data.CFPaymode_Code);
+
+                },
+            });
+
+            return false;
+
+        });
+        //$(document).ready(function () {
+            $("#freightpaymode").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/CargoSalesInformation/Get_CFpaymode_Name",
+                        type: "POST",
+                        dataType: "json",
+                        data: { Prefix: request.term },
+
+                        success: function (data) {
+
+                            response($.map(data, function (item) {
+
+                                return {
+                                    label: item.Long_Desc,
+                                    value: item.Long_Desc,
+
+
+                                };
+
+
+                            }))
+
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "",
+                    results: function (count) {
+                        return count + (count > 1 ? ' results' : ' result ') + ' found';
+                    }
+                }
+            })
+        //});
+
+
+        //sector
+        $("#routename").keyup(function () {
+            var routeData = $("#routename").val();
+            if (routeData === '') {
+                $('#routecode').val('');
+            }
+            else
+                var jsonData = { sectorname: routeData };
+            $("#ReceivedIdErrorMessage").text("");
+            $.ajax({
+                type: "POST",
+                url: "/CargoSalesInformation/GetrouteCodeById",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(jsonData),
+                dataType: "json",
+                success: function (data) {
+                    // alert("Success ");
+                    $("#routecode").val(data.Route_Code);
+
+                },
+            });
+
+            return false;
+
+        });
+        //$(document).ready(function () {
+            $("#routename").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/CargoSalesInformation/Get_Route_Name",
+                        type: "POST",
+                        dataType: "json",
+                        data: { Prefix: request.term },
+
+                        success: function (data) {
+
+                            response($.map(data, function (item) {
+
+                                return {
+                                    label: item.Long_Desc,
+                                    value: item.Long_Desc,
+
+
+                                };
+
+
+                            }))
+
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "",
+                    results: function (count) {
+                        return count + (count > 1 ? ' results' : ' result ') + ' found';
+                    }
+                }
+            })
+        //});
+
+
+        //Customer
+        $("#customername").keyup(function () {
+            var customerdata = $("#customername").val();
+            if (customerdata === '') {
+                $('#customercode').val('');
+                $("#customeraddress").val('');
+            }
+            else
+                var jsonData = { customername: customerdata };
+            $("#ReceivedIdErrorMessage").text("");
+            $.ajax({
+                type: "POST",
+                url: "/CargoSalesInformation/GetCustomerCodeById",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(jsonData),
+                dataType: "json",
+                success: function (data) {
+                    //  alert("Success ");
+                    $("#customercode").val(data.Customer_Code);
+                    $("#customeraddress").val(data.Address);
+
+
+                },
+            });
+
+            return false;
+
+        });
+        $("#customername").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/CargoSalesInformation/Get_Customer_Name",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+
+                    success: function (data) {
+
+                        response($.map(data, function (item) {
+
+                            return {
+                                label: item.Customer_Name,
+                                value: item.Customer_Name,
+
+
+
+
+
+                            };
+
+
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "",
+                results: function (count) {
+                    return count + (count > 1 ? ' results' : ' result ') + ' found';
+                }
+            }
+
+        });
+
+
+        //cargo type
+        $("#cargotype").keyup(function () {
+            var cargotypeData = $("#cargotype").val();
+            if (cargotypeData === '') {
+                $('#cargocode').val('');
+            }
+            else
+                var jsonData = { cargotype_Name: cargotypeData };
+            $("#ReceivedIdErrorMessage").text("");
+            $.ajax({
+                type: "POST",
+                url: "/CargoSalesInformation/GetcargotypeCodeById",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(jsonData),
+                dataType: "json",
+                success: function (data) {
+                    // alert("Success ");
+                    $("#cargocode").val(data.Cargo_Code);
+
+                },
+            });
+
+            return false;
+
+        });
+        //$(document).ready(function () {
+            $("#cargotype").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/CargoSalesInformation/Get_CargoType_Name",
+                        type: "POST",
+                        dataType: "json",
+                        data: { Prefix: request.term },
+
+                        success: function (data) {
+
+                            response($.map(data, function (item) {
+
+                                return {
+                                    label: item.Long_Desc,
+                                    value: item.Long_Desc,
+
+
+                                };
+
+
+                            }))
+
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "",
+                    results: function (count) {
+                        return count + (count > 1 ? ' results' : ' result ') + ' found';
+                    }
+                }
+            })
+        //});
+
+
+        //upliment
+        $("#uplimenttype").keyup(function () {
+            var uplimentData = $("#uplimenttype").val();
+            if (uplimentData === '') {
+                $('#utypecode').val('');
+            }
+            else
+                var jsonData = { uplimenttype_Name: uplimentData };
+            $("#ReceivedIdErrorMessage").text("");
+            $.ajax({
+                type: "POST",
+                url: "/CargoSalesInformation/GetuplimenttypeCodeById",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(jsonData),
+                dataType: "json",
+                success: function (data) {
+                    // alert("Success ");
+                    $("#utypecode").val(data.UType_Code);
+
+                },
+            });
+
+            return false;
+
+        });
+        $("#uplimenttype").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/CargoSalesInformation/Get_UplimentType_Name",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+
+                    success: function (data) {
+
+                        response($.map(data, function (item) {
+
+                            return {
+                                label: item.Long_Desc,
+                                value: item.Long_Desc,
+
+
+
+
+
+                            };
+
+
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "",
+                results: function (count) {
+                    return count + (count > 1 ? ' results' : ' result ') + ' found';
+                }
+            }
+
+        });
+
+   
+        //Consignee
+        $("#consigneename").keyup(function () {
+            var consigneedata = $("#consigneename").val();
+            if (consigneedata === '') {
+                $('#consigneecode').val('');
+                $('#consigneeaddress').val('');
+            }
+            else
+                var jsonData = { consigneename: consigneedata };
+            $("#ReceivedIdErrorMessage").text("");
+            $.ajax({
+                type: "POST",
+                url: "/CargoSalesInformation/GetConsigneeCodeById",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(jsonData),
+                dataType: "json",
+                success: function (data) {
+                    //  alert("Success ");
+                    $("#consigneecode").val(data.Consignee_Code);
+                    $("#consigneeaddress").val(data.Consignee_Address);
+
+                },
+            });
+
+            return false;
+        });
+        $("#consigneename").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/CargoSalesInformation/Get_Consignee_Name",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+
+                    success: function (data) {
+
+                        response($.map(data, function (item) {
+
+                            return {
+                                label: item.Consignee_Name,
+                                value: item.Consignee_Name,
+
+                            };
+
+
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "",
+                results: function (count) {
+                    return count + (count > 1 ? ' results' : ' result ') + ' found';
+                }
+            }
+        });
+
+
+        //Consignor
+        $("#consignorname").keyup(function () {
+            var consignordata = $("#consignorname").val();
+            if (consignordata === '') {
+                $('#consignorcode').val('');
+                $('#consignoraddress').val('');
+            }
+            var jsonData = { consignorname: consignordata };
+            $("#ReceivedIdErrorMessage").text("");
+            $.ajax({
+                type: "POST",
+                url: "/CargoSalesInformation/GetConsignorCodeById",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(jsonData),
+                dataType: "json",
+                success: function (data) {
+                    //  alert("Success ");
+                    $("#consignorcode").val(data.Consignor_Code);
+                    $("#consignoraddress").val(data.Consignor_Address);
+
+                },
+            });
+
+            return false;
+        });
+        $("#Consignor_Name").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/CargoSalesInformation/Get_Consignor_Name",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+
+                    success: function (data) {
+
+                        response($.map(data, function (item) {
+
+                            return {
+                                label: item.Consignor_Name,
+                                value: item.Consignor_Name,
+
+
+
+
+
+                            };
+
+
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "",
+                results: function (count) {
+                    return count + (count > 1 ? ' results' : ' result ') + ' found';
+                }
+            }
+        });
+
+    
+       
+
+        });
+    </script>
+
+    <script>
+        $('#totalusd').val(2.10.toFixed(2));
+        $('#receiveableamountbdt').val(175.88);
+        $('#thc').val(2.10.toFixed(2));
+        //Calculate THC,SSC,ISS
+        function totalSub() {
+            var hds = $("#hds").val();
+            var others = $("#others").val();
+            var ams = $("#ams").val();
+            var ratecharge = $("#ratecharge").val();
+            var agentcommison_minimum = 0.9500;
+            var agentcommison = 5.0000;
+            var ait = 0.3000;
+
+            //$('#ratecharge').keyup(function () {
+            var bbrate = (ratecharge / agentcommison_minimum);
+            $('#bbrate').val(bbrate.toFixed(2));
+            var bbrate = $("#bbrate").val();
+            var agentcommison = (bbrate * (agentcommison / 100));
+            $('#agentcommison').val(agentcommison.toFixed(4));
+            var agentcommison = $("#agentcommison").val();
+            var ait = (agentcommison * ait) / 100;
+            $('#ait').val(ait.toFixed(4));
+
+            //  });
+
+            var agentcommison = $("#agentcommison").val();
+            var ait = $("#ait").val();
+
+            var thc = $("#thc").val();
+            var ssc = $("#ssc").val();
+            var fsc = $("#fsc").val();
+            var iss = $("#iss").val();
+            var grossweight = $("#grossweight").val();
+            var sscwithvat = $("#sscwithvat").val();
+            $('#chargeableweight').val(grossweight);
+            var chargeableweight = $("#grossweight").val();
+            var ratecharge = $("#ratecharge").val();
+            var exchangerate = $("#exchangerate").val();
+
+
+            var totalusd = 2.10;
+            var receivableamountbdt = 175.88;
+            var thc = 2.10;
+            var ssc_value = 0.0600;
+            var fsc_value = 0.8100;
+            var iss_value = 0.100;
+            var ssc = grossweight * ssc_value;
+            var ssc_15_perc_vat = ((ssc * 15) / 100);
+            $('#checksscvat').click(function () {
+                if ($(this).is(':checked')) {
+                    sscwithvat = ssc + ssc_15_perc_vat;
+                    $('#sscwithvat').val(sscwithvat.toFixed(2));
+                    totalSub();
+
+                    //return confirm("Are you sure?");
+                }
+                else {
+
+                    $('#sscwithvat').val(0.00);
+                    totalSub();
+                }
+            });
+
+            var sscwithvat = $("#sscwithvat").val();
+            $('#ssc').val(ssc);
+            var fsc = (parseFloat(chargeableweight) || 0) * fsc_value;
+            $('#fsc').val(fsc.toFixed(2));
+            var iss = (parseFloat(chargeableweight) || 0) * iss_value;
+            $('#iss').val(iss.toFixed(2));
+
+
+
+            //if (hds.length > 0) {
+            //    totalUSD += parseFloat(hds);
+            //}
+            //if (others.length > 0) {
+            //    totalUSD += parseFloat(others);
+            //}
+            //if (ams.length > 0) {
+            //    totalUSD += parseFloat(ams);
+            //}
+            //if (chargeableweight.length > 0) {
+            //    totalUSD += parseFloat(chargeableweight);
+            //}
+            //if (ratecharge.length > 0) {
+            //    totalUSD += parseFloat(ratecharge);
+            //}
+            // var totalUSD = 2.1;
+
+            totalusd = (((parseFloat(chargeableweight) || 0) * (parseFloat(ratecharge) || 0)) + (parseFloat(hds) || 0) + (parseFloat(others) || 0) + (parseFloat(ams) || 0) + thc + (parseFloat(ssc) || 0) + (parseFloat(fsc) || 0) + (parseFloat(iss) || 0));
+            totalusdwithsscvat = (((parseFloat(chargeableweight) || 0) * (parseFloat(ratecharge) || 0)) + (parseFloat(hds) || 0) + (parseFloat(others) || 0) + (parseFloat(ams) || 0) + (parseFloat(thc) || 0) + (parseFloat(sscwithvat) || 0) + (parseFloat(fsc) || 0) + (parseFloat(iss) || 0));
+            //receivableamountbdt = ((((parseFloat(chargeableweight) || 0) * (parseFloat(ratecharge) || 0)) + (parseFloat(hds) || 0) + (parseFloat(others) || 0) + (parseFloat(ams) || 0) + (parseFloat(thc) || 0) + (parseFloat(ssc) || 0) + (parseFloat(fsc) || 0) + (parseFloat(iss) || 0)) * (parseFloat(exchangerate) || 0));
+            receivableamountbdt = ((((parseFloat(chargeableweight) || 0) * (parseFloat(ratecharge) || 0)) + (parseFloat(hds) || 0) + (parseFloat(others) || 0) + (parseFloat(ams) || 0) + (parseFloat(thc) || 0) + (parseFloat(fsc) || 0) + (parseFloat(iss) || 0)) * (parseFloat(exchangerate) || 0));
+            receivableamountwithsscvat = ((((parseFloat(chargeableweight) || 0) * (parseFloat(ratecharge) || 0)) + (parseFloat(hds) || 0) + (parseFloat(others) || 0) + (parseFloat(ams) || 0) + (parseFloat(thc) || 0) + (parseFloat(sscwithvat) || 0) + (parseFloat(fsc) || 0) + (parseFloat(iss) || 0)) * (parseFloat(exchangerate) || 0));
+            // Me.txtReceivableAmountBDT.Text = Format(Val(Val(Val(Me.txtChargeableWeight.Text) * Val(Me.txtRateCharge.Text)) + Val(Me.txtHDS.Text) + Val(Me.txtOthers.Text) + Val(Me.txtAMS.Text) + Val(Me.lblTHC.Text) + Val(Me.lblSSC.Text) + Val(Me.lblFSCCharge.Text) + Val(Me.lblISSCharge.Text)) * Val(Me.lblExchangeRate.Text), "0.00")
+            //Me.lblTotalUSDWithSSCVAT.Text = Format(Val(Val(Me.txtChargeableWeight.Text) * Val(Me.txtRateCharge.Text)) + Val(Me.txtHDS.Text) + Val(Me.txtOthers.Text) + Val(Me.txtAMS.Text) + Val(Me.lblTHC.Text) + Val(Me.lblSSCWithVAT.Text) + Val(Me.lblFSCCharge.Text) + Val(Me.lblISSCharge.Text), "0.00")
+
+            $("#totalusd").val(totalusd.toFixed(2));
+            $("#totalusdwithsscvat").val(totalusdwithsscvat.toFixed(2));
+            $("#receiveableamountbdt").val(receivableamountbdt.toFixed(2));
+            $("#receivableamountwithsscvat").val(receivableamountwithsscvat.toFixed(2));
+
+
+            //Me.lblTotalUSD.Text = Format(Val(Val(Me.txtChargeableWeight.Text) * Val(Me.txtRateCharge.Text))  + Val(Me.lblTHC.Text) + Val(Me.lblSSC.Text) + Val(Me.lblFSCCharge.Text) + Val(Me.lblISSCharge.Text), "0.00")
+            //Me.lblTotalUSD.Text = Format(Val(Val(Me.txtChargeableWeight.Text) * Val(Me.txtRateCharge.Text)) + Val(Me.txtHDS.Text) + Val(Me.txtOthers.Text) + Val(Me.txtAMS.Text) + Val(Me.lblTHC.Text) + Val(Me.lblSSC.Text) + Val(Me.lblFSCCharge.Text) + Val(Me.lblISSCharge.Text), "0.00")
+        };
+</script>
+}
+
+

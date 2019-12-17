@@ -64,7 +64,7 @@ namespace GSA_Management_Information_System.Models
 
 
         // GET: StockIssueConfirmation/Create
-        public ActionResult Add()
+        public ActionResult Create()
         {
             String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
             //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
@@ -78,7 +78,7 @@ namespace GSA_Management_Information_System.Models
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add([Bind(Include = "CIssueId,SIssued_Code,Airlines_Code,From_TicketNo,To_TicketNo,Ticket_Quantity,Customer_Code,Remarks,Status,Confirm_Date")] StockIssueConfirmation stockIssueConfirmation)
+        public ActionResult Create([Bind(Include = "CIssueId,SIssued_Code,Airlines_Code,From_TicketNo,To_TicketNo,Ticket_Quantity,Customer_Code,Remarks,Status,Confirm_Date")] StockIssueConfirmation stockIssueConfirmation)
         {
             if (ModelState.IsValid)
             {

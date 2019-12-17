@@ -58,6 +58,7 @@ namespace GSA_Management_Information_System.Models
         public string Remarks_B_Bank { get; set; }
 
         public DateTime Entry_Date { get; set; }
+        public string Entry_By { get; set; }
 
     }
 }

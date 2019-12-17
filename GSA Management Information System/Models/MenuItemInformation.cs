@@ -12,8 +12,9 @@ namespace GSA_Management_Information_System.Models
         public int MenuItemId { get; set; }
         public string Menu_Name { get; set; }
         public string ModuleIcon { get; set; }
+        public string Entry_By { get; set; }
 
-      //  public List<AccessInformation> AccessList { get; set; }
+        //  public List<AccessInformation> AccessList { get; set; }
 
 
 

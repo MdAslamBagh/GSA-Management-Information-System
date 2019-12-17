@@ -16,5 +16,6 @@ namespace GSA_Management_Information_System.Models
         public double Particular_Value { get; set; }
         public double Minimum_Value { get; set; }
         public DateTime Entry_Date { get; set; }
+        public string Entry_By { get; set; }
     }
 }

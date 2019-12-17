@@ -19,6 +19,12 @@ namespace GSA_Management_Information_System.Controllers
         {
             return View(db.MenuInformations.ToList());
         }
+        public JsonResult GetData()
+        {
+            List<MenuItemInformation> Informations = db.MenuInformations.ToList<MenuItemInformation>();
+            return Json(new { data = Informations }, JsonRequestBehavior.AllowGet);
+
+        }
 
         // GET: MenuItemInformation/Details/5
         public ActionResult Details(int? id)

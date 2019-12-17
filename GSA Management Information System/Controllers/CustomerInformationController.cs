@@ -43,11 +43,14 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         // GET: CustomerInformation/Create
-        public ActionResult Add()
+        public ActionResult Create()
         {
             String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
             //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
             ViewBag.Entry_Date = today;
+
+            var LogedInUser = User.Identity.Name;
+            ViewBag.Entry_By = LogedInUser;
 
             List<CustomerInformation> Informations = db.CustomerInformations.OrderByDescending(a => a.CustomerId).ToList<CustomerInformation>();
 
@@ -106,7 +109,7 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add([Bind(Include = "CustomerId,Customer_Code,Bp_Code,Customer_Name,Type_Code,Group_Code,Address,Country_Code,City_Code,Contact_No,Fax,Email,Web,Contact_Person,Status,Default_Code,Entry_Date")] CustomerInformation customerInformation)
+        public ActionResult Create(CustomerInformation customerInformation)
         {
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
@@ -140,6 +143,9 @@ namespace GSA_Management_Information_System.Controllers
         // GET: CustomerInformation/Edit/5
         public ActionResult Edit(int? id)
         {
+            var LogedInUser = User.Identity.Name;
+            ViewBag.Entry_By = LogedInUser;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -163,7 +169,7 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CustomerId,Customer_Code,Bp_Code,Customer_Name,Type_Code,Group_Code,Address,Country_Code,City_Code,Contact_No,Fax,Email,Web,Contact_Person,Status,Default_Code,Entry_Date")] CustomerInformation customerInformation)
+        public ActionResult Edit( CustomerInformation customerInformation)
         {
             if (ModelState.IsValid)
             {

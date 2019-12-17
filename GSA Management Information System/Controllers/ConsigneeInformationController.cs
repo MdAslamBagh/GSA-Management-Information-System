@@ -35,11 +35,15 @@ namespace GSA_Management_Information_System.Controllers
 
 
         [HttpGet]
-        public ActionResult Add()
+        public ActionResult Create()
         {
             String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
             //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
             ViewBag.Entry_Date = today;
+
+
+            var LogedInUser = User.Identity.Name;
+            ViewBag.Entry_By = LogedInUser;
 
             List<ConsigneeInformation> Informations = db.ConsigneeInformations.OrderByDescending(a=>a.ConsigneeId).ToList<ConsigneeInformation>();
 
@@ -108,10 +112,11 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(ConsigneeInformation objconsignee)
+        public ActionResult Create(ConsigneeInformation objconsignee)
         {
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
+         
 
             if (ModelState.IsValid)
             {
@@ -186,6 +191,8 @@ namespace GSA_Management_Information_System.Controllers
         //// GET: ConsigneeInformation/Edit/5
         public ActionResult Edit(int? id)
         {
+            var LogedInUser = User.Identity.Name;
+            ViewBag.Entry_By = LogedInUser;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -197,6 +204,7 @@ namespace GSA_Management_Information_System.Controllers
             }
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
+           
             return View(Informations);
         }
 
@@ -205,7 +213,7 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ConsigneeId,Consignee_Code,Consignee_Name,Consignee_Address,Email,Status,Default_Code,Entry_Date")] ConsigneeInformation objconsignee)
+        public ActionResult Edit([Bind(Include = "ConsigneeId,Consignee_Code,Consignee_Name,Consignee_Address,Email,Status,Default_Code,Entry_Date,Entry_By")] ConsigneeInformation objconsignee)
         {
             if (ModelState.IsValid)
             {

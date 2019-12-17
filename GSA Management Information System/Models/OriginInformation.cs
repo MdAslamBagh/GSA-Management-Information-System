@@ -25,5 +25,6 @@ namespace GSA_Management_Information_System.Models
 
         [Required(ErrorMessage = "This field can not be empty.")]
         public DateTime Entry_Date { get; set; }
+        public string Entry_By { get; set; }
     }
 }

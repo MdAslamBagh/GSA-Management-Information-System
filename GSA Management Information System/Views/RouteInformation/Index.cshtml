@@ -35,38 +35,41 @@
         <script src="~/Scripts/notify.min.js"></script>
         <script>
             var Popup, dataTables;
-            $(document).ready(function () {
-                dataTables = $("#example").DataTable({
-                    "ajax": {
-                        "url": "/RouteInformation/GetData",
-                        "type": "GET",
-                        "datatype": "JSON"
+            jQuery.noConflict()(function ($) {
+                $(document).ready(function () {
+                    dataTables = $("#example").DataTable({
+                        "ajax": {
+                            "url": "/RouteInformation/GetData",
+                            "type": "GET",
+                            "datatype": "JSON"
 
-                    },
+                        },
 
-                    "columns": [
-                        { "data": "Route_Code" },
-                        { "data": "Long_Desc" },
-                        { "data": "Type_Code" },
-                        { "data": "Status" },
-                        { "data": "Default_Code" },
-                        { "data": "RouteId", "render": function (data) {
-                                return "<a class='btn btn-default btn-sm' onclick=location.href='@Url.Action("Edit", "RouteInformation")/" + data + "'><i class='fa fa-pencil'></i> Edit</a><a class='btn btn-danger btn-sm'style='margin-left:5px'onclick=Delete("+ data +")><i class='fa fa-trash'></i> Delete</a>"
+                        "columns": [
+                            { "data": "Route_Code" },
+                            { "data": "Long_Desc" },
+                            { "data": "Type_Code" },
+                            { "data": "Status" },
+                            { "data": "Default_Code" },
+                            {
+                                "data": "RouteId", "render": function (data) {
+                                    return "<a class='btn btn-default btn-sm' onclick=location.href='@Url.Action("Edit", "RouteInformation")/" + data + "'><i class='fa fa-pencil'></i> Edit</a><a class='btn btn-danger btn-sm'style='margin-left:5px'onclick=Delete(" + data + ")><i class='fa fa-trash'></i> Delete</a>"
                                 },
-                                    "orderable": false,
-                                    "searchable":false,
-                                    "width":"150px"
-                                }
-
-
-                            ],
-
-
-                             "language": {
-                                 "emptyTable": "No data found, please click on <b>Add New</b> Button"
+                                "orderable": false,
+                                "searchable": false,
+                                "width": "150px"
                             }
-                        });
+
+
+                        ],
+
+
+                        "language": {
+                            "emptyTable": "No data found, please click on <b>Add New</b> Button"
+                        }
                     });
+                });
+            });
 
 
                     function SubmitForm(form) {

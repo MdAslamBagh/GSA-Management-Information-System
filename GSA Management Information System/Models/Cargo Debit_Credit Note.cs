@@ -18,6 +18,7 @@ namespace GSA_Management_Information_System.Models
         public float Amount_BDT { get; set; }
         public string Remarks { get; set; }
         public DateTime Entry_Date { get; set; }
+        public string Entry_By { get; set; }
 
 
     }

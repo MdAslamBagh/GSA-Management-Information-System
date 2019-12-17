@@ -339,9 +339,65 @@
     <Compile Include="Migrations\201911291234450_initial20.Designer.cs">
       <DependentUpon>201911291234450_initial20.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201911291732321_initial21.cs" />
-    <Compile Include="Migrations\201911291732321_initial21.Designer.cs">
-      <DependentUpon>201911291732321_initial21.cs</DependentUpon>
+    <Compile Include="Migrations\201912061535589_initial21.cs" />
+    <Compile Include="Migrations\201912061535589_initial21.Designer.cs">
+      <DependentUpon>201912061535589_initial21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912061542582_initial22.cs" />
+    <Compile Include="Migrations\201912061542582_initial22.Designer.cs">
+      <DependentUpon>201912061542582_initial22.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912080458598_initial23.cs" />
+    <Compile Include="Migrations\201912080458598_initial23.Designer.cs">
+      <DependentUpon>201912080458598_initial23.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912080523323_initial24.cs" />
+    <Compile Include="Migrations\201912080523323_initial24.Designer.cs">
+      <DependentUpon>201912080523323_initial24.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912080524028_initial25.cs" />
+    <Compile Include="Migrations\201912080524028_initial25.Designer.cs">
+      <DependentUpon>201912080524028_initial25.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912080608374_initial26.cs" />
+    <Compile Include="Migrations\201912080608374_initial26.Designer.cs">
+      <DependentUpon>201912080608374_initial26.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912081206125_initial27.cs" />
+    <Compile Include="Migrations\201912081206125_initial27.Designer.cs">
+      <DependentUpon>201912081206125_initial27.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912100637015_initial28.cs" />
+    <Compile Include="Migrations\201912100637015_initial28.Designer.cs">
+      <DependentUpon>201912100637015_initial28.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912100641348_initial29.cs" />
+    <Compile Include="Migrations\201912100641348_initial29.Designer.cs">
+      <DependentUpon>201912100641348_initial29.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912101001079_initial30.cs" />
+    <Compile Include="Migrations\201912101001079_initial30.Designer.cs">
+      <DependentUpon>201912101001079_initial30.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912110620082_initial31.cs" />
+    <Compile Include="Migrations\201912110620082_initial31.Designer.cs">
+      <DependentUpon>201912110620082_initial31.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912110624171_initial32.cs" />
+    <Compile Include="Migrations\201912110624171_initial32.Designer.cs">
+      <DependentUpon>201912110624171_initial32.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912111051014_initial33.cs" />
+    <Compile Include="Migrations\201912111051014_initial33.Designer.cs">
+      <DependentUpon>201912111051014_initial33.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912111053572_initial34.cs" />
+    <Compile Include="Migrations\201912111053572_initial34.Designer.cs">
+      <DependentUpon>201912111053572_initial34.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912121530548_initial35.cs" />
+    <Compile Include="Migrations\201912121530548_initial35.Designer.cs">
+      <DependentUpon>201912121530548_initial35.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccessInformation.cs" />
@@ -354,6 +410,8 @@
     <Compile Include="Models\BaseModuleInformation.cs" />
     <Compile Include="Models\Cargo Debit_Credit Note.cs" />
     <Compile Include="Models\CargoFreightPaymodeInformation.cs" />
+    <Compile Include="Models\CargoSalesBackup.cs" />
+    <Compile Include="Models\CargoSalesTransactionBackup.cs" />
     <Compile Include="Models\CargoSalesInformation.cs" />
     <Compile Include="Models\CargoTypeInformation.cs" />
     <Compile Include="Models\Category.cs" />
@@ -372,6 +430,8 @@
     <Compile Include="Models\CustomerTypeInformation.cs" />
     <Compile Include="Models\DestinationInformation.cs" />
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\CargoRepository.cs" />
+    <Compile Include="Models\EmpRepository.cs" />
     <Compile Include="Models\ExchangeInformation.cs" />
     <Compile Include="Models\FreighterInformation.cs" />
     <Compile Include="Models\GlobalClass.cs" />
@@ -2397,7 +2457,7 @@
     <Content Include="Views\CargoFreightPaymodeInformation\Edit.cshtml" />
     <Content Include="Views\CargoFreightPaymodeInformation\Index.cshtml" />
     <Content Include="Views\CargoSalesInformation\AddFinal.cshtml" />
-    <Content Include="Views\CargoSalesInformation\Create.cshtml" />
+    <Content Include="Views\CargoSalesInformation\Addsds.cshtml" />
     <Content Include="Views\CargoSalesInformation\Delete.cshtml" />
     <Content Include="Views\CargoSalesInformation\Details.cshtml" />
     <Content Include="Views\CargoSalesInformation\Edit.cshtml" />
@@ -2437,15 +2497,15 @@
     <Content Include="Views\CompanyInformation\Index.cshtml" />
     <Content Include="Views\CompanyInformation\Index2.cshtml" />
     <Content Include="Views\CompanyInformation\ViewAll.cshtml" />
-    <Content Include="Views\ConsigneeInformation\Add.cshtml" />
     <Content Include="Views\ConsigneeInformation\Create.cshtml" />
+    <Content Include="Views\ConsigneeInformation\Createdefault.cshtml" />
     <Content Include="Views\ConsigneeInformation\Delete.cshtml" />
     <Content Include="Views\ConsigneeInformation\Details.cshtml" />
     <Content Include="Views\ConsigneeInformation\Edit.cshtml" />
     <Content Include="Views\ConsigneeInformation\Index.cshtml" />
     <Content Include="Views\ConsigneeInformation\Test.cshtml" />
-    <Content Include="Views\ConsignorInformation\Add.cshtml" />
     <Content Include="Views\ConsignorInformation\Create.cshtml" />
+    <Content Include="Views\ConsignorInformation\CreateDefault.cshtml" />
     <Content Include="Views\ConsignorInformation\Delete.cshtml" />
     <Content Include="Views\ConsignorInformation\Details.cshtml" />
     <Content Include="Views\ConsignorInformation\Edit.cshtml" />
@@ -2484,7 +2544,7 @@
     <Content Include="Views\CustomerGroupInformation\Details.cshtml" />
     <Content Include="Views\CustomerGroupInformation\Edit.cshtml" />
     <Content Include="Views\CustomerGroupInformation\Index.cshtml" />
-    <Content Include="Views\CustomerInformation\Add.cshtml" />
+    <Content Include="Views\CustomerInformation\Create.cshtml" />
     <Content Include="Views\CustomerInformation\Delete.cshtml" />
     <Content Include="Views\CustomerInformation\Details.cshtml" />
     <Content Include="Views\CustomerInformation\Edit.cshtml" />
@@ -2548,8 +2608,8 @@
     <Content Include="Views\RouteInformation\Details.cshtml" />
     <Content Include="Views\RouteInformation\Edit.cshtml" />
     <Content Include="Views\RouteInformation\Index.cshtml" />
-    <Content Include="Views\StockIssueConfirmation\Add.cshtml" />
     <Content Include="Views\StockIssueConfirmation\Create.cshtml" />
+    <Content Include="Views\StockIssueConfirmation\CreateDefault.cshtml" />
     <Content Include="Views\StockIssueConfirmation\Delete.cshtml" />
     <Content Include="Views\StockIssueConfirmation\Details.cshtml" />
     <Content Include="Views\StockIssueConfirmation\Edit.cshtml" />
@@ -2618,7 +2678,7 @@
     <Content Include="Views\Role\Create.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\CargoSalesInformation\AddLegend.cshtml" />
-    <Content Include="Views\CargoSalesInformation\Add.cshtml" />
+    <Content Include="Views\CargoSalesInformation\Create.cshtml" />
     <Content Include="Views\CargoSalesInformation\Addlast.cshtml" />
     <Content Include="Views\CargoSalesInformation\Register.cshtml" />
     <Content Include="Views\CargoSalesInformation\AddSplitter.cshtml" />
@@ -2647,9 +2707,12 @@
     <Content Include="Views\GsaGroup\Delete.cshtml" />
     <Content Include="Views\GsaGroup\Index.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
-    <Content Include="Views\Account\EditUser.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\ConsigneeInformation\Index - Copy.cshtml" />
     <Content Include="Views\ConsigneeInformation\Index - Copy %282%29.cshtml" />
+    <Content Include="Views\GsaGroup\Index - Copy.cshtml" />
+    <Content Include="Views\Account\PreviousIndex .cshtml" />
+    <Content Include="Views\Account\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2739,8 +2802,50 @@
     <EmbeddedResource Include="Migrations\201911291234450_initial20.resx">
       <DependentUpon>201911291234450_initial20.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911291732321_initial21.resx">
-      <DependentUpon>201911291732321_initial21.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201912061535589_initial21.resx">
+      <DependentUpon>201912061535589_initial21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912061542582_initial22.resx">
+      <DependentUpon>201912061542582_initial22.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912080458598_initial23.resx">
+      <DependentUpon>201912080458598_initial23.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912080523323_initial24.resx">
+      <DependentUpon>201912080523323_initial24.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912080524028_initial25.resx">
+      <DependentUpon>201912080524028_initial25.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912080608374_initial26.resx">
+      <DependentUpon>201912080608374_initial26.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912081206125_initial27.resx">
+      <DependentUpon>201912081206125_initial27.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912100637015_initial28.resx">
+      <DependentUpon>201912100637015_initial28.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912100641348_initial29.resx">
+      <DependentUpon>201912100641348_initial29.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912101001079_initial30.resx">
+      <DependentUpon>201912101001079_initial30.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912110620082_initial31.resx">
+      <DependentUpon>201912110620082_initial31.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912110624171_initial32.resx">
+      <DependentUpon>201912110624171_initial32.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912111051014_initial33.resx">
+      <DependentUpon>201912111051014_initial33.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912111053572_initial34.resx">
+      <DependentUpon>201912111053572_initial34.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912121530548_initial35.resx">
+      <DependentUpon>201912121530548_initial35.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -2764,7 +2869,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>54450</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:54450/</IISUrl>
+          <IISUrl>http://localhost:52450/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -7,13 +7,13 @@ namespace GSA_Management_Information_System.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class initial21 : IMigrationMetadata
+    public sealed partial class initial31 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initial21));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initial31));
         
         string IMigrationMetadata.Id
         {
-            get { return "201911291732321_initial21"; }
+            get { return "201912110620082_initial31"; }
         }
         
         string IMigrationMetadata.Source

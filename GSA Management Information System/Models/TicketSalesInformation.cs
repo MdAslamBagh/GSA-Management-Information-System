@@ -33,6 +33,7 @@ namespace GSA_Management_Information_System.Models
         public int Received_Amount { get; set; }
         public float Amount_In_PPRS { get; set; }
         public string Remarks { get; set; }
+        public string Entry_By { get; set; }
 
 
 

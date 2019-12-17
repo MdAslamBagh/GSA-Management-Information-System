@@ -1,0 +1,113 @@
+﻿@model GSA_Management_Information_System.Models.EditUserViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+@using (Html.BeginForm("Edit", "Account", FormMethod.Post, new { onSubmit = "return SubmitForm(this)" }))
+            {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+    <div class="form-horizontal">
+        <div class="container">
+            <div class="card ">
+                <div class="card-header bg-info">Edit User</div>
+                <div class="row">
+                    <div class="form-group">
+    <div class="form-group col-md-10 col-sm-12 ">
+        <label for="accessname" class="col-md-3 col-sm-5">Full Name<font size="2px" color="red">*</font></label>
+        <div class="col-md-6 col-sm-7">
+            @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group col-md-10 col-sm-12 ">
+        <label for="controllername" class="col-md-3 col-sm-5">Email<font size="2px" color="red">*</font></label>
+        <div class="col-md-6 col-sm-7">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group col-md-10 col-sm-12 ">
+        <label for="controllername" class="col-md-3 col-sm-5">UserName<font size="2px" color="red">*</font></label>
+        <div class="col-md-6 col-sm-7">
+            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group col-md-10 col-sm-12 ">
+            <label for="controllername" class="col-md-3 col-sm-5">Password<font size="2px" color="red">*</font></label>
+            <div class="col-md-6 col-sm-7">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-10 col-sm-12 ">
+            <label for="controllername" class="col-md-3 col-sm-5">Confirm Password<font size="2px" color="red">*</font></label>
+            <div class="col-md-6 col-sm-7">
+                @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+    <div class="form-group col-md-10 col-sm-12 ">
+        <label for="controllername" class="col-md-3 col-sm-5">Roles<font size="2px" color="red">*</font></label>
+        <div class="col-md-6 col-sm-7">
+            @foreach (var item in Model.RolesList)
+                {
+                <input type="radio" name="SelectedRole" value="@item.Value" checked="@item.Selected" class="checkbox-inline" />
+                @Html.Label(item.Value, new { @class = "control-label" })
+            }
+           
+        </div>
+    </div>
+
+
+
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <div class="col-md-10">
+                                <div align="center">
+                                    <a class="btn btn-primary" style="margin-left:10px" onclick="location.href='@Url.Action("Index", "Account")'"><i class="fa fa-plus"></i>Back To List</a>
+                                    <input type="submit" value="submit" class="btn btn-info" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+
+@section scripts{
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script>
+        $(function () {
+            $(".datepicker").datepicker({
+                dateFormat: "mm/dd/yy",
+                changemonth: true,
+                changeyear: true,
+                minDate: new Date(2018, 0, 1),
+                maxDate: new Date(2020, 0, 1),
+                showOn: "both",
+                buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+                buttonText: "Calender"
+            });
+        });
+    </script>
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+

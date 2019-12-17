@@ -47,6 +47,7 @@ namespace GSA_Management_Information_System.Models
 
         [NotMapped]
         public HttpPostedFileBase Company_ImageUpload { get; set; }
+        public string Entry_By { get; set; }
 
     }
 }
