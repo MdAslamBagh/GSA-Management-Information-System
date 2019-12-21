@@ -20,6 +20,7 @@
             <div class="card ">
                 <div class="card-header bg-info">Cargo Sales Update</div>
                 <div class="card text-white  mb-3">
+
                     <div class="col-sm-3">
                         <div class="form-group">
                             <div class="row">
@@ -32,8 +33,7 @@
                                 <div class="col-sm-8">
                                     <div class="required">
                                         @Html.EditorFor(model => model.MAWB, new { htmlAttributes = new { @class = "form-control", id = "mawb" } })
-
-                                        @*<input type="text" name="MAWB" textbox id="mawb" placeholder="MAWB">*@
+                                        @*<input  name="MAWB" textbox id="mawb" placeholder="MAWB" class="form-control" type="text">*@
                                         @*<input id="mawb"  name="MAWB" type="text" class="form-control" maxlength="50" onkeyup="changeEstericColor(this.id);" placeholder="MAWB">*@
                                     </div>
                                 </div>
@@ -41,15 +41,16 @@
                         </div>
                     </div>
                     <div class="col-sm-2">
-                        <div class="col-sm-20">
-                            <div class="required">
-                                @Html.EditorFor(model => model.SIssued_Code, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
-                                @*<input name="Issue_Code" textbox id="issuecode" placeholder="Issue Code" class="form-control" type="text" readonly="readonly">*@
-                                @*<input id="Issue_Code" name="Issue_Code" type="text" maxlength="50" class="form-control" onkeyup="changeEstericColor(this.id);" placeholder="Issue Code" readonly="readonly">*@
+                        <div class="form-group">
+                            <div class="col-sm-20">
+                                <div class="required">
+                                    @Html.EditorFor(model => model.SIssued_Code, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                    @*<input name="Issue_Code" textbox id="issuecode" placeholder="Issue Code" class="form-control" type="text" readonly="readonly">*@
+                                    @*<input id="Issue_Code" name="Issue_Code" type="text" maxlength="50" class="form-control" onkeyup="changeEstericColor(this.id);" placeholder="Issue Code" readonly="readonly">*@
+                                </div>
+
                             </div>
-
                         </div>
-
                     </div>
                     <div class="col-sm-2">
                         <div class="form-group">
@@ -63,6 +64,7 @@
                                 <div class="col-sm-4">
                                     <div class="required">
                                         @Html.EditorFor(model => model.Check_Digit, new { htmlAttributes = new { @class = "form-control", id = "checkdigit" } })
+                                         @*<input type="text" name="Check_Digit" textbox id="checkdigit"  maxlength="1" value="" class="form-control" onkeyup="changeEstericColor(this.id);">*@
                                         @*<input name="Check_Digit" textbox id="checkdigit" type="text" maxlength="1" value="" class="form-control" onkeyup="changeEstericColor(this.id);">*@
                                     </div>
                                 </div>
@@ -80,8 +82,6 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="required">
-                                        @*@Html.Editor("Flight_Date", new { htmlAttributes = new { @class = "form-control" } })*@
-                                        @*Html.EditorFor(model => model.Issue_Code, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })*@
                                         @*<input name="Flight_Date" id="flightdate" type="datetime" maxlength="50" value="@ViewBag.Flight_Date" class="form-control">*@
                                     </div>
                                 </div>
@@ -115,13 +115,13 @@
                                 </div>
                                 <div class="col-sm-8">
                                     <div class="required">
-                                        @*@Html.EditorFor(model => model.Issue_Code, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
-                                        <input name="Entry_Date" id="id=" entrydate"" type="hidden" maxlength="50" class="form-control" onkeyup="changeEstericColor(this.id);" placeholder="Last Name" value="@ViewBag.Entry_Date">*@
+                                        @*<input name="Entry_Date" id="id=" entrydate"" type="hidden" maxlength="50" class="form-control" onkeyup="changeEstericColor(this.id);" placeholder="Last Name" value="@ViewBag.Entry_Date">*@
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <div class="col-sm-12">
                     <div class="appli-form">
@@ -145,14 +145,14 @@
                                                     </div>
                                                     <div class="col-sm-5">
                                                         <div class="required">
-                                                            @Html.EditorFor(model => model.Freighter, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                            @Html.EditorFor(model => model.Freighter, new { htmlAttributes = new { @class = "form-control", id = "freighter" } })
                                                             @*<input id="freighter" name="Long_Desc" placeholder="Freighter" class="form-control" type="text" value="@ViewBag.Freighter_Name">*@
 
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="required">
-                                                            @Html.EditorFor(model => model.Freighter_Code, new { htmlAttributes = new { @class = "form-control", id = "mawb" } })
+                                                            @Html.EditorFor(model => model.Freighter_Code, new { htmlAttributes = new { @class = "form-control", id = "freightercode" } })
                                                             @*<input id="freightercode" name="Freighter_Code" placeholder="Freighter Code" class="form-control" type="text" value="@ViewBag.Freighter_Code" readonly="readonly">*@
 
                                                         </div>
@@ -172,14 +172,14 @@
                                                     </div>
                                                     <div class="col-sm-5">
                                                         <div class="required">
-                                                            @Html.EditorFor(model => model.Origin, new { htmlAttributes = new { @class = "form-control", id = "mawb" } })
+                                                            @Html.EditorFor(model => model.Origin, new { htmlAttributes = new { @class = "form-control", id = "originname" } })
                                                             @*<input id="originname" name="Long_Desc" placeholder="Origin Name" class="form-control" type="text" value="@ViewBag.Origin_Name">*@
 
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="required">
-                                                            @Html.EditorFor(model => model.Origin_Code, new { htmlAttributes = new { @class = "form-control", id = "mawb" } })
+                                                            @Html.EditorFor(model => model.Origin_Code, new { htmlAttributes = new { @class = "form-control", id = "origincode" } })
                                                             @*<input id="origincode" name="Origin_Code" placeholder="Origin Code" class="form-control" type="text" value="@ViewBag.Origin_Code" readonly="readonly">*@
 
                                                         </div>
@@ -201,14 +201,14 @@
                                                     </div>
                                                     <div class="col-sm-5">
                                                         <div class="required">
-                                                            @Html.EditorFor(model => model.Destination, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                            @Html.EditorFor(model => model.Destination, new { htmlAttributes = new { @class = "form-control", id = "destinationname" } })
                                                             @*<input id="destinationname" name="Long_Desc" placeholder="Destination Name" class="form-control" type="text" value="@ViewBag.Destination_Name">*@
 
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="required">
-                                                            @Html.EditorFor(model => model.Dest_Code, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                            @Html.EditorFor(model => model.Dest_Code, new { htmlAttributes = new { @class = "form-control", id = "destcode" } })
                                                             @*<input id="destcode" name="Dest_Code" placeholder="Dest Code" class="form-control" type="text" value="@ViewBag.Destination_Code" readonly="readonly">*@
 
                                                         </div>
@@ -228,13 +228,13 @@
                                                     </div>
                                                     <div class="col-sm-5">
                                                         <div class="required">
-                                                            @Html.EditorFor(model => model.Continent, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                            @Html.EditorFor(model => model.Continent, new { htmlAttributes = new { @class = "form-control", id = "continent" } })
                                                             @*<input id="continent" name="Long_Desc" placeholder="Continent" class="form-control" type="text" value="@ViewBag.Continent_Name">*@
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="required">
-                                                            @Html.EditorFor(model => model.Continent_Code, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                            @Html.EditorFor(model => model.Continent_Code, new { htmlAttributes = new { @class = "form-control", id = "continentcode" } })
                                                             @*<input id="continentcode" name="Continent_Code" placeholder="Continent Code" class="form-control" type="text" value="@ViewBag.Continent_Code" readonly="readonly">*@
                                                         </div>
                                                     </div>
@@ -256,13 +256,13 @@
                                                     </div>
                                                     <div class="col-sm-5">
                                                         <div class="required">
-                                                            @Html.EditorFor(model => model.Payment, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                            @Html.EditorFor(model => model.Payment, new { htmlAttributes = new { @class = "form-control", id = "paymentname" } })
                                                             @*<input id="paymentname" name="Long_Desc" placeholder="Payment Name" class="form-control" type="text" value="@ViewBag.Payment_Name">*@
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="required">
-                                                            @Html.EditorFor(model => model.Payment_Mode, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                            @Html.EditorFor(model => model.Payment_Mode, new { htmlAttributes = new { @class = "form-control", id = "paymentmode" } })
                                                             @*<input id="paymentmode" name="Payment_Mode" placeholder="Payment Mode" class="form-control" type="text" value="@ViewBag.Payment_Code" readonly="readonly">*@
 
                                                         </div>
@@ -282,13 +282,13 @@
                                                     </div>
                                                     <div class="col-sm-5">
                                                         <div class="required">
-                                                            @Html.EditorFor(model => model.CargoFreightPaymode, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                            @Html.EditorFor(model => model.CargoFreightPaymode, new { htmlAttributes = new { @class = "form-control", id = "freightpaymode" } })
                                                             @*<input id="freightpaymode" name="Long_Desc" placeholder="Freight Paymode" class="form-control" type="text" value="@ViewBag.Cargofreight_Name">*@
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="required">
-                                                            @Html.EditorFor(model => model.CFPaymode_Code, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                            @Html.EditorFor(model => model.CFPaymode_Code, new { htmlAttributes = new { @class = "form-control", id = "freightpaymodecode" } })
                                                             @*<input id="freightpaymodecode" name="CFPaymode_Code" placeholder="Freight Code" class="form-control" type="text" value="@ViewBag.Cargofreight_Code" readonly="readonly">*@
                                                         </div>
                                                     </div>
@@ -309,14 +309,14 @@
                                                     </div>
                                                     <div class="col-sm-5">
                                                         <div class="required">
-                                                            @Html.EditorFor(model => model.Route, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                            @Html.EditorFor(model => model.Route, new { htmlAttributes = new { @class = "form-control", id = "routename" } })
                                                             @*<input id="routename" name="Long_Desc" placeholder="Sector" class="form-control" type="text" value="@ViewBag.Route_Name">*@
 
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="required">
-                                                            @Html.EditorFor(model => model.Route_Code, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                            @Html.EditorFor(model => model.Route_Code, new { htmlAttributes = new { @class = "form-control", id = "routecode" } })
                                                             @*<input id="routecode" name="Route_Code" placeholder="Sector Code" class="form-control" type="text" value="@ViewBag.Route_Code" readonly="readonly">*@
                                                         </div>
                                                     </div>
@@ -335,14 +335,14 @@
                                                     </div>
                                                     <div class="col-sm-5">
                                                         <div class="required">
-                                                            @Html.EditorFor(model => model.Customer, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                            @Html.EditorFor(model => model.Customer, new { htmlAttributes = new { @class = "form-control", id = "customername" } })
                                                             @*<input id="customername" name="Customer_Name" placeholder="Customer Name" class="form-control" type="text" value="@ViewBag.Customer_Name">*@
 
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="required">
-                                                            @Html.EditorFor(model => model.Customer_Code, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                            @Html.EditorFor(model => model.Customer_Code, new { htmlAttributes = new { @class = "form-control", id = "customercode" } })
                                                             @*<input id="customercode" name="Customer_Code" placeholder="Customer Code" class="form-control" type="text" value="@ViewBag.Customer_Code" readonly="readonly">*@
                                                         </div>
                                                     </div>
@@ -363,13 +363,13 @@
                                                     </div>
                                                     <div class="col-sm-5">
                                                         <div class="required">
-                                                            @Html.EditorFor(model => model.CargoType, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                            @Html.EditorFor(model => model.CargoType, new { htmlAttributes = new { @class = "form-control", id = "cargotype" } })
                                                             @*<input id="cargotype" name="Long_Desc" placeholder="Cargo Type" class="form-control" type="text" value="@ViewBag.Cargo_Name">*@
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="required">
-                                                            @Html.EditorFor(model => model.Cargo_Code, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                            @Html.EditorFor(model => model.Cargo_Code, new { htmlAttributes = new { @class = "form-control", id = "cargocode" } })
                                                             @*<input id="cargocode" name="Cargo_Code" placeholder="Cargo Code" class="form-control" type="text" value="@ViewBag.Cargo_Code" readonly="readonly">*@
                                                         </div>
                                                     </div>
@@ -388,14 +388,15 @@
                                                     </div>
                                                     <div class="col-sm-5">
                                                         <div class="required">
-                                                            @Html.EditorFor(model => model.Upliment, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                            @Html.EditorFor(model => model.Upliment, new { htmlAttributes = new { @class = "form-control", id = "uplimenttype" } })
                                                             @*<input id="uplimenttype" name="Long_Desc" placeholder="Upliment Type" class="form-control" type="text" value="@ViewBag.Upliment_Name">*@
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="required">
-                                                            @Html.EditorFor(model => model.UType_Code, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                            @Html.EditorFor(model => model.UType_Code, new { htmlAttributes = new { @class = "form-control", id = "utypecode" } })
                                                             @*<input id="utypecode" name="UType_Code" placeholder="UType Code" class="form-control" type="text" value="@ViewBag.Upliment_Code" readonly="readonly">*@
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -427,7 +428,7 @@
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <div class="required">
-                                                        @Html.EditorFor(model => model.Consignee_Name, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                        @Html.EditorFor(model => model.Consignee_Name, new { htmlAttributes = new { @class = "form-control", id = "consigneename" } })
                                                         @*<input id="consigneename" name="Consignee_Name" placeholder="Consignee Name" class="form-control" type="text" value="@ViewBag.Consignee_Name">*@
 
                                                     </div>
@@ -447,7 +448,7 @@
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <div class="required">
-                                                        @Html.EditorFor(model => model.Consignee_Code, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                        @Html.EditorFor(model => model.Consignee_Code, new { htmlAttributes = new { @class = "form-control", id = "consigneecode" } })
                                                         @*<input id="consigneecode" name="Consignee_Code" placeholder="Consignee Code" readonly="readonly" class="form-control" type="text" value="@ViewBag.Consignee_Code">*@
                                                     </div>
                                                 </div>
@@ -466,10 +467,11 @@
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <div class="required">
+                                                        @Html.TextArea("Consignee_Address", null, 3, 54, new { @class = "form-control", @readonly = "readonly", id = "consigneeaddress" })
 
-                                                        <textarea id="consigneeaddress" placeholder="Consignee  Address" class="form-control" readonly="readonly" name="Consignee_Address" cols="56" rows="3" onkeyup="countLetter(this.form, this.name,250); changeEstericColor(this.id);" onchange="countLetter(this.form, this.name,255)" value="@ViewBag.Consignee_Address"></textarea>
-                                                        <br>
-                                                        <span id="txtContactAddress_sp1" name="txtContactAddress_sp1"></span>
+                                                        @*<textarea id="consigneeaddress" placeholder="Consignee  Address" class="form-control" readonly="readonly" name="Consignee_Address" cols="56" rows="3" onkeyup="countLetter(this.form, this.name,250); changeEstericColor(this.id);" onchange="countLetter(this.form, this.name,255)" value="@ViewBag.Consignee_Address"></textarea>*@
+                                                        @*<br>
+                                                            <span id="txtContactAddress_sp1" name="txtContactAddress_sp1"></span>*@
 
                                                     </div>
                                                 </div>
@@ -497,7 +499,7 @@
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <div class="required">
-                                                        @Html.EditorFor(model => model.Consignor_Name, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                        @Html.EditorFor(model => model.Consignor_Name, new { htmlAttributes = new { @class = "form-control", id = "consignorname" } })
                                                         @*<input id="consignorname" name="Consignor_Name" placeholder="Consignor Name" class="form-control" type="text" value="@ViewBag.Consignor_Name">*@
 
                                                     </div>
@@ -516,7 +518,7 @@
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <div class="required">
-                                                        @Html.EditorFor(model => model.Consignor_Code, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                        @Html.EditorFor(model => model.Consignor_Code, new { htmlAttributes = new { @class = "form-control", id = "consignorcode" } })
                                                         @*<input id="consignorcode" name="Consignor_Code" placeholder="Consignor Code" class="form-control" type="text" value="@ViewBag.Consignor_Code" readonly="readonly">*@
 
                                                     </div>
@@ -537,9 +539,18 @@
                                                 <div class="col-sm-8">
                                                     <div class="required">
 
-                                                        <textarea id="consignoraddress" class="form-control" name="Consignor_Address" placeholder="Consignor Address" readonly="readonly" cols="56" rows="3" onkeyup="countLetter(this.form, this.name,250); changeEstericColor(this.id);" onchange="countLetter(this.form, this.name,255)" value="@ViewBag.Consignor_Address"></textarea>
-                                                        <br>
-                                                        <span id="txtContactAddress_sp1" name="txtContactAddress_sp1"></span>
+                                                        <div class="required">
+                                                            @Html.TextArea("Consignor_Address", null, 3, 54, new { @class = "form-control", @readonly = "readonly", id = "consignoraddress" })
+                                                            @*@Html.TextArea("Consignor_Address", null, 3, 68, new { @class = "form-control", @readonly = "readonly",  id = "consignoraddress" })*@
+
+                                                            @*<textarea id="consigneeaddress" placeholder="Consignee  Address" class="form-control" readonly="readonly" name="Consignee_Address" cols="23" rows="3" onkeyup="countLetter(this.form, this.name,250); changeEstericColor(this.id);" onchange="countLetter(this.form, this.name,255)" value="@ViewBag.Consignee_Address"></textarea>*@
+                                                            @*<br>
+                                                                <span id="txtContactAddress_sp1" name="txtContactAddress_sp1"></span>*@
+
+                                                        </div>
+                                                        @*<textarea id="consignoraddress" class="form-control" name="Consignor_Address" placeholder="Consignor Address" readonly="readonly" cols="56" rows="3" onkeyup="countLetter(this.form, this.name,250); changeEstericColor(this.id);" onchange="countLetter(this.form, this.name,255)" value="@ViewBag.Consignor_Address"></textarea>
+                                                            <br>
+                                                            <span id="txtContactAddress_sp1" name="txtContactAddress_sp1"></span>*@
 
                                                     </div>
                                                 </div>
@@ -572,7 +583,7 @@
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <div class="required">
-                                                        @Html.EditorFor(model => model.HDS, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                        @Html.EditorFor(model => model.HDS, new { htmlAttributes = new { @class = "form-control", id = "hds", onkeyup = "totalSub()" } })
                                                         @*<input id="hds" name="HDS" min="0" onkeyup="totalSub()" placeholder="HDS" class="form-control" type="text" value="">*@
 
                                                     </div>
@@ -592,7 +603,7 @@
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <div class="required">
-                                                        @Html.EditorFor(model => model.Others, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                        @Html.EditorFor(model => model.Others, new { htmlAttributes = new { @class = "form-control", id = "others", onkeyup = "totalSub()" } })
                                                         @*<input id="others" name="Others" min="0" onkeyup="totalSub()" placeholder="Others" class="form-control" type="text">*@
                                                     </div>
                                                 </div>
@@ -610,7 +621,7 @@
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <div class="required">
-                                                        @Html.EditorFor(model => model.AMS, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                        @Html.EditorFor(model => model.AMS, new { htmlAttributes = new { @class = "form-control", id = "ams", onkeyup = "totalSub()" } })
                                                         @*<input id="ams" name="AMS" min="0" onkeyup="totalSub()" placeholder="AMS" class="form-control" type="text">*@
                                                     </div>
                                                 </div>
@@ -627,7 +638,7 @@
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <div class="required">
-                                                        @Html.EditorFor(model => model.HBL_Qty, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                        @Html.EditorFor(model => model.HBL_Qty, new { htmlAttributes = new { @class = "form-control", id = "hblqty", onkeyup = "totalSub()" } })
                                                         @*<input id="hblqty" name="HBL_Qty" placeholder="HBL Qty" class="form-control" type="text">*@
                                                     </div>
                                                 </div>
@@ -640,7 +651,7 @@
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <div class="required">
-                                                        @Html.EditorFor(model => model.Gross_Weight, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                        @Html.EditorFor(model => model.Gross_Weight, new { htmlAttributes = new { @class = "form-control", id = "grossweight", onkeyup = "totalSub()" } })
                                                         @*<input id="grossweight" name="Gross_Weight" onkeyup="totalSub()" placeholder="Gross Weight" class="form-control" type="text">*@
 
                                                     </div>
@@ -668,7 +679,7 @@
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <div class="required">
-                                                        @Html.EditorFor(model => model.Chargeable_Weight, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                        @Html.EditorFor(model => model.Chargeable_Weight, new { htmlAttributes = new { @class = "form-control", id = "chargeableweight", onkeyup = "totalSub()" } })
                                                         @*<input id="chargeableweight" name="Chargeable_Weight" onkeyup="totalSub()" placeholder="Chargeable_Weight" class="form-control" type="text">*@
 
                                                     </div>
@@ -686,7 +697,7 @@
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <div class="required">
-                                                        @Html.EditorFor(model => model.Rate_Charge, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                        @Html.EditorFor(model => model.Rate_Charge, new { htmlAttributes = new { @class = "form-control", id = "ratecharge", onkeyup = "totalSub()" } })
                                                         @*<input id="ratecharge" name="Rate_Charge" onkeyup="totalSub()" placeholder="Rate Charge" class="form-control" type="text">*@
                                                     </div>
                                                 </div>
@@ -705,7 +716,7 @@
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <div class="required">
-                                                        @Html.EditorFor(model => model.B_Rate, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                        @Html.EditorFor(model => model.B_Rate, new { htmlAttributes = new { @class = "form-control", id = "bbrate", onkeyup = "totalSub()" } })
                                                         @*<input id="bbrate" name="B_Rate" onkeyup="totalSub()" placeholder="B.B_Rate" class="form-control" type="text">*@
                                                     </div>
                                                 </div>
@@ -722,7 +733,7 @@
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <div class="required">
-                                                        @Html.EditorFor(model => model.Agent_Commission, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                        @Html.EditorFor(model => model.Agent_Commission, new { htmlAttributes = new { @class = "form-control", id = "agentcommison", onkeyup = "totalSub()" } })
                                                         @*<input id="agentcommison" name="Agent_Commission" onkeyup="totalSub()" placeholder="Agent_Commission" class="form-control" type="text">*@
                                                     </div>
                                                 </div>
@@ -735,7 +746,7 @@
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <div class="required">
-                                                        @Html.EditorFor(model => model.AIT, new { htmlAttributes = new { @class = "form-control", id = "issuecode" } })
+                                                        @Html.EditorFor(model => model.AIT, new { htmlAttributes = new { @class = "form-control", id = "ait", onkeyup = "totalSub()" } })
                                                         @*<input id="ait" name="AIT" placeholder="AIT" class="form-control" type="text">*@
                                                     </div>
                                                 </div>
@@ -758,7 +769,8 @@
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <div class="required">
-                                                            <input id="thc" name="THC" onkeyup="totalSub()" placeholder="THC" class="form-control" type="text" readonly="readonly">
+                                                            @Html.EditorFor(model => model.THC, new { htmlAttributes = new { @class = "form-control", id = "thc", onkeyup = "totalSub()" } })
+                                                            @*<input id="thc" name="THC" onkeyup="totalSub()" placeholder="THC" class="form-control" type="text" readonly="readonly">*@
                                                         </div>
                                                     </div>
                                                 </div>
@@ -774,7 +786,8 @@
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <div class="required">
-                                                            <input id="ssc" name="SSC" onkeyup="totalSub()" placeholder="SSC" class="form-control" type="text" readonly="readonly">
+                                                            @Html.EditorFor(model => model.SSC, new { htmlAttributes = new { @class = "form-control", id = "ssc", onkeyup = "totalSub()" } })
+                                                            @*<input id="ssc" name="SSC" onkeyup="totalSub()" placeholder="SSC" class="form-control" type="text" readonly="readonly">*@
                                                         </div>
                                                     </div>
                                                 </div>
@@ -807,7 +820,8 @@
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <div class="required">
-                                                            <input id="sscwithvat" name="SSC_VAT" onkeyup="totalSub()" placeholder="SSC 15% VAT" class="form-control" type="text" readonly="readonly">
+                                                            @Html.EditorFor(model => model.SSC_VAT, new { htmlAttributes = new { @class = "form-control", id = "sscwithvat", onkeyup = "totalSub()" } })
+                                                            @*<input id="sscwithvat" name="SSC_VAT" onkeyup="totalSub()" placeholder="SSC 15% VAT" class="form-control" type="text" readonly="readonly">*@
                                                         </div>
                                                     </div>
                                                 </div>
@@ -825,7 +839,8 @@
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <div class="required">
-                                                            <input id="fsc" name="FSC_Charge" onkeyup="totalSub()" placeholder="FSC Charge" class="form-control" type="text" readonly="readonly">
+                                                            @Html.EditorFor(model => model.FSC_Charge, new { htmlAttributes = new { @class = "form-control", id = "fsc", onkeyup = "totalSub()" } })
+                                                            @*<input id="fsc" name="FSC_Charge" onkeyup="totalSub()" placeholder="FSC Charge" class="form-control" type="text" readonly="readonly">*@
                                                         </div>
                                                     </div>
                                                 </div>
@@ -841,7 +856,8 @@
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <div class="required">
-                                                            <input id="iss" name="ISS_Charge" onkeyup="totalSub()" placeholder="ISS" class="form-control" type="text" readonly="readonly">
+                                                            @Html.EditorFor(model => model.ISS_Charge, new { htmlAttributes = new { @class = "form-control", id = "iss", onkeyup = "totalSub()" } })
+                                                            @*<input id="iss" name="ISS_Charge" onkeyup="totalSub()" placeholder="ISS" class="form-control" type="text" readonly="readonly">*@
                                                         </div>
                                                     </div>
                                                 </div>
@@ -857,7 +873,8 @@
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <div class="required">
-                                                            <input value="2.10" id="totalusd" name="Total_USD" placeholder="Total USD" class="form-control" type="text" readonly="readonly">
+                                                            @Html.EditorFor(model => model.Total_USD, new { htmlAttributes = new { @class = "form-control", id = "totalusd", onkeyup = "totalSub()" } })
+                                                            @*<input value="2.10" id="totalusd" name="Total_USD" placeholder="Total USD" class="form-control" type="text" readonly="readonly">*@
                                                         </div>
                                                     </div>
                                                 </div>
@@ -874,7 +891,8 @@
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <div class="required">
-                                                            <input id="totalusdwithsscvat" name="Receivable_Amount_USD_With_SSC_VAT" onkeyup="totalSub()" placeholder="Total $" class="form-control" type="text" readonly="readonly" value="2.10">
+                                                            @Html.EditorFor(model => model.Receivable_Amount_USD_With_SSC_VAT, new { htmlAttributes = new { @class = "form-control", id = "totalusdwithsscvat", onkeyup = "totalSub()" } })
+                                                            @*<input id="totalusdwithsscvat" name="Receivable_Amount_USD_With_SSC_VAT" onkeyup="totalSub()" placeholder="Total $" class="form-control" type="text" readonly="readonly" value="2.10">*@
                                                         </div>
                                                     </div>
                                                 </div>
@@ -893,7 +911,8 @@
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <div class="required">
-                                                            <input id="currency" name="Currency_Code" placeholder="Currency" class="form-control" type="text" value="@ViewBag.Currency" readonly="readonly">
+                                                            @Html.EditorFor(model => model.Currency_Code, new { htmlAttributes = new { @class = "form-control", id = "currency", onkeyup = "totalSub()" } })
+                                                            @*<input id="currency" name="Currency_Code" placeholder="Currency" class="form-control" type="text" value="@ViewBag.Currency" readonly="readonly">*@
                                                         </div>
                                                     </div>
                                                 </div>
@@ -909,7 +928,8 @@
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <div class="required">
-                                                            <input id="exchangerate" name="Exchange_Rate" placeholder="Exchange Rate" class="form-control" type="text" value="@ViewBag.Exchange_Rate" readonly="readonly">
+                                                            @Html.EditorFor(model => model.Exchange_Rate, new { htmlAttributes = new { @class = "form-control", id = "exchangerate", onkeyup = "totalSub()" } })
+                                                            @*<input id="exchangerate" name="Exchange_Rate" placeholder="Exchange Rate" class="form-control" type="text" value="@ViewBag.Exchange_Rate" readonly="readonly">*@
                                                         </div>
                                                     </div>
                                                 </div>
@@ -925,7 +945,8 @@
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="required">
-                                                            <input id="receiveableamountbdt" onkeyup="totalSub() " name="Receivable_Amount_BDT" placeholder="Receivable_Amount_BDT" class="form-control" type="text" readonly="readonly">
+                                                            @Html.EditorFor(model => model.Receivable_Amount_BDT, new { htmlAttributes = new { @class = "form-control", id = "receiveableamountbdt", onkeyup = "totalSub()" } })
+                                                            @*<input id="receiveableamountbdt" onkeyup="totalSub() " name="Receivable_Amount_BDT" placeholder="Receivable_Amount_BDT" class="form-control" type="text" readonly="readonly">*@
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
@@ -935,7 +956,8 @@
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="required">
-                                                            <input name="ReceivableamountVat" id="receivableamountwithsscvat" type="text" class="form-control" maxlength="50" onkeyup="totalSub()" placeholder="With SSC VAT" readonly="readonly">
+                                                            @Html.EditorFor(model => model.Receivable_Amount_BDT, new { htmlAttributes = new { @class = "form-control", id = "receivableamountwithsscvat", onkeyup = "totalSub()" } })
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -951,15 +973,18 @@
                                                             Remarks
                                                         </label>
                                                     </div>
+
                                                     <div class="col-sm-10">
                                                         <div class="required">
+                                                            @Html.TextArea("Remarks", null, 3, 54, new { @class = "form-control", id = "remarks" })
 
-                                                            <textarea id="remarks" placeholder="Remarks" class="form-control" name="Remarks" cols="56" rows="3" onkeyup="countLetter(this.form, this.name,250); changeEstericColor(this.id);" onchange="countLetter(this.form, this.name,255)"></textarea>
-                                                            <br>
-                                                            <span id="txtContactAddress_sp1" name="txtContactAddress_sp1"></span>
+                                                            @*<textarea id="consigneeaddress" placeholder="Consignee  Address" class="form-control" readonly="readonly" name="Consignee_Address" cols="56" rows="3" onkeyup="countLetter(this.form, this.name,250); changeEstericColor(this.id);" onchange="countLetter(this.form, this.name,255)" value="@ViewBag.Consignee_Address"></textarea>*@
+                                                            @*<br>
+                                                            <span id="txtContactAddress_sp1" name="txtContactAddress_sp1"></span>*@
 
                                                         </div>
                                                     </div>
+                                           
                                                 </div>
                                             </div>
                                         </div>
@@ -971,19 +996,30 @@
                                                             Remarks B.Bank
                                                         </label>
                                                     </div>
+
+
                                                     <div class="col-sm-9">
                                                         <div class="required">
+                                                            @Html.TextArea("Remarks_B_Bank", null, 3, 54, new { @class = "form-control", id = "remarksbbank" })
 
-                                                            <textarea id="remarksbbank" placeholder="Remarks for B.Bank" class="form-control" name="Remarks_B_Bank" cols="56" rows="3" onkeyup="countLetter(this.form, this.name,250); changeEstericColor(this.id);" onchange="countLetter(this.form, this.name,255)"></textarea>
-                                                            <br>
-                                                            <span id="txtContactAddress_sp1" name="txtContactAddress_sp1"></span>
+                                                            @*<textarea id="consigneeaddress" placeholder="Consignee  Address" class="form-control" readonly="readonly" name="Consignee_Address" cols="56" rows="3" onkeyup="countLetter(this.form, this.name,250); changeEstericColor(this.id);" onchange="countLetter(this.form, this.name,255)" value="@ViewBag.Consignee_Address"></textarea>*@
+                                                            @*<br>
+                                                            <span id="txtContactAddress_sp1" name="txtContactAddress_sp1"></span>*@
 
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
+                                        <div class="row">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.Entry_By, htmlAttributes: new { @class = "hidden" })
+                                                <div class="col-md-10">
+                                                    @Html.Editor("Entry_By", new { htmlAttributes = new { @class = "hidden" } })
+                                                    @Html.ValidationMessageFor(model => model.Entry_By, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -1030,9 +1066,12 @@
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     <!-- Load jQuery UI Main JS  -->
     <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
+
+
+
     <script>
-    
-    //Date
+
+        //Date
         //$(document).ready(function () {
 
         //        $("#flightdate").datepicker({
@@ -1064,6 +1103,7 @@
 
 
         ///window collapse
+
         $(document).ready(function () {
             window.onload = function () {
                 $("body").attr('class', 'vertical-layout vertical-menu 2-columns  fixed-navbar  pace-done menu-collapsed');
@@ -1081,7 +1121,7 @@
                 $("#ReceivedIdErrorMessage").text("");
                 $.ajax({
                     type: "POST",
-                    url: "/CargoSalesInformation/GetMAWBCodeById",
+                    url: "/CargoSalesInformation/GetMAWBCodeEditById",
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify(jsonData),
                     dataType: "json",
@@ -1101,7 +1141,7 @@
             $("#mawb").autocomplete({
                 source: function (request, response) {
                     $.ajax({
-                        url: "/CargoSalesInformation/Get_MAWB",
+                        url: "/CargoSalesInformation/Get_MAWB_Edit",
                         type: "POST",
                         dataType: "json",
                         data: { Prefix: request.term },
@@ -1833,7 +1873,7 @@
 
                 return false;
             });
-            $("#Consignor_Name").autocomplete({
+            $("#consignorname").autocomplete({
                 source: function (request, response) {
                     $.ajax({
                         url: "/CargoSalesInformation/Get_Consignor_Name",
@@ -1868,122 +1908,121 @@
                     }
                 }
             });
-          });
-    </script>
-
-    <script>
-
-            $('#totalusd').val(2.10.toFixed(2));
-            $('#receiveableamountbdt').val(175.88);
-            $('#thc').val(2.10.toFixed(2));
-            //Calculate THC,SSC,ISS
-
-
-            function totalSub() {
-                var hds = $("#hds").val();
-                var others = $("#others").val();
-                var ams = $("#ams").val();
-                var ratecharge = $("#ratecharge").val();
-                var agentcommison_minimum = 0.9500;
-                var agentcommison = 5.0000;
-                var ait = 0.3000;
-
-                //$('#ratecharge').keyup(function () {
-                var bbrate = (ratecharge / agentcommison_minimum);
-                $('#bbrate').val(bbrate.toFixed(2));
-                var bbrate = $("#bbrate").val();
-                var agentcommison = (bbrate * (agentcommison / 100));
-                $('#agentcommison').val(agentcommison.toFixed(4));
-                var agentcommison = $("#agentcommison").val();
-                var ait = (agentcommison * ait) / 100;
-                $('#ait').val(ait.toFixed(4));
-
-                //  });
-
-                var agentcommison = $("#agentcommison").val();
-                var ait = $("#ait").val();
-
-                var thc = $("#thc").val();
-                var ssc = $("#ssc").val();
-                var fsc = $("#fsc").val();
-                var iss = $("#iss").val();
-                var grossweight = $("#grossweight").val();
-                var sscwithvat = $("#sscwithvat").val();
-                $('#chargeableweight').val(grossweight);
-                var chargeableweight = $("#grossweight").val();
-                var ratecharge = $("#ratecharge").val();
-                var exchangerate = $("#exchangerate").val();
-
-
-                var totalusd = 2.10;
-                var receivableamountbdt = 175.88;
-                var thc = 2.10;
-                var ssc_value = 0.0600;
-                var fsc_value = 0.8100;
-                var iss_value = 0.100;
-                var ssc = grossweight * ssc_value;
-                var ssc_15_perc_vat = ((ssc * 15) / 100);
-                $('#checksscvat').click(function () {
-                    if ($(this).is(':checked')) {
-                        sscwithvat = ssc + ssc_15_perc_vat;
-                        $('#sscwithvat').val(sscwithvat.toFixed(2));
-                        totalSub();
-
-                        //return confirm("Are you sure?");
-                    }
-                    else {
-
-                        $('#sscwithvat').val(0.00);
-                        totalSub();
-                    }
-                });
-
-                var sscwithvat = $("#sscwithvat").val();
-                $('#ssc').val(ssc);
-                var fsc = (parseFloat(chargeableweight) || 0) * fsc_value;
-                $('#fsc').val(fsc.toFixed(2));
-                var iss = (parseFloat(chargeableweight) || 0) * iss_value;
-                $('#iss').val(iss.toFixed(2));
 
 
 
-                //if (hds.length > 0) {
-                //    totalUSD += parseFloat(hds);
-                //}
-                //if (others.length > 0) {
-                //    totalUSD += parseFloat(others);
-                //}
-                //if (ams.length > 0) {
-                //    totalUSD += parseFloat(ams);
-                //}
-                //if (chargeableweight.length > 0) {
-                //    totalUSD += parseFloat(chargeableweight);
-                //}
-                //if (ratecharge.length > 0) {
-                //    totalUSD += parseFloat(ratecharge);
-                //}
-                // var totalUSD = 2.1;
 
-                totalusd = (((parseFloat(chargeableweight) || 0) * (parseFloat(ratecharge) || 0)) + (parseFloat(hds) || 0) + (parseFloat(others) || 0) + (parseFloat(ams) || 0) + thc + (parseFloat(ssc) || 0) + (parseFloat(fsc) || 0) + (parseFloat(iss) || 0));
-                totalusdwithsscvat = (((parseFloat(chargeableweight) || 0) * (parseFloat(ratecharge) || 0)) + (parseFloat(hds) || 0) + (parseFloat(others) || 0) + (parseFloat(ams) || 0) + (parseFloat(thc) || 0) + (parseFloat(sscwithvat) || 0) + (parseFloat(fsc) || 0) + (parseFloat(iss) || 0));
-                //receivableamountbdt = ((((parseFloat(chargeableweight) || 0) * (parseFloat(ratecharge) || 0)) + (parseFloat(hds) || 0) + (parseFloat(others) || 0) + (parseFloat(ams) || 0) + (parseFloat(thc) || 0) + (parseFloat(ssc) || 0) + (parseFloat(fsc) || 0) + (parseFloat(iss) || 0)) * (parseFloat(exchangerate) || 0));
-                receivableamountbdt = ((((parseFloat(chargeableweight) || 0) * (parseFloat(ratecharge) || 0)) + (parseFloat(hds) || 0) + (parseFloat(others) || 0) + (parseFloat(ams) || 0) + (parseFloat(thc) || 0) + (parseFloat(fsc) || 0) + (parseFloat(iss) || 0)) * (parseFloat(exchangerate) || 0));
-                receivableamountwithsscvat = ((((parseFloat(chargeableweight) || 0) * (parseFloat(ratecharge) || 0)) + (parseFloat(hds) || 0) + (parseFloat(others) || 0) + (parseFloat(ams) || 0) + (parseFloat(thc) || 0) + (parseFloat(sscwithvat) || 0) + (parseFloat(fsc) || 0) + (parseFloat(iss) || 0)) * (parseFloat(exchangerate) || 0));
-                // Me.txtReceivableAmountBDT.Text = Format(Val(Val(Val(Me.txtChargeableWeight.Text) * Val(Me.txtRateCharge.Text)) + Val(Me.txtHDS.Text) + Val(Me.txtOthers.Text) + Val(Me.txtAMS.Text) + Val(Me.lblTHC.Text) + Val(Me.lblSSC.Text) + Val(Me.lblFSCCharge.Text) + Val(Me.lblISSCharge.Text)) * Val(Me.lblExchangeRate.Text), "0.00")
-                //Me.lblTotalUSDWithSSCVAT.Text = Format(Val(Val(Me.txtChargeableWeight.Text) * Val(Me.txtRateCharge.Text)) + Val(Me.txtHDS.Text) + Val(Me.txtOthers.Text) + Val(Me.txtAMS.Text) + Val(Me.lblTHC.Text) + Val(Me.lblSSCWithVAT.Text) + Val(Me.lblFSCCharge.Text) + Val(Me.lblISSCharge.Text), "0.00")
-
-                $("#totalusd").val(totalusd.toFixed(2));
-                $("#totalusdwithsscvat").val(totalusdwithsscvat.toFixed(2));
-                $("#receiveableamountbdt").val(receivableamountbdt.toFixed(2));
-                $("#receivableamountwithsscvat").val(receivableamountwithsscvat.toFixed(2));
-
-
-                //Me.lblTotalUSD.Text = Format(Val(Val(Me.txtChargeableWeight.Text) * Val(Me.txtRateCharge.Text))  + Val(Me.lblTHC.Text) + Val(Me.lblSSC.Text) + Val(Me.lblFSCCharge.Text) + Val(Me.lblISSCharge.Text), "0.00")
-                //Me.lblTotalUSD.Text = Format(Val(Val(Me.txtChargeableWeight.Text) * Val(Me.txtRateCharge.Text)) + Val(Me.txtHDS.Text) + Val(Me.txtOthers.Text) + Val(Me.txtAMS.Text) + Val(Me.lblTHC.Text) + Val(Me.lblSSC.Text) + Val(Me.lblFSCCharge.Text) + Val(Me.lblISSCharge.Text), "0.00")
-            };
         });
     </script>
 
+    <script>
+        $('#totalusd').val(2.10.toFixed(2));
+        $('#receiveableamountbdt').val(175.88);
+        $('#thc').val(2.10.toFixed(2));
+        //Calculate THC,SSC,ISS
+        function totalSub() {
+            var hds = $("#hds").val();
+            var others = $("#others").val();
+            var ams = $("#ams").val();
+            var ratecharge = $("#ratecharge").val();
+            var agentcommison_minimum = 0.9500;
+            var agentcommison = 5.0000;
+            var ait = 0.3000;
+
+            //$('#ratecharge').keyup(function () {
+            var bbrate = (ratecharge / agentcommison_minimum);
+            $('#bbrate').val(bbrate.toFixed(2));
+            var bbrate = $("#bbrate").val();
+            var agentcommison = (bbrate * (agentcommison / 100));
+            $('#agentcommison').val(agentcommison.toFixed(4));
+            var agentcommison = $("#agentcommison").val();
+            var ait = (agentcommison * ait) / 100;
+            $('#ait').val(ait.toFixed(4));
+
+            //  });
+
+            var agentcommison = $("#agentcommison").val();
+            var ait = $("#ait").val();
+
+            var thc = $("#thc").val();
+            var ssc = $("#ssc").val();
+            var fsc = $("#fsc").val();
+            var iss = $("#iss").val();
+            var grossweight = $("#grossweight").val();
+            var sscwithvat = $("#sscwithvat").val();
+            $('#chargeableweight').val(grossweight);
+            var chargeableweight = $("#grossweight").val();
+            var ratecharge = $("#ratecharge").val();
+            var exchangerate = $("#exchangerate").val();
 
 
+            var totalusd = 2.10;
+            var receivableamountbdt = 175.88;
+            var thc = 2.10;
+            var ssc_value = 0.0600;
+            var fsc_value = 0.8100;
+            var iss_value = 0.100;
+            var ssc = grossweight * ssc_value;
+            var ssc_15_perc_vat = ((ssc * 15) / 100);
+            $('#checksscvat').click(function () {
+                if ($(this).is(':checked')) {
+                    sscwithvat = ssc + ssc_15_perc_vat;
+                    $('#sscwithvat').val(sscwithvat.toFixed(2));
+                    totalSub();
+
+                    //return confirm("Are you sure?");
+                }
+                else {
+
+                    $('#sscwithvat').val(0.00);
+                    totalSub();
+                }
+            });
+
+            var sscwithvat = $("#sscwithvat").val();
+            $('#ssc').val(ssc);
+            var fsc = (parseFloat(chargeableweight) || 0) * fsc_value;
+            $('#fsc').val(fsc.toFixed(2));
+            var iss = (parseFloat(chargeableweight) || 0) * iss_value;
+            $('#iss').val(iss.toFixed(2));
+
+
+
+            //if (hds.length > 0) {
+            //    totalUSD += parseFloat(hds);
+            //}
+            //if (others.length > 0) {
+            //    totalUSD += parseFloat(others);
+            //}
+            //if (ams.length > 0) {
+            //    totalUSD += parseFloat(ams);
+            //}
+            //if (chargeableweight.length > 0) {
+            //    totalUSD += parseFloat(chargeableweight);
+            //}
+            //if (ratecharge.length > 0) {
+            //    totalUSD += parseFloat(ratecharge);
+            //}
+            // var totalUSD = 2.1;
+
+            totalusd = (((parseFloat(chargeableweight) || 0) * (parseFloat(ratecharge) || 0)) + (parseFloat(hds) || 0) + (parseFloat(others) || 0) + (parseFloat(ams) || 0) + thc + (parseFloat(ssc) || 0) + (parseFloat(fsc) || 0) + (parseFloat(iss) || 0));
+            totalusdwithsscvat = (((parseFloat(chargeableweight) || 0) * (parseFloat(ratecharge) || 0)) + (parseFloat(hds) || 0) + (parseFloat(others) || 0) + (parseFloat(ams) || 0) + (parseFloat(thc) || 0) + (parseFloat(sscwithvat) || 0) + (parseFloat(fsc) || 0) + (parseFloat(iss) || 0));
+            //receivableamountbdt = ((((parseFloat(chargeableweight) || 0) * (parseFloat(ratecharge) || 0)) + (parseFloat(hds) || 0) + (parseFloat(others) || 0) + (parseFloat(ams) || 0) + (parseFloat(thc) || 0) + (parseFloat(ssc) || 0) + (parseFloat(fsc) || 0) + (parseFloat(iss) || 0)) * (parseFloat(exchangerate) || 0));
+            receivableamountbdt = ((((parseFloat(chargeableweight) || 0) * (parseFloat(ratecharge) || 0)) + (parseFloat(hds) || 0) + (parseFloat(others) || 0) + (parseFloat(ams) || 0) + (parseFloat(thc) || 0) + (parseFloat(fsc) || 0) + (parseFloat(iss) || 0)) * (parseFloat(exchangerate) || 0));
+            receivableamountwithsscvat = ((((parseFloat(chargeableweight) || 0) * (parseFloat(ratecharge) || 0)) + (parseFloat(hds) || 0) + (parseFloat(others) || 0) + (parseFloat(ams) || 0) + (parseFloat(thc) || 0) + (parseFloat(sscwithvat) || 0) + (parseFloat(fsc) || 0) + (parseFloat(iss) || 0)) * (parseFloat(exchangerate) || 0));
+            // Me.txtReceivableAmountBDT.Text = Format(Val(Val(Val(Me.txtChargeableWeight.Text) * Val(Me.txtRateCharge.Text)) + Val(Me.txtHDS.Text) + Val(Me.txtOthers.Text) + Val(Me.txtAMS.Text) + Val(Me.lblTHC.Text) + Val(Me.lblSSC.Text) + Val(Me.lblFSCCharge.Text) + Val(Me.lblISSCharge.Text)) * Val(Me.lblExchangeRate.Text), "0.00")
+            //Me.lblTotalUSDWithSSCVAT.Text = Format(Val(Val(Me.txtChargeableWeight.Text) * Val(Me.txtRateCharge.Text)) + Val(Me.txtHDS.Text) + Val(Me.txtOthers.Text) + Val(Me.txtAMS.Text) + Val(Me.lblTHC.Text) + Val(Me.lblSSCWithVAT.Text) + Val(Me.lblFSCCharge.Text) + Val(Me.lblISSCharge.Text), "0.00")
+
+            $("#totalusd").val(totalusd.toFixed(2));
+            $("#totalusdwithsscvat").val(totalusdwithsscvat.toFixed(2));
+            $("#receiveableamountbdt").val(receivableamountbdt.toFixed(2));
+            $("#receivableamountwithsscvat").val(receivableamountwithsscvat.toFixed(2));
+
+
+            //Me.lblTotalUSD.Text = Format(Val(Val(Me.txtChargeableWeight.Text) * Val(Me.txtRateCharge.Text))  + Val(Me.lblTHC.Text) + Val(Me.lblSSC.Text) + Val(Me.lblFSCCharge.Text) + Val(Me.lblISSCharge.Text), "0.00")
+            //Me.lblTotalUSD.Text = Format(Val(Val(Me.txtChargeableWeight.Text) * Val(Me.txtRateCharge.Text)) + Val(Me.txtHDS.Text) + Val(Me.txtOthers.Text) + Val(Me.txtAMS.Text) + Val(Me.lblTHC.Text) + Val(Me.lblSSC.Text) + Val(Me.lblFSCCharge.Text) + Val(Me.lblISSCharge.Text), "0.00")
+        };
+    </script>
 }
+
+

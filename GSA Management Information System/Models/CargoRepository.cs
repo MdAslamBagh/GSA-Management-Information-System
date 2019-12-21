@@ -77,22 +77,28 @@ namespace GSA_Management_Information_System.Models
                              Consignor_Address = Convert.ToString(dr["Consignor_Address"]),
                              //float value
 
-                             HDS = Convert.ToString(dr["HDS"]),
-                             AMS = Convert.ToString(dr["AMS"]),
-                             Gross_Weight = Convert.ToString(dr["Gross_Weight"]),
-                             Chargeable_Weight = Convert.ToString(dr["Chargeable_Weight"]),
-                             Rate_Charge = Convert.ToString(dr["Rate_Charge"]),
-                             B_Rate = Convert.ToString(dr["B_Rate"]),
-                             AIT = Convert.ToString(dr["AIT"]),
-                             Agent_Commission = Convert.ToString(dr["Agent_Commission"]),
-                             HBL_Qty = Convert.ToString(dr["HBL_Qty"]),
-                             Others = Convert.ToString(dr["Others"]),
-                             THC = Convert.ToString(dr["THC"]),
-                             SSC = Convert.ToString(dr["SSC"]),
-                             FSC_Charge = Convert.ToString(dr["FSC_Charge"]),
-                             ISS_Charge = Convert.ToString(dr["ISS_Charge"]),
-                             SSC_VAT = Convert.ToString(dr["SSC_VAT"]),
-                             Total_USD = Convert.ToString(dr["Total_USD"])
+                             HDS = (float)(dr["HDS"]),
+                             AMS = (float)(dr["AMS"]),
+                             Gross_Weight = (float)(dr["Gross_Weight"]),
+                             Chargeable_Weight = (float)(dr["Chargeable_Weight"]),
+                             Rate_Charge = (float)(dr["Rate_Charge"]),
+                             B_Rate = (float)(dr["B_Rate"]),
+                             AIT = (float)(dr["AIT"]),
+                             Agent_Commission = (float)(dr["Agent_Commission"]),
+                             HBL_Qty = (float)(dr["HBL_Qty"]),
+                             Others = (float)(dr["Others"]),
+                             THC = (float)(dr["THC"]),
+                             SSC = (float)(dr["SSC"]),
+                             FSC_Charge = (float)(dr["FSC_Charge"]),
+                             ISS_Charge = (float)(dr["ISS_Charge"]),
+                             SSC_VAT = (float)(dr["SSC_VAT"]),
+                             Total_USD = (float)(dr["Total_USD"]),
+                             Currency_Code= Convert.ToString(dr["Currency_Code"]),
+                             Exchange_Rate = (float)(dr["Exchange_Rate"]),
+                             Entry_By= Convert.ToString(dr["Entry_By"]),
+
+
+
                          }).ToList();
 
 
@@ -112,15 +118,63 @@ namespace GSA_Management_Information_System.Models
             CargoSalesTransactionBackup transaction = new CargoSalesTransactionBackup();
             transaction.CargoSalesId = cargoSalesInformation.CargoSalesId;
             transaction.SalesSlno = cargoSalesInformation.SalesSlno;
-          
+
+            //transaction.MAWB = cargoSalesInformation.MAWB;
+            //transaction.Check_Digit = cargoSalesInformation.Check_Digit;
+
+
+
             transaction.MAWB = cargoSalesInformation.MAWB;
             transaction.Check_Digit = cargoSalesInformation.Check_Digit;
-           
+            transaction.Airway_No = cargoSalesInformation.MAWB + cargoSalesInformation.Check_Digit;
 
-         
+            transaction.Freighter_Code = cargoSalesInformation.Freighter_Code;
+            transaction.Origin_Code = cargoSalesInformation.Origin_Code;
+            transaction.Dest_Code = cargoSalesInformation.Dest_Code;
+            transaction.Continent_Code = cargoSalesInformation.Continent_Code;
+            transaction.Payment_Mode = cargoSalesInformation.Payment_Mode;
+            transaction.CFPaymode_Code = cargoSalesInformation.CFPaymode_Code;
+            transaction.Route_Code = cargoSalesInformation.Route_Code;
+            transaction.Customer_Code = cargoSalesInformation.Customer_Code;
+            transaction.Cargo_Code = cargoSalesInformation.Cargo_Code;
+            transaction.UType_Code = cargoSalesInformation.UType_Code;
+            transaction.Consignee_Code = cargoSalesInformation.Consignee_Code;
+            transaction.Consignor_Code = cargoSalesInformation.Consignor_Code;
+
+
+
+
+            //up complete down check
+
+            transaction.HDS = cargoSalesInformation.HDS;
+            transaction.Others = cargoSalesInformation.Others;
+            transaction.AMS = cargoSalesInformation.AMS;
+            transaction.HBL_Qty = cargoSalesInformation.HBL_Qty;
+            transaction.Gross_Weight = cargoSalesInformation.Gross_Weight;
+            transaction.Chargeable_Weight = cargoSalesInformation.Chargeable_Weight;
+            transaction.Rate_Charge = cargoSalesInformation.Rate_Charge;
+            transaction.B_Rate = cargoSalesInformation.B_Rate;
+            transaction.Agent_Commission = cargoSalesInformation.Agent_Commission;
+            transaction.AIT = cargoSalesInformation.AIT;
+            transaction.THC = cargoSalesInformation.THC;
+            transaction.SSC = cargoSalesInformation.SSC;
+            transaction.SSC_VAT = cargoSalesInformation.SSC_VAT;
+            transaction.FSC_Charge = cargoSalesInformation.FSC_Charge;
+            transaction.ISS_Charge = cargoSalesInformation.ISS_Charge;
+            transaction.Total_USD = cargoSalesInformation.Total_USD;
+            transaction.Receivable_Amount_USD_With_SSC_VAT = cargoSalesInformation.Receivable_Amount_USD_With_SSC_VAT;
+            transaction.Currency_Code = cargoSalesInformation.Currency_Code;
+            transaction.Exchange_Rate = cargoSalesInformation.Exchange_Rate;
+            transaction.Receivable_Amount_BDT = cargoSalesInformation.Receivable_Amount_BDT;
+            transaction.Remarks = cargoSalesInformation.Remarks;
+            transaction.Remarks_B_Bank = cargoSalesInformation.Remarks_B_Bank;
+
+
+
+
             //return (transaction)
 
-             CargoBackupList.Add(transaction);
+            CargoBackupList.Add(transaction);
     
 
             return CargoBackupList;
@@ -130,6 +184,73 @@ namespace GSA_Management_Information_System.Models
         }
 
 
+
+        public List<CargoSalesTransactionBackup> GetCargoBackupEdit(CargoViewModel cargoedit)
+        {
+
+            //CargoSalesInformation cargoSalesInformation = new CargoSalesInformation();
+
+            List<CargoSalesTransactionBackup> CargoBackupListt = new List<CargoSalesTransactionBackup>();
+            CargoSalesTransactionBackup transaction = new CargoSalesTransactionBackup();
+            transaction.CargoSalesId = cargoedit.CargoSalesId;
+            transaction.SalesSlno = cargoedit.SalesSlno;
+
+            //transaction.MAWB = cargoedit.MAWB;
+            //transaction.Check_Digit = cargoedit.Check_Digit;
+
+
+            transaction.MAWB = cargoedit.MAWB;
+            transaction.Check_Digit = cargoedit.Check_Digit;
+            transaction.Airway_No = cargoedit.MAWB + cargoedit.Check_Digit;
+
+            transaction.Freighter_Code = cargoedit.Freighter_Code;
+            transaction.Origin_Code = cargoedit.Origin_Code;
+            transaction.Dest_Code = cargoedit.Dest_Code;
+            transaction.Continent_Code = cargoedit.Continent_Code;
+            transaction.Payment_Mode = cargoedit.Payment_Mode;
+            transaction.CFPaymode_Code = cargoedit.CFPaymode_Code;
+            transaction.Route_Code = cargoedit.Route_Code;
+            transaction.Customer_Code = cargoedit.Customer_Code;
+            transaction.Cargo_Code = cargoedit.Cargo_Code;
+            transaction.UType_Code = cargoedit.UType_Code;
+            transaction.Consignee_Code = cargoedit.Consignee_Code;
+            transaction.Consignor_Code = cargoedit.Consignor_Code;
+
+            //up complete down check
+
+            transaction.HDS = cargoedit.HDS;
+            transaction.Others = cargoedit.Others;
+            transaction.AMS = cargoedit.AMS;
+            transaction.HBL_Qty = cargoedit.HBL_Qty;
+            transaction.Gross_Weight = cargoedit.Gross_Weight;
+            transaction.Chargeable_Weight = cargoedit.Chargeable_Weight;
+            transaction.Rate_Charge = cargoedit.Rate_Charge;
+            transaction.B_Rate = cargoedit.B_Rate;
+            transaction.Agent_Commission = cargoedit.Agent_Commission;
+            transaction.AIT = cargoedit.AIT;
+            transaction.THC = cargoedit.THC;
+            transaction.SSC = cargoedit.SSC;
+            transaction.SSC_VAT = cargoedit.SSC_VAT;
+            transaction.FSC_Charge = cargoedit.FSC_Charge;
+            transaction.ISS_Charge = cargoedit.ISS_Charge;
+            transaction.Total_USD = cargoedit.Total_USD;
+            transaction.Receivable_Amount_USD_With_SSC_VAT = cargoedit.Receivable_Amount_USD_With_SSC_VAT;
+            transaction.Currency_Code = cargoedit.Currency_Code;
+            transaction.Exchange_Rate = cargoedit.Exchange_Rate;
+            transaction.Receivable_Amount_BDT = cargoedit.Receivable_Amount_BDT;
+            transaction.Remarks = cargoedit.Remarks;
+            transaction.Remarks_B_Bank = cargoedit.Remarks_B_Bank;
+
+            //return (transaction)
+
+            CargoBackupListt.Add(transaction);
+
+
+            return CargoBackupListt;
+
+
+
+        }
     }
     
 }

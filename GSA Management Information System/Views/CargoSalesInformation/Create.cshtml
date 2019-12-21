@@ -447,10 +447,11 @@
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <div class="required">
-
-                                                            <textarea id="consigneeaddress" placeholder="Consignee  Address" class="form-control" readonly="readonly" name="Consignee_Address" cols="56" rows="3" onkeyup="countLetter(this.form, this.name,250); changeEstericColor(this.id);" onchange="countLetter(this.form, this.name,255)" value="@ViewBag.Consignee_Address"></textarea>
-                                                            <br>
-                                                            <span id="txtContactAddress_sp1" name="txtContactAddress_sp1"></span>
+                                                            @Html.TextArea("Consignee_Address", null,3,54, new { @class = "form-control", @readonly= "readonly", id= "consigneeaddress" })
+                                                            
+                                                            @*<textarea id="consigneeaddress" placeholder="Consignee  Address" class="form-control" readonly="readonly" name="Consignee_Address" cols="56" rows="3" onkeyup="countLetter(this.form, this.name,250); changeEstericColor(this.id);" onchange="countLetter(this.form, this.name,255)" value="@ViewBag.Consignee_Address"></textarea>*@
+                                                            @*<br>
+                                                            <span id="txtContactAddress_sp1" name="txtContactAddress_sp1"></span>*@
 
                                                         </div>
                                                     </div>
@@ -516,10 +517,19 @@
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <div class="required">
+                                                       
+                                                                <div class="required">
+                                                                    @Html.TextArea("Consignor_Address", null, 3, 54, new { @class = "form-control", @readonly = "readonly", id = "consignoraddress" })
+                                                                    @*@Html.TextArea("Consignor_Address", null, 3, 68, new { @class = "form-control", @readonly = "readonly",  id = "consignoraddress" })*@
 
-                                                            <textarea id="consignoraddress" class="form-control" name="Consignor_Address" placeholder="Consignor Address" readonly="readonly" cols="56" rows="3" onkeyup="countLetter(this.form, this.name,250); changeEstericColor(this.id);" onchange="countLetter(this.form, this.name,255)" value="@ViewBag.Consignor_Address"></textarea>
+                                                                    @*<textarea id="consigneeaddress" placeholder="Consignee  Address" class="form-control" readonly="readonly" name="Consignee_Address" cols="23" rows="3" onkeyup="countLetter(this.form, this.name,250); changeEstericColor(this.id);" onchange="countLetter(this.form, this.name,255)" value="@ViewBag.Consignee_Address"></textarea>*@
+                                                                    @*<br>
+                                                                <span id="txtContactAddress_sp1" name="txtContactAddress_sp1"></span>*@
+
+                                                            </div>
+                                                            @*<textarea id="consignoraddress" class="form-control" name="Consignor_Address" placeholder="Consignor Address" readonly="readonly" cols="56" rows="3" onkeyup="countLetter(this.form, this.name,250); changeEstericColor(this.id);" onchange="countLetter(this.form, this.name,255)" value="@ViewBag.Consignor_Address"></textarea>
                                                             <br>
-                                                            <span id="txtContactAddress_sp1" name="txtContactAddress_sp1"></span>
+                                                            <span id="txtContactAddress_sp1" name="txtContactAddress_sp1"></span>*@
 
                                                         </div>
                                                     </div>
@@ -953,7 +963,15 @@
                                                     </div>
                                                 </div>
                                             </div>
-
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Entry_By, htmlAttributes: new { @class = "hidden" })
+                                                    <div class="col-md-10">
+                                                        @Html.Editor("Entry_By", new { htmlAttributes = new { @class = "hidden" } })
+                                                        @Html.ValidationMessageFor(model => model.Entry_By, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
 
                                     </div>

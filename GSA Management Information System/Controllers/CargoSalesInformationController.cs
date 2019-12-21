@@ -184,6 +184,10 @@ namespace GSA_Management_Information_System.Controllers
 
             String time = DateTime.Now.ToString("MM/dd/yyyy");
             ViewBag.Flight_Date = time;
+
+            var LogedInUser = User.Identity.Name;
+            ViewBag.Entry_By = LogedInUser;
+
             List<CargoSalesInformation> Informations = db.CargoSalesInformations.OrderByDescending(a => a.SalesSlno).ToList<CargoSalesInformation>();
 
             try
@@ -385,6 +389,306 @@ namespace GSA_Management_Information_System.Controllers
 
             return View(cargoSalesInformation);
         }
+
+
+
+
+        // GET: CargoSalesInformation/Edit/5
+        public ActionResult Edit(int? id)
+        {
+
+            CargoRepository CargoRepo = new CargoRepository();
+
+
+
+            return View(CargoRepo.GetAllCargo().Find(Cargo => Cargo.CargoSalesId == id));
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            //CargoSalesInformation cargoSalesInformation = db.CargoSalesInformations.Find(id);
+            //if (cargoSalesInformation == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //return View(cargoSalesInformation);
+        }
+
+
+        //public ActionResult Backup(int? id)
+        //{
+
+        //    CargoRepository CargoRepo = new CargoRepository();
+
+
+        //    return View(CargoRepo.GetAllCargo().Find(Cargo => Cargo.CargoSalesId == id));
+        //    //if (id == null)
+        //    //{
+        //    //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    //}
+        //    //CargoSalesInformation cargoSalesInformation = db.CargoSalesInformations.Find(id);
+        //    //if (cargoSalesInformation == null)
+        //    //{
+        //    //    return HttpNotFound();
+        //    //}
+        //    //return View(cargoSalesInformation);
+        //}
+
+
+
+
+        // POST: CargoSalesInformation/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(CargoViewModel cargoedit)
+        {
+            if (!ModelState.IsValid)
+            {
+
+                CargoSalesInformation cargo = new CargoSalesInformation();
+                cargo = db.CargoSalesInformations.Where(p => p.CargoSalesId == cargoedit.CargoSalesId).FirstOrDefault();
+
+                var LogedInUser = User.Identity.Name;
+                cargo.Entry_By = LogedInUser;
+
+
+                cargo.MAWB = cargoedit.MAWB;
+                // cargo.SalesSlno = cargoedit.SalesSlno;
+
+                cargo.Check_Digit = cargoedit.Check_Digit;
+                cargo.Airway_No = cargoedit.MAWB + cargoedit.Check_Digit;
+               
+                cargo.Freighter_Code = cargoedit.Freighter_Code;
+                cargo.Origin_Code = cargoedit.Origin_Code;
+                cargo.Dest_Code = cargoedit.Dest_Code;
+                cargo.Continent_Code = cargoedit.Continent_Code;
+                cargo.Payment_Mode = cargoedit.Payment_Mode;
+                cargo.CFPaymode_Code = cargoedit.CFPaymode_Code;
+                cargo.Route_Code = cargoedit.Route_Code;
+                cargo.Customer_Code = cargoedit.Customer_Code;
+                cargo.Cargo_Code = cargoedit.Cargo_Code;
+                cargo.UType_Code = cargoedit.UType_Code;
+                cargo.Consignee_Code = cargoedit.Consignee_Code;
+                cargo.Consignor_Code = cargoedit.Consignor_Code;
+
+                //up complete down check
+
+                cargo.HDS = cargoedit.HDS;
+                cargo.Others = cargoedit.Others;
+                cargo.AMS = cargoedit.AMS;
+                cargo.HBL_Qty = cargoedit.HBL_Qty;
+                cargo.Gross_Weight = cargoedit.Gross_Weight;
+                cargo.Chargeable_Weight = cargoedit.Chargeable_Weight;
+                cargo.Rate_Charge = cargoedit.Rate_Charge;
+                cargo.B_Rate = cargoedit.B_Rate;
+                cargo.Agent_Commission = cargoedit.Agent_Commission;
+                cargo.AIT = cargoedit.AIT;
+                cargo.THC = cargoedit.THC;
+                cargo.SSC = cargoedit.SSC;
+                cargo.SSC_VAT = cargoedit.SSC_VAT;
+                cargo.FSC_Charge = cargoedit.FSC_Charge;
+                cargo.ISS_Charge = cargoedit.ISS_Charge;
+                cargo.Total_USD = cargoedit.Total_USD;
+                cargo.Receivable_Amount_USD_With_SSC_VAT = cargoedit.Receivable_Amount_USD_With_SSC_VAT;
+                cargo.Currency_Code = cargoedit.Currency_Code;
+                cargo.Exchange_Rate = cargoedit.Exchange_Rate;
+                cargo.Receivable_Amount_BDT = cargoedit.Receivable_Amount_BDT;
+                cargo.Remarks = cargoedit.Remarks;
+                cargo.Remarks_B_Bank = cargoedit.Remarks_B_Bank;
+
+
+
+
+
+
+
+
+
+
+                db.Entry(cargo).State = EntityState.Modified;
+                db.SaveChanges();
+
+
+
+                //Cargosales Backup Transactions
+
+                CargoSalesTransactionBackup cargosalestransaction = new CargoSalesTransactionBackup();
+                CargoRepository CargoRepo = new CargoRepository();
+                // ModelState.Clear();
+                var getcargo = CargoRepo.GetCargoBackupEdit(cargoedit);
+
+                CargoSalesTransactionBackup cargobackup = getcargo.FirstOrDefault();
+                cargobackup.Trans_Type = "Update";
+                cargobackup.Entry_By = LogedInUser;
+                db.CargoSalesTransactionBackups.Add(cargobackup);
+                // transactionsss.Trans_Type = "Update";
+                db.SaveChanges();
+
+                //object obj = CargoList;
+                //CargoRepository CargoRepo = new CargoRepository();
+
+                //CargoRepo.GetCargoBackup();
+
+
+                // db.CargoSalesTransactionBackups.Attach(obj);
+
+
+
+
+                // var CargoBackup = (CargoRepo.GetCargoBackup().Find(Cargo => Cargo.CargoSalesId == cargoSalesInformation.CargoSalesId));
+                // CargoSalesTransactionBackup transactionsss = new CargoSalesTransactionBackup();
+                // transactionsss = transaction;
+                //transactionsss = CargoRepo.GetCargoBackup(cargoSalesInformation);
+
+                //db.CargoSalesTransactionBackups.Add(transactionsss);
+                //transaction = CargoBackup;
+
+
+
+                //cargosss = ssss;
+                //db.CargoSalesTransactionBackups.Add(cargosss);
+                //transaction.SalesSlno = cargoSalesInformation.SalesSlno;
+                //transaction.MAWB = cargoSalesInformation.MAWB;
+                //transaction.Check_Digit = cargoSalesInformation.Check_Digit;
+                //transaction.Airway_No = cargoSalesInformation.Airway_No;
+                //transaction.Freighter_Code = cargoSalesInformation.Freighter_Code;
+                //transaction.Origin_Code = cargoSalesInformation.Origin_Code;
+                //transaction.Dest_Code = cargoSalesInformation.Dest_Code;
+                //transaction.Continent_Code = cargoSalesInformation.Continent_Code;
+                //transaction.CFPaymode_Code = cargoSalesInformation.CFPaymode_Code;
+                //transaction.Route_Code = cargoSalesInformation.Route_Code;
+                //transaction.Customer_Code = cargoSalesInformation.Customer_Code;
+                //transaction.Cargo_Code = cargoSalesInformation.Cargo_Code;
+                //transaction.UType_Code = cargoSalesInformation.UType_Code ;
+                //transaction.MAWB = cargoSalesInformation.MAWB;
+                //transaction.Check_Digit = cargoSalesInformation.Check_Digit;
+                //transaction.Airway_No = cargoSalesInformation.Airway_No;
+
+
+
+                //CargoSalesTransactionBackup ststs = new CargoSalesTransactionBackup();
+                //ststs = CargoBackupData
+                //db.CargoSalesTransactionBackups.Add(CargoBackupData);
+
+
+
+
+
+
+                //db.CargoSalesTransactionBackups.Add(cargoSalesInformation);
+                return RedirectToAction("Index");
+            }
+            return View(cargoedit);
+        }
+
+
+        //public List<CargoSalesTransactionBackup> GetCargoBackup(CargoSalesInformation cargoSalesInformation)
+        //{
+
+        //    //CargoSalesInformation cargoSalesInformation = new CargoSalesInformation();
+
+        //    List<CargoSalesTransactionBackup> CargoBackupList = new List<CargoSalesTransactionBackup>();
+        //    CargoSalesTransactionBackup transaction = new CargoSalesTransactionBackup();
+        //    transaction.CargoSalesId = cargoSalesInformation.CargoSalesId;
+        //    transaction.SalesSlno = cargoSalesInformation.SalesSlno;
+        //    transaction.MAWB = cargoSalesInformation.MAWB;
+        //    transaction.Check_Digit = cargoSalesInformation.Check_Digit;
+
+
+        //    CargoBackupList.Add(transaction);
+
+
+        //    return CargoBackupList;
+
+
+
+        //}
+
+        // GET: CargoSalesInformation/Delete/5
+
+
+        // Searching all MAWB which have been already Issued 
+        public JsonResult Get_MAWB(string Prefix)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            var MAWB = (from c in db.StockIssueDetailInformations
+                        where c.Ticket_No.ToString().StartsWith(Prefix) && c.Status == "Issued"
+                        select new { c.Ticket_No });
+            return Json(MAWB, JsonRequestBehavior.AllowGet);
+
+        }
+
+
+        // Searching all MAWB which have been already Issued 
+        public JsonResult GetMAWBCodeById(int mawbcode)
+        {
+            //var mawb_code = (from o in db.StockIssueDetailInformations
+            //            where o.Ticket_No == mawbcode
+
+            //          select o.Ticket_No).FirstOrDefault();
+
+            var mawb_code = (from StockIssueDetailInformation in db.StockIssueDetailInformations
+                             join StockIssueInformation in db.StockIssueInformations on StockIssueDetailInformation.SIssued_Code equals StockIssueInformation.SIssued_Code
+                             join AirlinesInformation in db.AirlinesInformations on StockIssueInformation.Airlines_Code equals AirlinesInformation.Airlines_Code
+                             where StockIssueDetailInformation.Ticket_No == mawbcode
+                             select new
+                             {
+                                 Ticket_No = StockIssueDetailInformation.Ticket_No,
+                                 SIssued_Code = StockIssueDetailInformation.SIssued_Code,
+                                 Airlines_Code = StockIssueInformation.Airlines_Code,
+                                 Long_Desc = AirlinesInformation.Long_Desc
+
+                             }).FirstOrDefault();
+
+
+            //var mawb_code = db.StockIssueDetailInformations.Where(m => m.Ticket_No == mawbcode).FirstOrDefault();
+            return Json(mawb_code, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+        //Search and Edit MAWB which have been already Sold 
+        public JsonResult Get_MAWB_Edit(string Prefix)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            var MAWB = (from c in db.StockIssueDetailInformations
+                        where c.Ticket_No.ToString().StartsWith(Prefix) && c.Status == "Sold"
+                        select new { c.Ticket_No });
+            return Json(MAWB, JsonRequestBehavior.AllowGet);
+
+        }
+
+
+        //Search and Edit MAWB which have been already Sold 
+        public JsonResult GetMAWBCodeEditById(int mawbcode)
+        {
+            //var mawb_code = (from o in db.StockIssueDetailInformations
+            //            where o.Ticket_No == mawbcode
+
+            //          select o.Ticket_No).FirstOrDefault();
+
+            var mawb_code = (from StockIssueDetailInformation in db.StockIssueDetailInformations
+                             join StockIssueInformation in db.StockIssueInformations on StockIssueDetailInformation.SIssued_Code equals StockIssueInformation.SIssued_Code
+                             join AirlinesInformation in db.AirlinesInformations on StockIssueInformation.Airlines_Code equals AirlinesInformation.Airlines_Code
+                             where StockIssueDetailInformation.Ticket_No == mawbcode
+                             select new
+                             {
+                                 Ticket_No = StockIssueDetailInformation.Ticket_No,
+                                 SIssued_Code = StockIssueDetailInformation.SIssued_Code,
+                                 Airlines_Code = StockIssueInformation.Airlines_Code,
+                                 Long_Desc = AirlinesInformation.Long_Desc
+
+                             }).FirstOrDefault();
+
+
+            //var mawb_code = db.StockIssueDetailInformations.Where(m => m.Ticket_No == mawbcode).FirstOrDefault();
+            return Json(mawb_code, JsonRequestBehavior.AllowGet);
+        }
+
+
+
         public ActionResult Adddd()
         {
             return View();
@@ -580,39 +884,7 @@ namespace GSA_Management_Information_System.Controllers
             return Json(cf_code, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult Get_MAWB(string Prefix)
-        {
-            ApplicationDbContext db = new ApplicationDbContext();
-            var MAWB = (from c in db.StockIssueDetailInformations
-                               where c.Ticket_No.ToString().StartsWith(Prefix)
-                        select new { c.Ticket_No });
-            return Json(MAWB, JsonRequestBehavior.AllowGet);
-
-        }
-
-        public JsonResult GetMAWBCodeById(int mawbcode)
-        {
-            //var mawb_code = (from o in db.StockIssueDetailInformations
-              //            where o.Ticket_No == mawbcode
-                                 
-                //          select o.Ticket_No).FirstOrDefault();
-
-            var mawb_code = (from StockIssueDetailInformation in db.StockIssueDetailInformations
-                         join StockIssueInformation in db.StockIssueInformations on StockIssueDetailInformation.SIssued_Code equals StockIssueInformation.SIssued_Code
-                             join AirlinesInformation in db.AirlinesInformations on StockIssueInformation.Airlines_Code equals AirlinesInformation.Airlines_Code
-                         where StockIssueDetailInformation.Ticket_No==mawbcode select new
-             {
-                             Ticket_No = StockIssueDetailInformation.Ticket_No,
-                             SIssued_Code = StockIssueDetailInformation.SIssued_Code,
-                             Airlines_Code = StockIssueInformation.Airlines_Code,
-                             Long_Desc = AirlinesInformation.Long_Desc
-
-                         }).FirstOrDefault();
-
-
-            //var mawb_code = db.StockIssueDetailInformations.Where(m => m.Ticket_No == mawbcode).FirstOrDefault();
-            return Json(mawb_code, JsonRequestBehavior.AllowGet);
-        }
+      
 
 
         public JsonResult GetReceivedCodeById(string srecieved_Code)
@@ -644,162 +916,7 @@ namespace GSA_Management_Information_System.Controllers
 
      
 
-        // GET: CargoSalesInformation/Edit/5
-        public ActionResult Edit(int? id)
-        {
-
-            CargoRepository CargoRepo = new CargoRepository();
-
-
-            return View(CargoRepo.GetAllCargo().Find(Cargo => Cargo.CargoSalesId == id));
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            //CargoSalesInformation cargoSalesInformation = db.CargoSalesInformations.Find(id);
-            //if (cargoSalesInformation == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //return View(cargoSalesInformation);
-        }
-
-
-        //public ActionResult Backup(int? id)
-        //{
-
-        //    CargoRepository CargoRepo = new CargoRepository();
-
-
-        //    return View(CargoRepo.GetAllCargo().Find(Cargo => Cargo.CargoSalesId == id));
-        //    //if (id == null)
-        //    //{
-        //    //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    //}
-        //    //CargoSalesInformation cargoSalesInformation = db.CargoSalesInformations.Find(id);
-        //    //if (cargoSalesInformation == null)
-        //    //{
-        //    //    return HttpNotFound();
-        //    //}
-        //    //return View(cargoSalesInformation);
-        //}
-
-
-
-
-        // POST: CargoSalesInformation/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(CargoSalesInformation cargoSalesInformation)
-        {
-            if (!ModelState.IsValid)
-            {
-             
-                
-                cargoSalesInformation.Airway_No = cargoSalesInformation.MAWB + cargoSalesInformation.Check_Digit;
-                db.Entry(cargoSalesInformation).State = EntityState.Modified;
-                db.SaveChanges();
-
-
-
-                CargoSalesTransactionBackup cargoSalesTransaction = new CargoSalesTransactionBackup();
-
-
-
-                //return ("GetCargoBackup");
-                CargoRepository CargoRepo = new CargoRepository();
-               // ModelState.Clear();
-                 var ssss=CargoRepo.GetCargoBackup(cargoSalesInformation);
-
-                CargoSalesTransactionBackup transactionsss = ssss.FirstOrDefault();
-                transactionsss.Trans_Type = "Update";
-                db.CargoSalesTransactionBackups.Add(transactionsss);
-               // transactionsss.Trans_Type = "Update";
-                db.SaveChanges();
-
-                //object obj = CargoList;
-                //CargoRepository CargoRepo = new CargoRepository();
-
-                //CargoRepo.GetCargoBackup();
-
-
-               // db.CargoSalesTransactionBackups.Attach(obj);
-        
-
-                
-
-                // var CargoBackup = (CargoRepo.GetCargoBackup().Find(Cargo => Cargo.CargoSalesId == cargoSalesInformation.CargoSalesId));
-               // CargoSalesTransactionBackup transactionsss = new CargoSalesTransactionBackup();
-               // transactionsss = transaction;
-                //transactionsss = CargoRepo.GetCargoBackup(cargoSalesInformation);
-
-                //db.CargoSalesTransactionBackups.Add(transactionsss);
-                //transaction = CargoBackup;
-
-
-
-                //cargosss = ssss;
-                //db.CargoSalesTransactionBackups.Add(cargosss);
-                //transaction.SalesSlno = cargoSalesInformation.SalesSlno;
-                //transaction.MAWB = cargoSalesInformation.MAWB;
-                //transaction.Check_Digit = cargoSalesInformation.Check_Digit;
-                //transaction.Airway_No = cargoSalesInformation.Airway_No;
-                //transaction.Freighter_Code = cargoSalesInformation.Freighter_Code;
-                //transaction.Origin_Code = cargoSalesInformation.Origin_Code;
-                //transaction.Dest_Code = cargoSalesInformation.Dest_Code;
-                //transaction.Continent_Code = cargoSalesInformation.Continent_Code;
-                //transaction.CFPaymode_Code = cargoSalesInformation.CFPaymode_Code;
-                //transaction.Route_Code = cargoSalesInformation.Route_Code;
-                //transaction.Customer_Code = cargoSalesInformation.Customer_Code;
-                //transaction.Cargo_Code = cargoSalesInformation.Cargo_Code;
-                //transaction.UType_Code = cargoSalesInformation.UType_Code ;
-                //transaction.MAWB = cargoSalesInformation.MAWB;
-                //transaction.Check_Digit = cargoSalesInformation.Check_Digit;
-                //transaction.Airway_No = cargoSalesInformation.Airway_No;
-
-
-
-                //CargoSalesTransactionBackup ststs = new CargoSalesTransactionBackup();
-                //ststs = CargoBackupData
-                //db.CargoSalesTransactionBackups.Add(CargoBackupData);
-
-
-
-
-
-
-                //db.CargoSalesTransactionBackups.Add(cargoSalesInformation);
-                //return RedirectToAction("Index");
-            }
-            return View(cargoSalesInformation);
-        }
-
-       
-        //public List<CargoSalesTransactionBackup> GetCargoBackup(CargoSalesInformation cargoSalesInformation)
-        //{
-
-        //    //CargoSalesInformation cargoSalesInformation = new CargoSalesInformation();
-
-        //    List<CargoSalesTransactionBackup> CargoBackupList = new List<CargoSalesTransactionBackup>();
-        //    CargoSalesTransactionBackup transaction = new CargoSalesTransactionBackup();
-        //    transaction.CargoSalesId = cargoSalesInformation.CargoSalesId;
-        //    transaction.SalesSlno = cargoSalesInformation.SalesSlno;
-        //    transaction.MAWB = cargoSalesInformation.MAWB;
-        //    transaction.Check_Digit = cargoSalesInformation.Check_Digit;
-
-
-        //    CargoBackupList.Add(transaction);
-
-
-        //    return CargoBackupList;
-
-
-
-        //}
-
-        // GET: CargoSalesInformation/Delete/5
+     
         public ActionResult Return(int id)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
@@ -818,7 +935,15 @@ namespace GSA_Management_Information_System.Controllers
                 db.CargoSalesTransactionBackups.Add(transactionsss);
                 // transactionsss.Trans_Type = "Update";
                 db.SaveChanges();
+
+                StockIssueDetailInformations stockIssueDetailInformations = new StockIssueDetailInformations();
+                stockIssueDetailInformations = db.StockIssueDetailInformations.Where(a => a.Ticket_No.ToString() == Informations.MAWB).FirstOrDefault();
+                stockIssueDetailInformations.Status = "Issued";
+                db.Entry(stockIssueDetailInformations).State = EntityState.Modified;
+                db.SaveChanges();
+
                 return Json(new { success = true, message = "Deleted Successfully" }, JsonRequestBehavior.AllowGet);
+                //return RedirectToAction("Index");
             }
 
 

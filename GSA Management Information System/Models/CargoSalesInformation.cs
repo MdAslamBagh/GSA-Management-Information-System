@@ -70,11 +70,57 @@ namespace GSA_Management_Information_System.Models
     //{
     //    [Key]
     //    public int CargoSalesId { get; set; }
+    //    public int SalesSlno { get; set; }
     //    public string MAWB { get; set; }
+    //    public string Check_Digit { get; set; }
+    //    public string Airway_No { get; set; }
+    //    //public DateTime Flight_Date { get; set; }
+    //    //public int Airlines_Code { get; set; } 
+    //    public int Freighter_Code { get; set; }
     //    public string Origin_Code { get; set; }
-    //    public string Origin_Name { get; set; }
+    //    public string Dest_Code { get; set; }
+    //    public int Continent_Code { get; set; }
+    //    public string Payment_Mode { get; set; }
+    //    public int CFPaymode_Code { get; set; }
+    //    public string Route_Code { get; set; }
+    //    public string Customer_Code { get; set; }
+    //    public string Cargo_Code { get; set; }
+    //    public int UType_Code { get; set; }
+    //    public float HDS { get; set; }
+    //    public float AMS { get; set; }
+    //    public float Gross_Weight { get; set; }
+    //    public float Chargeable_Weight { get; set; }
+    //    public float Rate_Charge { get; set; }
+    //    public float B_Rate { get; set; }
+    //    public float AIT { get; set; }
+    //    public float Agent_Commission { get; set; }
+    //    public float HBL_Qty { get; set; }
+    //    public float Others { get; set; }
+    //    public float THC { get; set; }
+    //    public float SSC { get; set; }
+    //    public float FSC_Charge { get; set; }
+    //    public float ISS_Charge { get; set; }
+    //    public float SSC_VAT { get; set; }
+    //    public float Total_USD { get; set; }
+    //    //public float Total_SSC { get; set; }
+    //    public string Consignee_Code { get; set; }
+    //    public string Consignor_Code { get; set; }
+    //    // public int Receivable_From_Agent { get; set; }
+    //    public string Remarks { get; set; }
+    //    public string Currency_Code { get; set; }
+    //    public float Exchange_Rate { get; set; }
+    //    //public int Tact_Rate { get; set; }
+    //    //public int Adhoc_Rate { get; set; }
+    //    //public int Spa_Rate { get; set; }
+    //    public float Receivable_Amount_USD_With_SSC_VAT { get; set; }
+    //    public float Receivable_Amount_BDT { get; set; }
+    //    //public float Payable_Agent_CC { get; set; }
 
-    //    //public IEnumerable<SelectListItem> OriginList { get; set; }
+    //    public string Remarks_B_Bank { get; set; }
+
+    //    //public DateTime Entry_Date { get; set; }
+    //    public bool CheckSSCVat { get; set; }
+    //    public string Entry_By { get; set; }
     //}
 
     public class CargoViewModel
@@ -117,33 +163,33 @@ namespace GSA_Management_Information_System.Models
         public string Consignor_Address { get; set; }
 
 
-        public string HDS { get; set; }
-        public string AMS { get; set; }
-        public string Gross_Weight { get; set; }
-        public string Chargeable_Weight { get; set; }
-        public string Rate_Charge { get; set; }
-        public string B_Rate { get; set; }
-        public string AIT { get; set; }
-        public string Agent_Commission { get; set; }
-        public string HBL_Qty { get; set; }
-        public string Others { get; set; }
-        public string THC { get; set; }
-        public string SSC { get; set; }
-        public string FSC_Charge { get; set; }
-        public string ISS_Charge { get; set; }
-        public string SSC_VAT { get; set; }
-        public string Total_USD { get; set; }
-
+        public float HDS { get; set; }
+        public float AMS { get; set; }
+        public float Gross_Weight { get; set; }
+        public float Chargeable_Weight { get; set; }
+        public float Rate_Charge { get; set; }
+        public float B_Rate { get; set; }
+        public float AIT { get; set; }
+        public float Agent_Commission { get; set; }
+        public float HBL_Qty { get; set; }
+        public float Others { get; set; }
+        public float THC { get; set; }
+        public float SSC { get; set; }
+        public float FSC_Charge { get; set; }
+        public float ISS_Charge { get; set; }
+        public float SSC_VAT { get; set; }
+        public float Total_USD { get; set; }
+        public float Exchange_Rate { get; set; }
 
 
         //public float Total_SSC { get; set; }
         // public int Receivable_From_Agent { get; set; }
         public string Remarks { get; set; }
         public string Currency_Code { get; set; }
-        public float Exchange_Rate { get; set; }
         //public int Tact_Rate { get; set; }
         //public int Adhoc_Rate { get; set; }
         //public int Spa_Rate { get; set; }
+
         public float Receivable_Amount_USD_With_SSC_VAT { get; set; }
         public float Receivable_Amount_BDT { get; set; }
         //public float Payable_Agent_CC { get; set; }
