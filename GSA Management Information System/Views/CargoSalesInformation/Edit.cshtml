@@ -82,6 +82,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="required">
+                                        @Html.EditorFor(model => model.Flight_Date, new { htmlAttributes = new { @class = "form-control", id = "flightdate" } })
                                         @*<input name="Flight_Date" id="flightdate" type="datetime" maxlength="50" value="@ViewBag.Flight_Date" class="form-control">*@
                                     </div>
                                 </div>
@@ -115,6 +116,7 @@
                                 </div>
                                 <div class="col-sm-8">
                                     <div class="required">
+                                        @Html.Editor("Entry_Date", new { htmlAttributes = new { @class = "hidden" } })
                                         @*<input name="Entry_Date" id="id=" entrydate"" type="hidden" maxlength="50" class="form-control" onkeyup="changeEstericColor(this.id);" placeholder="Last Name" value="@ViewBag.Entry_Date">*@
                                     </div>
                                 </div>
@@ -803,7 +805,8 @@
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <div class="required">
-                                                            <input type="checkbox" onkeyup="totalSub()" name="CheckSSCVat" id="checksscvat">
+                                                            @Html.EditorFor(model => model.CheckSSCVat, new { htmlAttributes = new { @class = "form-control", id = "checksscvat", onkeyup = "totalSub()" } })
+                                                            @*<input type="checkbox" onkeyup="totalSub()" name="CheckSSCVat" id="checksscvat">*@
                                                         </div>
                                                     </div>
                                                 </div>
@@ -891,7 +894,7 @@
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <div class="required">
-                                                            @Html.EditorFor(model => model.Receivable_Amount_USD_With_SSC_VAT, new { htmlAttributes = new { @class = "form-control", id = "totalusdwithsscvat", onkeyup = "totalSub()" } })
+                                                            @Html.EditorFor(model => model.Total_USD_With_SSC_Vat, new { htmlAttributes = new { @class = "form-control", id = "totalusdwithsscvat", onkeyup = "totalSub()" } })
                                                             @*<input id="totalusdwithsscvat" name="Receivable_Amount_USD_With_SSC_VAT" onkeyup="totalSub()" placeholder="Total $" class="form-control" type="text" readonly="readonly" value="2.10">*@
                                                         </div>
                                                     </div>
@@ -956,7 +959,8 @@
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="required">
-                                                            @Html.EditorFor(model => model.Receivable_Amount_BDT, new { htmlAttributes = new { @class = "form-control", id = "receivableamountwithsscvat", onkeyup = "totalSub()" } })
+                                                            @Html.EditorFor(model => model.Receivable_Amount_USD_With_SSC_VAT, new { htmlAttributes = new { @class = "form-control", id = "totalusdwithsscvat", onkeyup = "totalSub()" } })
+                                                          
 
                                                         </div>
                                                     </div>
@@ -1011,6 +1015,15 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @*<div class="row">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.Entry_Date, htmlAttributes: new { @class = "hidden" })
+                                                <div class="col-md-10">
+                                                    @Html.Editor("Entry_Date", new { htmlAttributes = new { @class = "hidden" } })
+                                                    @Html.ValidationMessageFor(model => model.Entry_Date, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>*@
                                         <div class="row">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.Entry_By, htmlAttributes: new { @class = "hidden" })
@@ -1128,8 +1141,67 @@
                     success: function (data) {
                         // alert("Success ");
                         $("#issuecode").val(data.SIssued_Code);
-                        $("#carrier").val(data.Long_Desc);
-                        $("#carriercode").val(data.Airlines_Code);
+                        $("#checkdigit").val(data.Check_Digit);
+                        //$("#flightdate").val(data.Flight_Date);
+                        $("#salesslno").val(data.SalesSlno);
+                        $("#freighter").val(data.Freighter);
+                        $("#freightercode").val(data.Freighter_Code);
+                        $("#originname").val(data.Origin);
+                        $("#origincode").val(data.Origin_Code);
+                        $("#destinationname").val(data.Destination);
+                        $("#destcode").val(data.Dest_Code);
+                        $("#continent").val(data.Continent);
+                        $("#continentcode").val(data.Continent_Code);
+                        $("#paymentname").val(data.Payment);
+                        $("#paymentmode").val(data.Payment_Mode);
+                        $("#freightpaymode").val(data.CargoFreightPaymode);
+                        $("#freightpaymodecode").val(data.CFPaymode_Code);
+                        $("#routename").val(data.Route);
+                        $("#routecode").val(data.Route_Code);
+                        $("#customername").val(data.Customer);
+                        $("#customercode").val(data.Customer_Code);
+                        $("#cargotype").val(data.CargoType);
+                        $("#cargocode").val(data.Cargo_Code);
+                        $("#uplimenttype").val(data.Upliment);
+                        $("#utypecode").val(data.UType_Code);
+                        $("#consigneename").val(data.Consignee_Name);
+                        $("#consigneecode").val(data.Consignee_Code);
+                        $("#consigneeaddress").val(data.Consignee_Address);
+                        $("#consignorname").val(data.Consignor_Name);
+                        $("#consignorcode").val(data.Consignor_Code);
+                        $("#consignoraddress").val(data.Consignor_Address);
+                        $("#hds").val(data.HDS);
+                        $("#others").val(data.Others);
+                        $("#ams").val(data.AMS);
+                        $("#hblqty").val(data.HBL_Qty);
+                        $("#grossweight").val(data.Gross_Weight);
+                        $("#chargeableweight").val(data.Chargeable_Weight);
+                        $("#ratecharge").val(data.Rate_Charge);
+                        $("#bbrate").val(data.B_Rate);
+                        $("#agentcommison").val(data.Agent_Commission);
+                        $("#ait").val(data.AIT);
+                        $("#thc").val(data.THC);
+                        $("#ssc").val(data.SSC);
+                        $("#checksscvat").val(data.CheckSSCVat);
+                        $("#sscwithvat").val(data.SSC_VAT);
+                        $("#fsc").val(data.FSC_Charge);
+                        $("#iss").val(data.ISS_Charge);
+                        $("#totalusd").val(data.Total_USD);
+                        $("#totalusdwithsscvat").val(data.Total_USD_With_SSC_Vat);
+                        $("#currency").val(data.Currency_Code);
+                        $("#exchangerate").val(data.Exchange_Rate);
+                        $("#receiveableamountbdt").val(data.Receivable_Amount_BDT);
+                        $("#receivableamountwithsscvat").val(data.Receivable_Amount_USD_With_SSC_VAT);
+                        $("#remarks").val(data.Remarks);
+                        $("#remarksbbank").val(data.Remarks_B_Bank);
+                        //$("#issuecode").val(data.SIssued_Code);
+                        //$("#checkdigit").val(data.Check_Digit);
+                        //$("#issuecode").val(data.SIssued_Code);
+                        //$("#checkdigit").val(data.Check_Digit);
+
+
+                       // $("#carrier").val(data.Long_Desc);
+                       // $("#carriercode").val(data.Airlines_Code);
                     },
                 });
 
@@ -1917,7 +1989,7 @@
 
     <script>
         $('#totalusd').val(2.10.toFixed(2));
-        $('#receiveableamountbdt').val(175.88);
+        //$('#receiveableamountbdt').val(175.88);
         $('#thc').val(2.10.toFixed(2));
         //Calculate THC,SSC,ISS
         function totalSub() {

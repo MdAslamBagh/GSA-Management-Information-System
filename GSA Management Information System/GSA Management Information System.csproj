@@ -399,6 +399,34 @@
     <Compile Include="Migrations\201912121530548_initial35.Designer.cs">
       <DependentUpon>201912121530548_initial35.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912220354423_initial36.cs" />
+    <Compile Include="Migrations\201912220354423_initial36.Designer.cs">
+      <DependentUpon>201912220354423_initial36.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912220429595_initial37.cs" />
+    <Compile Include="Migrations\201912220429595_initial37.Designer.cs">
+      <DependentUpon>201912220429595_initial37.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912220643286_initial38.cs" />
+    <Compile Include="Migrations\201912220643286_initial38.Designer.cs">
+      <DependentUpon>201912220643286_initial38.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912220648351_initial39.cs" />
+    <Compile Include="Migrations\201912220648351_initial39.Designer.cs">
+      <DependentUpon>201912220648351_initial39.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912220857534_initial40.cs" />
+    <Compile Include="Migrations\201912220857534_initial40.Designer.cs">
+      <DependentUpon>201912220857534_initial40.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912220909512_initial41.cs" />
+    <Compile Include="Migrations\201912220909512_initial41.Designer.cs">
+      <DependentUpon>201912220909512_initial41.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912241006455_initial42.cs" />
+    <Compile Include="Migrations\201912241006455_initial42.Designer.cs">
+      <DependentUpon>201912241006455_initial42.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccessInformation.cs" />
     <Compile Include="Models\AccessListInformation.cs" />
@@ -2681,7 +2709,6 @@
     <Content Include="Views\CargoSalesInformation\Create.cshtml" />
     <Content Include="Views\CargoSalesInformation\Addlast.cshtml" />
     <Content Include="Views\CargoSalesInformation\Register.cshtml" />
-    <Content Include="Views\CargoSalesInformation\AddSplitter.cshtml" />
     <Content Include="Views\AccessInformation\AccessList.cshtml" />
     <Content Include="Views\AccessInformation\Assign_Role.cshtml" />
     <Content Include="Views\AccessInformation\Delete.cshtml" />
@@ -2713,6 +2740,9 @@
     <Content Include="Views\GsaGroup\Index - Copy.cshtml" />
     <Content Include="Views\Account\PreviousIndex .cshtml" />
     <Content Include="Views\Account\Create.cshtml" />
+    <Content Include="Views\StockRecieveInformation\Create.cshtml" />
+    <Content Include="Views\StockIssueInformation\Create.cshtml" />
+    <Content Include="Views\StockIssueInformation\Index - dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2846,6 +2876,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912121530548_initial35.resx">
       <DependentUpon>201912121530548_initial35.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912220354423_initial36.resx">
+      <DependentUpon>201912220354423_initial36.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912220429595_initial37.resx">
+      <DependentUpon>201912220429595_initial37.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912220643286_initial38.resx">
+      <DependentUpon>201912220643286_initial38.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912220648351_initial39.resx">
+      <DependentUpon>201912220648351_initial39.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912220857534_initial40.resx">
+      <DependentUpon>201912220857534_initial40.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912220909512_initial41.resx">
+      <DependentUpon>201912220909512_initial41.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912241006455_initial42.resx">
+      <DependentUpon>201912241006455_initial42.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

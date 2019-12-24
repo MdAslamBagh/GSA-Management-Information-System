@@ -55,11 +55,13 @@ namespace GSA_Management_Information_System.Controllers
         //..............................
         public ActionResult GetData()
         {
-           // var data = db.StockIssueInformations.Where(a => a.SIssueId == a.SIssueId).ToList();
-           //// List<StockIssueInformation> Informations = db.StockIssueInformations.ToList<StockIssueInformation>();
-           // ViewBag.stockdata = data;
-           return View();
-          //return Json(new { data}, JsonRequestBehavior.AllowGet);
+            // var data = db.StockIssueInformations.Where(a => a.SIssueId == a.SIssueId).ToList();
+            //List<StockIssueInformation> Informations = db.StockIssueInformations.ToList<StockIssueInformation>();
+            // ViewBag.stockdata = data;
+            // return View();
+
+            var Informations = db.StockIssueInformations.Where(a => a.SIssueId == a.SIssueId && a.Confirm_Status == "No").ToList();
+            return Json(new { data = Informations }, JsonRequestBehavior.AllowGet);
 
         }
         //..................................
@@ -304,7 +306,7 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         // GET: StockIssueInformation/Create
-        public ActionResult Add()
+        public ActionResult Create()
 
         {
 
@@ -439,7 +441,7 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add([Bind(Include = "SIssueId,SIssued_Code,SRecieved_Code,Stock_Type,Issue_Date,Airlines_Code,From_TicketNo,To_TicketNo,Ticket_Quantity,Customer_Code,Remarks,Transaction_Status,Confirm_Status,Entry_Date")] StockIssueInformation stockIssueInformation)
+        public ActionResult Create(StockIssueInformation stockIssueInformation)
         {
            
             var list = new List<string>() { "Issued" };
@@ -612,6 +614,12 @@ namespace GSA_Management_Information_System.Controllers
             {
                 return HttpNotFound();
             }
+            var list = new List<string>() { "Issued" };
+            ViewBag.list = list;
+
+            var list2 = new List<string>() { "No" };
+            ViewBag.list2 = list2;
+            ViewBag.Airlines_Code = new SelectList(db.AirlinesInformations, "Airlines_Code", "Long_Desc");
             return View(stockIssueInformation);
         }
 
@@ -620,7 +628,7 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SIssueId,SIssued_Code,Issue_Date,SRecieved_Code,From_TicketNo,To_TicketNo,Ticket_Quantity,Remarks")] StockIssueInformation stockIssueInformation)
+        public ActionResult Edit(StockIssueInformation stockIssueInformation)
         {
             if (ModelState.IsValid)
             {
@@ -630,6 +638,45 @@ namespace GSA_Management_Information_System.Controllers
             }
             return View(stockIssueInformation);
         }
+
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult Confirm(int id)
+        {
+            StockIssueInformation stockIssueInformation = db.StockIssueInformations.Find(id);
+            stockIssueInformation.Confirm_Status = "Confirmed";
+            db.Entry(stockIssueInformation).State = EntityState.Modified;
+            db.SaveChanges();
+
+
+            StockIssueDetailInformations stockIssueDetailInformations = new StockIssueDetailInformations();
+
+            for (int i = stockIssueInformation.From_TicketNo; i <= stockIssueInformation.To_TicketNo; i++)
+            {
+                stockIssueDetailInformations.SIssued_Code = stockIssueInformation.SIssued_Code;
+                stockIssueDetailInformations.Ticket_No = i;
+                stockIssueDetailInformations.Status = "Confirmed";
+                db.StockIssueDetailInformations.Add(stockIssueDetailInformations);
+                //stockIssueDetailInformations.SDetailsId = 1;
+
+                db.SaveChanges();
+
+            }
+
+
+
+
+            return Json(new { success = true, message = "Deleted Successfully" }, JsonRequestBehavior.AllowGet);
+
+            //return RedirectToAction("Index");
+        }
+
+
+
+
+
+
 
         // GET: StockIssueInformation/Delete/5
         public ActionResult Delete(int? id)

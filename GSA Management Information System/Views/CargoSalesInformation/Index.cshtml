@@ -7,7 +7,9 @@
 <style>
     th {
         background-color: #6495ED;
-        line-height: 1.5;
+        line-height: 1.0;
+        
+        
     }
 </style>
 
@@ -26,7 +28,7 @@
         <div class="card " style="margin-left: 15px; margin-right: 15px">
             <div class="row" style="margin-left: 10px; margin-right: 10px">
                 <table id="example" class="table table-striped table-bordered table-sm " cellspacing="0"
-                       width="1550">
+                       width="8000">
                     <thead>
                         <tr>
                             <th>CargoSalesId</th>
@@ -35,7 +37,7 @@
                             <th>SIssued_Code</th>
                             <th>Check_Digit</th>
                             <th>Airway_No</th>
-                            @*<th>Flight_Date</th>*@
+                            <th>Flight_Date</th>
                             <th>Freighter_Code</th>
                             <th>Freighter</th>
                             <th>Origin_Code</th>
@@ -76,8 +78,17 @@
                             <th>SSC</th>
                             <th>FSC_Charge</th>
                             <th>ISS_Charge</th>
+                            <th>CheckSSCVat</th>
                             <th>SSC_VAT</th>
-                            <th>Total_USD</th> 
+                            <th>Total_USD</th>
+                            <th>Total_USD_With_SSC_Vat</th>
+                            <th>Currency_Code</th>
+                            <th>Exchange_Rate</th>
+                            <th>Receivable_Amount_BDT</th>
+                            <th>Receivable_Amount_USD_With_SSC_VAT</th>
+                            <th>Remarks</th>
+                            <th>Remarks_B_Bank</th>
+                            <th>Entry_Date</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -115,37 +126,37 @@
                         },
 
                             "columns": [
-                                { "data": "CargoSalesId" },
-                                { "data": "SalesSlno" },
+                                { "data": "CargoSalesId", "visible": false },
+                                { "data": "SalesSlno", "visible": false },
                                 { "data": "MAWB" },                             
-                                { "data": "SIssued_Code" },
-                                { "data": "Check_Digit" },
-                                { "data": "Airway_No" },
-                                //{ "data": "Flight_Date" },
-                                { "data": "Freighter_Code" },
+                                { "data": "SIssued_Code", "visible": false },
+                                { "data": "Check_Digit", "visible": false },
+                                { "data": "Airway_No", "visible": false},
+                                { "data": "Flight_Date", "visible": false },
+                                { "data": "Freighter_Code", "visible": false },
                                 { "data": "Freighter" },
-                                { "data": "Origin_Code" },
+                                { "data": "Origin_Code", "visible": false },
                                 { "data": "Origin" },
-                                { "data": "Dest_Code" },
+                                { "data": "Dest_Code", "visible": false },
                                 { "data": "Destination" },
-                                { "data": "Continent_Code" },
+                                { "data": "Continent_Code", "visible": false},
                                 { "data": "Continent" },
-                                { "data": "Payment_Mode" },
+                                { "data": "Payment_Mode", "visible": false },
                                 { "data": "Payment"},
-                                { "data": "CFPaymode_Code" },
+                                { "data": "CFPaymode_Code", "visible": false },
                                 { "data": "CargoFreightPaymode" },
-                                { "data": "Route_Code" },
+                                { "data": "Route_Code", "visible": false},
                                 { "data": "Route" },
-                                { "data": "Customer_Code" },
+                                { "data": "Customer_Code", "visible": false },
                                 { "data": "Customer" },
-                                { "data": "Cargo_Code" },
+                                { "data": "Cargo_Code", "visible": false },
                                 { "data": "CargoType" },
-                                { "data": "UType_Code" },
+                                { "data": "UType_Code", "visible": false },
                                 { "data": "Upliment" },
-                                { "data": "Consignee_Code" },
+                                { "data": "Consignee_Code", "visible": false},
                                 { "data": "Consignee_Name" },
                                 { "data": "Consignee_Address" },
-                                { "data": "Consignor_Code" },
+                                { "data": "Consignor_Code", "visible": false },
                                 { "data": "Consignor_Name" },
                                 { "data": "Consignor_Address" },
                                 { "data": "HDS" },
@@ -162,9 +173,17 @@
                                 { "data": "SSC" },
                                 { "data": "FSC_Charge" },
                                 { "data": "ISS_Charge" },
+                                { "data": "CheckSSCVat" },
                                 { "data": "SSC_VAT" },
                                 { "data": "Total_USD" },
-
+                                { "data": "Total_USD_With_SSC_Vat", "visible": false },
+                                { "data": "Currency_Code" },
+                                { "data": "Exchange_Rate" },
+                                { "data": "Receivable_Amount_BDT", "visible": false },
+                                { "data": "Receivable_Amount_USD_With_SSC_VAT", "visible": false },
+                                { "data": "Remarks", "visible": false},
+                                { "data": "Remarks_B_Bank", "visible": false },
+                                { "data": "Entry_Date", "visible": false },
                                 {
                                     "data": "CargoSalesId", "render": function (data) {
                                         return "<a class='btn btn-default btn-sm' onclick=location.href='@Url.Action("Edit", "CargoSalesInformation")/" + data + "'><i class='fa fa-pencil'></i> Edit</a><a class='btn btn-danger btn-sm'style='margin-left:5px'onclick=Return(" + data + ")><i class='fa fa-trash'></i> Return</a>"

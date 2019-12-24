@@ -5,15 +5,15 @@
 }
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-@using (Html.BeginForm("Edit", "StockRecieveInformation", FormMethod.Post, new { onSubmit = "return SubmitForm(this)" }))
+@using (Html.BeginForm("Create", "StockRecieveInformation", FormMethod.Post, new { onSubmit = "return SubmitForm(this)" }))
             {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.SRecievedId)
+    <input type="hidden" name="SRecievedCode" value="@ViewBag.SRecievedCode" />
     <div class="form-horizontal">
         <div class="container">
             <div class="card ">
-                <div class="card-header bg-info">Stock Edit Information</div>
+                <div class="card-header bg-info">Stock Receive Information</div>
                 <div class="row">
                     <div class="form-group">
                         <div class="form-group col-md-10 col-sm-12 ">
@@ -60,7 +60,7 @@
                         <div class="form-group col-md-10 col-sm-12 ">
                             <label for="controllername" class="col-md-3 col-sm-5">To_TicketNo<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">
-                                @Html.EditorFor(model => model.To_TicketNo, new { htmlAttributes = new { @class = "form-control", id = "fromTicket", @maxlength = "7", onchange = "StartingTicketcheck()" } })
+                                @Html.EditorFor(model => model.To_TicketNo, new { htmlAttributes = new { @class = "form-control", id = "toTicket", @maxlength = "7", onchange = "EndingTicketCheck()" } })
                                 @Html.ValidationMessageFor(model => model.To_TicketNo, "", new { @class = "text-danger" })
                             </div>
 
@@ -135,7 +135,19 @@
     <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
     <script>
         $(function () {
-            $(".datepicker").datepicker({
+            $(function () {
+                $(".datepicker1").datepicker({
+                    dateFormat: "mm/dd/yy",
+                    changemonth: true,
+                    changeyear: true,
+                    minDate: new Date(2018, 0, 1),
+                    maxDate: new Date(2020, 0, 1),
+                    showOn: "both",
+                    buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+                    buttonText: "Calender"
+                });
+            });
+            $(".datepicker2").datepicker({
                 dateFormat: "mm/dd/yy",
                 changemonth: true,
                 changeyear: true,
@@ -146,7 +158,190 @@
                 buttonText: "Calender"
             });
         });
-    </script>
-    @Scripts.Render("~/bundles/jqueryval")
 
+    </script>
 }
+
+
+<script>
+
+         function StartingTicketcheck() {
+
+            $("#Status").html("checking...........");
+
+            $.post("@Url.Action("StartingTicketData", "StockRecieveInformation")",
+
+            {
+
+                fromdataa: $('#fromTicket').val()
+
+                },
+
+            function (result) {
+                if (result == 0) {
+
+                    $("#Status").html('<font color="Green">Ticket Available ! You Can take it</font>');
+                    $('#fromTicket').css("border-color", "Green");
+                }
+                else {
+
+                    $("#Status").html('<font color="Red">Starting ticket already received. Pease try another."</font>');
+                    $('#fromTicket').css("border-color", "Red");
+                    //$('#fromTicket').val('');
+
+                }
+            });
+
+    }
+
+         function EndingTicketCheck() {
+
+            $("#Statuss").html("checking...........");
+
+            $.post("@Url.Action("EndingTicketData", "StockRecieveInformation")",
+
+            {
+
+                toDataa: $('#toTicket').val()
+
+            },
+            function (result) {
+                if (result == 0) {
+
+                    $("#Statuss").html('<font color="Green">Ticket Available ! You Can take it</font>');
+                    $('#toTicket').css("border-color", "Green");
+                }
+                else {
+
+                    $("#Statuss").html('<font color="Red">Ending ticket already received. Pease try another."</font>');
+                    $('#toTicket').css("border-color", "Red");
+
+
+                }
+            });
+
+         }
+
+
+         //function RangeTicketCheck() {
+
+         //     from = $('#fromTicket').val(),
+         //     to = $('#toTicket').val();
+
+
+         //}
+
+         var fromSuccess = true;
+         var toSuccess = true;
+         function checkingFrom() {
+             $.post("@Url.Action("StartingTicketData", "StockRecieveInformation")",
+                 {
+                     fromdataa: $('#fromTicket').val()
+                 },
+                 function (result) {
+                     if (result == 0) { fromSuccess = true; checkingTo(); }
+                     if (result == 1) fromSuccess = false;
+                 });
+         }
+         function checkingTo() {
+             $.post("@Url.Action("EndingTicketData", "StockRecieveInformation")",
+            {
+                toDataa: $('#toTicket').val()
+            },
+            function (result) {
+                if (result == 0) { toSuccess = true; doSubmit(); }
+                if (result == 1) toSuccess = false;
+
+            });
+         }
+
+         function doSubmit() {
+             if (fromSuccess && toSuccess) {
+                 $('#stockFormId').submit();
+             } else {
+                $('#stockFormId').failure();
+                 swal("Warning!!", "please fill the form!", "warning");
+                 //$('#').submit();
+                 //alert("failure")
+
+             }
+         }
+</script>
+
+
+
+
+
+
+
+
+
+
+<script>
+         $(document).ready(function () {
+             $('#fromTicket').keyup(function () {
+                 var max_chars = 7;
+                 if ($(this).val().length >= max_chars) {
+                     $(this).val($(this).val().substr(0, max_chars));
+
+
+                 }
+                 var fromData = $('#fromTicket').val();
+                 if (fromData === '') {
+                     $('#toTicket').val('');
+                     $('#ticketQuantity').val('');
+                 } else {
+                     if (!isNaN(fromData)) {
+                         $('#toTicket').val(fromData);
+                     }
+                     else {
+                         $('#toTicket').val(0);
+                         $('#ticketQuantity').val(0);
+                     }
+                     printResult();
+                 }
+             });
+             $('#toTicket').keyup(function () {
+                 var max_chars = 7;
+                 if ($(this).val().length >= max_chars) {
+                     $(this).val($(this).val().substr(0, max_chars));
+                 }
+                 printResult();
+
+
+             });
+
+         });
+
+
+         function printResult() {
+
+
+             //if (toTicket < fromTicket) {
+             //    $('#toTicket').val('');
+             //    $('#ticketQuantity').val('');
+
+             //}
+             var from = $('#fromTicket').val();
+             var to = $('#toTicket').val();
+             //alert(from);
+             if (!isNaN(from) && !isNaN(to) && from <= to) {
+                 //var diff = to - from;
+                 //if (diff < 0) {
+                 //  swal("Warning!!", "toTicket number must be equal or greater then fromTicket number!", "warning");
+                 //$('#toTicket').val('');
+                 //$('#ticketQuantity').val(0);
+
+                 $('#ticketQuantity').val((to - from) + 1);
+
+
+             }
+             //else {
+             //  $('#ticketQuantity').val((to - from) + 1);
+             //  }
+             //}
+             else $('#ticketQuantity').val(0);
+         }
+
+
+</script>

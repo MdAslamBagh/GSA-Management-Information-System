@@ -15,7 +15,7 @@ namespace GSA_Management_Information_System.Models
         public string MAWB { get; set; }
         public string Check_Digit { get; set; }
         public string Airway_No { get; set; }
-        //public DateTime Flight_Date { get; set; }
+        public DateTime Flight_Date { get; set; }
         //public int Airlines_Code { get; set; } 
         public int Freighter_Code { get; set; }
         public string Origin_Code { get; set; }
@@ -43,6 +43,7 @@ namespace GSA_Management_Information_System.Models
         public float ISS_Charge { get; set; }
         public float SSC_VAT { get; set; }
         public float Total_USD { get; set; }
+        public float Total_USD_With_SSC_Vat { get; set; }
         //public float Total_SSC { get; set; }
         public string Consignee_Code { get; set; }
         public string Consignor_Code { get; set; }
@@ -59,7 +60,7 @@ namespace GSA_Management_Information_System.Models
 
         public string Remarks_B_Bank { get; set; }
 
-        //public DateTime Entry_Date { get; set; }
+        public DateTime Entry_Date { get; set; }
         public bool CheckSSCVat { get; set; }
         public string Entry_By { get; set; }
 
@@ -118,7 +119,7 @@ namespace GSA_Management_Information_System.Models
 
     //    public string Remarks_B_Bank { get; set; }
 
-    //    //public DateTime Entry_Date { get; set; }
+     //public DateTime Entry_Date { get; set; }
     //    public bool CheckSSCVat { get; set; }
     //    public string Entry_By { get; set; }
     //}
@@ -132,7 +133,7 @@ namespace GSA_Management_Information_System.Models
         public string SIssued_Code { get; set; }
         public string Check_Digit { get; set; }
         public string Airway_No { get; set; }
-       // public string Flight_Date { get; set; }
+        public DateTime Flight_Date { get; set; }
         //public int Airlines_Code { get; set; } 
         public int Freighter_Code { get; set; }
         public string Freighter { get; set; }
@@ -177,27 +178,17 @@ namespace GSA_Management_Information_System.Models
         public float SSC { get; set; }
         public float FSC_Charge { get; set; }
         public float ISS_Charge { get; set; }
+        public bool CheckSSCVat { get; set; }
         public float SSC_VAT { get; set; }
         public float Total_USD { get; set; }
-        public float Exchange_Rate { get; set; }
-
-
-        //public float Total_SSC { get; set; }
-        // public int Receivable_From_Agent { get; set; }
-        public string Remarks { get; set; }
+        public float Total_USD_With_SSC_Vat { get; set; }
         public string Currency_Code { get; set; }
-        //public int Tact_Rate { get; set; }
-        //public int Adhoc_Rate { get; set; }
-        //public int Spa_Rate { get; set; }
-
-        public float Receivable_Amount_USD_With_SSC_VAT { get; set; }
+        public float Exchange_Rate { get; set; }
         public float Receivable_Amount_BDT { get; set; }
-        //public float Payable_Agent_CC { get; set; }
-
-        public string Remarks_B_Bank { get; set; }
-
-       // public DateTime Entry_Date { get; set; }
-        public bool CheckSSCVat { get; set; }
+        public float Receivable_Amount_USD_With_SSC_VAT { get; set; }
+        public string Remarks { get; set; }
+        public string Remarks_B_Bank { get; set; }    
+        public DateTime Entry_Date { get; set; }
         public string Entry_By { get; set; }
 
         //public IEnumerable<SelectListItem> OriginList { get; set; }

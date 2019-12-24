@@ -22,7 +22,7 @@ namespace GSA_Management_Information_System.Models
         }
 
 
-        //To view employee details with generic list 
+        //To view Cargo Sales details with generic list
         public List<CargoViewModel> GetAllCargo()
         {
             connection();
@@ -35,7 +35,7 @@ namespace GSA_Management_Information_System.Models
             da.Fill(dt);
             con.Close();
 
-            //Bind EmpModel generic list using LINQ 
+            //Bind CargoSalesModel generic list using LINQ 
             CargoList = (from DataRow dr in dt.Rows
 
                          select new CargoViewModel()
@@ -46,7 +46,9 @@ namespace GSA_Management_Information_System.Models
                              SIssued_Code = Convert.ToString(dr["SIssued_Code"]),
                              Check_Digit = Convert.ToString(dr["Check_Digit"]),
                              Airway_No = Convert.ToString(dr["Airway_No"]),
-                             //Flight_Date=Convert.ToString(dr["Flight_Date"]),
+
+                             Flight_Date = (DateTime)dr["Flight_Date"],
+                             //Convert.ToDateTime(dr["Flight_Date"].ToString()),
                              Freighter_Code = Convert.ToInt32(dr["Freighter_Code"]),
                              Freighter = Convert.ToString(dr["Freighter"]),
                              Origin_Code = Convert.ToString(dr["Origin_Code"]),
@@ -91,11 +93,21 @@ namespace GSA_Management_Information_System.Models
                              SSC = (float)(dr["SSC"]),
                              FSC_Charge = (float)(dr["FSC_Charge"]),
                              ISS_Charge = (float)(dr["ISS_Charge"]),
+                             CheckSSCVat= Convert.ToBoolean(dr["CheckSSCVat"]),
                              SSC_VAT = (float)(dr["SSC_VAT"]),
                              Total_USD = (float)(dr["Total_USD"]),
-                             Currency_Code= Convert.ToString(dr["Currency_Code"]),
+                             Total_USD_With_SSC_Vat= (float)(dr["Total_USD_With_SSC_Vat"]),
+                             Currency_Code = Convert.ToString(dr["Currency_Code"]),
                              Exchange_Rate = (float)(dr["Exchange_Rate"]),
-                             Entry_By= Convert.ToString(dr["Entry_By"]),
+                             Receivable_Amount_BDT= (float)(dr["Receivable_Amount_BDT"]),
+                             Receivable_Amount_USD_With_SSC_VAT= (float)(dr["Receivable_Amount_USD_With_SSC_VAT"]),
+                             Remarks = Convert.ToString(dr["Remarks"]),
+                             Remarks_B_Bank = Convert.ToString(dr["Remarks_B_Bank"]),
+                             Entry_Date = (DateTime)dr["Entry_Date"],
+
+
+
+                             Entry_By = Convert.ToString(dr["Entry_By"]),
 
 
 
@@ -108,7 +120,7 @@ namespace GSA_Management_Information_System.Models
         }
 
 
-
+        //Cargo Sales Information Transaction Backup in Create method by passing object
         public List<CargoSalesTransactionBackup> GetCargoBackup(CargoSalesInformation cargoSalesInformation)
         {
 
@@ -127,7 +139,7 @@ namespace GSA_Management_Information_System.Models
             transaction.MAWB = cargoSalesInformation.MAWB;
             transaction.Check_Digit = cargoSalesInformation.Check_Digit;
             transaction.Airway_No = cargoSalesInformation.MAWB + cargoSalesInformation.Check_Digit;
-
+            transaction.Flight_Date = cargoSalesInformation.Flight_Date;
             transaction.Freighter_Code = cargoSalesInformation.Freighter_Code;
             transaction.Origin_Code = cargoSalesInformation.Origin_Code;
             transaction.Dest_Code = cargoSalesInformation.Dest_Code;
@@ -140,12 +152,6 @@ namespace GSA_Management_Information_System.Models
             transaction.UType_Code = cargoSalesInformation.UType_Code;
             transaction.Consignee_Code = cargoSalesInformation.Consignee_Code;
             transaction.Consignor_Code = cargoSalesInformation.Consignor_Code;
-
-
-
-
-            //up complete down check
-
             transaction.HDS = cargoSalesInformation.HDS;
             transaction.Others = cargoSalesInformation.Others;
             transaction.AMS = cargoSalesInformation.AMS;
@@ -158,21 +164,19 @@ namespace GSA_Management_Information_System.Models
             transaction.AIT = cargoSalesInformation.AIT;
             transaction.THC = cargoSalesInformation.THC;
             transaction.SSC = cargoSalesInformation.SSC;
+            transaction.CheckSSCVat = cargoSalesInformation.CheckSSCVat;
             transaction.SSC_VAT = cargoSalesInformation.SSC_VAT;
             transaction.FSC_Charge = cargoSalesInformation.FSC_Charge;
             transaction.ISS_Charge = cargoSalesInformation.ISS_Charge;
             transaction.Total_USD = cargoSalesInformation.Total_USD;
-            transaction.Receivable_Amount_USD_With_SSC_VAT = cargoSalesInformation.Receivable_Amount_USD_With_SSC_VAT;
+            transaction.Total_USD_With_SSC_Vat = cargoSalesInformation.Total_USD_With_SSC_Vat;
             transaction.Currency_Code = cargoSalesInformation.Currency_Code;
             transaction.Exchange_Rate = cargoSalesInformation.Exchange_Rate;
             transaction.Receivable_Amount_BDT = cargoSalesInformation.Receivable_Amount_BDT;
+            transaction.Receivable_Amount_USD_With_SSC_VAT = cargoSalesInformation.Receivable_Amount_USD_With_SSC_VAT;
             transaction.Remarks = cargoSalesInformation.Remarks;
             transaction.Remarks_B_Bank = cargoSalesInformation.Remarks_B_Bank;
-
-
-
-
-            //return (transaction)
+            transaction.Entry_Date = cargoSalesInformation.Entry_Date;
 
             CargoBackupList.Add(transaction);
     
@@ -185,6 +189,7 @@ namespace GSA_Management_Information_System.Models
 
 
 
+        //Cargo Sales Information Transaction Backup in Edit method by passing Object
         public List<CargoSalesTransactionBackup> GetCargoBackupEdit(CargoViewModel cargoedit)
         {
 
@@ -202,6 +207,7 @@ namespace GSA_Management_Information_System.Models
             transaction.MAWB = cargoedit.MAWB;
             transaction.Check_Digit = cargoedit.Check_Digit;
             transaction.Airway_No = cargoedit.MAWB + cargoedit.Check_Digit;
+            transaction.Flight_Date = cargoedit.Flight_Date;
 
             transaction.Freighter_Code = cargoedit.Freighter_Code;
             transaction.Origin_Code = cargoedit.Origin_Code;
@@ -215,9 +221,6 @@ namespace GSA_Management_Information_System.Models
             transaction.UType_Code = cargoedit.UType_Code;
             transaction.Consignee_Code = cargoedit.Consignee_Code;
             transaction.Consignor_Code = cargoedit.Consignor_Code;
-
-            //up complete down check
-
             transaction.HDS = cargoedit.HDS;
             transaction.Others = cargoedit.Others;
             transaction.AMS = cargoedit.AMS;
@@ -234,14 +237,14 @@ namespace GSA_Management_Information_System.Models
             transaction.FSC_Charge = cargoedit.FSC_Charge;
             transaction.ISS_Charge = cargoedit.ISS_Charge;
             transaction.Total_USD = cargoedit.Total_USD;
-            transaction.Receivable_Amount_USD_With_SSC_VAT = cargoedit.Receivable_Amount_USD_With_SSC_VAT;
+            transaction.Total_USD_With_SSC_Vat = cargoedit.Total_USD_With_SSC_Vat;
             transaction.Currency_Code = cargoedit.Currency_Code;
             transaction.Exchange_Rate = cargoedit.Exchange_Rate;
             transaction.Receivable_Amount_BDT = cargoedit.Receivable_Amount_BDT;
+            transaction.Receivable_Amount_USD_With_SSC_VAT = cargoedit.Receivable_Amount_USD_With_SSC_VAT;
             transaction.Remarks = cargoedit.Remarks;
             transaction.Remarks_B_Bank = cargoedit.Remarks_B_Bank;
-
-            //return (transaction)
+            transaction.Entry_Date = cargoedit.Entry_Date;
 
             CargoBackupListt.Add(transaction);
 

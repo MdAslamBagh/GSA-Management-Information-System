@@ -161,7 +161,7 @@ namespace GSA_Management_Information_System.Controllers
             return Json(true);
         }
 
-        public ActionResult Add()
+        public ActionResult Create()
         {
 
             String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
@@ -234,8 +234,8 @@ namespace GSA_Management_Information_System.Controllers
             //ViewBag.SRecieved_Code = sssss;
             var list = new List<string>() { "Received"};
             ViewBag.list = list;
-            var list2 = new List<string>() { "Confirmed" };
-            ViewBag.list2 = list2;
+            //var list2 = new List<string>() { "Confirmed" };
+            //ViewBag.list2 = list2;
 
             var list3 = new List<string>() { "No" };
             ViewBag.list3 = list3;
@@ -253,7 +253,7 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add([Bind(Include = "SRecievedId,SRecieved_Code,SR_Type,Trans_Date,Airlines_Code,From_TicketNo,To_TicketNo,Ticket_Quantity,Customer_Code,Remarks,Transaction_Status,Issued,Entry_Date")] StockRecieveInformation stockRecieveInformation)
+        public ActionResult Create([Bind(Include = "SRecievedId,SRecieved_Code,SR_Type,Trans_Date,Airlines_Code,From_TicketNo,To_TicketNo,Ticket_Quantity,Customer_Code,Remarks,Issued,Entry_Date")] StockRecieveInformation stockRecieveInformation)
         {
 
             //var exists = (from c in db.StockRecieveInformations
@@ -266,8 +266,8 @@ namespace GSA_Management_Information_System.Controllers
 
             var list = new List<string>() { "Received" };
             ViewBag.list = list;
-            var list2 = new List<string>() { "Confirmed" };
-            ViewBag.list2 = list2;
+            //var list2 = new List<string>() { "Confirmed" };
+            //ViewBag.list2 = list2;
 
             var list3 = new List<string>() { "No" };
             ViewBag.list3 = list3;
@@ -304,8 +304,8 @@ namespace GSA_Management_Information_System.Controllers
 
             var list = new List<string>() { "Received" };
             ViewBag.list = list;
-            var list2 = new List<string>() { "Confirmed" };
-            ViewBag.list2 = list2;
+            //var list2 = new List<string>() { "Confirmed" };
+            //ViewBag.list2 = list2;
 
             var list3 = new List<string>() { "No" };
             ViewBag.list3 = list3;
@@ -319,7 +319,7 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SRecievedId,SRecieved_Code,SR_Type,Trans_Date,Airlines_Code,From_TicketNo,To_TicketNo,Ticket_Quantity,Customer_Code,Remarks,Transaction_Status,Issued,Entry_Date")] StockRecieveInformation stockRecieveInformation)
+        public ActionResult Edit([Bind(Include = "SRecievedId,SRecieved_Code,SR_Type,Trans_Date,Airlines_Code,From_TicketNo,To_TicketNo,Ticket_Quantity,Customer_Code,Remarks,Issued,Entry_Date")] StockRecieveInformation stockRecieveInformation)
         {
             if (ModelState.IsValid)
             {

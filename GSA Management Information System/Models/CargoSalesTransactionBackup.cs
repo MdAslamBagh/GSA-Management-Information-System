@@ -16,7 +16,7 @@ namespace GSA_Management_Information_System.Models
         public string MAWB { get; set; }
         public string Check_Digit { get; set; }
         public string Airway_No { get; set; }
-        //public DateTime Flight_Date { get; set; }
+        public DateTime Flight_Date { get; set; }
         //public int Airlines_Code { get; set; } 
         public int Freighter_Code { get; set; }
         public string Origin_Code { get; set; }
@@ -45,6 +45,7 @@ namespace GSA_Management_Information_System.Models
         public float SSC_VAT { get; set; }
         public float Total_USD { get; set; }
         //public float Total_SSC { get; set; }
+        public float Total_USD_With_SSC_Vat { get; set; }
         public string Consignee_Code { get; set; }
         public string Consignor_Code { get; set; }
        // public int Receivable_From_Agent { get; set; }
@@ -60,7 +61,7 @@ namespace GSA_Management_Information_System.Models
 
         public string Remarks_B_Bank { get; set; }
 
-        //public DateTime Entry_Date { get; set; }
+        public DateTime Entry_Date { get; set; }
         public bool CheckSSCVat { get; set; }
         public string Entry_By { get; set; }
 
