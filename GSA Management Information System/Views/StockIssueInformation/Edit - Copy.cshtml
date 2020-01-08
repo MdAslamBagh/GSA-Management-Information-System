@@ -1,0 +1,152 @@
+﻿@model GSA_Management_Information_System.Models.StockIssueInformation
+
+@{
+    ViewBag.Title = "Edit";
+}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+@using (Html.BeginForm("Edit", "StockIssueInformation", FormMethod.Post, new { onSubmit = "return SubmitForm(this)" }))
+            {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.SIssueId)
+    <div class="form-horizontal">
+
+        <div class="container">
+            <div class="card ">
+                <div class="card-header bg-info">Stock Issue Information</div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="controllername" class="col-md-3 col-sm-5">SIssued_Code<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+                                @Html.Editor("SIssued_Code", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.SIssued_Code, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="controllername" class="col-md-3 col-sm-5">Issue_Date<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+                                @Html.Editor("Issue_Date", new { htmlAttributes = new { @class = "datepicker" } })
+                                @Html.ValidationMessageFor(model => model.Issue_Date, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="controllername" class="col-md-3 col-sm-5">Airlines<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+                                 @Html.DropDownList("Airlines_Code", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Airlines_Code, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="accessname" class="col-md-3 col-sm-5">SRecieved Code <font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+                                @Html.Editor("SRecieved_Code", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.SRecieved_Code, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            @Html.LabelFor(model => model.Stock_Type, htmlAttributes: new { @class = "hidden" })
+                            <div class="col-md-6 col-sm-7">
+                                @Html.DropDownListFor(Model => Model.Stock_Type, new SelectList(ViewBag.list), htmlAttributes: new { @class = "hidden" })
+                                @*@Html.DropDownListFor(Model => Model.SR_Type, new SelectList(ViewBag.list), htmlAttributes: new { @class = "form-control" })*@
+                                @Html.ValidationMessageFor(model => model.Stock_Type, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="controllername" class="col-md-3 col-sm-5">From_TicketNo<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+                                @Html.EditorFor(model => model.From_TicketNo, new { htmlAttributes = new { @class = "form-control", id = "fromTicket", @maxlength = "7", onchange = "StartingTicketcheck()" } })
+                                @Html.ValidationMessageFor(model => model.From_TicketNo, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="controllername" class="col-md-3 col-sm-5">To_TicketNo<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+                                @Html.EditorFor(model => model.To_TicketNo, new { htmlAttributes = new { @class = "form-control", id = "fromTicket", @maxlength = "7", onchange = "StartingTicketcheck()" } })
+                                @Html.ValidationMessageFor(model => model.To_TicketNo, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="controllername" class="col-md-3 col-sm-5">Ticket_Quantity<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+                                @Html.EditorFor(model => model.Ticket_Quantity, new { htmlAttributes = new { @class = "form-control", id = "ticketQuantity", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.Ticket_Quantity, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="controllername" class="col-md-3 col-sm-5">Customer<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+                                @Html.TextBoxFor(model => model.Customer_Code, htmlAttributes: new { @class = "form-control", @Value = "CRGO-000001" })
+                                @Html.ValidationMessageFor(model => model.Customer_Code, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="controllername" class="col-md-3 col-sm-5">Remarks<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+                                @Html.TextAreaFor(model => model.Remarks, 2, 52, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="controllername" class="col-md-3 col-sm-5">Transaction_Status<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+                                @Html.EditorFor(model => model.Transaction_Status, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Transaction_Status, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            @Html.LabelFor(model => model.Confirm_Status, htmlAttributes: new { @class = "hidden" })
+                            <div class="col-md-6 col-sm-7">
+                                @Html.DropDownListFor(Model => Model.Confirm_Status, new SelectList(ViewBag.list2), htmlAttributes: new { @class = "hidden" })
+                                @Html.ValidationMessageFor(model => model.Confirm_Status, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <div class="col-md-10">
+                                <div align="center">
+                                    <a class="btn btn-primary" style="margin-left:10px" onclick="location.href='@Url.Action("Index", "StockIssueInformation")'"><i class="fa fa-plus"></i>Back To List</a>
+                                    <input type="submit" value="submit" class="btn btn-info" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+
+@section scripts{
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script>
+        $(function () {
+            $(".datepicker").datepicker({
+                dateFormat: "mm/dd/yy",
+                changemonth: true,
+                changeyear: true,
+                minDate: new Date(2018, 0, 1),
+                maxDate: new Date(2020, 0, 1),
+                showOn: "both",
+                buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+                buttonText: "Calender"
+            });
+        });
+    </script>
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

@@ -512,7 +512,7 @@ namespace GSA_Management_Information_System.Controllers
         // POST: /Users/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditUser(EditUserViewModel editUser, params string[] selectedRole)
+        public async Task<ActionResult> Edit(EditUserViewModel editUser, params string[] selectedRole)
         {
             if (ModelState.IsValid)
 

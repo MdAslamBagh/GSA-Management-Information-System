@@ -427,6 +427,14 @@
     <Compile Include="Migrations\201912241006455_initial42.Designer.cs">
       <DependentUpon>201912241006455_initial42.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912260513321_initial43.cs" />
+    <Compile Include="Migrations\201912260513321_initial43.Designer.cs">
+      <DependentUpon>201912260513321_initial43.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912260533059_initial44.cs" />
+    <Compile Include="Migrations\201912260533059_initial44.Designer.cs">
+      <DependentUpon>201912260533059_initial44.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccessInformation.cs" />
     <Compile Include="Models\AccessListInformation.cs" />
@@ -483,10 +491,29 @@
     <Compile Include="Models\UserInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs" />
+    <Compile Include="Reports\gsacargoreport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>gsacargoreport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Gsa_Management_System_layout\app-assets\css\legendbootstrap.min.css" />
+    <Content Include="Gsa_Management_System_layout\app-assets\images\logo\global-aviation-services-ltd-expand1.jpg" />
+    <Content Include="Gsa_Management_System_layout\app-assets\images\logo\global-aviation-services-ltd-expand200-40.jpg" />
+    <Content Include="Gsa_Management_System_layout\app-assets\images\logo\global-aviation-services-pvt-ltd-1.jpg" />
+    <Content Include="Gsa_Management_System_layout\app-assets\images\logo\global-aviation-services-pvt-ltd-final 220-40.jpg" />
+    <Content Include="Gsa_Management_System_layout\app-assets\images\logo\Global-Aviation-Serviceslogo1.jpg" />
+    <Content Include="Gsa_Management_System_layout\app-assets\images\logo\global-logo1.png" />
+    <Content Include="Gsa_Management_System_layout\app-assets\images\logo\globalaviationlogo117-25.jpg" />
+    <Content Include="Gsa_Management_System_layout\app-assets\images\logo\globalaviationservicesllc1.jpg" />
+    <Content Include="Gsa_Management_System_layout\app-assets\images\logo\Gsa Expand Logo.png" />
+    <Content Include="Gsa_Management_System_layout\app-assets\images\logo\NewGlobalAviationLogo1.png" />
+    <Content Include="Gsa_Management_System_layout\app-assets\images\logo\NewGlobalAviationLogo_Only_305x79.png" />
+    <Content Include="Gsa_Management_System_layout\app-assets\images\logo\services-1111-210-4-.jpg" />
+    <Content Include="Gsa_Management_System_layout\app-assets\images\logo\services-1111.jpg" />
     <Content Include="Gsa_Management_System_layout\assets\css\legendcss.css" />
     <Content Include="Gsa_Management_System_layout\assets\css\style - Copy.css" />
     <Content Include="Gsa_Management_System_layout\assets\css\style-rtl.css" />
@@ -1094,6 +1121,9 @@
     <Content Include="Content\SignupContent\vendor\bootstrap\css\bootstrap.min.css.map" />
     <Content Include="Gsa_Management_System_layout\html\ltr\debug.log" />
     <Content Include="Gsa_Management_System_layout\html\rtl\debug.log" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\GSA Management Information System.pubxml" />
+    <None Include="Properties\PublishProfiles\gsa.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -2743,10 +2773,29 @@
     <Content Include="Views\StockRecieveInformation\Create.cshtml" />
     <Content Include="Views\StockIssueInformation\Create.cshtml" />
     <Content Include="Views\StockIssueInformation\Index - dashboard.cshtml" />
+    <Content Include="Views\CompanyInformation\Create - Copy.cshtml" />
+    <Content Include="Views\CompanyInformation\Edit - Copy.cshtml" />
+    <Content Include="Views\CompanyInformation\Edit - Copy %282%29.cshtml" />
+    <Content Include="Views\CompanyInformation\Index - Copy.cshtml" />
+    <Content Include="Views\CustomerTypeInformation\Index - Copy.cshtml" />
+    <Content Include="Views\CustomerTypeInformation\Create - Copy.cshtml" />
+    <Content Include="Views\CustomerGroupInformation\Create - Copy.cshtml" />
+    <Content Include="Views\CustomerInformation\Create - Copy.cshtml" />
+    <Content Include="Views\CustomerInformation\Index - Copy.cshtml" />
+    <Content Include="Views\ConsigneeInformation\Create - Copy.cshtml" />
+    <Content Include="Views\ConsigneeInformation\Index - Copy %283%29.cshtml" />
+    <Content Include="Views\ConsignorInformation\Create - Copy.cshtml" />
+    <Content Include="Views\ConsignorInformation\Index - Copy.cshtml" />
+    <Content Include="Views\StockIssueInformation\Create - Copy.cshtml" />
+    <Content Include="Views\StockIssueInformation\Create - Copy %282%29.cshtml" />
+    <Content Include="Views\StockIssueInformation\Edit - Copy.cshtml" />
+    <Content Include="Views\StockIssueInformation\Editlast.cshtml" />
+    <Content Include="Views\StockRecieveInformation\Create - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Gsa_Management_System_layout\assets\images\" />
+    <Folder Include="Image\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -2897,6 +2946,16 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912241006455_initial42.resx">
       <DependentUpon>201912241006455_initial42.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912260513321_initial43.resx">
+      <DependentUpon>201912260513321_initial43.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912260533059_initial44.resx">
+      <DependentUpon>201912260533059_initial44.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\gsacargoreport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>gsacargoreport.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

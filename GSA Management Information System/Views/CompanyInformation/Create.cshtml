@@ -1,188 +1,368 @@
 ﻿@model GSA_Management_Information_System.Models.CompanyInformation
-
+    
 @{
     ViewBag.Title = "Create";
-    
 }
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
+@using (Html.BeginForm("Create", "CompanyInformation", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        <div class="container">
+            <div class="card ">
+                <div class="card-header bg-info">Company Configuration</div>
+             
+                <div class="form-group">
+                  
 
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label for="FreighterName">
+                                                    Company Name
+                                                    <span id="txtFreighterName" style="color:#FF0000;">*</span>
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="required">
 
-        @using (Html.BeginForm("Create", "CompanyInformation", FormMethod.Post,
-                                                new { enctype = "multipart/form-data" }))
-        {
-            @Html.AntiForgeryToken()
+                                                    <input id="company" name="Company_Name" placeholder="Company Name" class="form-control" type="text">
 
-            <div class="form-horizontal">
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
 
-                <div class="row">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Company_Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-6">
-                            @Html.EditorFor(model => model.Company_Name, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Company_Name, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label for="Origin">
+                                                    Company Code
+                                                    <span id="txtoriginname" style="color:#FF0000;">*</span>
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="required">
+
+                                                    <input id="companycode" name="Company_Code" placeholder="Company Code" class="form-control" type="text">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                        <div class="row">
 
-                <div class="row">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Company_Code, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-6">
-                            @Html.EditorFor(model => model.Company_Code, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Company_Code, "", new { @class = "text-danger" })
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label for="FreighterName">
+                                                Branch Name
+                                                <span id="txtFreighterName" style="color:#FF0000;">*</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="required">
+
+                                                <input id="company" name="Branch_Name" placeholder="Branch Name" class="form-control" type="text" value="@ViewBag.Branch_Name">
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label for="Origin">
+                                                Branch Code
+                                                <span id="txtoriginname" style="color:#FF0000;">*</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="required">
+
+                                                <input id="companycode" name="Branch_Code" placeholder="Branch Code" class="form-control" type="text">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
-                    </div>
-                </div>
+                        <div class="row">
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label for="FreighterName">
+                                                Company Tin
+                                                <span id="txtFreighterName" style="color:#FF0000;">*</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="required">
 
-                <div class="row">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Branch_Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-6">
-                            @Html.EditorFor(model => model.Branch_Name, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Branch_Name, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
+                                                <input id="companytin" name="Company_Tin" placeholder="Company Tin" class="form-control" type="text">
 
+                                            </div>
+                                        </div>
 
-                <div class="row">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Branch_Code, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-6">
-                            @Html.EditorFor(model => model.Branch_Code, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Branch_Code, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                <div class="row">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Company_Tin, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-6">
-                            @Html.EditorFor(model => model.Company_Tin, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Company_Tin, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label for="Origin">
+                                                Company Address
+                                                <span id="txtoriginname" style="color:#FF0000;">*</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="required">
 
-                <div class="row">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Company_Address, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-6">
-                            @Html.EditorFor(model => model.Company_Address, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Company_Address, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
+                                                <input id="companyaddress" name="Company_Address" placeholder="Company_Address" class="form-control" type="text">
 
-                <div class="row">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Company_Postcode, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-6">
-                            @Html.EditorFor(model => model.Company_Postcode, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Company_Postcode, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Company_City, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-6">
-                            @Html.EditorFor(model => model.Company_City, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Company_City, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Company_Country, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-6">
-                            @Html.EditorFor(model => model.Company_Country, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Company_Country, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Company_ContacNo, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-6">
-                            @Html.EditorFor(model => model.Company_ContacNo, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Company_ContacNo, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Company_Fax, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-6">
-                            @Html.EditorFor(model => model.Company_Fax, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Company_Fax, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Company_Email, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-6">
-                            @Html.EditorFor(model => model.Company_Email, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Company_Email, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Company_Web, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-6">
-                            @Html.EditorFor(model => model.Company_Web, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Company_Web, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Company_Dialogue, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-6">
-                            @Html.EditorFor(model => model.Company_Dialogue, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Company_Dialogue, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Company_ImagePath, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-6">
-                            @*@Html.EditorFor(model => model.Company_ImagePath, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Company_ImagePath, "", new { @class = "text-danger" })*@
-                            <input type="file" name="Company_ImageUpload" required>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <div align="center">
-                                <input type="submit" value="Create" class="btn btn-default" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+                        <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="FreighterName">
+                                            Company_Postcode
+                                            <span id="txtFreighterName" style="color:#FF0000;">*</span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="required">
+
+                                            <input id="companypostcode" name="Company_Postcode" placeholder="Company Postcode" class="form-control" type="text">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="Origin">
+                                            Company City
+                                            <span id="txtoriginname" style="color:#FF0000;">*</span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="required">
+
+                                            <input id="companycity" name="Company_City" placeholder="Company City" class="form-control" type="text">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        </div>
+                        <div class="row">
+                        
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label for="Country">
+                                                Company Country
+                                                <span id="txtFreighterName" style="color:#FF0000;">*</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="required">
+
+                                                <input id="companycountry" name="Company_Country" placeholder="Country" class="form-control" type="text">
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label for="Origin">
+                                                Contact No
+                                                <span id="txtoriginname" style="color:#FF0000;">*</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="required">
+
+                                                <input id="companycontact" name="Company_ContacNo" placeholder="Contact No" class="form-control" type="text">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                 
+                        <div class="row">
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="FreighterName">
+                                            Fax
+                                            <span id="txtFreighterName" style="color:#FF0000;">*</span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="required">
+
+                                            <input id="companypostcode" name="Company_Fax" placeholder="Fax" class="form-control" type="text">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="Origin">
+                                            Email
+                                            <span id="txtoriginname" style="color:#FF0000;">*</span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="required">
+
+                                            <input id="companycity" name="Company_Email" placeholder="Email " class="form-control" type="text">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                        <div class="row">
+
+                        <div class="col-sm-6">
+                            
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="FreighterName">
+                                            Company web
+                                            <span id="txtFreighterName" style="color:#FF0000;">*</span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="required">
+
+                                            <input id="companydialouge" name="Company_Web" placeholder="Web" class="form-control" type="text">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                       
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="Origin">
+                                            Image Upload
+                                            <span id="txtoriginname" style="color:#FF0000;">*</span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="required">
+
+                                            <input type="file" name="Company_ImageUpload" required>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <div class="col-md-10">
+                                <div align="center">
+                                    <a class="btn btn-primary" style="margin-left:10px" onclick="location.href='@Url.Action("Index", "CompanyInformation")'"><i class="fa fa-plus"></i>Back To List</a>
+                                    <input type="submit" value="submit" class="btn btn-info" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+       
+                   
+                        </div>
+                  
+                
+               
+                </div>
                 </div>
             </div>
-        }
-  
+       
+ 
+}
 
-        <div>
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+
+@section scripts{
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script>
+           $(function () {
+               $(".datepicker").datepicker({
+                   dateFormat: "mm/dd/yy",
+                   changemonth: true,
+                   changeyear: true,
+                   minDate: new Date(2018, 0, 1),
+                   maxDate: new Date(2020, 0, 1),
+                   showOn: "both",
+                   buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+                   buttonText: "Calender"
+               });
+           });
+    </script>
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

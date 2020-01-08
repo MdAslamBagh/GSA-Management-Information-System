@@ -37,13 +37,13 @@ namespace GSA_Management_Information_System.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
-            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
-            ViewBag.Entry_Date = today;
+            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
+            ////String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
+            //ViewBag.Entry_Date = today;
 
 
-            var LogedInUser = User.Identity.Name;
-            ViewBag.Entry_By = LogedInUser;
+            //var LogedInUser = User.Identity.Name;
+            //ViewBag.Entry_By = LogedInUser;
 
             List<ConsigneeInformation> Informations = db.ConsigneeInformations.OrderByDescending(a=>a.ConsigneeId).ToList<ConsigneeInformation>();
 
@@ -120,6 +120,9 @@ namespace GSA_Management_Information_System.Controllers
 
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                objconsignee.Entry_By = LogedInUser;
+                objconsignee.Entry_Date = DateTime.Now;
                 db.ConsigneeInformations.Add(objconsignee);
 
                 if (objconsignee.Default_Code == false)
@@ -191,8 +194,8 @@ namespace GSA_Management_Information_System.Controllers
         //// GET: ConsigneeInformation/Edit/5
         public ActionResult Edit(int? id)
         {
-            var LogedInUser = User.Identity.Name;
-            ViewBag.Entry_By = LogedInUser;
+            //var LogedInUser = User.Identity.Name;
+            //ViewBag.Entry_By = LogedInUser;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -217,6 +220,9 @@ namespace GSA_Management_Information_System.Controllers
         {
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                objconsignee.Entry_By = LogedInUser;
+                objconsignee.Entry_Date = DateTime.Now;
                 db.Entry(objconsignee).State = EntityState.Modified;
 
                 var list = db.ConsigneeInformations.Where(a => a.Consignee_Code != objconsignee.Consignee_Code).ToList();

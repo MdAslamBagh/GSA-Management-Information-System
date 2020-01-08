@@ -34,12 +34,12 @@ namespace GSA_Management_Information_System.Controllers
         {
             // Console.WriteLine(DateTime.Now.ToString("dd/MM/yyyy"));
             //String today = DateTime.Now.ToString("MM/dd/yyyy");
-            String today= DateTime.Now.ToString("MM/dd/yyyy HH:mm");
-            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
-            ViewBag.Entry_Date = today;
+            //String today= DateTime.Now.ToString("MM/dd/yyyy HH:mm");
+            ////String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
+            //ViewBag.Entry_Date = today;
 
-            var LogedInUser = User.Identity.Name;
-            ViewBag.Entry_By = LogedInUser;
+            //var LogedInUser = User.Identity.Name;
+            //ViewBag.Entry_By = LogedInUser;
 
 
             List<ConsignorInformation> consignorInformations = db.ConsignorInformations.OrderByDescending(a => a.ConsignorId).ToList<ConsignorInformation>();
@@ -103,6 +103,9 @@ namespace GSA_Management_Information_System.Controllers
 
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                consignorInformation.Entry_By = LogedInUser;
+                consignorInformation.Entry_Date = DateTime.Now;
                 //int x = Convert.ToInt32(TempData["ConsignorCode"]);
                 //string y = (TempData["Data2"]).ToString();
                 //consignorInformation.Consignor_Code = Convert.ToInt32(consignorInformation.Consignor_Code);
@@ -183,6 +186,9 @@ namespace GSA_Management_Information_System.Controllers
         {
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                consignorInformation.Entry_By = LogedInUser;
+                consignorInformation.Entry_Date = DateTime.Now;
                 db.Entry(consignorInformation).State = EntityState.Modified;
 
                 var list = db.ConsignorInformations.Where(a => a.Consignor_Code != consignorInformation.Consignor_Code).ToList();

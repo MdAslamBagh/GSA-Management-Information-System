@@ -43,10 +43,11 @@ namespace GSA_Management_Information_System.Controllers
         }
 
 
-        [AllowAnonymous]
-        public JsonResult RangeTicketCheck(int from,int to)
+        //[AllowAnonymous]
+        [HttpPost]
+        public JsonResult RangeTicketData(int fromrangeDataa, int torangeDataa)
         {
-            var findData = db.StockRecieveInformations.Where(x => x.From_TicketNo == from ).SingleOrDefault();
+            var findData = db.StockRecieveInformations.Where(x => x.From_TicketNo == fromrangeDataa ).SingleOrDefault();
             return Json(findData == null, JsonRequestBehavior.AllowGet);
         }
 
@@ -69,19 +70,22 @@ namespace GSA_Management_Information_System.Controllers
 
         [HttpPost]
         public JsonResult StartingTicketData(int fromDataa)
-        {
+       {
             System.Threading.Thread.Sleep(200);
 
 
-
+            //var asdfg = db.StockIssueInformations.Where(a => a.From_TicketNo == a.From_TicketNo);
             var searchData = db.StockRecieveInformations.OrderByDescending(a=>a.SRecievedId).ToList();
 
             foreach (var item in searchData)
             {
+              
                 if(item.From_TicketNo <= fromDataa && item.To_TicketNo >= fromDataa)
                 {
                     //var test = "";
-                    return Json(1);
+                   // return Json(0); 
+                    return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+
                 }
                 
             }
@@ -89,49 +93,227 @@ namespace GSA_Management_Information_System.Controllers
             //StockRecieveInformation stockRecieveInformation = new StockRecieveInformation();
             //int count = DuplicateCount(stockRecieveInformation);
 
-            return Json(0);
-        
+            //return Json(1);
+            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+
         }
+
+
+
+
+        //Edit Method Starting Ticket check another receivecode
 
 
         [HttpPost]
-        public JsonResult EndingTicketData(int toDataa)
+        public JsonResult StartingTicketDataEdit(int fromDataa,string receiveCode)
         {
             System.Threading.Thread.Sleep(200);
-            var searchData = db.StockRecieveInformations.OrderByDescending(a => a.SRecievedId).ToList();
+
+
+            //var asdfg = db.StockIssueInformations.Where(a => a.From_TicketNo == a.From_TicketNo);
+            var searchData = db.StockRecieveInformations.Where(a => a.SRecieved_Code!=receiveCode).ToList();
+
 
             foreach (var item in searchData)
             {
-                if (item.From_TicketNo <= toDataa && item.To_TicketNo >= toDataa)
+
+                if (item.From_TicketNo <= fromDataa && item.To_TicketNo >= fromDataa)
                 {
                     //var test = "";
-                    return Json(1);
+                    // return Json(0); 
+                    return Json(new { success = false }, JsonRequestBehavior.AllowGet);  //Already Received
+
                 }
-             
+
             }
-           
-                return Json(0);
-           
+
+            //StockRecieveInformation stockRecieveInformation = new StockRecieveInformation();
+            //int count = DuplicateCount(stockRecieveInformation);
+
+            //return Json(1);
+            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+
         }
 
 
-      
 
 
-
-        //public JsonResult Betweencheck(int x)
+        //[HttpPost]
+        //public JsonResult EndingTicketData(int fromDataa,int toDataa)
         //{
-        //    var searchData = db.StockRecieveInformations.Where(x => x.From_TicketNo >= x  || x>=x.To_TicketNo).SingleOrDefault();
-        //    if (searchData != null)
-        //    {
+        //    System.Threading.Thread.Sleep(200);
+        //    var searchData = db.StockRecieveInformations.OrderByDescending(a => a.SRecievedId).ToList();
 
-        //        return Json(1);
-        //    }
-        //    else
+
+
+
+        //    foreach (var item in searchData)
         //    {
-        //        return Json(0);
+        //        if (item.From_TicketNo <= fromDataa)
+        //        {
+        //            if (item.From_TicketNo <= toDataa && item.To_TicketNo >= toDataa)
+        //            {
+        //                //var test = "";
+        //                int[] list = {item.From_TicketNo,item.To_TicketNo };
+        //                return Json(new { success = true, list }, JsonRequestBehavior.AllowGet);
+        //               // return Json(list);
+        //            }
+        //        }
+        //        else
+        //        {
+        //            if (item.From_TicketNo <= toDataa && item.To_TicketNo >= toDataa)
+        //            {
+        //                //var test = "";
+        //                return Json(false,"");
+        //            }
+        //        }
+
         //    }
+
+        //        return Json(true,"");
+
         //}
+
+
+        //check
+
+        [HttpPost]
+        public JsonResult EndingTicketData(int fromDataa, int toDataa)
+        {
+            System.Threading.Thread.Sleep(200);
+            int i = fromDataa;
+
+            List<int> availList = new List<int>();
+
+            List<int> rejectList = new List<int>();
+            for ( i=fromDataa; i<=toDataa; i++)
+            {
+                var sss = db.StockRecieveInformations.Where(a=>a.From_TicketNo <= i && a.To_TicketNo >= i).FirstOrDefault();
+                if (sss == null)
+                {
+                    int t = i;
+                    availList.Add(t);
+                    // return fromDataa;
+                }
+                else
+                {
+                    int tt = i;
+                    rejectList.Add(tt);
+
+                }
+            }
+
+            if (rejectList.Count() >= 1)
+            {
+                return Json(new { success = false, rejectList }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { success = true, availList }, JsonRequestBehavior.AllowGet);
+
+            }
+
+            //var asdfg = db.StockIssueInformations.Where(a => a.From_TicketNo == a.From_TicketNo);
+            //var searchData = db.StockRecieveInformations.OrderByDescending(a => a.SRecievedId).ToList();
+
+            //foreach (var item in searchData)
+            //{
+
+            //    int x = fromDataa;
+
+            //    if (x >= item.From_TicketNo && x <= item.To_TicketNo)  //   4...9876545-9876547...8
+            //    {
+
+            //        //var test = "";
+            //        return Json(0);  //available
+            //    }
+
+            //}
+
+            //StockRecieveInformation stockRecieveInformation = new StockRecieveInformation();
+            //int count = DuplicateCount(stockRecieveInformation);
+            
+
+        }
+
+        //Edit methlod ending ticket check which has been already taken someone
+
+        [HttpPost]
+        public JsonResult EndingTicketDataEdit(int fromDataa, int toDataa,string receiveCode)
+        {
+            System.Threading.Thread.Sleep(200);
+            int i = fromDataa;
+
+            List<int> availList = new List<int>();
+
+            List<int> rejectList = new List<int>();
+            for (i = fromDataa; i <= toDataa; i++)
+            {
+                var sss = db.StockRecieveInformations.Where(a => a.From_TicketNo <= i && a.To_TicketNo >= i && a.SRecieved_Code!= receiveCode).FirstOrDefault();
+                if (sss == null)
+                {
+                    int t = i;
+                    availList.Add(t);
+                    // return fromDataa;
+                }
+                else
+                {
+                    int tt = i;
+                    rejectList.Add(tt);
+
+                }
+            }
+
+            if (rejectList.Count() >= 1)
+            {
+                return Json(new { success = false, rejectList }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { success = true, availList }, JsonRequestBehavior.AllowGet);
+
+            }
+        }
+
+        //[HttpPost]
+        //public JsonResult EndingTicketData(int fromDataa, int toDataa)
+        //{
+        //    System.Threading.Thread.Sleep(200);
+        //    var searchData = db.StockRecieveInformations.OrderByDescending(a => a.SRecievedId).ToList();
+
+
+            //        foreach (var item in searchData)
+            //    {
+            //        if (searchData != null)
+            //   {
+
+            //        return Json(1);
+            //    }
+            //    else
+            //    {
+            //        return Json(0);
+            //    }
+            //}
+
+
+
+
+
+
+
+            //public JsonResult Betweencheck(int x)
+            //{
+            //    var searchData = db.StockRecieveInformations.Where(x => x.From_TicketNo >= x  || x>=x.To_TicketNo).SingleOrDefault();
+            //    if (searchData != null)
+            //    {
+
+            //        return Json(1);
+            //    }
+            //    else
+            //    {
+            //        return Json(0);
+            //    }
+            //}
 
         [HttpPost]
         public JsonResult GetCustomer(string Prefix)
@@ -164,9 +346,9 @@ namespace GSA_Management_Information_System.Controllers
         public ActionResult Create()
         {
 
-            String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
-            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
-            ViewBag.Entry_Date = today;
+            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
+            ////String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
+            //ViewBag.Entry_Date = today;
 
             String time = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
             //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
@@ -253,7 +435,7 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SRecievedId,SRecieved_Code,SR_Type,Trans_Date,Airlines_Code,From_TicketNo,To_TicketNo,Ticket_Quantity,Customer_Code,Remarks,Issued,Entry_Date")] StockRecieveInformation stockRecieveInformation)
+        public ActionResult Create(StockRecieveInformation stockRecieveInformation)
         {
 
             //var exists = (from c in db.StockRecieveInformations
@@ -281,6 +463,9 @@ namespace GSA_Management_Information_System.Controllers
             // int Ticket_Quantity = To_TicketNo.tos
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                stockRecieveInformation.Entry_By = LogedInUser;
+                stockRecieveInformation.Entry_Date = DateTime.Now;
                 db.StockRecieveInformations.Add(stockRecieveInformation);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -319,10 +504,13 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SRecievedId,SRecieved_Code,SR_Type,Trans_Date,Airlines_Code,From_TicketNo,To_TicketNo,Ticket_Quantity,Customer_Code,Remarks,Issued,Entry_Date")] StockRecieveInformation stockRecieveInformation)
+        public ActionResult Edit(StockRecieveInformation stockRecieveInformation)
         {
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                stockRecieveInformation.Entry_By = LogedInUser;
+                stockRecieveInformation.Entry_Date = DateTime.Now;
                 db.Entry(stockRecieveInformation).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

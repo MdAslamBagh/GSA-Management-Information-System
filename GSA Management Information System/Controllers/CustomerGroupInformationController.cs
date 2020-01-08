@@ -27,11 +27,11 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         [HttpGet]
-        public ActionResult Add()
+        public ActionResult Create()
         {
-            String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
-            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
-            ViewBag.Entry_Date = today;
+            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
+            ////String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
+            //ViewBag.Entry_Date = today;
             var list = new List<string>() { "Active", "Inactive" };
                 ViewBag.list = list;
                 return View();
@@ -40,13 +40,16 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(CustomerGroupInformation CustomerGroupInformation)
+        public ActionResult Create(CustomerGroupInformation CustomerGroupInformation)
         {
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
 
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                CustomerGroupInformation.Entry_By = LogedInUser;
+                CustomerGroupInformation.Entry_Date = DateTime.Now;
                 db.CustomerGroupInformations.Add(CustomerGroupInformation);
                 if (CustomerGroupInformation.Default_Code == false)
                 {
@@ -133,10 +136,13 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CustomerGroupId,Group_Code,Long_Desc,Status,Default_Code,Entry_Date")] CustomerGroupInformation customerGroupInformation)
+        public ActionResult Edit(CustomerGroupInformation customerGroupInformation)
         {
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                customerGroupInformation.Entry_By = LogedInUser;
+                customerGroupInformation.Entry_Date = DateTime.Now;
                 db.Entry(customerGroupInformation).State = EntityState.Modified;
                 var list = db.CustomerGroupInformations.Where(a => a.Group_Code != customerGroupInformation.Group_Code).ToList();
 

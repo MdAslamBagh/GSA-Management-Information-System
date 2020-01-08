@@ -115,13 +115,23 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         [HttpGet]
-        public ActionResult Add()
+        public ActionResult Create()
         {
+            //ViewBag.Branch_Name = new SelectList(db.CompanyInformations, "Branch_Name", "Branch_Name");
+           //var branchname = db.CompanyInformations.Where(a => a.Branch_Name == a.Branch_Name).FirstOrDefault();
+           // ViewBag.Branch_Name = branchname;
+            //List<CompanyInformation> Informations = db.CompanyInformations.ToList<CompanyInformation>();
+            //CompanyInformation informations = new CompanyInformation();
+            //informations = informations.FirstOrDefault();
+            //string f_Name = informations.Long_Desc;
+            //string f_Code = informations.Freighter_Code.ToString();
+           //ViewBag.Freighter_Name = f_Name;
+            //ViewBag.Freighter_Code = f_Code;
             return View();
         }
 
         [HttpPost]
-        public ActionResult Add(CompanyInformation companyInformation)
+        public ActionResult Create(CompanyInformation companyInformation)
         {
 
             string fileName = Path.GetFileNameWithoutExtension(companyInformation.Company_ImageUpload.FileName);
@@ -130,6 +140,11 @@ namespace GSA_Management_Information_System.Controllers
             companyInformation.Company_ImagePath = "~/Image/" + fileName;
             fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
             companyInformation.Company_ImageUpload.SaveAs(fileName);
+
+            var LogedInUser = User.Identity.Name;
+            var Entry_Date = System.DateTime.Now;
+            companyInformation.Entry_Date = Entry_Date;
+            companyInformation.Entry_By = LogedInUser;
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
 
@@ -148,22 +163,22 @@ namespace GSA_Management_Information_System.Controllers
             CompanyInformation companyInformation = new CompanyInformation();
             using (ApplicationDbContext db=new ApplicationDbContext())
             {
-                companyInformation=db.CompanyInformations.Where(x=>x.CompanyID==id).FirstOrDefault();
+                companyInformation=db.CompanyInformations.Where(x=>x.CompanyId==id).FirstOrDefault();
             }
             return View(companyInformation);
         }
 
-        // GET: CompanyInformation/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+        //// GET: CompanyInformation/Create
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
 
-        // POST: CompanyInformation/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        //// POST: CompanyInformation/Create
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+       // [HttpPost]
+        //[ValidateAntiForgeryToken]
         //public ActionResult Create([Bind(Include = "CompanyID,Company_Name,Company_Code,Branch_Name,Branch_Code,Company_Tin,Company_Address,Company_Postcode,Company_City,Company_Country,Company_ContacNo,Company_Fax,Company_Email,Company_Web,Company_Dialogue,Company_ImagePath")] CompanyInformation companyInformation)
         //{
         //    if (ModelState.IsValid)
@@ -205,25 +220,25 @@ namespace GSA_Management_Information_System.Controllers
 
         //}
 
-        public ActionResult Create(CompanyInformation companyInformation)
-        {
+        //public ActionResult Create(CompanyInformation companyInformation)
+        //{
 
-                    string fileName = Path.GetFileNameWithoutExtension(companyInformation.Company_ImageUpload.FileName);
-                    string extension = Path.GetExtension(companyInformation.Company_ImageUpload.FileName);
-                    fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-                    companyInformation.Company_ImagePath = "~/Image/" + fileName;
-                    fileName=Path.Combine(Server.MapPath("~/Image/"),fileName);
-            companyInformation.Company_ImageUpload.SaveAs(fileName);
-            using (ApplicationDbContext db = new ApplicationDbContext())
-            {
+        //            string fileName = Path.GetFileNameWithoutExtension(companyInformation.Company_ImageUpload.FileName);
+        //            string extension = Path.GetExtension(companyInformation.Company_ImageUpload.FileName);
+        //            fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+        //            companyInformation.Company_ImagePath = "~/Image/" + fileName;
+        //            fileName=Path.Combine(Server.MapPath("~/Image/"),fileName);
+        //    companyInformation.Company_ImageUpload.SaveAs(fileName);
+        //    using (ApplicationDbContext db = new ApplicationDbContext())
+        //    {
                 
-                    db.CompanyInformations.Add(companyInformation);
-                    db.SaveChanges();
-                }
-            ModelState.Clear();
+        //            db.CompanyInformations.Add(companyInformation);
+        //            db.SaveChanges();
+        //        }
+        //    ModelState.Clear();
 
-                return View();        
-        }
+        //        return View();        
+        //}
         // GET: CompanyInformation/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -236,6 +251,8 @@ namespace GSA_Management_Information_System.Controllers
             {
                 return HttpNotFound();
             }
+
+
             return View(companyInformation);
         }
 
@@ -248,6 +265,10 @@ namespace GSA_Management_Information_System.Controllers
         {
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                var Entry_Date = System.DateTime.Now;
+                companyInformation.Entry_Date = Entry_Date;
+                companyInformation.Entry_By = LogedInUser;
                 db.Entry(companyInformation).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -261,7 +282,7 @@ namespace GSA_Management_Information_System.Controllers
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                CompanyInformation CompanyInformations = db.CompanyInformations.Where(x => x.CompanyID == id).FirstOrDefault<CompanyInformation>();
+                CompanyInformation CompanyInformations = db.CompanyInformations.Where(x => x.CompanyId == id).FirstOrDefault<CompanyInformation>();
                 db.CompanyInformations.Remove(CompanyInformations);
                 db.SaveChanges();
                 return Json(new { success = true, message = "Deleted Successfully" }, JsonRequestBehavior.AllowGet);

@@ -11,13 +11,12 @@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-horizontal">
         <input type="hidden" name="SIssuedCode" value="@ViewBag.SIssuedCode" />
-        <input type="hidden" name="Entry_Date" value="@ViewBag.Entry_Date" />
 
         <div class="container">
             <div class="card ">
                 <div class="card-header bg-info">Stock Issue Information</div>
                 <div class="row">
-                    <div class="form-group">                  
+                    <div class="form-group">
                         <div class="form-group col-md-10 col-sm-12 ">
                             <label for="controllername" class="col-md-3 col-sm-5">SIssued_Code<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">
@@ -48,7 +47,7 @@
                                 @Html.ValidationMessageFor(model => model.SRecieved_Code, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                
+
                         <div class="form-group col-md-10 col-sm-12 ">
                             @Html.LabelFor(model => model.Stock_Type, htmlAttributes: new { @class = "hidden" })
                             <div class="col-md-6 col-sm-7">
@@ -61,20 +60,31 @@
                         <div class="form-group col-md-10 col-sm-12 ">
                             <label for="controllername" class="col-md-3 col-sm-5">From_TicketNo<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">
-                                @Html.EditorFor(model => model.From_TicketNo, new { htmlAttributes = new { @class = "form-control", @MaxLength = "7", id = "fromticketNo" } })
+                                @Html.EditorFor(model => model.From_TicketNo, new { htmlAttributes = new { @class = "form-control", id = "fromticketNo", @maxlength = "7", onchange = "StartingTicketcheck()" } })
                                 @Html.ValidationMessageFor(model => model.From_TicketNo, "", new { @class = "text-danger" })
                             </div>
-
+                        </div>
+                        <div class="form-group col-md-10 col-sm-6 ">
+                            <label class="col-sm-3"></label>
+                            <div class="col-md-6 col-sm-7">
+                                <p id="Status" />
+                            </div>
                         </div>
 
                         <div class="form-group col-md-10 col-sm-12 ">
                             <label for="controllername" class="col-md-3 col-sm-5">To_TicketNo<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">
-                                @Html.EditorFor(model => model.To_TicketNo, new { htmlAttributes = new { @class = "form-control", @MaxLength = "7", id = "toticketNo" } })
+                                @Html.EditorFor(model => model.To_TicketNo, new { htmlAttributes = new { @class = "form-control", id = "toticketNo", @maxlength = "7", onchange = "EndingTicketCheck()" } })
                                 @Html.ValidationMessageFor(model => model.To_TicketNo, "", new { @class = "text-danger" })
                             </div>
-
                         </div>
+                        <div class="form-group col-md-10 col-sm-6 ">
+                            <label class="col-sm-3"></label>
+                            <div class="col-md-6 col-sm-7">
+                                <p id="Statuss" />
+                            </div>
+                        </div>
+
 
                         <div class="form-group col-md-10 col-sm-12 ">
                             <label for="controllername" class="col-md-3 col-sm-5">Ticket_Quantity<font size="2px" color="red">*</font></label>
@@ -92,7 +102,7 @@
                             </div>
                         </div>
 
-                 
+
                         <div class="form-group col-md-10 col-sm-12 ">
                             <label for="controllername" class="col-md-3 col-sm-5">Transaction_Status<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">
@@ -185,7 +195,8 @@
                         ticketQuantity = data.Ticket_Quantity;
                         FromTicketNoo = data.From_TicketNo;
                         ToTicketNoo = data.To_TicketNo;
-
+                        StartingTicketcheck();
+                        EndingTicketCheck();
 
                     },
                 });
@@ -223,31 +234,10 @@
                 var max_chars = 7;
                 if ($(this).val().length >= max_chars) {
                     $(this).val($(this).val().substr(0, max_chars));
-
-                    var to = FromTicketNoo;
-                    var m = to.toString();
-                    var to = ToTicketNoo;
-                    var n = to.toString();
-
-                    var fromData = $('#fromticketNo').val();
-                    // var toData = $('#toticketNo').val();
-
-                    if (fromData < m) {
-                        swal("The Stock Receive Range must be in between", "[" + m + "-" + n + "]");
-
-
-                    }
-
-
-
+              
 
                 }
 
-                //var input = $('#fromticketNo').val().length;
-                //if (input > 7) {
-                //    swal("Warning!!", "fromTicket number must be 7 digit !", "warning");
-
-                // }
                 var fromData = $('#fromticketNo').val();
                 // Var quantty = $('#ticketquantity').val();
 
@@ -271,22 +261,6 @@
                 var max_chars = 7;
                 if ($(this).val().length >= max_chars) {
                     $(this).val($(this).val().substr(0, max_chars));
-
-                    var to = FromTicketNoo;
-                    var m = to.toString();
-                    var to = ToTicketNoo;
-                    var n = to.toString();
-
-                    // var fromData = $('#fromticketNo').val();
-                    var toData = $('#toticketNo').val();
-                    if (toData > n) {
-                        swal("The Stock Receive Range must be in between", "[" + m + "-" + n + "]");
-
-
-                    }
-
-
-
                 }
 
                 printResult();
@@ -415,6 +389,193 @@
         })
     </script>
 }
+
+
+
+
+<script>
+
+        function StartingTicketcheck() {
+
+            $("#Status").html("checking...........");
+
+            $.post("@Url.Action("StartingTicketData", "StockIssueInformation")",
+
+            {
+                fromdataa: $('#fromticketNo').val(),
+                toDataa: $('#toticketNo').val()
+
+            },
+            function (result) {
+                //alert(result);
+                if (result.success == true) {
+
+
+                    var to = FromTicketNoo;
+                    var m = to.toString();
+                    var to = ToTicketNoo;
+                    var n = to.toString();
+                    var fromData = $('#fromticketNo').val();
+                    // var toData = $('#toticketNo').val();
+
+                    if (fromData < m) {
+                        $("#Status").html('<font color="Red">Range Must be Between [' + m + ' - ' + n + ']</font > ');
+                        // $("#Status").html('<font color="Red">Range must be Between. Pease try another."</font>');
+                        $('#fromticketNo').css("border-color", "Red");
+                        //swal("The Stock Receive Range must be in between", "[" + m + "-" + n + "]");
+
+
+                    }
+                    else
+
+
+                    $("#Status").html('<font color="Green">Ticket Available ! You Can take it</font>');
+                    $('#fromticketNo').css("border-color", "Green");
+                }
+                else {
+                    //console.log(result.rejectList);
+                    //alert(result.rejectList.length);
+                    if (result.rejectList.length > 0) {
+                        $("#Statuss").html('<font color="Red">Ticket No ' + result.rejectList + ' already Issued.Please try another.</font > ');
+                        $('#fromticketNo').css("border-color", "Red");
+                    }
+                    else {
+                        $("#Statuss").html('<font color="Red">Ending ticket already Issued. Please try another.</font>');
+                        $('#fromticketNo').css("border-color", "Red");
+                    }
+
+
+                }
+            });
+
+         }
+
+
+         function EndingTicketCheck() {
+
+            $("#Statuss").html("checking...........");
+
+            $.post("@Url.Action("EndingTicketData", "StockIssueInformation")",
+
+            {
+                fromdataa: $('#fromticketNo').val(),
+                toDataa: $('#toticketNo').val()
+
+            },
+            function (result) {
+                //alert(result);
+                if (result.success == true) {
+
+
+                    var to = FromTicketNoo;
+                    var m = to.toString();
+                    var to = ToTicketNoo;
+                    var n = to.toString();
+
+                    // var fromData = $('#fromticketNo').val();
+                    var toData = $('#toticketNo').val();
+                    if (toData > n) {
+                        $("#Statuss").html('<font color="Red">Range Must be Between [' + m + ' - ' + n + ']</font > ');
+
+
+                    }
+                    else
+
+
+                    $("#Statuss").html('<font color="Green">Ticket Available ! You Can take it</font>');
+                    $('#toticketNo').css("border-color", "Green");
+                }
+                else {
+                    //console.log(result.rejectList);
+                    //alert(result.rejectList.length);
+                    if (result.rejectList.length > 0) {
+                        $("#Statuss").html('<font color="Red">Ticket No ' + result.rejectList + ' already Issued.Please try another.</font > ');
+                        $('#toticketNo').css("border-color", "Red");
+                    }
+                    else {
+                        $("#Statuss").html('<font color="Red">Ending ticket already Issued. Please try another.</font>');
+                        $('#toticketNo').css("border-color", "Red");
+                    }
+
+
+                }
+            });
+
+         }
+
+
+
+         @*function RangeTicketCheck() {
+
+            $("#Statuss").html("checking...........");
+
+            $.post("@Url.Action("RangeTicketData", "StockRecieveInformation")",
+
+            {
+                fromrangeDataa: $('#fromTicket').val(),
+                torangeDataa: $('#toTicket').val()
+
+
+            },
+            function (result) {
+                if (result == 1) {
+
+                    $("#Statuss").html('<font color="Green">Ticket Available ! You Can take it</font>');
+                    $('#toTicket').css("border-color", "Green");
+                }
+                else {
+
+                    $("#Statuss").html('<font color="Red">Ending ticket already received. Pease try another."</font>');
+                    $('#toTicket').css("border-color", "Red");
+
+
+                }
+            });
+
+         }*@
+
+
+
+
+         var fromSuccess = true;
+         var toSuccess = true;
+         function checkingFrom() {
+             $.post("@Url.Action("StartingTicketData", "StockRecieveInformation")",
+                 {
+                     fromdataa: $('#fromTicket').val()
+                 },
+                 function (result) {
+                     if (result.success == true) { fromSuccess = true; checkingTo(); }
+                     if (result.success == false) { fromSuccess = false; doSubmit() };
+                 });
+         }
+         function checkingTo() {
+             $.post("@Url.Action("EndingTicketData", "StockRecieveInformation")",
+                 {
+                     fromdataa: $('#fromTicket').val(),
+                     toDataa: $('#toTicket').val()
+
+                 },
+            function (result) {
+                if (result.success == true) { toSuccess = true; doSubmit(); }
+                if (result.success == false) { toSuccess = false; doSubmit(); }
+
+            });
+         }
+
+         function doSubmit() {
+             //alert("ok");
+             if (fromSuccess && toSuccess) {
+                 $('#stockFormId').submit();
+             } else {
+                $('#stockFormId').failure();
+                 swal("Warning!!", "please fill the form!", "warning");
+                 //$('#').submit();
+                 //alert("failure")
+
+             }
+         }
+</script>
 
 
 <script>

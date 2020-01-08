@@ -33,30 +33,30 @@ namespace GSA_Management_Information_System.Controllers
 
             ReportDocument rd = new ReportDocument();
             //D:\project\Software\GSA Management Information System\Reports\rptTest.rpt
-            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "crpCargoSalesSummeryAgentwise.rpt"));
+            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "gsacargoreport.rpt"));
             rd.SetDataSource(db.CargoSalesInformations.Select(p => new
             {
-                Id = p.Airway_No,
-                Name = p.Freighter_Code,
-                Price = p.AMS,
-                Quantity = p.HDS
+                MAWB = p.MAWB,
+                Airway_No = p.Airway_No,
+      
             }).ToList());
             Response.Buffer = false;
             Response.ClearContent();
             Response.ClearHeaders();
             Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-            stream.Seek(0, SeekOrigin.Begin);
-            return File("application/pdf", "ListProducts.pdf");
+            //stream.Seek(0, SeekOrigin.Begin);
+            //return File("application/pdf", "ListProducts.pdf");
+            return File(stream, "application/pdf");
 
         }
 
 
         [HttpGet]
-        public ActionResult Add()
+        public ActionResult Create()
         {
-            String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
-            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
-            ViewBag.Entry_Date = today;
+            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
+            ////String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
+            //ViewBag.Entry_Date = today;
             var list = new List<string>() { "Active", "Inactive" };
                 ViewBag.list = list;
 
@@ -64,13 +64,16 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(CustomerTypeInformation CustomerTypeInformation)
+        public ActionResult Create(CustomerTypeInformation CustomerTypeInformation)
         {
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
 
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                CustomerTypeInformation.Entry_By = LogedInUser;
+                CustomerTypeInformation.Entry_Date = DateTime.Now;
                 db.CustomerTypeInformations.Add(CustomerTypeInformation);
 
                 if (CustomerTypeInformation.Default_Code == false)
@@ -192,10 +195,13 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CustomerTypeId,Type_Code,Long_Desc,Status,Default_Code,Entry_Date")] CustomerTypeInformation CustomerTypeInformation)
+        public ActionResult Edit( CustomerTypeInformation CustomerTypeInformation)
         {
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                CustomerTypeInformation.Entry_By = LogedInUser;
+                CustomerTypeInformation.Entry_Date = DateTime.Now;
                 db.Entry(CustomerTypeInformation).State = EntityState.Modified;
 
                 var list = db.CustomerTypeInformations.Where(a=>a.Type_Code != CustomerTypeInformation.Type_Code).ToList();

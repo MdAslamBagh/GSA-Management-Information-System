@@ -64,6 +64,342 @@ namespace GSA_Management_Information_System.Controllers
             return Json(new { data = Informations }, JsonRequestBehavior.AllowGet);
 
         }
+
+
+        //starting ticket checking if have been issued
+        //[HttpPost]
+        //public JsonResult StartingTicketData(int fromDataa)
+        //{
+        //    System.Threading.Thread.Sleep(200);
+
+
+        //    //var asdfg = db.StockIssueInformations.Where(a => a.From_TicketNo == a.From_TicketNo);
+        //    var searchData = db.StockIssueInformations.OrderByDescending(a => a.SIssueId).ToList();
+
+        //    foreach (var item in searchData)
+        //    {
+
+        //        if (item.From_TicketNo <= fromDataa && item.To_TicketNo >= fromDataa)
+        //        {
+        //            //var test = "";
+        //            // return Json(0); 
+        //            return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+
+        //        }
+
+        //    }
+
+        //    //StockRecieveInformation stockRecieveInformation = new StockRecieveInformation();
+        //    //int count = DuplicateCount(stockRecieveInformation);
+
+        //    //return Json(1);
+        //    return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+
+        //}
+
+
+
+        [HttpPost]
+        public JsonResult StartingTicketData(int fromDataa, int toDataa)
+        {
+            System.Threading.Thread.Sleep(200);
+            int i = fromDataa;
+
+            List<int> availList = new List<int>();
+
+            List<int> rejectList = new List<int>();
+            for (i = fromDataa; i <= toDataa; i++)
+            {
+                var sss = db.StockIssueInformations.Where(a => a.From_TicketNo <= i && a.To_TicketNo >= i).FirstOrDefault();
+                if (sss == null)
+                {
+                    int t = i;
+                    availList.Add(t);
+                    // return fromDataa;
+                }
+                else
+                {
+                    int tt = i;
+                    rejectList.Add(tt);
+
+                }
+            }
+
+            if (rejectList.Count() >= 1)
+            {
+                return Json(new { success = false, rejectList }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { success = true, availList }, JsonRequestBehavior.AllowGet);
+
+            }
+
+            //var asdfg = db.StockIssueInformations.Where(a => a.From_TicketNo == a.From_TicketNo);
+            //var searchData = db.StockRecieveInformations.OrderByDescending(a => a.SRecievedId).ToList();
+
+            //foreach (var item in searchData)
+            //{
+
+            //    int x = fromDataa;
+
+            //    if (x >= item.From_TicketNo && x <= item.To_TicketNo)  //   4...9876545-9876547...8
+            //    {
+
+            //        //var test = "";
+            //        return Json(0);  //available
+            //    }
+
+            //}
+
+            //StockRecieveInformation stockRecieveInformation = new StockRecieveInformation();
+            //int count = DuplicateCount(stockRecieveInformation);
+
+
+        }
+
+
+        [HttpPost]
+        //public JsonResult StartingTicketDataEdit(int fromDataa, int toDataa,string issueCode,string srreceiveCode,int fromTicket,int toTicket)
+       public JsonResult StartingTicketDataEdit(int fromDataa, int toDataa, string issueCode, string srreceiveCode)
+        {
+            var result = (from sr in db.StockRecieveInformations
+                          join si in db.StockIssueInformations on sr.SRecieved_Code equals si.SRecieved_Code where si.SIssued_Code!= issueCode
+                          select new
+                          {
+                              SIssued_Code=si.SIssued_Code,
+                              SRecieved_Code=sr.SRecieved_Code,
+                              Receive_Fromticket = sr.From_TicketNo,
+                              Receive_Toticket = sr.To_TicketNo,
+                              Received_TicketQuantity = sr.Ticket_Quantity,
+                              Issued_FromTicket = si.From_TicketNo,
+                              Issued_ToTicket = si.To_TicketNo,
+                              Issued_TicketQuantity = si.Ticket_Quantity
+                           
+                          }).ToList();
+
+
+            var tttt = result.ToList();
+            //var ssss = tttt.Where(a => a.SRecieved_Code == srreceiveCode).FirstOrDefault();
+            var pppp = db.StockRecieveInformations.Where(a => a.SRecieved_Code == srreceiveCode).FirstOrDefault();
+
+
+
+            //var From = fromTicket;
+            ////var receiveFromTicket = ssss.Receive_Fromticket;
+            ////var receiveToTicket = ssss.Receive_Toticket;
+            //var To = toTicket;
+            //var receiveFromTicket = pppp.From_TicketNo;
+            //var receiveToTicket = pppp.To_TicketNo;
+
+            if(pppp !=null)
+            //if (From < receiveFromTicket)
+            {
+                return Json(new { success = 1, pppp }, JsonRequestBehavior.AllowGet);   //range cross
+
+            }
+            else
+
+            System.Threading.Thread.Sleep(200);
+            int i = fromDataa;
+
+            List<int> availList = new List<int>();
+
+            List<int> rejectList = new List<int>();
+           
+            
+            for (i = fromDataa; i <= toDataa; i++)
+            {
+                var ttt = result.ToList();
+                var sss = ttt.Where(a => a.Issued_FromTicket <= i && a.Issued_ToTicket >= i).FirstOrDefault();
+                if (sss == null)
+                {
+                    int t = i;
+         
+                    availList.Add(t);
+                    // return fromDataa;
+                }
+                else
+                {
+                    int tt = i;
+                    rejectList.Add(tt);
+
+                }
+            }
+
+            if (rejectList.Count() >= 1)
+            {
+                return Json(new { success = 2, rejectList }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { success = 3, availList}, JsonRequestBehavior.AllowGet);
+
+            }
+
+          
+
+
+        }
+
+
+
+        [HttpPost]
+        public JsonResult EndingTicketData(int fromDataa, int toDataa,string issueCode)
+        {
+            System.Threading.Thread.Sleep(200);
+            int i = fromDataa;
+
+            List<int> availList = new List<int>();
+
+            List<int> rejectList = new List<int>();
+            for (i = fromDataa; i <= toDataa; i++)
+            {
+                var sss = db.StockIssueInformations.Where(a => a.From_TicketNo <= i && a.To_TicketNo >= i && a.SIssued_Code != issueCode).FirstOrDefault();
+                if (sss == null)
+                {
+                    int t = i;
+                    availList.Add(t);
+                    // return fromDataa;
+                }
+                else
+                {
+                    int tt = i;
+                    rejectList.Add(tt);
+
+                }
+            }
+
+            if (rejectList.Count() >= 1)
+            {
+                return Json(new { success = false, rejectList }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { success = true, availList }, JsonRequestBehavior.AllowGet);
+
+            }
+
+            //var asdfg = db.StockIssueInformations.Where(a => a.From_TicketNo == a.From_TicketNo);
+            //var searchData = db.StockRecieveInformations.OrderByDescending(a => a.SRecievedId).ToList();
+
+            //foreach (var item in searchData)
+            //{
+
+            //    int x = fromDataa;
+
+            //    if (x >= item.From_TicketNo && x <= item.To_TicketNo)  //   4...9876545-9876547...8
+            //    {
+
+            //        //var test = "";
+            //        return Json(0);  //available
+            //    }
+
+            //}
+
+            //StockRecieveInformation stockRecieveInformation = new StockRecieveInformation();
+            //int count = DuplicateCount(stockRecieveInformation);
+
+
+        }
+
+        //Ending Ticket checking if already been issued 
+
+        //Edit methlod ending ticket check which has been already taken someone
+
+        [HttpPost]
+        //public JsonResult StartingTicketDataEdit(int fromDataa, int toDataa,string issueCode,string srreceiveCode,int fromTicket,int toTicket)
+        public JsonResult EndingTicketDataEdit(int fromDataa, int toDataa, string issueCode, string srreceiveCode)
+        {
+            var result = (from sr in db.StockRecieveInformations
+                          join si in db.StockIssueInformations on sr.SRecieved_Code equals si.SRecieved_Code
+                          where si.SIssued_Code != issueCode
+                          select new
+                          {
+                              SIssued_Code = si.SIssued_Code,
+                              SRecieved_Code = sr.SRecieved_Code,
+                              Receive_Fromticket = sr.From_TicketNo,
+                              Receive_Toticket = sr.To_TicketNo,
+                              Received_TicketQuantity = sr.Ticket_Quantity,
+                              Issued_FromTicket = si.From_TicketNo,
+                              Issued_ToTicket = si.To_TicketNo,
+                              Issued_TicketQuantity = si.Ticket_Quantity
+
+                          }).ToList();
+
+
+            var tttt = result.ToList();
+            //var ssss = tttt.Where(a => a.SRecieved_Code == srreceiveCode).FirstOrDefault();
+            var pppp = db.StockRecieveInformations.Where(a => a.SRecieved_Code == srreceiveCode).FirstOrDefault();
+
+
+
+            //var From = fromTicket;
+            ////var receiveFromTicket = ssss.Receive_Fromticket;
+            ////var receiveToTicket = ssss.Receive_Toticket;
+            //var To = toTicket;
+            //var receiveFromTicket = pppp.From_TicketNo;
+            //var receiveToTicket = pppp.To_TicketNo;
+
+            if (pppp != null)
+            //if (From < receiveFromTicket)
+            {
+                return Json(new { success = 1, pppp }, JsonRequestBehavior.AllowGet);   //range cross
+
+            }
+            else
+
+                System.Threading.Thread.Sleep(200);
+            int i = fromDataa;
+
+            List<int> availList = new List<int>();
+
+            List<int> rejectList = new List<int>();
+
+
+            for (i = fromDataa; i <= toDataa; i++)
+            {
+                var ttt = result.ToList();
+                var sss = ttt.Where(a => a.Issued_FromTicket <= i && a.Issued_ToTicket >= i).FirstOrDefault();
+                if (sss == null)
+                {
+                    int t = i;
+
+                    availList.Add(t);
+                    // return fromDataa;
+                }
+                else
+                {
+                    int tt = i;
+                    rejectList.Add(tt);
+
+                }
+            }
+
+            if (rejectList.Count() >= 1)
+            {
+                return Json(new { success = 2, rejectList }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { success = 3, availList }, JsonRequestBehavior.AllowGet);
+
+            }
+
+
+
+
+        }
+
+
+
+        //StockRecieveInformation stockRecieveInformation = new StockRecieveInformation();
+        //int count = DuplicateCount(stockRecieveInformation);
+
+
+
+
+
         //..................................
 
         public JsonResult GetReceivedCodeById(string srecieved_Code)
@@ -74,20 +410,24 @@ namespace GSA_Management_Information_System.Controllers
             //informationss.Ticket_Quantity = informationss.Ticket_Quantity.valu
             var receivedcode = db.StockRecieveInformations.Where(m => m.SRecieved_Code == srecieved_Code).FirstOrDefault();
 
-            if (receivedcode != null)
-            {
-                int fromticketno = receivedcode.From_TicketNo;
-                int toticketno = receivedcode.To_TicketNo;
-                int quantity = receivedcode.Ticket_Quantity;
 
 
 
-                // var query = from e in db.StockRecieveInformations join d in db.StockIssueInformations on e.SRecieved_Code equals d.SRecieved_Code
-                //    select new { e.SRecieved_Code};
 
 
+            // var query = from e in db.StockRecieveInformations join d in db.StockIssueInformations on e.SRecieved_Code equals d.SRecieved_Code
+            //    select new { e.SRecieved_Code};
 
-                var r = db.StockIssueInformations.Where(a => a.SRecieved_Code == srecieved_Code).ToList();
+
+            
+            //var r = db.StockIssueInformations.Where(a => a.SRecieved_Code == srecieved_Code).ToList();
+            //if (r.Count!=0)
+            //{
+            //    int fromticketno = receivedcode.From_TicketNo;
+            //    int toticketno = receivedcode.To_TicketNo;
+            //    int quantity = receivedcode.Ticket_Quantity;
+
+
                 //var result = (from p in db.StockRecieveInformations
                 //              join o in db.StockIssueInformations on p.SRecieved_Code equals o.SRecieved_Code
                 //              where o.SRecieved_Code == srecieved_Code
@@ -104,23 +444,25 @@ namespace GSA_Management_Information_System.Controllers
 
 
 
-                int Issuequantity = 0;
+                //int Issuequantity = 0;
+                ////int fromticektttt;
 
-                foreach (var item in r)
-                {
+                //foreach (var item in r)
+                //{
 
-                   Issuequantity += item.Ticket_Quantity;
+                //   Issuequantity += item.Ticket_Quantity;
+
                    
                  
-                }
-                int totalleftquantity = receivedcode.Ticket_Quantity - Issuequantity;
-                int firsttoticket = (receivedcode.To_TicketNo - totalleftquantity) + 1;
-                int lasttoticket = receivedcode.To_TicketNo;
+                //}
+                //int totalleftquantity = receivedcode.Ticket_Quantity - Issuequantity;
+                //int firsttoticket = (receivedcode.To_TicketNo - totalleftquantity) + 1;
+                //int lasttoticket = receivedcode.To_TicketNo;
 
 
-                receivedcode.Ticket_Quantity = totalleftquantity;
-                receivedcode.From_TicketNo = firsttoticket;
-                receivedcode.To_TicketNo = lasttoticket;
+                //receivedcode.Ticket_Quantity = totalleftquantity;
+                //receivedcode.From_TicketNo = firsttoticket;
+                //receivedcode.To_TicketNo = lasttoticket;
 
                 return Json(receivedcode, JsonRequestBehavior.AllowGet);
 
@@ -185,30 +527,30 @@ namespace GSA_Management_Information_System.Controllers
             //ViewBag.To_TicketNo = lasttoticket.ToString();
             //ViewBag.Ticket_Quantity = totalleftquantity.ToString();
 
-            return Json(receivedcode, JsonRequestBehavior.AllowGet);
+        //    return Json(receivedcode, JsonRequestBehavior.AllowGet);
 
 
-            //int issuefromticketno = result.From_TicketNo;
-            //int issuetoticketno = result.To_TicketNo;
-            //int issuequantity = result.Ticket_Quantity;
-
-
-
-            // receivedcode.SIssued_Code = receivedcode.SIssued_Code;
-            //stockIssueDetailInformations.Ticket_No = i;
-            //stockIssueDetailInformations.Status = "Issued";
-            //db.StockIssueDetailInformations.Add(stockIssueDetailInformations);
-            //stockIssueDetailInformations.SDetailsId = 1;
-
-            //}
+        //    //int issuefromticketno = result.From_TicketNo;
+        //    //int issuetoticketno = result.To_TicketNo;
+        //    //int issuequantity = result.Ticket_Quantity;
 
 
 
-            //ViewBag.Status = receivedcode.Ticket_Quantity;
+        //    // receivedcode.SIssued_Code = receivedcode.SIssued_Code;
+        //    //stockIssueDetailInformations.Ticket_No = i;
+        //    //stockIssueDetailInformations.Status = "Issued";
+        //    //db.StockIssueDetailInformations.Add(stockIssueDetailInformations);
+        //    //stockIssueDetailInformations.SDetailsId = 1;
 
-            //ViewBag.Transaction_Status = "Issued";
+        //    //}
 
-        }
+
+
+        //    //ViewBag.Status = receivedcode.Ticket_Quantity;
+
+        //    //ViewBag.Transaction_Status = "Issued";
+
+        //}
 
 
         public JsonResult GetQuantityById(int quantity)
@@ -219,22 +561,22 @@ namespace GSA_Management_Information_System.Controllers
             return Json(receivedcode, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
-        public JsonResult StartingTicketData(int fromDataa)
-        {
-            System.Threading.Thread.Sleep(200);
-            var searchData = db.StockRecieveInformations.Where(x => x.From_TicketNo > fromDataa).SingleOrDefault();
-            if (searchData != null)
-            {
+        //[HttpPost]
+        //public JsonResult StartingTicketData(int fromDataa)
+        //{
+        //    System.Threading.Thread.Sleep(200);
+        //    var searchData = db.StockRecieveInformations.Where(x => x.From_TicketNo > fromDataa).SingleOrDefault();
+        //    if (searchData != null)
+        //    {
 
-                return Json(1);
-            }
-            else
-            {
-                return Json(0);
-            }
+        //        return Json(1);
+        //    }
+        //    else
+        //    {
+        //        return Json(0);
+        //    }
 
-        }
+        //}
 
         [HttpPost]
         public JsonResult TicketQuantity(int quantitydataa)
@@ -310,9 +652,9 @@ namespace GSA_Management_Information_System.Controllers
 
         {
 
-            String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
+            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
             //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
-            ViewBag.Entry_Date = today;
+            //ViewBag.Entry_Date = today;
             //ViewBag.Airlines_Code = new SelectList(db.AirlinesInformations.Where(a => a.Default_Code == true), "Airlines_Code", "Long_Desc");
             ViewBag.Airlines_Code = new SelectList(db.AirlinesInformations, "Airlines_Code", "Long_Desc");
             ViewBag.StockRecievelist = db.StockRecieveInformations.ToList();
@@ -575,8 +917,10 @@ namespace GSA_Management_Information_System.Controllers
 
                 //b.StockIssueDetailInformatmons.Add()
 
-              
 
+                var LogedInUser = User.Identity.Name;
+                stockIssueInformation.Entry_By = LogedInUser;
+                stockIssueInformation.Entry_Date = DateTime.Now;
                 db.StockIssueInformations.Add(stockIssueInformation);
 
 

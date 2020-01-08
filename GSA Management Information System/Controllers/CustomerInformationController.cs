@@ -45,9 +45,9 @@ namespace GSA_Management_Information_System.Controllers
         // GET: CustomerInformation/Create
         public ActionResult Create()
         {
-            String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
-            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
-            ViewBag.Entry_Date = today;
+            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
+            ////String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
+            //ViewBag.Entry_Date = today;
 
             var LogedInUser = User.Identity.Name;
             ViewBag.Entry_By = LogedInUser;
@@ -115,6 +115,10 @@ namespace GSA_Management_Information_System.Controllers
             ViewBag.list = list;
             if (ModelState.IsValid)
             {
+
+                var LogedInUser = User.Identity.Name;
+                customerInformation.Entry_By = LogedInUser;
+                customerInformation.Entry_Date = DateTime.Now;
                 db.CustomerInformations.Add(customerInformation);
 
                 if (customerInformation.Default_Code == false)
@@ -143,8 +147,8 @@ namespace GSA_Management_Information_System.Controllers
         // GET: CustomerInformation/Edit/5
         public ActionResult Edit(int? id)
         {
-            var LogedInUser = User.Identity.Name;
-            ViewBag.Entry_By = LogedInUser;
+            //var LogedInUser = User.Identity.Name;
+            //ViewBag.Entry_By = LogedInUser;
 
             if (id == null)
             {
@@ -171,6 +175,9 @@ namespace GSA_Management_Information_System.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit( CustomerInformation customerInformation)
         {
+            var LogedInUser = User.Identity.Name;
+            customerInformation.Entry_By = LogedInUser;
+            customerInformation.Entry_Date = DateTime.Now;
             if (ModelState.IsValid)
             {
                 db.Entry(customerInformation).State = EntityState.Modified;
