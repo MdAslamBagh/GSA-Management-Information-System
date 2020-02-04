@@ -13,13 +13,13 @@ namespace GSA_Management_Information_System.Models
         [Key]
         public int CompanyId { get; set; }
 
-        [Required(ErrorMessage = "This field can not be empty.")]
+       // [Required(ErrorMessage = "This field can not be empty.")]
         public string Company_Name { get; set; }
 
-        [Required(ErrorMessage = "This field can not be empty.")]
+       // [Required(ErrorMessage = "This field can not be empty.")]
         public string Company_Code { get; set; }
 
-        [Required(ErrorMessage = "This field can not be empty.")]
+      //  [Required(ErrorMessage = "This field can not be empty.")]
         public string Branch_Name { get; set; }
 
         [Required(ErrorMessage = "This field can not be empty.")]
@@ -42,6 +42,7 @@ namespace GSA_Management_Information_System.Models
         public string Company_Dialogue { get; set; }
         //[Required(ErrorMessage = "This field can not be empty.")]
         public DateTime Entry_Date { get; set; }
+        public bool Default_Code { get; set; }
         [DisplayName("Image")]
         public string Company_ImagePath { get; set; }
 

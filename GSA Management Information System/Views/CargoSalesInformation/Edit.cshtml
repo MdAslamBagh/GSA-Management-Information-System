@@ -18,7 +18,7 @@
     <div class="form-horizontal">
         <div class="container">
             <div class="card ">
-                <div class="card-header bg-info">Cargo Sales Update</div>
+                <div class="card-header bg-info style="height: 4rem;"">Cargo Sales Update</div>
                 <div class="card text-white  mb-3">
 
                     <div class="col-sm-3">
@@ -605,7 +605,7 @@
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <div class="required">
-                                                        @Html.EditorFor(model => model.Others, new { htmlAttributes = new { @class = "form-control", id = "others", onkeyup = "totalSub()" } })
+                                                        @Html.EditorFor(model => model.Others_Charges, new { htmlAttributes = new { @class = "form-control", id = "others", onkeyup = "totalSub()" } })
                                                         @*<input id="others" name="Others" min="0" onkeyup="totalSub()" placeholder="Others" class="form-control" type="text">*@
                                                     </div>
                                                 </div>
@@ -805,8 +805,10 @@
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <div class="required">
-                                                            @Html.EditorFor(model => model.CheckSSCVat, new { htmlAttributes = new { @class = "form-control", id = "checksscvat", onkeyup = "totalSub()" } })
-                                                            @*<input type="checkbox" onkeyup="totalSub()" name="CheckSSCVat" id="checksscvat">*@
+                                                            <div class="checkbox">
+                                                                @Html.EditorFor(model => model.IsSSCVAT, new { htmlAttributes = new { @class = "form-control", id = "checksscvat", onkeyup = "totalSub()" } })
+                                                                @*<input type="checkbox" onkeyup="totalSub()" name="CheckSSCVat" id="checksscvat">*@
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1015,15 +1017,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        @*<div class="row">
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.Entry_Date, htmlAttributes: new { @class = "hidden" })
-                                                <div class="col-md-10">
-                                                    @Html.Editor("Entry_Date", new { htmlAttributes = new { @class = "hidden" } })
-                                                    @Html.ValidationMessageFor(model => model.Entry_Date, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                        </div>*@
+                               
                                         <div class="row">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.Entry_By, htmlAttributes: new { @class = "hidden" })

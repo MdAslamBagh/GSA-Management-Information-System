@@ -1,0 +1,50 @@
+﻿@model GSA_Management_Information_System.Models.ReportInformation
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ReportInformation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SubMenuId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubMenuId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReportName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReportName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entry_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entry_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entry_By)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entry_By)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ReportId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

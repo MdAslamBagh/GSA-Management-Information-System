@@ -1,0 +1,5 @@
+database
+
+nvarchar doesnot support in crystal report
+
+all nvarchar change by varchar after migration then change nvarchar to varchar

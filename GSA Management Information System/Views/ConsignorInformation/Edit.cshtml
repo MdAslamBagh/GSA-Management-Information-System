@@ -1,5 +1,4 @@
-﻿@model GSA_Management_Information_System.Models.CustomerTypeInformation
-
+﻿@model GSA_Management_Information_System.Models.ConsignorInformation
 
 @{
     ViewBag.Title = "Edit";
@@ -10,29 +9,44 @@
             {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.CustomerTypeId)
+    @Html.HiddenFor(model => model.ConsignorId)
     <div class="form-horizontal">
         <div class="container">
             <div class="card ">
-                <div class="card-header bg-info">Customer Type Edit</div>
+                <div class="card-header bg-info" style="height: 4rem;">Consignor Edit</div>
                 <div class="row">
                     <div class="form-group">
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="accessname" class="col-md-3 col-sm-5">Type Code<font size="2px" color="red">*</font></label>
+                            <label for="accessname" class="col-md-3 col-sm-5">Consignor Code<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">
-                                @Html.EditorFor(model => model.Type_Code, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Type_Code, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.Consignor_Code, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Consignor_Code, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
 
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Customer Type<font size="2px" color="red">*</font></label>
+                            <label for="controllername" class="col-md-3 col-sm-5">Consignor Name<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">
-                                @Html.EditorFor(model => model.Long_Desc, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Long_Desc, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.Consignor_Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Consignor_Name, "", new { @class = "text-danger" })
                             </div>
                         </div>
+
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="controllername" class="col-md-3 col-sm-5">Address<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+                                @Html.TextAreaFor(model => model.Consignor_Address, 2, 52, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Consignor_Address, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="controllername" class="col-md-3 col-sm-5">Email<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
 
                         <div class="form-group col-md-10 col-sm-12 ">
                             <label for="controllername" class="col-md-3 col-sm-5">Status<font size="2px" color="red">*</font></label>

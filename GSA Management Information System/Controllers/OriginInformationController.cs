@@ -27,24 +27,28 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         [HttpGet]
-        public ActionResult Add()
+        public ActionResult Create()
         {
-            String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
+            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
             //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
-            ViewBag.Entry_Date = today;
+            //ViewBag.Entry_Date = today;
             var list = new List<string>() { "Active", "Inactive" };
                 ViewBag.list = list;
                 return View();            
         }
 
         [HttpPost]
-        public ActionResult Add(OriginInformation OriginInformation)
+        public ActionResult Create(OriginInformation OriginInformation)
         {
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
 
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                OriginInformation.Entry_By = LogedInUser;
+                OriginInformation.Entry_Date = DateTime.Now;
+                db.OriginInformations.Add(OriginInformation);
                 db.OriginInformations.Add(OriginInformation);
 
                 if (OriginInformation.Default_Code == false)
@@ -132,10 +136,13 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OriginId,Origin_Code,Long_Desc,Status,Default_Code,Entry_Date")] OriginInformation originInformation)
+        public ActionResult Edit(OriginInformation originInformation)
         {
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                originInformation.Entry_By = LogedInUser;
+                originInformation.Entry_Date = DateTime.Now;
                 db.Entry(originInformation).State = EntityState.Modified;
                 var list = db.OriginInformations.Where(a => a.Origin_Code != originInformation.Origin_Code).ToList();
 

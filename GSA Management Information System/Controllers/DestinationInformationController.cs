@@ -42,11 +42,11 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         // GET: DestinationInformation/Create
-        public ActionResult Add()
+        public ActionResult Create()
         {
-            String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
+            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
             //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
-            ViewBag.Entry_Date = today;
+          //  ViewBag.Entry_Date = today;
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
             ViewBag.Continent_Code = new SelectList(db.ContinentInformations, "Continent_Code", "Long_Desc");
@@ -59,10 +59,13 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add([Bind(Include = "DestinationId,Continent_Code,Country_Code,Dest_Code,Long_Desc,Status,Default_Code,Entry_Date")] DestinationInformation destinationInformation)
+        public ActionResult Create(DestinationInformation destinationInformation)
         {
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
+            var LogedInUser = User.Identity.Name;
+            destinationInformation.Entry_By = LogedInUser;
+            destinationInformation.Entry_Date = DateTime.Now;
             if (ModelState.IsValid)
             {
                 db.DestinationInformations.Add(destinationInformation);
@@ -114,10 +117,14 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "DestinationId,Continent_Code,Country_Code,Dest_Code,Long_Desc,Status,Default_Code,Entry_Date")] DestinationInformation destinationInformation)
+        public ActionResult Edit(DestinationInformation destinationInformation)
         {
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                destinationInformation.Entry_By = LogedInUser;
+                destinationInformation.Entry_Date = DateTime.Now;
+
                 db.Entry(destinationInformation).State = EntityState.Modified;
                 var list = db.DestinationInformations.Where(a => a.Dest_Code != destinationInformation.Dest_Code).ToList();
 

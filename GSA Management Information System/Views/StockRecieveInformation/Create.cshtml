@@ -20,7 +20,7 @@
 
         <div class="container">
             <div class="card ">
-                <div class="card-header bg-info">Stock Receive Information</div>
+                <div class="card-header bg-info" style="height: 4rem;">Stock Receive Information</div>
                 <div class="row">
                     <div class="form-group">
                         <div class="form-group col-md-10 col-sm-12 ">
@@ -42,10 +42,10 @@
 
 
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Trans_Date<font size="2px" color="red">*</font></label>
+                            @Html.LabelFor(model => model.Trans_Date, htmlAttributes: new { @class = "hidden" })
                             <div class="col-md-6 col-sm-7">
-                                @Html.Editor("Trans_Date", new { htmlAttributes = new { @class = "datepicker1" } })
-                                @Html.ValidationMessageFor(model => model.Trans_Date, "", new { @class = "text-danger" })
+                                @Html.Editor("Trans_Date", new { htmlAttributes = new { @class = "hidden" } })
+                                @Html.ValidationMessageFor(model => model.Trans_Date, "", new { @class = "hidden" })
                             </div>
                         </div>
 

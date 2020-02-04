@@ -156,6 +156,42 @@ namespace GSA_Management_Information_System.Controllers
 
            
         }
+
+        //Company
+        //public JsonResult Get_Company_Name(string Prefix)
+        //{
+        //    ApplicationDbContext db = new ApplicationDbContext();
+        //    var Company_Name = (from c in db.CompanyInformations
+        //                       where c.Long_Desc.StartsWith(Prefix)
+        //                       select new { c.Long_Desc });
+        //    return Json(Company_Name, JsonRequestBehavior.AllowGet);
+
+        //}
+        
+        //public JsonResult GetOriginCodeById(string originname)
+        //{
+        //    var origin_code = db.OriginInformations.Where(m => m.Long_Desc == originname).FirstOrDefault();
+        //    return Json(origin_code, JsonRequestBehavior.AllowGet);
+        //}
+
+       
+        //Branch search and create
+        public JsonResult Get_Branch_Name(string Prefix)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            var Origin_Name = (from c in db.CompanyInformations
+                               where c.Branch_Name.StartsWith(Prefix)
+                               select new { c.Branch_Name });
+            return Json(Origin_Name, JsonRequestBehavior.AllowGet);
+
+        }
+
+        //Branch
+        public JsonResult GetBranchCodeById(string branchname)
+        {
+            var branch_code = db.CompanyInformations.Where(m => m.Branch_Name == branchname).FirstOrDefault();
+            return Json(branch_code, JsonRequestBehavior.AllowGet);
+        }
         // GET: CompanyInformation/Details/5
         public ActionResult Details(int id)
         {

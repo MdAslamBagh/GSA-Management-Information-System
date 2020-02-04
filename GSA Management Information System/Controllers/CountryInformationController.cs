@@ -42,11 +42,11 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         // GET: CountryInformation/Create
-        public ActionResult Add()
+        public ActionResult Create()
         {
-            String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
+            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
             //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
-            ViewBag.Entry_Date = today;
+            //ViewBag.Entry_Date = today;
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
             ViewBag.Continent_Code = new SelectList(db.ContinentInformations, "Continent_Code", "Long_Desc");
@@ -58,7 +58,7 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add([Bind(Include = "CountryId,Continent_Code,Country_Code,Long_Desc,Status,Default_Code,Entry_Date")] CountryInformation countryInformation)
+        public ActionResult Create(CountryInformation countryInformation)
         {
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
@@ -114,10 +114,14 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CountryId,Continent_Code,Country_Code,Long_Desc,Status,Default_Code,Entry_Date")] CountryInformation countryInformation)
+        public ActionResult Edit(CountryInformation countryInformation)
         {
             if (ModelState.IsValid)
             {
+
+                var LogedInUser = User.Identity.Name;
+                countryInformation.Entry_By = LogedInUser;
+                countryInformation.Entry_Date = DateTime.Now;
                 db.Entry(countryInformation).State = EntityState.Modified;
                 var list = db.CountryInformations.Where(a => a.Country_Code != countryInformation.Country_Code).ToList();
 

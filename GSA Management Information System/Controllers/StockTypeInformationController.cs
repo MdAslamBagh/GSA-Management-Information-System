@@ -28,24 +28,25 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         [HttpGet]
-        public ActionResult Add()
+        public ActionResult Create()
         {
-            String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
-            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
-            ViewBag.Entry_Date = today;
+      
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
             return View();
         }
 
         [HttpPost]
-        public ActionResult Add(StockTypeInformation StockTypeInformation)
+        public ActionResult Create(StockTypeInformation StockTypeInformation)
         {
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
 
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                StockTypeInformation.Entry_By = LogedInUser;
+                StockTypeInformation.Entry_Date = DateTime.Now;
                 db.StockTypeInformations.Add(StockTypeInformation);
 
                 if (StockTypeInformation.Default_Code == false)
@@ -89,28 +90,8 @@ namespace GSA_Management_Information_System.Controllers
             return View(stockTypeInformation);
         }
 
-        // GET: StockTypeInformation/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
 
-        // POST: StockTypeInformation/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "STypeId,SType_Code,Long_Desc,Short_Desc,Status,Default_Code,Entry_Date")] StockTypeInformation stockTypeInformation)
-        {
-            if (ModelState.IsValid)
-            {
-                db.StockTypeInformations.Add(stockTypeInformation);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(stockTypeInformation);
-        }
+ 
 
         // GET: StockTypeInformation/Edit/5
         public ActionResult Edit(int? id)
@@ -134,10 +115,14 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "STypeId,SType_Code,Long_Desc,Short_Desc,Status,Default_Code,Entry_Date")] StockTypeInformation stockTypeInformation)
+        public ActionResult Edit(StockTypeInformation stockTypeInformation)
         {
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                stockTypeInformation.Entry_By = LogedInUser;
+                stockTypeInformation.Entry_Date = DateTime.Now;
+
                 db.Entry(stockTypeInformation).State = EntityState.Modified;
                 var list = db.StockTypeInformations.Where(a => a.SType_Code != stockTypeInformation.SType_Code).ToList();
 

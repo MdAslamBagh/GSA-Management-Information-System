@@ -29,7 +29,7 @@ namespace GSA_Management_Information_System.Models
         public string Status { get; set; }
         public bool Default_Code { get; set; }
 
-        [Required(ErrorMessage = "This field can not be empty.")]
+        //[Required(ErrorMessage = "This field can not be empty.")]
         public DateTime Entry_Date { get; set; }
         public string Entry_By { get; set; }
     }

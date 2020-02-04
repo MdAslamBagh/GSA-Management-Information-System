@@ -14,7 +14,7 @@
 
         <div class="container">
             <div class="card ">
-                <div class="card-header bg-info">Stock Issue Information</div>
+                <div class="card-header bg-info" style="height: 4rem;">Stock Issue Information</div>
                 <div class="row">
                     <div class="form-group">
                         <div class="form-group col-md-10 col-sm-12 ">
@@ -26,9 +26,9 @@
                         </div>
 
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Issue_Date<font size="2px" color="red">*</font></label>
+                            @Html.LabelFor(model => model.Issue_Date, htmlAttributes: new { @class = "hidden" })
                             <div class="col-md-6 col-sm-7">
-                                @Html.Editor("Issue_Date", new { htmlAttributes = new { @class = "datepicker" } })
+                                @Html.Editor("Issue_Date", new { htmlAttributes = new { @class = "hidden" } })
                                 @Html.ValidationMessageFor(model => model.Issue_Date, "", new { @class = "text-danger" })
                             </div>
                         </div>

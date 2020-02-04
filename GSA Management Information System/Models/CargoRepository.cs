@@ -88,12 +88,12 @@ namespace GSA_Management_Information_System.Models
                              AIT = (float)(dr["AIT"]),
                              Agent_Commission = (float)(dr["Agent_Commission"]),
                              HBL_Qty = (float)(dr["HBL_Qty"]),
-                             Others = (float)(dr["Others"]),
+                             Others_Charges = (float)(dr["Others_Charges"]),
                              THC = (float)(dr["THC"]),
                              SSC = (float)(dr["SSC"]),
                              FSC_Charge = (float)(dr["FSC_Charge"]),
                              ISS_Charge = (float)(dr["ISS_Charge"]),
-                             CheckSSCVat= Convert.ToBoolean(dr["CheckSSCVat"]),
+                             IsSSCVAT = Convert.ToBoolean(dr["IsSSCVAT"]),
                              SSC_VAT = (float)(dr["SSC_VAT"]),
                              Total_USD = (float)(dr["Total_USD"]),
                              Total_USD_With_SSC_Vat= (float)(dr["Total_USD_With_SSC_Vat"]),
@@ -153,7 +153,7 @@ namespace GSA_Management_Information_System.Models
             transaction.Consignee_Code = cargoSalesInformation.Consignee_Code;
             transaction.Consignor_Code = cargoSalesInformation.Consignor_Code;
             transaction.HDS = cargoSalesInformation.HDS;
-            transaction.Others = cargoSalesInformation.Others;
+            transaction.Others_Charges = cargoSalesInformation.Others_Charges;
             transaction.AMS = cargoSalesInformation.AMS;
             transaction.HBL_Qty = cargoSalesInformation.HBL_Qty;
             transaction.Gross_Weight = cargoSalesInformation.Gross_Weight;
@@ -164,7 +164,7 @@ namespace GSA_Management_Information_System.Models
             transaction.AIT = cargoSalesInformation.AIT;
             transaction.THC = cargoSalesInformation.THC;
             transaction.SSC = cargoSalesInformation.SSC;
-            transaction.CheckSSCVat = cargoSalesInformation.CheckSSCVat;
+            transaction.IsSSCVAT = cargoSalesInformation.IsSSCVAT;
             transaction.SSC_VAT = cargoSalesInformation.SSC_VAT;
             transaction.FSC_Charge = cargoSalesInformation.FSC_Charge;
             transaction.ISS_Charge = cargoSalesInformation.ISS_Charge;
@@ -222,7 +222,7 @@ namespace GSA_Management_Information_System.Models
             transaction.Consignee_Code = cargoedit.Consignee_Code;
             transaction.Consignor_Code = cargoedit.Consignor_Code;
             transaction.HDS = cargoedit.HDS;
-            transaction.Others = cargoedit.Others;
+            transaction.Others_Charges = cargoedit.Others_Charges;
             transaction.AMS = cargoedit.AMS;
             transaction.HBL_Qty = cargoedit.HBL_Qty;
             transaction.Gross_Weight = cargoedit.Gross_Weight;

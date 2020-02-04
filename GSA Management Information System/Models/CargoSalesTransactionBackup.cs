@@ -37,7 +37,7 @@ namespace GSA_Management_Information_System.Models
         public float AIT { get; set; }
         public float Agent_Commission { get; set; }
         public float HBL_Qty { get; set; }
-        public float Others { get; set; }
+        public float Others_Charges { get; set; }
         public float THC { get; set; }
         public float SSC { get; set; }
         public float FSC_Charge { get; set; }
@@ -62,7 +62,7 @@ namespace GSA_Management_Information_System.Models
         public string Remarks_B_Bank { get; set; }
 
         public DateTime Entry_Date { get; set; }
-        public bool CheckSSCVat { get; set; }
+        public bool IsSSCVAT { get; set; }
         public string Entry_By { get; set; }
 
     }

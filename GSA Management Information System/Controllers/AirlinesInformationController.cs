@@ -33,12 +33,12 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         [HttpGet]
-        public ActionResult Add()
+        public ActionResult Create()
         {
 
-            String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
+           // String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
             //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
-            ViewBag.Entry_Date = today;
+           // ViewBag.Entry_Date = today;
 
             List<AirlinesInformation> Informations = db.AirlinesInformations.OrderByDescending(a => a.AirlinesId).ToList<AirlinesInformation>();
 
@@ -71,13 +71,16 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(AirlinesInformation AirlinesInformation)
+        public ActionResult Create(AirlinesInformation AirlinesInformation)
         {
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
 
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                AirlinesInformation.Entry_By = LogedInUser;
+                AirlinesInformation.Entry_Date = DateTime.Now;
                 db.AirlinesInformations.Add(AirlinesInformation);
 
 
@@ -167,10 +170,13 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AirlinesId,Airlines_Code,Long_Desc,Status,Default_Code,Entry_Date")] AirlinesInformation airlinesInformation)
+        public ActionResult Edit(AirlinesInformation airlinesInformation)
         {
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                airlinesInformation.Entry_By = LogedInUser;
+                airlinesInformation.Entry_Date = DateTime.Now;
                 db.Entry(airlinesInformation).State = EntityState.Modified;
 
                 var list = db.AirlinesInformations.Where(a => a.Airlines_Code != airlinesInformation.Airlines_Code).ToList();

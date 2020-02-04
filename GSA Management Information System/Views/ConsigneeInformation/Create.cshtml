@@ -4,7 +4,7 @@
 }
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-@using (Html.BeginForm("Create", "CustomerTypeInformation", FormMethod.Post, new { onSubmit = "return SubmitForm(this)" }))
+@using (Html.BeginForm("Create", "ConsigneeInformation", FormMethod.Post, new { onSubmit = "return SubmitForm(this)" }))
             {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -12,11 +12,11 @@
         <input type="hidden" name="ConsigneeCode" value="@ViewBag.ConsigneeCode" />
         <div class="container">
             <div class="card ">
-                <div class="card-header bg-info">Consignee Save</div>
+                <div class="card-header bg-info" style="height: 4rem;">Consignee Save</div>
                 <div class="row">
                     <div class="form-group">
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="accessname" class="col-md-3 col-sm-5">Type Code<font size="2px" color="red">*</font></label>
+                            <label for="accessname" class="col-md-3 col-sm-5">Consignee Code<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">
                                 @Html.Editor("Consignee_Code", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 @Html.ValidationMessageFor(model => model.Consignee_Code, "", new { @class = "text-danger" })
@@ -24,28 +24,27 @@
                         </div>
 
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Consignee_Name<font size="2px" color="red">*</font></label>
+                            <label for="controllername" class="col-md-3 col-sm-5">Consignee Name<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">
                                 @Html.EditorFor(model => model.Consignee_Name, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.Consignee_Name, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Consignee_Name<font size="2px" color="red">*</font></label>
+                            <label for="controllername" class="col-md-3 col-sm-5">Address<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">
-                                @Html.TextAreaFor(model => model.Consignee_Address, 5, 54, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.TextAreaFor(model => model.Consignee_Address, 2, 52, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.Consignee_Address, "", new { @class = "text-danger" })
                             </div>
                         </div>
+                     
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Consignee_Name<font size="2px" color="red">*</font></label>
+                            <label for="controllername" class="col-md-3 col-sm-5">Email<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">
                                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
                         <div class="form-group col-md-10 col-sm-12 ">
                             <label for="controllername" class="col-md-3 col-sm-5">Status<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">
@@ -68,7 +67,7 @@
                         <div class="form-group col-md-10 col-sm-12 ">
                             <div class="col-md-10">
                                 <div align="center">
-                                    <a class="btn btn-primary" style="margin-left:10px" onclick="location.href='@Url.Action("Index", "CustomerTypeInformation")'"><i class="fa fa-plus"></i>Back To List</a>
+                                    <a class="btn btn-primary" style="margin-left:10px" onclick="location.href='@Url.Action("Index", "ConsigneeInformation")'"><i class="fa fa-plus"></i>Back To List</a>
                                     <input type="submit" value="submit" class="btn btn-info" />
                                 </div>
                             </div>

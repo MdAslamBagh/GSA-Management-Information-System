@@ -349,7 +349,7 @@ namespace GSA_Management_Information_System.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CargoSalesInformation cargoSalesInformation)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
 
 
@@ -374,6 +374,14 @@ namespace GSA_Management_Information_System.Controllers
                 //cargoSalestransactionbackup.Trans_Type="Save";
                 ////transaction.Airway_No = cargoSalesInformation.Airway_No;
                 //db.CargoSalesTransactionBackups.Add(cargoSalestransactionbackup);
+                //db.SaveChanges();
+
+                //StockIssueInformation stockIssueInformation = db.StockIssueInformations.Find(cargoSalesInformation.MAWB);
+
+                //StockIssueInformation stockIssueInformation = new StockIssueInformation();
+                //stockIssueInformation = db.StockIssueInformations.Where(a => a.Ticket_No.ToString() == cargoSalesInformation.MAWB).FirstOrDefault();
+                //stockIssueInformation.Confirm_Status = "Sold";
+                //db.Entry(stockIssueInformation).State = EntityState.Modified;
                 //db.SaveChanges();
 
 
@@ -474,7 +482,7 @@ namespace GSA_Management_Information_System.Controllers
                 cargo.Consignee_Code = cargoedit.Consignee_Code;
                 cargo.Consignor_Code = cargoedit.Consignor_Code;
                 cargo.HDS = cargoedit.HDS;
-                cargo.Others = cargoedit.Others;
+                cargo.Others_Charges = cargoedit.Others_Charges;
                 cargo.AMS = cargoedit.AMS;
                 cargo.HBL_Qty = cargoedit.HBL_Qty;
                 cargo.Gross_Weight = cargoedit.Gross_Weight;
@@ -553,8 +561,8 @@ namespace GSA_Management_Information_System.Controllers
                              {
                                  Ticket_No = StockIssueDetailInformation.Ticket_No,
                                  SIssued_Code = StockIssueDetailInformation.SIssued_Code,
-                                 Airlines_Code = StockIssueInformation.Airlines_Code,
-                                 Long_Desc = AirlinesInformation.Long_Desc
+                                 //Airlines_Code = StockIssueInformation.Airlines_Code,
+                                 //Long_Desc = AirlinesInformation.Long_Desc
 
                              }).FirstOrDefault();
 

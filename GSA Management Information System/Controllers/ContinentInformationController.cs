@@ -42,11 +42,11 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         // GET: ContinentInformation/Create
-        public ActionResult Add()
+        public ActionResult Create()
         {
-            String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
+            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
             //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
-            ViewBag.Entry_Date = today;
+            //ViewBag.Entry_Date = today;
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
             List<ContinentInformation> Informations = db.ContinentInformations.OrderByDescending(a => a.ContinentId).ToList<ContinentInformation>();
@@ -75,12 +75,16 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add([Bind(Include = "ContinentId,Continent_Code,Long_Desc,FSC_Charge,ISS_Charge,Status,Default_Code,Entry_Date")] ContinentInformation continentInformation)
+        public ActionResult Create(ContinentInformation continentInformation)
         {
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                continentInformation.Entry_By = LogedInUser;
+                continentInformation.Entry_Date = DateTime.Now;
+
                 db.ContinentInformations.Add(continentInformation);
                 if (continentInformation.Default_Code == false)
                 {
@@ -129,10 +133,13 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ContinentId,Continent_Code,Long_Desc,FSC_Charge,ISS_Charge,Status,Default_Code,Entry_Date")] ContinentInformation continentInformation)
+        public ActionResult Edit(ContinentInformation continentInformation)
         {
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                continentInformation.Entry_By = LogedInUser;
+                continentInformation.Entry_Date = DateTime.Now;
                 db.Entry(continentInformation).State = EntityState.Modified;
                 var list = db.ContinentInformations.Where(a => a.Continent_Code != continentInformation.Continent_Code).ToList();
 

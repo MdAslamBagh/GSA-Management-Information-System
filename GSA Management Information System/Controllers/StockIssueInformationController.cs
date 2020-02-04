@@ -27,14 +27,14 @@ namespace GSA_Management_Information_System.Controllers
 
             //var waitingissued = db.StockRecieveInformations.Where(a => a.Issued == "No").ToList();
             var alreadyissued= db.StockIssueInformations.Where(a => a.SIssueId == a.SIssueId && a.Confirm_Status =="No").ToList();
-            var confirmedissued = db.StockIssueConfirmations.Where(a => a.Status == "Confirmed").ToList();
+            //var confirmedissued = db.StockIssueConfirmations.Where(a => a.Status == "Confirmed").ToList();
 
 
             //var ttt = db.StockIssueInformations.Where(a => a.SIssueId == a.SIssueId).ToList();
             //// List<StockIssueInformation> Informations = db.StockIssueInformations.ToList<StockIssueInformation>();
             ViewBag.waitingissuedData = waitingIssue;
             ViewBag.alreadyissuedData = alreadyissued;
-            ViewBag.confirmedissuedData = confirmedissued;
+           // ViewBag.confirmedissuedData = confirmedissued;
 
             //ViewBag.asd = ttt;
             return View();
@@ -66,97 +66,97 @@ namespace GSA_Management_Information_System.Controllers
         }
 
 
-        //starting ticket checking if have been issued
-        //[HttpPost]
-        //public JsonResult StartingTicketData(int fromDataa)
-        //{
-        //    System.Threading.Thread.Sleep(200);
-
-
-        //    //var asdfg = db.StockIssueInformations.Where(a => a.From_TicketNo == a.From_TicketNo);
-        //    var searchData = db.StockIssueInformations.OrderByDescending(a => a.SIssueId).ToList();
-
-        //    foreach (var item in searchData)
-        //    {
-
-        //        if (item.From_TicketNo <= fromDataa && item.To_TicketNo >= fromDataa)
-        //        {
-        //            //var test = "";
-        //            // return Json(0); 
-        //            return Json(new { success = false }, JsonRequestBehavior.AllowGet);
-
-        //        }
-
-        //    }
-
-        //    //StockRecieveInformation stockRecieveInformation = new StockRecieveInformation();
-        //    //int count = DuplicateCount(stockRecieveInformation);
-
-        //    //return Json(1);
-        //    return Json(new { success = true }, JsonRequestBehavior.AllowGet);
-
-        //}
-
-
-
+       // starting ticket checking if have been issued
         [HttpPost]
-        public JsonResult StartingTicketData(int fromDataa, int toDataa)
+        public JsonResult StartingTicketData(int fromDataa)
         {
             System.Threading.Thread.Sleep(200);
-            int i = fromDataa;
 
-            List<int> availList = new List<int>();
-
-            List<int> rejectList = new List<int>();
-            for (i = fromDataa; i <= toDataa; i++)
-            {
-                var sss = db.StockIssueInformations.Where(a => a.From_TicketNo <= i && a.To_TicketNo >= i).FirstOrDefault();
-                if (sss == null)
-                {
-                    int t = i;
-                    availList.Add(t);
-                    // return fromDataa;
-                }
-                else
-                {
-                    int tt = i;
-                    rejectList.Add(tt);
-
-                }
-            }
-
-            if (rejectList.Count() >= 1)
-            {
-                return Json(new { success = false, rejectList }, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return Json(new { success = true, availList }, JsonRequestBehavior.AllowGet);
-
-            }
 
             //var asdfg = db.StockIssueInformations.Where(a => a.From_TicketNo == a.From_TicketNo);
-            //var searchData = db.StockRecieveInformations.OrderByDescending(a => a.SRecievedId).ToList();
+            var searchData = db.StockIssueInformations.OrderByDescending(a => a.SIssueId).ToList();
 
-            //foreach (var item in searchData)
-            //{
+            foreach (var item in searchData)
+            {
 
-            //    int x = fromDataa;
+                if (item.From_TicketNo <= fromDataa && item.To_TicketNo >= fromDataa)
+                {
+                    //var test = "";
+                    // return Json(0); 
+                    return Json(new { success = false }, JsonRequestBehavior.AllowGet);
 
-            //    if (x >= item.From_TicketNo && x <= item.To_TicketNo)  //   4...9876545-9876547...8
-            //    {
+                }
 
-            //        //var test = "";
-            //        return Json(0);  //available
-            //    }
-
-            //}
+            }
 
             //StockRecieveInformation stockRecieveInformation = new StockRecieveInformation();
             //int count = DuplicateCount(stockRecieveInformation);
 
+            //return Json(1);
+            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
 
         }
+
+
+
+        //[HttpPost]
+        //public JsonResult StartingTicketData(int fromDataa, int toDataa)
+        //{
+        //    System.Threading.Thread.Sleep(200);
+        //    int i = fromDataa;
+
+        //    List<int> availList = new List<int>();
+
+        //    List<int> rejectList = new List<int>();
+        //    for (i = fromDataa; i <= toDataa; i++)
+        //    {
+        //        var sss = db.StockIssueInformations.Where(a => a.From_TicketNo <= i && a.To_TicketNo >= i).FirstOrDefault();
+        //        if (sss == null)
+        //        {
+        //            int t = i;
+        //            availList.Add(t);
+        //            // return fromDataa;
+        //        }
+        //        else
+        //        {
+        //            int tt = i;
+        //            rejectList.Add(tt);
+
+        //        }
+        //    }
+
+        //    if (rejectList.Count() >= 1)
+        //    {
+        //        return Json(new { success = false, rejectList }, JsonRequestBehavior.AllowGet);
+        //    }
+        //    else
+        //    {
+        //        return Json(new { success = true, availList }, JsonRequestBehavior.AllowGet);
+
+        //    }
+
+        //    //var asdfg = db.StockIssueInformations.Where(a => a.From_TicketNo == a.From_TicketNo);
+        //    //var searchData = db.StockRecieveInformations.OrderByDescending(a => a.SRecievedId).ToList();
+
+        //    //foreach (var item in searchData)
+        //    //{
+
+        //    //    int x = fromDataa;
+
+        //    //    if (x >= item.From_TicketNo && x <= item.To_TicketNo)  //   4...9876545-9876547...8
+        //    //    {
+
+        //    //        //var test = "";
+        //    //        return Json(0);  //available
+        //    //    }
+
+        //    //}
+
+        //    //StockRecieveInformation stockRecieveInformation = new StockRecieveInformation();
+        //    //int count = DuplicateCount(stockRecieveInformation);
+
+
+        //}
 
 
         [HttpPost]
@@ -976,6 +976,9 @@ namespace GSA_Management_Information_System.Controllers
         {
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                stockIssueInformation.Entry_By = LogedInUser;
+                stockIssueInformation.Entry_Date = DateTime.Now;
                 db.Entry(stockIssueInformation).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -994,24 +997,41 @@ namespace GSA_Management_Information_System.Controllers
             db.SaveChanges();
 
 
-            StockIssueDetailInformations stockIssueDetailInformations = new StockIssueDetailInformations();
 
-            for (int i = stockIssueInformation.From_TicketNo; i <= stockIssueInformation.To_TicketNo; i++)
+
+            var stockIssueDetailInformation = db.StockIssueDetailInformations.Where(a => a.SIssued_Code == stockIssueInformation.SIssued_Code).ToList();
+            foreach (var item in stockIssueDetailInformation)
             {
-                stockIssueDetailInformations.SIssued_Code = stockIssueInformation.SIssued_Code;
-                stockIssueDetailInformations.Ticket_No = i;
+                StockIssueDetailInformations stockIssueDetailInformations = item;
+
+                db.StockIssueDetailInformations.Attach(stockIssueDetailInformations);
+                stockIssueDetailInformations.SIssued_Code = item.SIssued_Code;
+                stockIssueDetailInformations.Ticket_No = item.Ticket_No;
                 stockIssueDetailInformations.Status = "Confirmed";
-                db.StockIssueDetailInformations.Add(stockIssueDetailInformations);
+
                 //stockIssueDetailInformations.SDetailsId = 1;
 
                 db.SaveChanges();
 
             }
+            //StockIssueDetailInformations stockIssueDetailInformations = new StockIssueDetailInformations();
+
+            //for (int i = stockIssueInformation.From_TicketNo; i <= stockIssueInformation.To_TicketNo; i++)
+            //{
+            //    stockIssueDetailInformations.SIssued_Code = stockIssueInformation.SIssued_Code;
+            //    stockIssueDetailInformations.Ticket_No = i;
+            //    stockIssueDetailInformations.Status = "Confirmed";
+            //    db.StockIssueDetailInformations.Add(stockIssueDetailInformations);
+            //    //stockIssueDetailInformations.SDetailsId = 1;
+
+            //    db.SaveChanges();
+
+            //}
 
 
 
 
-            return Json(new { success = true, message = "Deleted Successfully" }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = true, message = "Confirmed Successfully" }, JsonRequestBehavior.AllowGet);
 
             //return RedirectToAction("Index");
         }

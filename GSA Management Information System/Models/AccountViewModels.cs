@@ -58,7 +58,8 @@ namespace GSA_Management_Information_System.Models
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
-
+        public string Status { get; set; }
+        
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
     }
@@ -96,6 +97,9 @@ namespace GSA_Management_Information_System.Models
         public string FullName { get; set; }
         public string UserName { get; set; }
 
+        public string Company_Code { get; set; }
+        public string Branch_Code { get; set; }
+
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
@@ -106,6 +110,7 @@ namespace GSA_Management_Information_System.Models
         [Display(Name = "Confirm password")]
         [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
         public string Status { get; set; }
     }
 
@@ -117,6 +122,10 @@ namespace GSA_Management_Information_System.Models
         public string Email { get; set; }
         public string FullName { get; set; }
         public string UserName { get; set; }
+        public string Company_Name { get; set; }
+        public string Branch_Name { get; set; }
+        public string Company_Code { get; set; }
+        public string Branch_Code { get; set; }
 
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
@@ -128,6 +137,7 @@ namespace GSA_Management_Information_System.Models
         [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
         public string Status { get; set; }
+        public IEnumerable<SelectListItem> CompanyList { get; set; }
 
         public IEnumerable<SelectListItem> RolesList { get; set; }
 

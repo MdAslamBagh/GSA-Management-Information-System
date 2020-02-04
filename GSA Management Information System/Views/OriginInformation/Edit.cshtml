@@ -1,78 +1,66 @@
 ﻿@model GSA_Management_Information_System.Models.OriginInformation
 
+
 @{
     ViewBag.Title = "Edit";
 }
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<h2>Edit</h2>
-
-@using (Html.BeginForm())
-{
+@using (Html.BeginForm("Edit", "CustomerTypeInformation", FormMethod.Post, new { onSubmit = "return SubmitForm(this)" }))
+            {
     @Html.AntiForgeryToken()
-
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.OriginId)
     <div class="form-horizontal">
-        <h4>Origin Information</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.OriginId)
+        <div class="container">
+            <div class="card ">
+                <div class="card-header bg-info" style="height: 4rem;">Origin Edit</div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="accessname" class="col-md-3 col-sm-5">Type Code<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+                                @Html.EditorFor(model => model.Origin_Code, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Origin_Code, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <div class="row">
-            <div class="form-group">
-                @Html.LabelFor(model => model.Origin_Code, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-2">
-                    @Html.EditorFor(model => model.Origin_Code, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Origin_Code, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="form-group">
-                @Html.LabelFor(model => model.Long_Desc, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-5">
-                    @Html.EditorFor(model => model.Long_Desc, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Long_Desc, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="controllername" class="col-md-3 col-sm-5">Customer Type<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+                                @Html.EditorFor(model => model.Long_Desc, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Long_Desc, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <div class="row">
-            <div class="form-group">
-                @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-2">
-                    @Html.DropDownListFor(Model => Model.Status, new SelectList(ViewBag.list), "Select Status", htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="controllername" class="col-md-3 col-sm-5">Status<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+                                @Html.DropDownListFor(Model => Model.Status, new SelectList(ViewBag.list), htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <div class="row">
-            <div class="form-group">
-                @Html.LabelFor(model => model.Default_Code, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-6">
-                    <div class="checkbox">
-                        @Html.EditorFor(model => model.Default_Code)
-                        @Html.ValidationMessageFor(model => model.Default_Code, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-        </div>
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="controllername" class="col-md-3 col-sm-5">Default Code<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+                                <div class="checkbox">
+                                    @Html.EditorFor(model => model.Default_Code)
+                                    @Html.ValidationMessageFor(model => model.Default_Code, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
 
-        <div class="row">
-            <div class="form-group">
-                @Html.LabelFor(model => model.Entry_Date, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-6">
-                    @Html.EditorFor(model => model.Entry_Date, new { htmlAttributes = new { @class = "datepicker" } })
-                    @Html.ValidationMessageFor(model => model.Entry_Date, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-6">
-                    <div align="right">
-                        <input type="submit" value="Update" class="btn btn-primary" />
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <div class="col-md-10">
+                                <div align="center">
+                                    <a class="btn btn-primary" style="margin-left:10px" onclick="location.href='@Url.Action("Index", "OriginInformation")'"><i class="fa fa-plus"></i>Back To List</a>
+                                    <input type="submit" value="submit" class="btn btn-info" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -98,4 +86,6 @@
             });
         });
     </script>
+    @Scripts.Render("~/bundles/jqueryval")
+
 }

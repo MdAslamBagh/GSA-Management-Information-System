@@ -11,7 +11,7 @@
     <div class="form-horizontal">
         <div class="container">
             <div class="card ">
-                <div class="card-header bg-info">Customer Save</div>
+                <div class="card-header bg-info" style="height: 4rem;">Customer Save</div>
                 <div class="row">
                     <div class="form-group">
     <div class="form-group col-md-10 col-sm-12 ">
@@ -52,13 +52,13 @@
             @Html.ValidationMessageFor(model => model.Group_Code, "", new { @class = "text-danger" })
         </div>
     </div>
-    <div class="form-group col-md-10 col-sm-12 ">
-        <label for="controllername" class="col-md-3 col-sm-5">Address<font size="2px" color="red">*</font></label>
-        <div class="col-md-6 col-sm-7">
-            @Html.TextAreaFor(model => model.Address, 6, 54, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
-        </div>
-    </div>
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="controllername" class="col-md-3 col-sm-5">Address<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+                                @Html.TextAreaFor(model => model.Address, 2, 52, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
     <div class="form-group col-md-10 col-sm-12 ">
         <label for="controllername" class="col-md-3 col-sm-5">Country<font size="2px" color="red">*</font></label>
         <div class="col-md-6 col-sm-7">

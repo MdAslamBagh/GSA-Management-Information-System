@@ -32,9 +32,9 @@ namespace GSA_Management_Information_System.Controllers
         [HttpGet]
         public ActionResult Add()
         {
-            String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
+            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
             //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
-            ViewBag.Entry_Date = today;
+            //ViewBag.Entry_Date = today;
             List<UplimentTypeInformation> Informations = db.UplimentTypeInformations.OrderByDescending(a => a.UTypeId).ToList<UplimentTypeInformation>();
 
             try
@@ -72,6 +72,9 @@ namespace GSA_Management_Information_System.Controllers
 
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                objupliment.Entry_By = LogedInUser;
+                objupliment.Entry_Date = DateTime.Now;
                 db.UplimentTypeInformations.Add(objupliment);
                 if (objupliment.Default_Code == false)
                 {
@@ -109,10 +112,13 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UTypeId,UType_Code,Long_Desc,Email,Status,Default_Code,Entry_Date")] UplimentTypeInformation uplimentTypeInformation)
+        public ActionResult Create( UplimentTypeInformation uplimentTypeInformation)
         {
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                uplimentTypeInformation.Entry_By = LogedInUser;
+                uplimentTypeInformation.Entry_Date = DateTime.Now;
                 db.UplimentTypeInformations.Add(uplimentTypeInformation);
                 var uplimentList = db.UplimentTypeInformations.Where(a => a.UType_Code != uplimentTypeInformation.UType_Code).ToList();
 
@@ -150,10 +156,13 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UTypeId,UType_Code,Long_Desc,Email,Status,Default_Code,Entry_Date")] UplimentTypeInformation objupliment)
+        public ActionResult Edit( UplimentTypeInformation objupliment)
         {
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                objupliment.Entry_By = LogedInUser;
+                objupliment.Entry_Date = DateTime.Now;
                 db.Entry(objupliment).State = EntityState.Modified;
                 var list = db.UplimentTypeInformations.Where(a => a.UType_Code != objupliment.UType_Code).ToList();
 

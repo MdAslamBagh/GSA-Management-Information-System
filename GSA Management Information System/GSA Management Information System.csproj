@@ -227,10 +227,11 @@
     <Compile Include="Controllers\OriginInformationController.cs" />
     <Compile Include="Controllers\PaymentModeInformationController.cs" />
     <Compile Include="Controllers\RegistrationInformationController.cs" />
+    <Compile Include="Controllers\ReportInformationController.cs" />
+    <Compile Include="Controllers\CargoSalesReportController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\RoleInformationController.cs" />
     <Compile Include="Controllers\RouteInformationController.cs" />
-    <Compile Include="Controllers\StockIssueConfirmationController.cs" />
     <Compile Include="Controllers\StockIssueDetailInformationController.cs" />
     <Compile Include="Controllers\StockIssueInformationController.cs" />
     <Compile Include="Controllers\StockRecieveInformationController.cs" />
@@ -241,12 +242,6 @@
     <Compile Include="Controllers\TicketSalesInformationController.cs" />
     <Compile Include="Controllers\UplimentTypeInformationController.cs" />
     <Compile Include="Controllers\UserInformationController.cs" />
-    <Compile Include="crp.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>crp.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Extensions\ClaimsExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -435,6 +430,138 @@
     <Compile Include="Migrations\201912260533059_initial44.Designer.cs">
       <DependentUpon>201912260533059_initial44.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001091006367_initial45.cs" />
+    <Compile Include="Migrations\202001091006367_initial45.Designer.cs">
+      <DependentUpon>202001091006367_initial45.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001111639282_initial46.cs" />
+    <Compile Include="Migrations\202001111639282_initial46.Designer.cs">
+      <DependentUpon>202001111639282_initial46.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001150416354_initial47.cs" />
+    <Compile Include="Migrations\202001150416354_initial47.Designer.cs">
+      <DependentUpon>202001150416354_initial47.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001150432080_initial48.cs" />
+    <Compile Include="Migrations\202001150432080_initial48.Designer.cs">
+      <DependentUpon>202001150432080_initial48.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001160830284_initial49.cs" />
+    <Compile Include="Migrations\202001160830284_initial49.Designer.cs">
+      <DependentUpon>202001160830284_initial49.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001171636223_updatecargotable.cs" />
+    <Compile Include="Migrations\202001171636223_updatecargotable.Designer.cs">
+      <DependentUpon>202001171636223_updatecargotable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001190455024_initial52.cs" />
+    <Compile Include="Migrations\202001190455024_initial52.Designer.cs">
+      <DependentUpon>202001190455024_initial52.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001190700134_initial53.cs" />
+    <Compile Include="Migrations\202001190700134_initial53.Designer.cs">
+      <DependentUpon>202001190700134_initial53.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001190710166_initial54.cs" />
+    <Compile Include="Migrations\202001190710166_initial54.Designer.cs">
+      <DependentUpon>202001190710166_initial54.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001190715209_initial55.cs" />
+    <Compile Include="Migrations\202001190715209_initial55.Designer.cs">
+      <DependentUpon>202001190715209_initial55.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001191724159_initial56.cs" />
+    <Compile Include="Migrations\202001191724159_initial56.Designer.cs">
+      <DependentUpon>202001191724159_initial56.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001191727041_initial50.cs" />
+    <Compile Include="Migrations\202001191727041_initial50.Designer.cs">
+      <DependentUpon>202001191727041_initial50.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001191732272_initial51.cs" />
+    <Compile Include="Migrations\202001191732272_initial51.Designer.cs">
+      <DependentUpon>202001191732272_initial51.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001191734063_initial57.cs" />
+    <Compile Include="Migrations\202001191734063_initial57.Designer.cs">
+      <DependentUpon>202001191734063_initial57.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001251540587_initial59.cs" />
+    <Compile Include="Migrations\202001251540587_initial59.Designer.cs">
+      <DependentUpon>202001251540587_initial59.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001251636440_initial58.cs" />
+    <Compile Include="Migrations\202001251636440_initial58.Designer.cs">
+      <DependentUpon>202001251636440_initial58.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001251840393_initial60.cs" />
+    <Compile Include="Migrations\202001251840393_initial60.Designer.cs">
+      <DependentUpon>202001251840393_initial60.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001260928229_initial61.cs" />
+    <Compile Include="Migrations\202001260928229_initial61.Designer.cs">
+      <DependentUpon>202001260928229_initial61.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001261105074_initial62.cs" />
+    <Compile Include="Migrations\202001261105074_initial62.Designer.cs">
+      <DependentUpon>202001261105074_initial62.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001270939243_initial63.cs" />
+    <Compile Include="Migrations\202001270939243_initial63.Designer.cs">
+      <DependentUpon>202001270939243_initial63.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001270946590_initial64.cs" />
+    <Compile Include="Migrations\202001270946590_initial64.Designer.cs">
+      <DependentUpon>202001270946590_initial64.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001271121006_initial65.cs" />
+    <Compile Include="Migrations\202001271121006_initial65.Designer.cs">
+      <DependentUpon>202001271121006_initial65.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001271128319_initial66.cs" />
+    <Compile Include="Migrations\202001271128319_initial66.Designer.cs">
+      <DependentUpon>202001271128319_initial66.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001271132299_initial67.cs" />
+    <Compile Include="Migrations\202001271132299_initial67.Designer.cs">
+      <DependentUpon>202001271132299_initial67.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001280719055_initial68.cs" />
+    <Compile Include="Migrations\202001280719055_initial68.Designer.cs">
+      <DependentUpon>202001280719055_initial68.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001300836430_initial69.cs" />
+    <Compile Include="Migrations\202001300836430_initial69.Designer.cs">
+      <DependentUpon>202001300836430_initial69.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001300924209_intial.cs" />
+    <Compile Include="Migrations\202001300924209_intial.Designer.cs">
+      <DependentUpon>202001300924209_intial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001300928264_initial70.cs" />
+    <Compile Include="Migrations\202001300928264_initial70.Designer.cs">
+      <DependentUpon>202001300928264_initial70.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001300929106_initial71.cs" />
+    <Compile Include="Migrations\202001300929106_initial71.Designer.cs">
+      <DependentUpon>202001300929106_initial71.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001310405088_initial72.cs" />
+    <Compile Include="Migrations\202001310405088_initial72.Designer.cs">
+      <DependentUpon>202001310405088_initial72.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002010601263_initial73.cs" />
+    <Compile Include="Migrations\202002010601263_initial73.Designer.cs">
+      <DependentUpon>202002010601263_initial73.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002010854524_initial74.cs" />
+    <Compile Include="Migrations\202002010854524_initial74.Designer.cs">
+      <DependentUpon>202002010854524_initial74.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002011151159_initial75.cs" />
+    <Compile Include="Migrations\202002011151159_initial75.Designer.cs">
+      <DependentUpon>202002011151159_initial75.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccessInformation.cs" />
     <Compile Include="Models\AccessListInformation.cs" />
@@ -446,7 +573,8 @@
     <Compile Include="Models\BaseModuleInformation.cs" />
     <Compile Include="Models\Cargo Debit_Credit Note.cs" />
     <Compile Include="Models\CargoFreightPaymodeInformation.cs" />
-    <Compile Include="Models\CargoSalesBackup.cs" />
+    <Compile Include="Models\Reports\CargoSalesReport.cs" />
+    <Compile Include="Models\ReportInformation.cs" />
     <Compile Include="Models\CargoSalesTransactionBackup.cs" />
     <Compile Include="Models\CargoSalesInformation.cs" />
     <Compile Include="Models\CargoTypeInformation.cs" />
@@ -491,10 +619,10 @@
     <Compile Include="Models\UserInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs" />
-    <Compile Include="Reports\gsacargoreport.cs">
+    <Compile Include="Reports\Cargo\crpDateAndItemWiseCargoSalesGroupReport.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>gsacargoreport.rpt</DependentUpon>
+      <DependentUpon>crpDateAndItemWiseCargoSalesGroupReport.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Startup.cs" />
@@ -2462,7 +2590,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layoutmain.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -2491,24 +2618,16 @@
     <Content Include="Views\AccessListInformation\Details.cshtml" />
     <Content Include="Views\AccessListInformation\Edit.cshtml" />
     <Content Include="Views\AccessListInformation\Index.cshtml" />
-    <Content Include="Views\AirlinesInformation\Add.cshtml" />
     <Content Include="Views\AirlinesInformation\Create.cshtml" />
     <Content Include="Views\AirlinesInformation\Delete.cshtml" />
     <Content Include="Views\AirlinesInformation\Details.cshtml" />
     <Content Include="Views\AirlinesInformation\Edit.cshtml" />
     <Content Include="Views\AirlinesInformation\Index.cshtml" />
-    <Content Include="Views\AirlinesInformation\Indexx.cshtml" />
     <Content Include="Views\BankInformation\Add.cshtml" />
     <Content Include="Views\BankInformation\Delete.cshtml" />
     <Content Include="Views\BankInformation\Details.cshtml" />
     <Content Include="Views\BankInformation\Edit.cshtml" />
     <Content Include="Views\BankInformation\Index.cshtml" />
-    <Content Include="Views\BaseModuleInformation\Add.cshtml" />
-    <Content Include="Views\BaseModuleInformation\Delete.cshtml" />
-    <Content Include="Views\BaseModuleInformation\Details.cshtml" />
-    <Content Include="Views\BaseModuleInformation\Edit.cshtml" />
-    <Content Include="Views\BaseModuleInformation\Index.cshtml" />
-    <Content Include="Views\CargoFreightPaymodeInformation\Add.cshtml" />
     <Content Include="Views\CargoFreightPaymodeInformation\Create.cshtml" />
     <Content Include="Views\CargoFreightPaymodeInformation\Delete.cshtml" />
     <Content Include="Views\CargoFreightPaymodeInformation\Details.cshtml" />
@@ -2530,11 +2649,6 @@
     <Content Include="Views\Cargo_Debit_Credit_Note\Details.cshtml" />
     <Content Include="Views\Cargo_Debit_Credit_Note\Edit.cshtml" />
     <Content Include="Views\Cargo_Debit_Credit_Note\Index.cshtml" />
-    <Content Include="Views\Category\Create.cshtml" />
-    <Content Include="Views\Category\Delete.cshtml" />
-    <Content Include="Views\Category\Details.cshtml" />
-    <Content Include="Views\Category\Edit.cshtml" />
-    <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\CityInformation\Add.cshtml" />
     <Content Include="Views\CityInformation\Delete.cshtml" />
     <Content Include="Views\CityInformation\Details.cshtml" />
@@ -2546,15 +2660,11 @@
     <Content Include="Views\CommonSetupInformation\Edit.cshtml" />
     <Content Include="Views\CommonSetupInformation\Index.cshtml" />
     <Content Include="Views\CompanyInformation\Add.cshtml" />
-    <Content Include="Views\CompanyInformation\AddOrEdit.cshtml" />
     <Content Include="Views\CompanyInformation\Create.cshtml" />
     <Content Include="Views\CompanyInformation\Delete.cshtml" />
     <Content Include="Views\CompanyInformation\Details.cshtml" />
     <Content Include="Views\CompanyInformation\Edit.cshtml" />
-    <Content Include="Views\CompanyInformation\Edit2.cshtml" />
     <Content Include="Views\CompanyInformation\Index.cshtml" />
-    <Content Include="Views\CompanyInformation\Index2.cshtml" />
-    <Content Include="Views\CompanyInformation\ViewAll.cshtml" />
     <Content Include="Views\ConsigneeInformation\Create.cshtml" />
     <Content Include="Views\ConsigneeInformation\Createdefault.cshtml" />
     <Content Include="Views\ConsigneeInformation\Delete.cshtml" />
@@ -2568,12 +2678,10 @@
     <Content Include="Views\ConsignorInformation\Details.cshtml" />
     <Content Include="Views\ConsignorInformation\Edit.cshtml" />
     <Content Include="Views\ConsignorInformation\Index.cshtml" />
-    <Content Include="Views\ContinentInformation\Add.cshtml" />
     <Content Include="Views\ContinentInformation\Delete.cshtml" />
     <Content Include="Views\ContinentInformation\Details.cshtml" />
     <Content Include="Views\ContinentInformation\Edit.cshtml" />
     <Content Include="Views\ContinentInformation\Index.cshtml" />
-    <Content Include="Views\CountryInformation\Add.cshtml" />
     <Content Include="Views\CountryInformation\Delete.cshtml" />
     <Content Include="Views\CountryInformation\Details.cshtml" />
     <Content Include="Views\CountryInformation\Edit.cshtml" />
@@ -2590,13 +2698,11 @@
     <Content Include="Views\CourierOutboundSalesInformation\Details.cshtml" />
     <Content Include="Views\CourierOutboundSalesInformation\Edit.cshtml" />
     <Content Include="Views\CourierOutboundSalesInformation\Index.cshtml" />
-    <Content Include="Views\CurrencyInformation\Add.cshtml" />
     <Content Include="Views\CurrencyInformation\Create.cshtml" />
     <Content Include="Views\CurrencyInformation\Delete.cshtml" />
     <Content Include="Views\CurrencyInformation\Details.cshtml" />
     <Content Include="Views\CurrencyInformation\Edit.cshtml" />
     <Content Include="Views\CurrencyInformation\Index.cshtml" />
-    <Content Include="Views\CustomerGroupInformation\Add.cshtml" />
     <Content Include="Views\CustomerGroupInformation\Create.cshtml" />
     <Content Include="Views\CustomerGroupInformation\Delete.cshtml" />
     <Content Include="Views\CustomerGroupInformation\Details.cshtml" />
@@ -2607,29 +2713,19 @@
     <Content Include="Views\CustomerInformation\Details.cshtml" />
     <Content Include="Views\CustomerInformation\Edit.cshtml" />
     <Content Include="Views\CustomerInformation\Index.cshtml" />
-    <Content Include="Views\CustomerTypeInformation\Add.cshtml" />
     <Content Include="Views\CustomerTypeInformation\Create.cshtml" />
     <Content Include="Views\CustomerTypeInformation\Delete.cshtml" />
     <Content Include="Views\CustomerTypeInformation\Details.cshtml" />
     <Content Include="Views\CustomerTypeInformation\Edit.cshtml" />
     <Content Include="Views\CustomerTypeInformation\Index.cshtml" />
-    <Content Include="Views\DestinationInformation\Add.cshtml" />
     <Content Include="Views\DestinationInformation\Delete.cshtml" />
     <Content Include="Views\DestinationInformation\Details.cshtml" />
     <Content Include="Views\DestinationInformation\Edit.cshtml" />
     <Content Include="Views\DestinationInformation\Index.cshtml" />
-    <Content Include="Views\Employee\Create.cshtml" />
-    <Content Include="Views\Employee\Delete.cshtml" />
-    <Content Include="Views\Employee\Details.cshtml" />
-    <Content Include="Views\Employee\Edit.cshtml" />
-    <Content Include="Views\Employee\Index.cshtml" />
-    <Content Include="Views\Employee\Testt.cshtml" />
-    <Content Include="Views\ExchangeInformation\Add.cshtml" />
     <Content Include="Views\ExchangeInformation\Delete.cshtml" />
     <Content Include="Views\ExchangeInformation\Details.cshtml" />
     <Content Include="Views\ExchangeInformation\Edit.cshtml" />
     <Content Include="Views\ExchangeInformation\Index.cshtml" />
-    <Content Include="Views\FreighterInformation\Add.cshtml" />
     <Content Include="Views\FreighterInformation\Create.cshtml" />
     <Content Include="Views\FreighterInformation\Delete.cshtml" />
     <Content Include="Views\FreighterInformation\Details.cshtml" />
@@ -2640,83 +2736,48 @@
     <Content Include="Views\LoginInformation\Edit.cshtml" />
     <Content Include="Views\LoginInformation\Index.cshtml" />
     <Content Include="Views\LoginInformation\Login.cshtml" />
-    <Content Include="Views\OriginInformation\Add.cshtml" />
     <Content Include="Views\OriginInformation\Create.cshtml" />
     <Content Include="Views\OriginInformation\Delete.cshtml" />
     <Content Include="Views\OriginInformation\Details.cshtml" />
     <Content Include="Views\OriginInformation\Edit.cshtml" />
     <Content Include="Views\OriginInformation\Index.cshtml" />
-    <Content Include="Views\PaymentModeInformation\Add.cshtml" />
     <Content Include="Views\PaymentModeInformation\Create.cshtml" />
     <Content Include="Views\PaymentModeInformation\Delete.cshtml" />
     <Content Include="Views\PaymentModeInformation\Details.cshtml" />
     <Content Include="Views\PaymentModeInformation\Edit.cshtml" />
     <Content Include="Views\PaymentModeInformation\Index.cshtml" />
-    <Content Include="Views\RegistrationInformation\Delete.cshtml" />
-    <Content Include="Views\RegistrationInformation\Details.cshtml" />
-    <Content Include="Views\RegistrationInformation\Edit.cshtml" />
-    <Content Include="Views\RegistrationInformation\Index.cshtml" />
-    <Content Include="Views\RoleInformation\Add.cshtml" />
-    <Content Include="Views\RoleInformation\Delete.cshtml" />
-    <Content Include="Views\RoleInformation\Details.cshtml" />
-    <Content Include="Views\RoleInformation\Edit.cshtml" />
-    <Content Include="Views\RoleInformation\Index.cshtml" />
-    <Content Include="Views\RouteInformation\Add.cshtml" />
     <Content Include="Views\RouteInformation\Delete.cshtml" />
     <Content Include="Views\RouteInformation\Details.cshtml" />
     <Content Include="Views\RouteInformation\Edit.cshtml" />
     <Content Include="Views\RouteInformation\Index.cshtml" />
-    <Content Include="Views\StockIssueConfirmation\Create.cshtml" />
-    <Content Include="Views\StockIssueConfirmation\CreateDefault.cshtml" />
-    <Content Include="Views\StockIssueConfirmation\Delete.cshtml" />
-    <Content Include="Views\StockIssueConfirmation\Details.cshtml" />
-    <Content Include="Views\StockIssueConfirmation\Edit.cshtml" />
-    <Content Include="Views\StockIssueConfirmation\Index.cshtml" />
     <Content Include="Views\StockIssueDetailInformation\Create.cshtml" />
     <Content Include="Views\StockIssueDetailInformation\Delete.cshtml" />
     <Content Include="Views\StockIssueDetailInformation\Details.cshtml" />
     <Content Include="Views\StockIssueDetailInformation\Edit.cshtml" />
     <Content Include="Views\StockIssueDetailInformation\Index.cshtml" />
-    <Content Include="Views\StockIssueInformation\Add.cshtml" />
-    <Content Include="Views\StockIssueInformation\Addd.cshtml" />
     <Content Include="Views\StockIssueInformation\Delete.cshtml" />
     <Content Include="Views\StockIssueInformation\Details.cshtml" />
     <Content Include="Views\StockIssueInformation\Edit.cshtml" />
     <Content Include="Views\StockIssueInformation\Index.cshtml" />
-    <Content Include="Views\StockRecieveInformation\Add.cshtml" />
     <Content Include="Views\StockRecieveInformation\Delete.cshtml" />
     <Content Include="Views\StockRecieveInformation\Details.cshtml" />
     <Content Include="Views\StockRecieveInformation\Edit.cshtml" />
     <Content Include="Views\StockRecieveInformation\Index.cshtml" />
-    <Content Include="Views\StockTypeInformation\Add.cshtml" />
     <Content Include="Views\StockTypeInformation\Create.cshtml" />
     <Content Include="Views\StockTypeInformation\Delete.cshtml" />
     <Content Include="Views\StockTypeInformation\Details.cshtml" />
     <Content Include="Views\StockTypeInformation\Edit.cshtml" />
     <Content Include="Views\StockTypeInformation\Index.cshtml" />
-    <Content Include="Views\Test\Create.cshtml" />
-    <Content Include="Views\Test\Index.cshtml" />
-    <Content Include="Views\Test\Indexx.cshtml" />
     <Content Include="Views\TicketSalesInformation\Add.cshtml" />
     <Content Include="Views\TicketSalesInformation\Delete.cshtml" />
     <Content Include="Views\TicketSalesInformation\Details.cshtml" />
     <Content Include="Views\TicketSalesInformation\Edit.cshtml" />
     <Content Include="Views\TicketSalesInformation\Index.cshtml" />
-    <Content Include="Views\UplimentTypeInformation\Add.cshtml" />
     <Content Include="Views\UplimentTypeInformation\Create.cshtml" />
     <Content Include="Views\UplimentTypeInformation\Delete.cshtml" />
     <Content Include="Views\UplimentTypeInformation\Details.cshtml" />
     <Content Include="Views\UplimentTypeInformation\Edit.cshtml" />
     <Content Include="Views\UplimentTypeInformation\Index.cshtml" />
-    <Content Include="Views\UserInformation\AddOrEdit.cshtml" />
-    <Content Include="Views\UserInformation\Create.cshtml" />
-    <Content Include="Views\UserInformation\Delete.cshtml" />
-    <Content Include="Views\UserInformation\Details.cshtml" />
-    <Content Include="Views\UserInformation\Edit.cshtml" />
-    <Content Include="Views\UserInformation\Index.cshtml" />
-    <Content Include="Views\UserInformation\postdata.cshtml" />
-    <Content Include="Views\Shared\LayoutDesign.cshtml" />
-    <Content Include="Views\Shared\MainLayout.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Gsa_Management_System_layout\app-assets\data\gmaps\foursquare.json" />
     <Content Include="Gsa_Management_System_layout\app-assets\fonts\flag-icon-css\LICENSE" />
@@ -2730,24 +2791,15 @@
     <Content Include="Gsa_Management_System_layout\app-assets\fonts\icomoon\icomoon.ttf" />
     <Content Include="Gsa_Management_System_layout\app-assets\fonts\icomoon\icomoon.woff" />
     <Content Include="Gsa_Management_System_layout\app-assets\images\datatables\resources\syntax\Syntax Highlighter license" />
-    <Content Include="Views\RegistrationInformation\Create_Account.cshtml" />
-    <Content Include="Views\Shared\DynamicLayout.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Role\Create.cshtml" />
-    <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\CargoSalesInformation\AddLegend.cshtml" />
-    <Content Include="Views\CargoSalesInformation\Create.cshtml" />
     <Content Include="Views\CargoSalesInformation\Addlast.cshtml" />
     <Content Include="Views\CargoSalesInformation\Register.cshtml" />
     <Content Include="Views\AccessInformation\AccessList.cshtml" />
-    <Content Include="Views\AccessInformation\Assign_Role.cshtml" />
     <Content Include="Views\AccessInformation\Delete.cshtml" />
     <Content Include="Views\AccessInformation\Details.cshtml" />
     <Content Include="Views\AccessInformation\Edit.cshtml" />
     <Content Include="Views\AccessInformation\Index.cshtml" />
-    <Content Include="Views\AccessInformation\Menu_Create.cshtml" />
-    <Content Include="Views\AccessInformation\Role_Create.cshtml" />
-    <Content Include="Views\AccessInformation\SubMenu_Create.cshtml" />
     <Content Include="Views\MenuItemInformation\Create.cshtml" />
     <Content Include="Views\MenuItemInformation\Delete.cshtml" />
     <Content Include="Views\MenuItemInformation\Details.cshtml" />
@@ -2765,35 +2817,33 @@
     <Content Include="Views\GsaGroup\Index.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
-    <Content Include="Views\ConsigneeInformation\Index - Copy.cshtml" />
-    <Content Include="Views\ConsigneeInformation\Index - Copy %282%29.cshtml" />
     <Content Include="Views\GsaGroup\Index - Copy.cshtml" />
     <Content Include="Views\Account\PreviousIndex .cshtml" />
     <Content Include="Views\Account\Create.cshtml" />
     <Content Include="Views\StockRecieveInformation\Create.cshtml" />
     <Content Include="Views\StockIssueInformation\Create.cshtml" />
     <Content Include="Views\StockIssueInformation\Index - dashboard.cshtml" />
-    <Content Include="Views\CompanyInformation\Create - Copy.cshtml" />
-    <Content Include="Views\CompanyInformation\Edit - Copy.cshtml" />
-    <Content Include="Views\CompanyInformation\Edit - Copy %282%29.cshtml" />
-    <Content Include="Views\CompanyInformation\Index - Copy.cshtml" />
-    <Content Include="Views\CustomerTypeInformation\Index - Copy.cshtml" />
-    <Content Include="Views\CustomerTypeInformation\Create - Copy.cshtml" />
-    <Content Include="Views\CustomerGroupInformation\Create - Copy.cshtml" />
-    <Content Include="Views\CustomerInformation\Create - Copy.cshtml" />
-    <Content Include="Views\CustomerInformation\Index - Copy.cshtml" />
-    <Content Include="Views\ConsigneeInformation\Create - Copy.cshtml" />
-    <Content Include="Views\ConsigneeInformation\Index - Copy %283%29.cshtml" />
     <Content Include="Views\ConsignorInformation\Create - Copy.cshtml" />
     <Content Include="Views\ConsignorInformation\Index - Copy.cshtml" />
-    <Content Include="Views\StockIssueInformation\Create - Copy.cshtml" />
-    <Content Include="Views\StockIssueInformation\Create - Copy %282%29.cshtml" />
     <Content Include="Views\StockIssueInformation\Edit - Copy.cshtml" />
     <Content Include="Views\StockIssueInformation\Editlast.cshtml" />
-    <Content Include="Views\StockRecieveInformation\Create - Copy.cshtml" />
+    <Content Include="Views\ReportInformation\Create.cshtml" />
+    <Content Include="Views\ReportInformation\Delete.cshtml" />
+    <Content Include="Views\ReportInformation\Details.cshtml" />
+    <Content Include="Views\ReportInformation\Edit.cshtml" />
+    <Content Include="Views\ReportInformation\Index.cshtml" />
+    <Content Include="Views\CargoSalesReport\Index.cshtml" />
+    <Content Include="Views\CargoSalesReport\Index - Copy %282%29.cshtml" />
+    <Content Include="Views\DestinationInformation\Create.cshtml" />
+    <Content Include="Views\RouteInformation\Create.cshtml" />
+    <Content Include="Views\CountryInformation\Create.cshtml" />
+    <Content Include="Views\ContinentInformation\Create.cshtml" />
+    <Content Include="Views\ExchangeInformation\Create.cshtml" />
+    <Content Include="Views\CargoSalesInformation\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Controllers\Reports\" />
     <Folder Include="Gsa_Management_System_layout\assets\images\" />
     <Folder Include="Image\" />
   </ItemGroup>
@@ -2811,10 +2861,6 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="crp.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>crp.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910010927093_initial.resx">
       <DependentUpon>201910010927093_initial.cs</DependentUpon>
     </EmbeddedResource>
@@ -2953,9 +2999,108 @@
     <EmbeddedResource Include="Migrations\201912260533059_initial44.resx">
       <DependentUpon>201912260533059_initial44.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\gsacargoreport.rpt">
+    <EmbeddedResource Include="Migrations\202001091006367_initial45.resx">
+      <DependentUpon>202001091006367_initial45.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001111639282_initial46.resx">
+      <DependentUpon>202001111639282_initial46.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001150416354_initial47.resx">
+      <DependentUpon>202001150416354_initial47.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001150432080_initial48.resx">
+      <DependentUpon>202001150432080_initial48.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001160830284_initial49.resx">
+      <DependentUpon>202001160830284_initial49.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001171636223_updatecargotable.resx">
+      <DependentUpon>202001171636223_updatecargotable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001190455024_initial52.resx">
+      <DependentUpon>202001190455024_initial52.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001190700134_initial53.resx">
+      <DependentUpon>202001190700134_initial53.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001190710166_initial54.resx">
+      <DependentUpon>202001190710166_initial54.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001190715209_initial55.resx">
+      <DependentUpon>202001190715209_initial55.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001191724159_initial56.resx">
+      <DependentUpon>202001191724159_initial56.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001191727041_initial50.resx">
+      <DependentUpon>202001191727041_initial50.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001191732272_initial51.resx">
+      <DependentUpon>202001191732272_initial51.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001191734063_initial57.resx">
+      <DependentUpon>202001191734063_initial57.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001251540587_initial59.resx">
+      <DependentUpon>202001251540587_initial59.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001251636440_initial58.resx">
+      <DependentUpon>202001251636440_initial58.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001251840393_initial60.resx">
+      <DependentUpon>202001251840393_initial60.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001260928229_initial61.resx">
+      <DependentUpon>202001260928229_initial61.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001261105074_initial62.resx">
+      <DependentUpon>202001261105074_initial62.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001270939243_initial63.resx">
+      <DependentUpon>202001270939243_initial63.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001270946590_initial64.resx">
+      <DependentUpon>202001270946590_initial64.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001271121006_initial65.resx">
+      <DependentUpon>202001271121006_initial65.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001271128319_initial66.resx">
+      <DependentUpon>202001271128319_initial66.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001271132299_initial67.resx">
+      <DependentUpon>202001271132299_initial67.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001280719055_initial68.resx">
+      <DependentUpon>202001280719055_initial68.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001300836430_initial69.resx">
+      <DependentUpon>202001300836430_initial69.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001300924209_intial.resx">
+      <DependentUpon>202001300924209_intial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001300928264_initial70.resx">
+      <DependentUpon>202001300928264_initial70.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001300929106_initial71.resx">
+      <DependentUpon>202001300929106_initial71.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001310405088_initial72.resx">
+      <DependentUpon>202001310405088_initial72.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002010601263_initial73.resx">
+      <DependentUpon>202002010601263_initial73.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002010854524_initial74.resx">
+      <DependentUpon>202002010854524_initial74.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002011151159_initial75.resx">
+      <DependentUpon>202002011151159_initial75.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Cargo\crpDateAndItemWiseCargoSalesGroupReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>gsacargoreport.cs</LastGenOutput>
+      <LastGenOutput>crpDateAndItemWiseCargoSalesGroupReport.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

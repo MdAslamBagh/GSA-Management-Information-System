@@ -13,6 +13,8 @@ namespace GSA_Management_Information_System.Models
        
         public string Status { get; internal set; }
         public string FullName { get; internal set; }
+        public string Company_Code { get; set; }
+        public string Branch_Code { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -42,7 +44,6 @@ namespace GSA_Management_Information_System.Models
         //    modelBuilder.Entity<CargoSalesInformation>().MapToStoredProcedures();
         //}
         public System.Data.Entity.DbSet<GSA_Management_Information_System.Models.CompanyInformation> CompanyInformations { get; set; }
-        public System.Data.Entity.DbSet<GSA_Management_Information_System.Models.UserInformation> UserInformations { get; set; }
         public System.Data.Entity.DbSet<GSA_Management_Information_System.Models.CustomerTypeInformation> CustomerTypeInformations { get; set; }
         public System.Data.Entity.DbSet<GSA_Management_Information_System.Models.Employee> Employees { get; set; }
 
@@ -93,7 +94,6 @@ namespace GSA_Management_Information_System.Models
 
         public System.Data.Entity.DbSet<GSA_Management_Information_System.Models.StockIssueDetailInformations> StockIssueDetailInformations { get; set; }
 
-        public System.Data.Entity.DbSet<GSA_Management_Information_System.Models.StockIssueConfirmation> StockIssueConfirmations { get; set; }
 
         public System.Data.Entity.DbSet<GSA_Management_Information_System.Models.CargoSalesInformation> CargoSalesInformations { get; set; }
 
@@ -123,6 +123,14 @@ namespace GSA_Management_Information_System.Models
         }
 
         public System.Data.Entity.DbSet<GSA_Management_Information_System.Models.EditUserViewModel> EditUserViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<GSA_Management_Information_System.Models.ReportInformation> Reports { get; set; }
+
+        //public System.Data.Entity.DbSet<GSA_Management_Information_System.Models.CargoSalesReport> CargoSalesReports { get; set; }
+
+        //public System.Data.Entity.DbSet<GSA_Management_Information_System.Models.CargoSalesReport> CargoSalesReports { get; set; }
+
+        //public System.Data.Entity.DbSet<GSA_Management_Information_System.Models.CargoSalesReport> CargoSalesReports { get; set; }
     }
 }
 

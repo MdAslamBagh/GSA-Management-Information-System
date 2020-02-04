@@ -7,20 +7,18 @@
 <style>
     th {
         background-color: #6495ED;
-        line-height:1.5;
-      
-       
+        line-height: 1.5;
     }
 </style>
 
 <div class="container">
     <div class="card ">
-        <div class="card-header bg-info">Consignee List</div>
-        <br/>
+        <div class="card-header bg-info" style="height: 4rem;">Consignee List</div>
+        <br />
         <div class="row">
 
             <div class="btn-group">
-                <a class="btn btn-success" style="margin-left:30px"  onclick="location.href='@Url.Action("Create", "ConsigneeInformation")'"><i class="fa fa-plus"></i>Add New</a>
+                <a class="btn btn-success" style="margin-left:30px" onclick="location.href='@Url.Action("Create", "ConsigneeInformation")'"><i class="fa fa-plus"></i>Add New</a>
             </div>
             <br />
             <br />
@@ -31,12 +29,12 @@
                        width="1550">
                     <thead>
                         <tr>
-                            <th>Code</th>
-                            <th>Name</th>
-                            <th>Address</th>
+                            <th>Consignee Code</th>
+                            <th>Consignee Name</th>
+                            <th>Consignoee Address</th>
                             <th>Email</th>
                             <th>Status</th>
-                            <th>Default</th>
+                            <th>Default_Code</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -80,8 +78,9 @@
                             { "data": "Email" },
                             { "data": "Status" },
                             { "data": "Default_Code" },
-                            { "data": "ConsigneeId", "render": function (data) {
-                                    return "<a class='btn btn-default btn-sm' onclick=location.href='@Url.Action("Edit","ConsigneeInformation")/" + data + "'><i class='fa fa-pencil'></i> Edit</a><a class='btn btn-danger btn-sm'style='margin-left:5px'onclick=Delete(" + data + ")><i class='fa fa-trash'></i> Delete</a>"
+                            {
+                                "data": "ConsigneeId", "render": function (data) {
+                                    return "<a class='btn btn-default btn-sm' onclick=location.href='@Url.Action("Edit", "ConsigneeInformation")/" + data + "'><i class='fa fa-pencil'></i> Edit</a><a class='btn btn-danger btn-sm'style='margin-left:5px'onclick=Delete(" + data + ")><i class='fa fa-trash'></i> Delete</a>"
                                 },
                                 "orderable": false,
                                 "searchable": false,
@@ -137,7 +136,7 @@
                         {
                             $.ajax({
                                 type: "post",
-                                url: '@Url.Action("Delete","ConsigneeInformation")/' + id,
+                                url: '@Url.Action("Delete", "ConsigneeInformation")/' + id,
                                 success: function (data) {
 
                                     if (data.success) {
@@ -188,11 +187,11 @@
                         </script>
                     </div>
                 </div>
-                        </div>
             </div>
-
-            }
-
         </div>
+
+                    }
+
+                </div>
 
 

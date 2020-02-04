@@ -21,6 +21,8 @@ namespace GSA_Management_Information_System.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private ApplicationRoleManager _roleManager;
+
+        ApplicationDbContext db = new ApplicationDbContext();
         public AccountController()
         {
         }
@@ -417,9 +419,9 @@ namespace GSA_Management_Information_System.Controllers
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                    return RedirectToAction("Index", "Home");
+                  // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+               
+                    return RedirectToAction("Login", "Account");
                 }
                 AddErrors(result);
             }
@@ -435,7 +437,62 @@ namespace GSA_Management_Information_System.Controllers
         [AllowAnonymous]
         public ActionResult Create()
         {
+            ApplicationDbContext db = new ApplicationDbContext();
+            List<CompanyInformation> companyInformations = db.CompanyInformations.Where(a => a.Default_Code == true).ToList<CompanyInformation>();
+            CompanyInformation informations = new CompanyInformation();
+            informations = companyInformations.FirstOrDefault();
+            if (informations != null)
+            {
+                string c_Name = informations.Company_Name;
+                string c_Code = informations.Company_Code.ToString();
+                string  b_Name = informations.Branch_Name;
+                string b_Code = informations.Branch_Code;
+                ViewBag.Company_Name = c_Name;
+                ViewBag.Company_Code = c_Code;
+                ViewBag.Branch_Name = b_Name;
+                ViewBag.Branch_Code = b_Code;
+                return View();
+            }
+            else 
+
             return View();
+        }
+
+
+        public JsonResult Get_Company_Name(string Prefix)
+        {
+            
+            var Company_Name = (from c in db.CompanyInformations
+                                  where c.Company_Name.StartsWith(Prefix)
+                                  select new { c.Company_Name });
+            return Json(Company_Name, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public JsonResult GetCompanyCodeById(string companyname)
+        {
+            var company_code = db.CompanyInformations.Where(m => m.Company_Name == companyname).FirstOrDefault();
+            return Json(company_code, JsonRequestBehavior.AllowGet);
+        }
+
+       
+
+
+        public JsonResult Get_Branch_Name(string Prefix)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            var Branch_Name = (from c in db.CompanyInformations
+                               where c.Branch_Name.StartsWith(Prefix)
+                               select new { c.Branch_Name });
+            return Json(Branch_Name, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public JsonResult GetBranchCodeById(string branchname)
+        {
+         
+            var branch_code = db.CompanyInformations.Where(m => m.Branch_Name == branchname).FirstOrDefault();
+            return Json(branch_code, JsonRequestBehavior.AllowGet);
         }
 
         //
@@ -451,7 +508,7 @@ namespace GSA_Management_Information_System.Controllers
                 model.Status = "Active";
                 //model.UserType = "User";
                 //model.Status = "Inactive";
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, FullName = model.FullName, Status = model.Status };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, FullName = model.FullName, Status = model.Status,Company_Code=model.Company_Code,Branch_Code=model.Branch_Code };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -486,16 +543,66 @@ namespace GSA_Management_Information_System.Controllers
             }
 
             var userRoles = await UserManager.GetRolesAsync(user.Id);
+            //var company = db.CompanyInformations.Where(Id);
 
             // ViewBag.GroupID = new SelectList(db.GSAGroups, "GroupID", "GroupName");
+
+            // ViewBag.Company_Name = new SelectList(db.CompanyInformations, "Company_Code", "Company_Name");
+            var Company = db.CompanyInformations.Where(a => a.Company_Code == user.Company_Code).FirstOrDefault();
+            if (Company != null)
+            {
+                ViewBag.Company_Name = Company.Company_Name;
+                ViewBag.Company_Code = Company.Company_Code;
+                ViewBag.Branch_Name = Company.Branch_Name;
+                ViewBag.Branch_Code = Company.Branch_Code;
+
+            }
+            else
+            {
+                List<CompanyInformation> companyInformations = db.CompanyInformations.Where(a => a.Default_Code == true).ToList<CompanyInformation>();
+                CompanyInformation informations = new CompanyInformation();
+                informations = companyInformations.FirstOrDefault();
+
+                string c_Name = informations.Company_Name;
+                string c_Code = informations.Company_Code.ToString();
+                string b_Name = informations.Branch_Name;
+                string b_Code = informations.Branch_Code;
+                ViewBag.Company_Name = c_Name;
+                ViewBag.Company_Code = c_Code;
+                ViewBag.Branch_Name = b_Name;
+                ViewBag.Branch_Code = b_Code;
+            }
+            
+
+
+
+            //select new { company=company.Company_Name };
+            //var sss = await UserManager.getco(user.Company_Code);
+            // var name=db.
             return View(new EditUserViewModel()
             {
                 Id = user.Id,
-                FullName=user.FullName,
+                FullName = user.FullName,
                 UserName = user.UserName,
                 Email = user.Email,
+                //Company_Name = ViewBag.Company_Name,
+                //Company_Name = db.CompanyInformations.Where(a => a.Company_Code == user.Company_Code),
+                Company_Name= ViewBag.Company_Name,
+                Branch_Name= ViewBag.Branch_Name,
+                Company_Code = ViewBag.Company_Code,
+                //ViewBag.Company_Name = new SelectList(db.CompanyInformations, "Country_Code", "Long_Desc"),
+                Branch_Code = ViewBag.Branch_Code,
                 Password=user.PasswordHash,
                 ConfirmPassword=user.PasswordHash,
+
+                //CompanyList = db.CompanyInformations.ToList().Select(x => new SelectListItem()
+                //{
+                //  Selected = userRoles.Contains(x.Company_Name),
+                //  Text = x.Company_Name,
+                //  Value = x.Company_Name
+                //}),
+
+
                 RolesList = RoleManager.Roles.ToList().Select(x => new SelectListItem()
                 {
                     Selected = userRoles.Contains(x.Name),
@@ -526,6 +633,8 @@ namespace GSA_Management_Information_System.Controllers
 
                 user.UserName = editUser.UserName;
                 user.Email = editUser.Email;
+                user.Company_Code = editUser.Company_Code;
+                user.Branch_Code = editUser.Branch_Code;
                 //user.GroupID = editUser.GroupID;
                 //UserManager.Update(user);
 
@@ -573,30 +682,37 @@ namespace GSA_Management_Information_System.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return View(model);
+            //}
             ApplicationUser user;
-            if (model.Email.Contains("@"))
-                user = UserManager.FindByEmail(model.Email);
+                if (model.Email.Contains("@"))
+                    user = UserManager.FindByEmail(model.Email);
+                else
+                    user = UserManager.FindByName(model.Email);
+                // This doesn't count login failures towards account lockout
+                // To enable password failures to trigger account lockout, change to shouldLockout: true
+                if (user.Status == "Active") { 
+                var result = await SignInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, shouldLockout: false);
+                switch (result)
+                {
+                    case SignInStatus.Success:
+                        return RedirectToLocal(returnUrl);
+                    case SignInStatus.LockedOut:
+                        return View("Lockout");
+                    case SignInStatus.RequiresVerification:
+                        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    case SignInStatus.Failure:
+                    default:
+                        ModelState.AddModelError("", "Invalid login attempt.");
+                        return View(model);
+                }
+            }
             else
-                user = UserManager.FindByName(model.Email);
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
             {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                ModelState.AddModelError("", "Invalid login attempt.Please wait for Admin Approval");
+                return View(model);
             }
         }
 
