@@ -12,7 +12,6 @@
 {
     @Html.AntiForgeryToken()
 
-
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-horizontal">
         <div class="container">
@@ -31,7 +30,7 @@
                                 </div>
                                 <div class="col-sm-8">
                                     <div class="required">
-                                        <input name="MAWB" textbox id="mawb" placeholder="MAWB" maxlength="7" class="form-control" type="text">
+                                        <input name="MAWB" textbox id="mawb" placeholder="MAWB" maxlength="7" class="form-control" type="text" required>
                                         @*<input id="mawb"  name="MAWB" type="text" class="form-control" maxlength="50" onkeyup="changeEstericColor(this.id);" placeholder="MAWB">*@
                                     </div>
                                 </div>
@@ -60,7 +59,7 @@
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="required">
-                                        <input name="Check_Digit" textbox id="checkdigit" type="text" maxlength="1" value="" class="form-control" onkeyup="changeEstericColor(this.id);">
+                                        <input name="Check_Digit" textbox id="checkdigit" type="text" maxlength="1"  class="form-control" required>
                                     </div>
                                 </div>
                             </div>
@@ -77,48 +76,72 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="required">
-                                        @Html.Editor("Flight_Date", new { htmlAttributes = new { @class = "form-control", id = "flightdate" } })
+                                        @*@Html.Editor("Flight_Date", new { htmlAttributes = new { @class = "form-control", id = "flightdate" } })*@
+                                        <input type="text" class="form-control datepicker" name="Flight_Date" id="flightdate" placeholder="Flight Date" data-format="mm/dd/yyyy" value=@ViewBag.Flight_Date>
+                                        @*<div class="input-group-addon">
+                                            <a href="#"><i class="fa fa-calendar"></i></a>
+                                        </div>*@
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-1">
+
+                    <div class="col-sm-2">
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-4">
-                                    <label for="SalesSlNo">
-                                        Slno:
-                                        <span id="txtSalesSlNo" style="color:#FF0000;"></span>
-                                    </label>
-                                </div>
-                                <div class="col-sm-4">
-                                    <input name="SalesSlno" textbox id="salesslno" type="text" maxlength="50" value="@ViewBag.SalesSlno" class="form-control" readonly="readonly" onkeyup="changeEstericColor(this.id);">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-1">
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <label for="levelentrydate">
-                                        E_Dte
+                                    <label for="flightdate">
+                                        EntryDate
                                         <span id="txtLastNameEsteric" style="color:#FF0000;"></span>
                                     </label>
                                 </div>
-                                <div class="row">
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.Entry_Date, htmlAttributes: new { @class = "hidden" })
-                                        <div class="col-md-10">
-                                            @Html.Editor("Entry_Date", new { htmlAttributes = new { @class = "hidden" } })
-                                            @Html.ValidationMessageFor(model => model.Entry_Date, "", new { @class = "text-danger" })
-                                        </div>
+                                <div class="col-sm-8">
+                                    <div class="required">
+                                        @*@Html.Editor("Flight_Date", new { htmlAttributes = new { @class = "form-control", id = "flightdate" } })*@
+                                        <input type="text" class="form-control datepicker" name="Entry_Date" id="entrydate" placeholder="Flight Date" data-format="mm/dd/yyyy" value=@ViewBag.Entry_Date>
+                                        @*<div class="input-group-addon">
+                                <a href="#"><i class="fa fa-calendar"></i></a>
+                            </div>*@
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                   <div class="col-sm-1">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.SalesSlno, htmlAttributes: new { @class = "hidden" })
+                                </div>
+                                <div class="col-sm-2">
+                                    @*@Html.Editor("SalesSlno", new { htmlAttributes = new { @class = "hidden" } })*@
+                                    <input name="SalesSlno" textbox id="salesslno" type="hidden" value="@ViewBag.SalesSlno" class="form-control" readonly="readonly" onkeyup="changeEstericColor(this.id);">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   @* <div class="col-sm-1">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-4">
+                    <label for="levelentrydate">
+                        E_Dte
+                        <span id="txtLastNameEsteric" style="color:#FF0000;"></span>
+                    </label>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Entry_Date, htmlAttributes: new { @class = "hidden" })
+                        <div class="col-md-10">
+                            @Html.Editor("Entry_Date", new { htmlAttributes = new { @class = "hidden" } })
+                            @Html.ValidationMessageFor(model => model.Entry_Date, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
 
                 </div>
                 <div class="col-sm-12">
@@ -1069,6 +1092,19 @@
             }
         });
         jQuery.noConflict()(function ($) {
+
+            //flightdate
+            $(function () {
+                $("#flightdate").datepicker();
+                //$("#DateTo").datepicker();
+
+            });
+
+            $(function () {
+                $("#entrydate").datepicker();
+                //$("#DateTo").datepicker();
+
+            });
             //mawb
             $("#mawb").keyup(function () {
                 var mawbData = $("#mawb").val();
@@ -1983,6 +2019,7 @@
             //Me.lblTotalUSD.Text = Format(Val(Val(Me.txtChargeableWeight.Text) * Val(Me.txtRateCharge.Text)) + Val(Me.txtHDS.Text) + Val(Me.txtOthers.Text) + Val(Me.txtAMS.Text) + Val(Me.lblTHC.Text) + Val(Me.lblSSC.Text) + Val(Me.lblFSCCharge.Text) + Val(Me.lblISSCharge.Text), "0.00")
         };
     </script>
+
 }
 
 

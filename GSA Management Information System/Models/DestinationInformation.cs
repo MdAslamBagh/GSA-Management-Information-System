@@ -10,6 +10,8 @@ namespace GSA_Management_Information_System.Models
     {
         [Key]
         public int DestinationId { get; set; }
+        [Required(ErrorMessage = "Continent_Code must be Required.")]
+        public int Continent_Code { get; set; }
         [Required(ErrorMessage = "Country_Code must be Required.")]
         public int Country_Code { get; set; }
         [Required(ErrorMessage = "Dest_Code must be Required.")]

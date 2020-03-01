@@ -27,11 +27,11 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         [HttpGet]
-        public ActionResult Add()
+        public ActionResult Create()
         {
-            String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
+             //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
             //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
-            ViewBag.Entry_Date = today;
+           // ViewBag.Entry_Date = today;
             List<FreighterInformation> Informations = db.FreighterInformations.OrderByDescending(a => a.FreighterId).ToList<FreighterInformation>();
 
             try
@@ -63,13 +63,16 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(FreighterInformation objfreighter)
+        public ActionResult Create(FreighterInformation objfreighter)
         {
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
 
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                objfreighter.Entry_By = LogedInUser;
+                objfreighter.Entry_Date = DateTime.Now;
                 db.FreighterInformations.Add(objfreighter);
                 if (objfreighter.Default_Code == false)
                 {
@@ -121,10 +124,14 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "FreighterId,Freighter_Code,Long_Desc,Email,Status,Default_Code,Entry_Date")] FreighterInformation objfreighter)
+        public ActionResult Edit( FreighterInformation objfreighter)
         {
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                objfreighter.Entry_By = LogedInUser;
+                objfreighter.Entry_Date = DateTime.Now;
+
                 db.Entry(objfreighter).State = EntityState.Modified;
                 var list = db.FreighterInformations.Where(a => a.Freighter_Code != objfreighter.Freighter_Code).ToList();
 

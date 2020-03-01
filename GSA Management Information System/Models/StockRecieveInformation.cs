@@ -33,7 +33,6 @@ namespace GSA_Management_Information_System.Models
         public int Ticket_Quantity { get; set; }
 
         public string Customer_Code { get; set; }
-        public virtual CustomerInformation CustomerInformation { get; set; }
         public string Remarks { get; set; }
         //[Required(ErrorMessage = "This field can not be empty.")]
        // public string Transaction_Status { get; set; }

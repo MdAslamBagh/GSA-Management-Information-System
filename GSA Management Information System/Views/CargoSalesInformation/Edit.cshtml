@@ -89,8 +89,42 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label for="flightdate">
+                                        EntryDate
+                                        <span id="txtLastNameEsteric" style="color:#FF0000;"></span>
+                                    </label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="required">
+                                        @*@Html.Editor("Flight_Date", new { htmlAttributes = new { @class = "form-control", id = "flightdate" } })*@
+                                        <input type="text" class="form-control datepicker" name="Entry_Date" id="entrydate" placeholder="Entry Date" data-format="mm/dd/yyyy" value=@ViewBag.Entry_Date>
+                                        @*<div class="input-group-addon">
+                                <a href="#"><i class="fa fa-calendar"></i></a>
+                            </div>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-sm-1">
                         <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    @Html.LabelFor(model => model.SalesSlno, htmlAttributes: new { @class = "hidden" })
+                                </div>
+                                <div class="col-sm-2">
+                                    @*@Html.Editor("SalesSlno", new { htmlAttributes = new { @class = "hidden" } })*@
+                                    <input name="SalesSlno" textbox id="salesslno" type="hidden" value="@ViewBag.SalesSlno" class="form-control" readonly="readonly" onkeyup="changeEstericColor(this.id);">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="col-sm-1">*@
+                        @*<div class="form-group">
                             <div class="row">
                                 <div class="col-sm-4">
                                     <label for="SalesSlNo">
@@ -101,11 +135,11 @@
                                 <div class="col-sm-4">
                                     @Html.EditorFor(model => model.SalesSlno, new { htmlAttributes = new { @class = "form-control", id = "salesslno" } })
                                     @*<input name="SalesSlno" textbox id="salesslno" type="text" maxlength="50" value="@ViewBag.SalesSlno" class="form-control" readonly="readonly" onkeyup="changeEstericColor(this.id);">*@
-                                </div>
+                                @*</div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-1">
+                        </div>*@
+                    @*</div>*@
+                    @*<div class="col-sm-1">
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-4">
@@ -118,13 +152,14 @@
                                     <div class="required">
                                         @Html.Editor("Entry_Date", new { htmlAttributes = new { @class = "hidden" } })
                                         @*<input name="Entry_Date" id="id=" entrydate"" type="hidden" maxlength="50" class="form-control" onkeyup="changeEstericColor(this.id);" placeholder="Last Name" value="@ViewBag.Entry_Date">*@
-                                    </div>
+                                    @*</div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        </div>*@
+                    @*</div>*@
 
-                </div>
+                @*</div>*@
+                    </div>
                 <div class="col-sm-12">
                     <div class="appli-form">
                         <form action="?Y1pn6v10=P10641yyr4&amp;S14zNp6v10=N22yvpn6v10V05r46" method="post" name="frmApplication" id="frmApplication">
@@ -1117,6 +1152,17 @@
             }
         });
         jQuery.noConflict()(function ($) {
+            $(function () {
+                $("#flightdate").datepicker();
+                //$("#DateTo").datepicker();
+
+            });
+
+            $(function () {
+                $("#entrydate").datepicker();
+                //$("#DateTo").datepicker();
+
+            });
             //mawb
             $("#mawb").keyup(function () {
                 var mawbData = $("#mawb").val();

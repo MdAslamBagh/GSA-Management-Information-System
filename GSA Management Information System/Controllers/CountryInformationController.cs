@@ -47,6 +47,30 @@ namespace GSA_Management_Information_System.Controllers
             //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
             //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
             //ViewBag.Entry_Date = today;
+            List<CountryInformation> Informations = db.CountryInformations.OrderByDescending(a => a.CountryId).ToList<CountryInformation>();
+
+            try
+            {
+                CountryInformation information = new CountryInformation();
+
+                information = Informations.FirstOrDefault();
+                if (information == null)
+                {
+                    CountryInformation objcountry = new CountryInformation();
+                    int s = objcountry.Country_Code + 1;
+                    //ViewBag.ConsignorCode = information.Consignor_Code + 1;
+                    ViewBag.Country_Code = s.ToString();
+                }
+                else
+                {
+                    int code = information.Country_Code + 1;
+                    ViewBag.Country_Code = code.ToString();//.PadLeft(4, '0');
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
             ViewBag.Continent_Code = new SelectList(db.ContinentInformations, "Continent_Code", "Long_Desc");
@@ -64,7 +88,10 @@ namespace GSA_Management_Information_System.Controllers
             ViewBag.list = list;
             if (ModelState.IsValid)
             {
-
+                var LogedInUser = User.Identity.Name;
+                countryInformation.Entry_By = LogedInUser;
+                countryInformation.Entry_Date = DateTime.Now;
+                db.CountryInformations.Add(countryInformation);
 
                 db.CountryInformations.Add(countryInformation);
                 if (countryInformation.Default_Code == false)

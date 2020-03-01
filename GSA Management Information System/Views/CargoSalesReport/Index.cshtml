@@ -107,7 +107,7 @@
                                 <div class="col-md-4 col-sm-7">
                                     <div class="input-group">
                                         @*@Html.Editor("Ticket_Date", new { htmlAttributes = new { @class = "datepicker1" } })*@
-                                        <input name="Cusotmer_Name" textbox id="customer" readonly="readonly"  placeholder="Customer Name" class="form-control" type="text">
+                                        <input name="Customer_Name" textbox id="customer" readonly="readonly" placeholder="Customer Name" class="form-control" type="text">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -122,6 +122,43 @@
                                 </div>
 
                             </div>
+                        </div>
+                        @*freightpaymode*@
+                        <div id="freightpaymode">
+                            <div class="form-group col-md-10 col-sm-12 ">
+                                <label for="accessname" class="col-md-3 col-sm-5">From Item<font size="2px" color="red"></font></label>
+                                <div class="col-md-4 col-sm-7">
+
+                                    @*@Html.Editor("Ticket_Date", new { htmlAttributes = new { @class = "datepicker1" } })*@
+                                    @*@Html.EditorFor(model => model.MAWB, new { htmlAttributes = new { @class = "form-control",@readonly= "readonly", placeholder = "From Destination",id="fromitem" } })*@
+                                    <input name="From_Item" textbox id="freightpaymodefromitem" readonly="readonly" placeholder="From Item" class="form-control" type="text">
+
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="col-sm-1">
+                                        <div class="required">
+                                            <input id="freightpaymodeallitemcheck" value="" type="checkbox" checked="checked" name="CheckSSCVat" />
+                                            @*<input type="hidden" value="false" name="CheckSSCVat" />*@
+                                            @*<input type="checkbox"  onkeyup="totalSub()" name="CheckSSCVat" id="checksscvat">*@
+                                        </div>
+                                    </div>
+                                    <label for="accessname" class="col-md-9 col-sm-9">All Item <font size="2px" color="red"></font></label>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="form-group  ">
+                                <div class="form-group col-md-10 col-sm-12 ">
+                                    <label for="accessname" class="col-md-3 col-sm-5">To Item<font size="2px" color="red"></font></label>
+                                    <div class="col-md-4 col-sm-7">
+                                        <input name="From_Item" textbox id="freightpaymodetoitem" placeholder="To Item" readonly="readonly" class="form-control" type="text">
+                                        @*@Html.EditorFor(model => model.MAWB, new { htmlAttributes = new { @class = "form-control",@readonly= "readonly", placeholder = "To Destination",id="toitem" } })*@
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                         @*Cargo Type Div*@
                         <div id="cargotypeitemwise">
@@ -153,7 +190,7 @@
                                 <div class="form-group col-md-10 col-sm-12 ">
                                     <label for="accessname" class="col-md-3 col-sm-5">To Item<font size="2px" color="red"></font></label>
                                     <div class="col-md-4 col-sm-7">
-                                        <input name="From_Item" textbox id="cargotypetoitem" placeholder="To Item" readonly="readonly"  class="form-control" type="text">
+                                        <input name="From_Item" textbox id="cargotypetoitem" placeholder="To Item" readonly="readonly" class="form-control" type="text">
                                         @*@Html.EditorFor(model => model.MAWB, new { htmlAttributes = new { @class = "form-control",@readonly= "readonly", placeholder = "To Destination",id="toitem" } })*@
                                     </div>
                                 </div>
@@ -164,18 +201,19 @@
 
                         <div id="destinationwise">
                             <div class="form-group col-md-10 col-sm-12 ">
-                                <label for="accessname" class="col-md-3 col-sm-5">From Destianation<font size="2px" color="red"></font></label>
+                                <label for="accessname" class="col-md-3 col-sm-5">From Destination<font size="2px" color="red"></font></label>
                                 <div class="col-md-4 col-sm-7">
 
                                     @*@Html.Editor("Ticket_Date", new { htmlAttributes = new { @class = "datepicker1" } })*@
-                                    @Html.EditorFor(model => model.MAWB, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", placeholder = "From Destination", id = "fromdestination" } })
+                                    @*@Html.EditorFor(model => model.MAWB, new { htmlAttributes = new { @class = "form-control",@readonly= "readonly", placeholder = "From Destination",id="fromitem" } })*@
+                                    <input name="From_Item" textbox id="destinationfromitem" readonly="readonly" placeholder="From Item" class="form-control" type="text">
 
                                 </div>
                                 <div class="col-md-3">
                                     <div class="col-sm-1">
                                         <div class="required">
-                                            <input id="alldestinationcheck" type="checkbox" value="true" checked="checked" name="CheckSSCVat" />
-                                            <input type="hidden" value="false" name="CheckSSCVat" />
+                                            <input id="destinationallitemcheck" value="" type="checkbox" checked="checked" name="CheckSSCVat" />
+                                            @*<input type="hidden" value="false" name="CheckSSCVat" />*@
                                             @*<input type="checkbox"  onkeyup="totalSub()" name="CheckSSCVat" id="checksscvat">*@
                                         </div>
                                     </div>
@@ -188,9 +226,10 @@
 
                             <div class="form-group  ">
                                 <div class="form-group col-md-10 col-sm-12 ">
-                                    <label for="accessname" class="col-md-3 col-sm-5">To Destination<font size="2px" color="red"></font></label>
+                                    <label for="accessname" class="col-md-3 col-sm-5">To Destiantion<font size="2px" color="red"></font></label>
                                     <div class="col-md-4 col-sm-7">
-                                        @Html.EditorFor(model => model.MAWB, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", placeholder = "To Destination", id = "todestination" } })
+                                        <input name="From_Item" textbox id="destinationtoitem" placeholder="To Item" readonly="readonly" class="form-control" type="text">
+                                        @*@Html.EditorFor(model => model.MAWB, new { htmlAttributes = new { @class = "form-control",@readonly= "readonly", placeholder = "To Destination",id="toitem" } })*@
                                     </div>
                                 </div>
                             </div>
@@ -241,13 +280,13 @@
                                 <div class="col-md-4 col-sm-7">
 
                                     @*@Html.Editor("Ticket_Date", new { htmlAttributes = new { @class = "datepicker1" } })*@
-                                    @Html.EditorFor(model => model.MAWB, new { htmlAttributes = new { @class = "form-control",@readonly= "readonly", placeholder = "From Group",id="fromgroup" } })
+                                    <input name="From_Item" textbox id="groupfromitem" readonly="readonly" placeholder="From Item" class="form-control" type="text">
 
                                 </div>
                                 <div class="col-md-3">
                                     <div class="col-sm-1">
                                         <div class="required">
-                                            <input id="allgroupcheck" type="checkbox" value="true"  checked="checked" name="CheckSSCVat"  />
+                                            <input id="allgroupcheck" type="checkbox" value="true" checked="checked" name="CheckSSCVat" />
                                             <input type="hidden" value="false" name="CheckSSCVat" />
                                             @*<input type="checkbox"  onkeyup="totalSub()" name="CheckSSCVat" id="checksscvat">*@
                                         </div>
@@ -263,20 +302,22 @@
                                 <div class="form-group col-md-10 col-sm-12 ">
                                     <label for="accessname" class="col-md-3 col-sm-5">To Group<font size="2px" color="red"></font></label>
                                     <div class="col-md-4 col-sm-7">
-                                        @Html.EditorFor(model => model.MAWB, new { htmlAttributes = new { @class = "form-control",@readonly= "readonly", placeholder = "To Group",id="togroup" } })
+                                        <input name="From_Item" textbox id="grouptoitem" readonly="readonly" placeholder="From Item" class="form-control" type="text">
                                     </div>
                                 </div>
                             </div>
 
                         </div>
 
-                       
+
                         <div class="form-group col-md-10 col-sm-12 ">
                             <div class="col-md-10">
                                 <div align="center">
                                     @*<a href="@Url.Action("Export","CustomerTypeInformation")">Export Report</a>*@
                                     @*<a class="btn btn-primary" style="margin-left:10px" onclick="location.href='@Url.Action("Index", "ReportInformation")'"><i class="fa fa-plus"></i>Back To List</a>*@
-                                    <input type="button" value="Download PDF" onclick="pdfExportCheck()" class="btn btn-info" />
+                                    <input type="button" value="Download PDF" id="btnpdf" onclick="pdfExportCheck(this.id)" class="btn btn-info" />
+                                    <input type="button" value="Excel Export" id="btnexcel" onclick="pdfExportCheck(this.id)" class="btn btn-info" />
+                                    <input type="button" value="Send" id="btnsend" onclick="pdfExportCheck(this.id)" class="btn btn-info" />
                                 </div>
                             </div>
                         </div>
@@ -322,12 +363,25 @@
 
 
         //$("#Status").html("checking...........");
-        function pdfExportCheck() {
+        function pdfExportCheck(clicked_id) {
             //$.post("@Url.Action("Export", "CargoSalesReport")",
             var fromdate = $('#DateFrom').val();
             var todate = $('#DateTo').val();
             var reportname = $('#reportname').val();
+            var clickbtn = clicked_id;
+            
+           // alert(clicked_id);
+           // var id = $(this).attr('btnpdf'); // $(this) refers to button that was clicked
 
+            //var ttt = id.val();
+           // alert(ttt);
+
+            //if ($('#btnpdf').is(':checked')) {
+            //    var checkdate = $("#checkmasterdate").val();
+            //}
+
+            //var buttonpdf = $('#btnpdf').val();
+            //var buttonexcel = $('#btnexcel').val();
 
             //$('#checkmasterdate').click(function () {
             if ($('#checkmasterdate').is(':checked')) {
@@ -367,6 +421,10 @@
                     customerallitemcheck = 'false';
                     customer = '';
 
+                    freightpaymodeallitemcheck = 'false';
+                    freightpaymodefromitem = '';
+                    freightpaymodetoitem = '';
+
 
                     // $(this).attr('value', 'true');
                     //var allitemcheck = $("#allitemcheck").attr('value', 'true');
@@ -392,6 +450,63 @@
 
                     customerallitemcheck = 'false';
                     customer = '';
+
+                    freightpaymodeallitemcheck = 'false';
+                    freightpaymodefromitem = '';
+                    freightpaymodetoitem = '';
+
+                }
+
+                if ($('#allgroupcheck').is(':checked')) {
+                    $("#allgroupcheck").val("true");
+                    //var x = document.getElementById("allitemcheck").value;
+                    //$('#allitemcheck').value == "true";
+                    var allgroupcheck = $('#allgroupcheck').val();
+                    var groupfromitem = $('#groupfromitem').val();
+                    var grouptoitem = $('#grouptoitem').val();
+
+
+                    freightertypeallitemcheck = 'false';
+                    freightertypefromitem = '';
+                    freightertypetoitem = '';
+
+
+                    customerallitemcheck = 'false';
+                    customer = '';
+
+                    freightpaymodeallitemcheck = 'false';
+                    freightpaymodefromitem = '';
+                    freightpaymodetoitem = '';
+
+
+                    // $(this).attr('value', 'true');
+                    //var allitemcheck = $("#allitemcheck").attr('value', 'true');
+                    //var allitemcheck = $('#allitemcheck').val("true");
+                    // alert(allitemcheck);
+                    //    //var checkdate = $("input[name='date']:checked").val();
+                    //    //$("#checkmasterdate").val();
+                    //    //$("#allitemcheck").prop("checked", false);
+                    //    //alert("Checkbox is checked.");
+                }
+                else {
+                    // var allitemcheck = $("#allitemcheck").val();
+                    $("#allgroupcheck").val("false");
+                    //var x = document.getElementById("allitemcheck").value;
+                    //$('#allitemcheck').value == "true";
+                    var allgroupcheck = $('#allgroupcheck').val();
+                    var groupfromitem = $('#groupfromitem').val();
+                    var grouptoitem = $('#grouptoitem').val();
+
+                    freightertypeallitemcheck = 'false';
+                    freightertypefromitem = '';
+                    freightertypetoitem = '';
+
+                    customerallitemcheck = 'false';
+                    customer = '';
+
+                    freightpaymodeallitemcheck = 'false';
+                    freightpaymodefromitem = '';
+                    freightpaymodetoitem = '';
 
                 }
             }
@@ -414,6 +529,10 @@
 
                     customerallitemcheck = 'false';
                     customer = '';
+
+                    freightpaymodeallitemcheck = 'false';
+                    freightpaymodefromitem = '';
+                    freightpaymodetoitem = '';
                     // $(this).attr('value', 'true');
                     //var allitemcheck = $("#allitemcheck").attr('value', 'true');
                     //var allitemcheck = $('#allitemcheck').val("true");
@@ -438,6 +557,63 @@
 
                     customerallitemcheck = 'false';
                     customer = '';
+
+                    freightpaymodeallitemcheck = 'false';
+                    freightpaymodefromitem = '';
+                    freightpaymodetoitem = '';
+
+                }
+
+                if ($('#allgroupcheck').is(':checked')) {
+                    $("#allgroupcheck").val("true");
+                    //var x = document.getElementById("allitemcheck").value;
+                    //$('#allitemcheck').value == "true";
+                    var allgroupcheck = $('#allgroupcheck').val();
+                    var groupfromitem = $('#groupfromitem').val();
+                    var grouptoitem = $('#grouptoitem').val();
+
+
+                    freightertypeallitemcheck = 'false';
+                    freightertypefromitem = '';
+                    freightertypetoitem = '';
+
+
+                    customerallitemcheck = 'false';
+                    customer = '';
+
+                    freightpaymodeallitemcheck = 'false';
+                    freightpaymodefromitem = '';
+                    freightpaymodetoitem = '';
+
+
+                    // $(this).attr('value', 'true');
+                    //var allitemcheck = $("#allitemcheck").attr('value', 'true');
+                    //var allitemcheck = $('#allitemcheck').val("true");
+                    // alert(allitemcheck);
+                    //    //var checkdate = $("input[name='date']:checked").val();
+                    //    //$("#checkmasterdate").val();
+                    //    //$("#allitemcheck").prop("checked", false);
+                    //    //alert("Checkbox is checked.");
+                }
+                else {
+                    // var allitemcheck = $("#allitemcheck").val();
+                    $("#allgroupcheck").val("false");
+                    //var x = document.getElementById("allitemcheck").value;
+                    //$('#allitemcheck').value == "true";
+                    var allgroupcheck = $('#allgroupcheck').val();
+                    var groupfromitem = $('#groupfromitem').val();
+                    var grouptoitem = $('#grouptoitem').val();
+
+                    freightertypeallitemcheck = 'false';
+                    freightertypefromitem = '';
+                    freightertypetoitem = '';
+
+                    customerallitemcheck = 'false';
+                    customer = '';
+
+                    freightpaymodeallitemcheck = 'false';
+                    freightpaymodefromitem = '';
+                    freightpaymodetoitem = '';
 
                 }
             }
@@ -462,12 +638,16 @@
 
                     customerallitemcheck = 'false';
                     customer = '';
-                 
+
+                    freightpaymodeallitemcheck = 'false';
+                    freightpaymodefromitem = '';
+                    freightpaymodetoitem = '';
+
                 }
                 else {
                     // var allitemcheck = $("#allitemcheck").val();
                     $("#freightertypeallitemcheck").val("false");
-            
+
                     var freightertypeallitemcheck = $('#freightertypeallitemcheck').val();
                     var freightertypefromitem = $('#freightertypefromitem').val();
                     var freightertypetoitem = $('#freightertypetoitem').val();
@@ -479,7 +659,11 @@
 
                     customerallitemcheck = 'false';
                     customer = '';
-          
+
+
+                    freightpaymodeallitemcheck = 'false';
+                    freightpaymodefromitem = '';
+                    freightpaymodetoitem = '';
 
 
                     // }
@@ -489,15 +673,63 @@
 
                 }
 
-                    
 
+
+                if ($('#allgroupcheck').is(':checked')) {
+                    $("#allgroupcheck").val("true");
+                    //var x = document.getElementById("allitemcheck").value;
+                    //$('#allitemcheck').value == "true";
+                    var allgroupcheck = $('#allgroupcheck').val();
+                    var groupfromitem = $('#groupfromitem').val();
+                    var grouptoitem = $('#grouptoitem').val();
+
+
+                    //freightertypeallitemcheck = 'false';
+                    //freightertypefromitem = '';
+                    //freightertypetoitem = '';
+
+
+                    customerallitemcheck = 'false';
+                    customer = '';
+
+                    freightpaymodeallitemcheck = 'false';
+                    freightpaymodefromitem = '';
+                    freightpaymodetoitem = '';
+
+
+                    // $(this).attr('value', 'true');
+                    //var allitemcheck = $("#allitemcheck").attr('value', 'true');
+                    //var allitemcheck = $('#allitemcheck').val("true");
+                    // alert(allitemcheck);
+                    //    //var checkdate = $("input[name='date']:checked").val();
+                    //    //$("#checkmasterdate").val();
+                    //    //$("#allitemcheck").prop("checked", false);
+                    //    //alert("Checkbox is checked.");
+                }
+                else {
+                    // var allitemcheck = $("#allitemcheck").val();
+                    $("#allgroupcheck").val("false");
+                    //var x = document.getElementById("allitemcheck").value;
+                    //$('#allitemcheck').value == "true";
+                    var allgroupcheck = $('#allgroupcheck').val();
+                    var groupfromitem = $('#groupfromitem').val();
+                    var grouptoitem = $('#grouptoitem').val();
+
+                    customerallitemcheck = 'false';
+                    customer = '';
+
+                    freightpaymodeallitemcheck = 'false';
+                    freightpaymodefromitem = '';
+                    freightpaymodetoitem = '';
+
+                }
 
                  //   }
-                
+
 
 
         }
-            
+
             else if (reportname == "DAILY REPORT-AGENT WISE") {
 
                 ///FreighterType
@@ -517,6 +749,10 @@
                     freightertypefromitem = '';
                     freightertypetoitem = '';
 
+                    freightpaymodeallitemcheck = 'false';
+                    freightpaymodefromitem = '';
+                    freightpaymodetoitem = '';
+
                 }
                 else {
                     // var allitemcheck = $("#allitemcheck").val();
@@ -534,6 +770,10 @@
                     freightertypefromitem = '';
                     freightertypetoitem = '';
 
+                    freightpaymodeallitemcheck = 'false';
+                    freightpaymodefromitem = '';
+                    freightpaymodetoitem = '';
+
 
 
                     // }
@@ -544,6 +784,115 @@
                 }
 
 
+                if ($('#cargotypeallitemcheck').is(':checked')) {
+                    $("#cargotypeallitemcheck").val("true");
+                    //var x = document.getElementById("allitemcheck").value;
+                    //$('#allitemcheck').value == "true";
+                    var cargotypeallitemcheck = $('#cargotypeallitemcheck').val();
+                    var cargotypefromitem = $('#cargotypefromitem').val();
+                    var cargotypetoitem = $('#cargotypetoitem').val();
+
+
+                    freightertypeallitemcheck = 'false';
+                    freightertypefromitem = '';
+                    freightertypetoitem = '';
+
+
+                    //customerallitemcheck = 'false';
+                    //customer = '';
+
+                    freightpaymodeallitemcheck = 'false';
+                    freightpaymodefromitem = '';
+                    freightpaymodetoitem = '';
+
+
+                    // $(this).attr('value', 'true');
+                    //var allitemcheck = $("#allitemcheck").attr('value', 'true');
+                    //var allitemcheck = $('#allitemcheck').val("true");
+                    // alert(allitemcheck);
+                    //    //var checkdate = $("input[name='date']:checked").val();
+                    //    //$("#checkmasterdate").val();
+                    //    //$("#allitemcheck").prop("checked", false);
+                    //    //alert("Checkbox is checked.");
+                }
+                else {
+                    // var allitemcheck = $("#allitemcheck").val();
+                    $("#cargotypeallitemcheck").val("false");
+                    //var x = document.getElementById("allitemcheck").value;
+                    //$('#allitemcheck').value == "true";
+                    var cargotypeallitemcheck = $('#cargotypeallitemcheck').val();
+                    var cargotypefromitem = $('#cargotypefromitem').val();
+                    var cargotypetoitem = $('#cargotypetoitem').val();
+
+                    freightertypeallitemcheck = 'false';
+                    freightertypefromitem = '';
+                    freightertypetoitem = '';
+
+                    //customerallitemcheck = 'false';
+                    //customer = '';
+
+                    freightpaymodeallitemcheck = 'false';
+                    freightpaymodefromitem = '';
+                    freightpaymodetoitem = '';
+
+                }
+
+
+                if ($('#allgroupcheck').is(':checked')) {
+                    $("#allgroupcheck").val("true");
+                    //var x = document.getElementById("allitemcheck").value;
+                    //$('#allitemcheck').value == "true";
+                    var allgroupcheck = $('#allgroupcheck').val();
+                    var groupfromitem = $('#groupfromitem').val();
+                    var grouptoitem = $('#grouptoitem').val();
+
+
+                    freightertypeallitemcheck = 'false';
+                    freightertypefromitem = '';
+                    freightertypetoitem = '';
+
+
+                    //customerallitemcheck = 'false';
+                    //customer = '';
+
+                    freightpaymodeallitemcheck = 'false';
+                    freightpaymodefromitem = '';
+                    freightpaymodetoitem = '';
+
+
+                    // $(this).attr('value', 'true');
+                    //var allitemcheck = $("#allitemcheck").attr('value', 'true');
+                    //var allitemcheck = $('#allitemcheck').val("true");
+                    // alert(allitemcheck);
+                    //    //var checkdate = $("input[name='date']:checked").val();
+                    //    //$("#checkmasterdate").val();
+                    //    //$("#allitemcheck").prop("checked", false);
+                    //    //alert("Checkbox is checked.");
+                }
+                else {
+                    // var allitemcheck = $("#allitemcheck").val();
+                    $("#allgroupcheck").val("false");
+                    //var x = document.getElementById("allitemcheck").value;
+                    //$('#allitemcheck').value == "true";
+                    var allgroupcheck = $('#allgroupcheck').val();
+                    var groupfromitem = $('#groupfromitem').val();
+                    var grouptoitem = $('#grouptoitem').val();
+
+                    freightertypeallitemcheck = 'false';
+                    freightertypefromitem = '';
+                    freightertypetoitem = '';
+
+                    //customerallitemcheck = 'false';
+                    //customer = '';
+
+                    freightpaymodeallitemcheck = 'false';
+                    freightpaymodefromitem = '';
+                    freightpaymodetoitem = '';
+
+                }
+           
+
+
 
                 //   }
 
@@ -552,12 +901,328 @@
             }
 
 
-            window.open('/CargoSalesReport/Export?fromdate=' + fromdate + '&todate=' + todate + ' &reportname=' + reportname + '&checkdate=' + checkdate + ' &cargotypefromitem=' + cargotypefromitem + ' &cargotypetoitem=' + cargotypetoitem + ' &cargotypeallitemcheck=' + cargotypeallitemcheck + '&freightertypefromitem=' + freightertypefromitem + ' &freightertypetoitem=' + freightertypetoitem + ' &freightertypeallitemcheck=' + freightertypeallitemcheck + ' &customerallitemcheck=' + customerallitemcheck + ' &customer=' + customer + '',
 
-                {
-                    // fromdate: $('#DateFrom').val(),
-                    // todate: $('#DateTo').val()
-                    //toDataa: $('#toticketNo').val()
+            else if (reportname == "DESTINATION WISE-GROUP BY ITEM") {
+
+              
+
+                if ($('#destinationallitemcheck').is(':checked')) {
+                    $("#destinationallitemcheck").val("true");
+                    //var x = document.getElementById("allitemcheck").value;
+                    //$('#allitemcheck').value == "true";
+                    var destinationallitemcheck = $('#destinationallitemcheck').val();
+                    var destinationfromitem = $('#destinationfromitem').val();
+                    var destinationtoitem = $('#destinationtoitem').val();
+
+
+                    cargotypeallitemcheck = 'false';
+                    cargotypefromitem = '';
+                    cargotypetoitem = '';
+
+                    freightertypeallitemcheck = 'false';
+                    freightertypefromitem = '';
+                    freightertypetoitem = '';
+
+
+                    //customerallitemcheck = 'false';
+                    //customer = '';
+
+                    freightpaymodeallitemcheck = 'false';
+                    freightpaymodefromitem = '';
+                    freightpaymodetoitem = '';
+
+                    customerallitemcheck = 'false';
+                    customer = '';
+
+                    // $(this).attr('value', 'true');
+                    //var allitemcheck = $("#allitemcheck").attr('value', 'true');
+                    //var allitemcheck = $('#allitemcheck').val("true");
+                    // alert(allitemcheck);
+                    //    //var checkdate = $("input[name='date']:checked").val();
+                    //    //$("#checkmasterdate").val();
+                    //    //$("#allitemcheck").prop("checked", false);
+                    //    //alert("Checkbox is checked.");
+                }
+                else {
+                    // var allitemcheck = $("#allitemcheck").val();
+                    $("#destinationallitemcheck").val("false");
+                    //var x = document.getElementById("allitemcheck").value;
+                    //$('#allitemcheck').value == "true";
+                    var destinationallitemcheck = $('#destinationallitemcheck').val();
+                    var destinationfromitem = $('#destinationfromitem').val();
+                    var destinationtoitem = $('#destinationtoitem').val();
+
+                    cargotypeallitemcheck = 'false';
+                    cargotypefromitem = '';
+                    cargotypetoitem = '';
+
+                    freightertypeallitemcheck = 'false';
+                    freightertypefromitem = '';
+                    freightertypetoitem = '';
+
+                    customerallitemcheck = 'false';
+                    customer = '';
+
+                    //customerallitemcheck = 'false';
+                    //customer = '';
+
+                    freightpaymodeallitemcheck = 'false';
+                    freightpaymodefromitem = '';
+                    freightpaymodetoitem = '';
+
+                }
+
+
+                if ($('#allgroupcheck').is(':checked')) {
+                    $("#allgroupcheck").val("true");
+                    //var x = document.getElementById("allitemcheck").value;
+                    //$('#allitemcheck').value == "true";
+                    var allgroupcheck = $('#allgroupcheck').val();
+                    var groupfromitem = $('#groupfromitem').val();
+                    var grouptoitem = $('#grouptoitem').val();
+
+
+                    freightertypeallitemcheck = 'false';
+                    freightertypefromitem = '';
+                    freightertypetoitem = '';
+
+                    cargotypeallitemcheck = 'false';
+                    cargotypefromitem = '';
+                    cargotypetoitem = '';
+
+
+                    //customerallitemcheck = 'false';
+                    //customer = '';
+
+                    freightpaymodeallitemcheck = 'false';
+                    freightpaymodefromitem = '';
+                    freightpaymodetoitem = '';
+
+
+                    // $(this).attr('value', 'true');
+                    //var allitemcheck = $("#allitemcheck").attr('value', 'true');
+                    //var allitemcheck = $('#allitemcheck').val("true");
+                    // alert(allitemcheck);
+                    //    //var checkdate = $("input[name='date']:checked").val();
+                    //    //$("#checkmasterdate").val();
+                    //    //$("#allitemcheck").prop("checked", false);
+                    //    //alert("Checkbox is checked.");
+                }
+                else {
+                    // var allitemcheck = $("#allitemcheck").val();
+                    $("#allgroupcheck").val("false");
+                    //var x = document.getElementById("allitemcheck").value;
+                    //$('#allitemcheck').value == "true";
+                    var allgroupcheck = $('#allgroupcheck').val();
+                    var groupfromitem = $('#groupfromitem').val();
+                    var grouptoitem = $('#grouptoitem').val();
+
+
+                    cargotypeallitemcheck = 'false';
+                    cargotypefromitem = '';
+                    cargotypetoitem = '';
+
+                    freightertypeallitemcheck = 'false';
+                    freightertypefromitem = '';
+                    freightertypetoitem = '';
+
+                    //customerallitemcheck = 'false';
+                    //customer = '';
+
+                    freightpaymodeallitemcheck = 'false';
+                    freightpaymodefromitem = '';
+                    freightpaymodetoitem = '';
+
+                }
+
+
+
+
+                //   }
+
+
+
+            }
+
+            else if (reportname == "DESTINATION WISE-WITHOUT GROUP") {
+
+                ///FreighterType
+
+                if ($('#customerallitemcheck').is(':checked')) {
+                    $("#customerallitemcheck").val("true");
+                    //var x = document.getElementById("allitemcheck").value;
+                    //$('#allitemcheck').value == "true";
+                    var customerallitemcheck = $('#customerallitemcheck').val();
+                    var customer = $('#customer').val();
+
+                    cargotypeallitemcheck = 'false';
+                    cargotypefromitem = '';
+                    cargotypetoitem = '';
+
+                    freightertypeallitemcheck = 'false';
+                    freightertypefromitem = '';
+                    freightertypetoitem = '';
+
+                    freightpaymodeallitemcheck = 'false';
+                    freightpaymodefromitem = '';
+                    freightpaymodetoitem = '';
+
+                }
+                else {
+                    // var allitemcheck = $("#allitemcheck").val();
+                    $("#customerallitemcheck").val("false");
+
+                    var customerallitemcheck = $('#customerallitemcheck').val();
+                    var customer = $('#customer').val();
+
+
+                    cargotypeallitemcheck = 'false';
+                    cargotypefromitem = '';
+                    cargotypetoitem = '';
+
+                    freightertypeallitemcheck = 'false';
+                    freightertypefromitem = '';
+                    freightertypetoitem = '';
+
+                    freightpaymodeallitemcheck = 'false';
+                    freightpaymodefromitem = '';
+                    freightpaymodetoitem = '';
+
+
+
+                    // }
+
+
+
+
+                }
+
+
+                if ($('#cargotypeallitemcheck').is(':checked')) {
+                    $("#cargotypeallitemcheck").val("true");
+                    //var x = document.getElementById("allitemcheck").value;
+                    //$('#allitemcheck').value == "true";
+                    var cargotypeallitemcheck = $('#cargotypeallitemcheck').val();
+                    var cargotypefromitem = $('#cargotypefromitem').val();
+                    var cargotypetoitem = $('#cargotypetoitem').val();
+
+
+                    freightertypeallitemcheck = 'false';
+                    freightertypefromitem = '';
+                    freightertypetoitem = '';
+
+
+                    //customerallitemcheck = 'false';
+                    //customer = '';
+
+                    freightpaymodeallitemcheck = 'false';
+                    freightpaymodefromitem = '';
+                    freightpaymodetoitem = '';
+
+
+                    // $(this).attr('value', 'true');
+                    //var allitemcheck = $("#allitemcheck").attr('value', 'true');
+                    //var allitemcheck = $('#allitemcheck').val("true");
+                    // alert(allitemcheck);
+                    //    //var checkdate = $("input[name='date']:checked").val();
+                    //    //$("#checkmasterdate").val();
+                    //    //$("#allitemcheck").prop("checked", false);
+                    //    //alert("Checkbox is checked.");
+                }
+                else {
+                    // var allitemcheck = $("#allitemcheck").val();
+                    $("#cargotypeallitemcheck").val("false");
+                    //var x = document.getElementById("allitemcheck").value;
+                    //$('#allitemcheck').value == "true";
+                    var cargotypeallitemcheck = $('#cargotypeallitemcheck').val();
+                    var cargotypefromitem = $('#cargotypefromitem').val();
+                    var cargotypetoitem = $('#cargotypetoitem').val();
+
+                    freightertypeallitemcheck = 'false';
+                    freightertypefromitem = '';
+                    freightertypetoitem = '';
+
+                    //customerallitemcheck = 'false';
+                    //customer = '';
+
+                    freightpaymodeallitemcheck = 'false';
+                    freightpaymodefromitem = '';
+                    freightpaymodetoitem = '';
+
+                }
+
+
+                if ($('#allgroupcheck').is(':checked')) {
+                    $("#allgroupcheck").val("true");
+                    //var x = document.getElementById("allitemcheck").value;
+                    //$('#allitemcheck').value == "true";
+                    var allgroupcheck = $('#allgroupcheck').val();
+                    var groupfromitem = $('#groupfromitem').val();
+                    var grouptoitem = $('#grouptoitem').val();
+
+
+                    freightertypeallitemcheck = 'false';
+                    freightertypefromitem = '';
+                    freightertypetoitem = '';
+
+
+                    //customerallitemcheck = 'false';
+                    //customer = '';
+
+                    freightpaymodeallitemcheck = 'false';
+                    freightpaymodefromitem = '';
+                    freightpaymodetoitem = '';
+
+
+                    // $(this).attr('value', 'true');
+                    //var allitemcheck = $("#allitemcheck").attr('value', 'true');
+                    //var allitemcheck = $('#allitemcheck').val("true");
+                    // alert(allitemcheck);
+                    //    //var checkdate = $("input[name='date']:checked").val();
+                    //    //$("#checkmasterdate").val();
+                    //    //$("#allitemcheck").prop("checked", false);
+                    //    //alert("Checkbox is checked.");
+                }
+                else {
+                    // var allitemcheck = $("#allitemcheck").val();
+                    $("#allgroupcheck").val("false");
+                    //var x = document.getElementById("allitemcheck").value;
+                    //$('#allitemcheck').value == "true";
+                    var allgroupcheck = $('#allgroupcheck').val();
+                    var groupfromitem = $('#groupfromitem').val();
+                    var grouptoitem = $('#grouptoitem').val();
+
+                    freightertypeallitemcheck = 'false';
+                    freightertypefromitem = '';
+                    freightertypetoitem = '';
+
+                    //customerallitemcheck = 'false';
+                    //customer = '';
+
+                    freightpaymodeallitemcheck = 'false';
+                    freightpaymodefromitem = '';
+                    freightpaymodetoitem = '';
+
+                }
+
+
+
+
+                //   }
+
+
+
+            }
+
+           // location.href = 'Url.Action("Export", "CargoSalesReport")?fromdate=' + fromdate + '&todate=' + todate + ' &reportname=' + reportname + '&checkdate=' + checkdate + ' &cargotypefromitem=' + cargotypefromitem + ' &cargotypetoitem=' + cargotypetoitem + ' &cargotypeallitemcheck=' + cargotypeallitemcheck + '&freightertypefromitem=' + freightertypefromitem + ' &freightertypetoitem=' + freightertypetoitem + ' &freightertypeallitemcheck=' + freightertypeallitemcheck + ' &customerallitemcheck=' + customerallitemcheck + ' &customer=' + customer + ' &freightpaymodefromitem=' + freightpaymodefromitem + ' &freightpaymodetoitem=' + freightpaymodetoitem + ' &freightpaymodeallitemcheck=' + freightpaymodeallitemcheck;
+
+           // window.open('/CargoSalesReport/Export?fromdate=' + fromdate + '&todate=' + todate + ' &reportname=' + reportname + '&checkdate=' + checkdate + ' &cargotypefromitem=' + cargotypefromitem + ' &cargotypetoitem=' + cargotypetoitem + ' &cargotypeallitemcheck=' + cargotypeallitemcheck + '&freightertypefromitem=' + freightertypefromitem + ' &freightertypetoitem=' + freightertypetoitem + ' &freightertypeallitemcheck=' + freightertypeallitemcheck + ' &customerallitemcheck=' + customerallitemcheck + ' &customer=' + customer + ' &freightpaymodefromitem=' + freightpaymodefromitem + ' &freightpaymodetoitem=' + freightpaymodetoitem + ' &freightpaymodeallitemcheck=' + freightpaymodeallitemcheck +  '',
+
+            window.open('/CargoSalesReport/Export?fromdate=' + fromdate + '&todate=' + todate + ' &reportname=' + reportname + '&checkdate=' + checkdate + ' &cargotypefromitem=' + cargotypefromitem + ' &cargotypetoitem=' + cargotypetoitem + ' &cargotypeallitemcheck=' + cargotypeallitemcheck + '&freightertypefromitem=' + freightertypefromitem + ' &freightertypetoitem=' + freightertypetoitem + ' &freightertypeallitemcheck=' + freightertypeallitemcheck + ' &customerallitemcheck=' + customerallitemcheck + ' &customer=' + customer + ' &freightpaymodefromitem=' + freightpaymodefromitem + ' &freightpaymodetoitem=' + freightpaymodetoitem + ' &freightpaymodeallitemcheck=' + freightpaymodeallitemcheck + ' &allgroupcheck=' + allgroupcheck + ' &groupfromitem=' + groupfromitem + ' &grouptoitem=' + grouptoitem + '&destinationallitemcheck=' + destinationallitemcheck + ' &destinationfromitem=' + destinationfromitem + ' &destinationtoitem=' + destinationtoitem + ' &clickbtn=' + clickbtn + '',
+               {
+            //        // fromdate: $('#DateFrom').val(),
+            //        // todate: $('#DateTo').val()
+            //        //toDataa: $('#toticketNo').val()
 
                 },
             )
@@ -586,7 +1251,7 @@
             });*@
 
             //)
-            }
+        }
 
 
 
@@ -660,7 +1325,79 @@
             //});
 
 
-        //freighter type 
+        //Customer Group 
+
+        $("#groupfromitem").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/CargoSalesReport/Get_Group_From_Item",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+
+                    success: function (data) {
+
+                        response($.map(data, function (item) {
+
+                            return {
+                                label: item,
+                                value: item,
+
+
+                            };
+
+
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "",
+                results: function (count) {
+                    return count + (count > 1 ? ' results' : ' result ') + ' found';
+                }
+            }
+        })
+
+
+        $("#grouptoitem").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/CargoSalesReport/Get_Group_To_Item",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+
+                    success: function (data) {
+
+                        response($.map(data, function (item) {
+
+                            return {
+                                label: item,
+                                value: item,
+
+
+                            };
+
+
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "",
+                results: function (count) {
+                    return count + (count > 1 ? ' results' : ' result ') + ' found';
+                }
+            }
+        })
+            //});
+
+
+
+        //freighter type
 
         $("#freightertypefromitem").autocomplete({
             source: function (request, response) {
@@ -699,7 +1436,7 @@
         $("#freightertypetoitem").autocomplete({
             source: function (request, response) {
                 $.ajax({
-                    url: "/CargoSalesReport/Get_FreigherterType_To_Item",
+                    url: "/CargoSalesReport/Get_FreighterType_To_Item",
                     type: "POST",
                     dataType: "json",
                     data: { Prefix: request.term },
@@ -735,6 +1472,108 @@
             source: function (request, response) {
                 $.ajax({
                     url: "/CargoSalesReport/Get_Customer_Name",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+
+                    success: function (data) {
+
+                        response($.map(data, function (item) {
+
+                            return {
+                                label: item,
+                                value: item,
+
+
+                            };
+
+
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "",
+                results: function (count) {
+                    return count + (count > 1 ? ' results' : ' result ') + ' found';
+                }
+            }
+        })
+
+        //freightpaymode type 
+        $("#freightpaymode").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/MISReport/Get_Freight_Paymode",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+
+                    success: function (data) {
+
+                        response($.map(data, function (item) {
+
+                            return {
+                                label: item,
+                                value: item,
+
+
+                            };
+
+                            
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "",
+                results: function (count) {
+                    return count + (count > 1 ? ' results' : ' result ') + ' found';
+                }
+            }
+        })
+
+        //Destianation wise
+        $("#destinationfromitem").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/CargoSalesReport/Get_Destination_From_Item",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+
+                    success: function (data) {
+
+                        response($.map(data, function (item) {
+
+                            return {
+                                label: item,
+                                value: item,
+
+
+                            };
+
+
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "",
+                results: function (count) {
+                    return count + (count > 1 ? ' results' : ' result ') + ' found';
+                }
+            }
+        })
+
+
+        $("#destinationtoitem").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/CargoSalesReport/Get_Destination_To_Item",
                     type: "POST",
                     dataType: "json",
                     data: { Prefix: request.term },
@@ -814,12 +1653,14 @@
             $(function () {
                 //$("#mawbtextbox").hide()
                 $("#datewise").hide()
+                $("#freightpaymode").hide()
                 $("#cargotypeitemwise").hide()
                 $("#groupwise").hide()
                 $("#agentwise").hide()
                 $("#freighterwise").hide()
                 $("#destinationwise").hide()
-                
+                $("#btnsend").hide()
+
                 $("#reportname").change(function () {
                     var reportName = $("#reportname").val();
                     if (reportName == null) {
@@ -841,100 +1682,59 @@
                             //alert("Checkbox is checked.");
                         }
                     });
-                   
+
                     if (reportName == "DAILY REPORT-DATE-ITEM-GROUP WISE(GROUP BY ITEM) ") {
 
                         $('#cargotypeallitemcheck').click(function () {
                             if ($(this).is(':checked')) {
                                 $('#cargotypefromitem').prop('readonly', true);
+                                $('#cargotypefromitem').val('');
                                 $('#cargotypetoitem').prop('readonly', true);
-
+                                $('#cargotypetoitem').val('');
                                 // alert("Checkbox is checked.");
                             }
                             else {
 
                                 $('#cargotypefromitem').prop('readonly', false);
                                 $('#cargotypetoitem').prop('readonly', false);
+                                $('#cargotypefromitem').val('');
+                                $('#cargotypetoitem').val('');
+                              
                             }
                         });
 
                         $('#allgroupcheck').click(function () {
                             if ($(this).is(':checked')) {
-                                $('#fromgroup').prop('readonly', true);
-                                $('#togroup').prop('readonly', true);
-
+                                $('#groupfromitem').prop('readonly', true);
+                                $('#groupfromitem').val('');
+                                $('#grouptoitem').prop('readonly', true);                             
+                                $('#grouptoitem').val('');
                                 // alert("Checkbox is checked.");
                             }
                             else {
 
-                                $('#fromgroup').prop('readonly', false);
-                                $('#togroup').prop('readonly', false);
+                                $('#groupfromitem').prop('readonly', false);
+                                $('#groupfromitem').val('');
+
+                                $('#grouptoitem').prop('readonly', false);
+                                $('#grouptoitem').val('');
                             }
                         });
-                            //$('#checkmasterdate').click(function () {
-                            //    if ($('#checkmasterdate').is(':checked')) {
-                            //        $("#checkmasterdate").val();
-                            //        $("#checkflightdate").prop("checked", false);
-                            //        //alert("Checkbox is checked.");
-                            //    }
-                            //});
-                            //$('#checkflightdate').click(function () {
-                            //    if ($('#checkflightdate').is(':checked')) {
-                            //        $("#checkflightdate").val();
-                            //        $("#checkmasterdate").prop("checked", false);
-                            //        //alert("Checkbox is checked.");
-                            //    }
-                            //});
-                            //$('#allitemcheck').click(function () {
-                            //    if ($(this).is(':checked')) {
-                            //        $('#fromitem').prop('readonly', true);
-                            //        $('#toitem').prop('readonly', true);
+                      
 
-                            //        // alert("Checkbox is checked.");
-                            //    }
-                            //    else {
+                        $("#datewise").show();
+                        //$("#mawbtextbox").show();
+                        $("#freightpaymode").hide()
+                        $("#cargotypeitemwise").show();
+                        $("#destinationwise").hide();
+                        $("#freighterwise").hide();
+                        $("#groupwise").show();
+                        $("#agentwise").hide();
+                        $("#btnsend").hide();
+                        //pdfExportCheck();
 
-                            //        $('#fromitem').prop('readonly', false);
-                            //        $('#toitem').prop('readonly', false);
-                            //    }
-                            //});
-
-                            //$('#allgroupcheck').click(function () {
-                            //    if ($(this).is(':checked')) {
-                            //        $('#fromgroup').prop('readonly', true);
-                            //        $('#togroup').prop('readonly', true);
-
-                            //        // alert("Checkbox is checked.");
-                            //    }
-                            //    else {
-
-                            //        $('#fromgroup').prop('readonly', false);
-                            //        $('#togroup').prop('readonly', false);
-                            //    }
-                            //});
-
-                            //if ($(allgroupcheck).is(":checked")) {
-                            //    $('#fromgroup').prop('readonly', true);
-                            //    $('#togroup').prop('readonly', true);
-
-                            //    // alert("Checkbox is checked.");
-                            //}
-                            //else {
-                            //    $('#fromgroup').prop('readonly', false);
-                            //    $('#togroup').prop('readonly', false);
-                            //}
-
-                            $("#datewise").show();
-                            //$("#mawbtextbox").show();
-                            $("#cargotypeitemwise").show();
-                            $("#destinationwise").hide();
-                            $("#freighterwise").hide();
-                            $("#groupwise").show();
-                            $("#agentwise").hide();
-                            //pdfExportCheck();
-
-                        }
-                        else if (reportName == "DAILY REPORT-DATE-ITEM-GROUP WISE(WITHOUT GROUP) " ) {
+                    }
+                    else if (reportName == "DAILY REPORT-DATE-ITEM-GROUP WISE(WITHOUT GROUP) ") {
 
                         $('#cargotypeallitemcheck').click(function () {
                             if ($(this).is(':checked')) {
@@ -949,24 +1749,26 @@
                                 $('#cargotypetoitem').prop('readonly', false);
                             }
                         });
-                            //if ($(allgroupcheck).is(":checked")) {
-                            //    $('#fromgroup').prop('readonly', true);
-                            //    $('#togroup').prop('readonly', true);
+                        //if ($(allgroupcheck).is(":checked")) {
+                        //    $('#fromgroup').prop('readonly', true);
+                        //    $('#togroup').prop('readonly', true);
 
-                            //    // alert("Checkbox is checked.");
-                            //}
-                            //else {
-                            //    $('#fromgroup').prop('readonly', false);
-                            //    $('#togroup').prop('readonly', false);
-                            //}
+                        //    // alert("Checkbox is checked.");
+                        //}
+                        //else {
+                        //    $('#fromgroup').prop('readonly', false);
+                        //    $('#togroup').prop('readonly', false);
+                        //}
 
-                            $("#datewise").show();
-                            //$("#mawbtextbox").show();
-                            $("#cargotypeitemwise").show();
-                           // $("#cargotypeitemwisewihout").show();
-                            $("#groupwise").hide();
-                            $("#freighterwise").hide()
-                            $("#agentwise").hide();
+                        $("#datewise").show();
+                        //$("#mawbtextbox").show();
+                        $("#freightpaymode").hide()
+                        $("#cargotypeitemwise").show();
+                        // $("#cargotypeitemwisewihout").show();
+                        $("#groupwise").hide();
+                        $("#freighterwise").hide()
+                        $("#agentwise").hide();
+                        $("#btnsend").hide();
 
                     }
 
@@ -986,53 +1788,148 @@
                             }
                         });
 
-                            $("#datewise").show();
-                            //$("#mawbtextbox").show();
-                            $("#freighterwise").show();
-                            $("#cargotypeitemwise").hide();
-                            $("#agentwise").hide();
-                            // $("#cargotypeitemwisewihout").show();
-                            $("#groupwise").show();
-                            $("#destinationwise").hide()
+                        $('#allgroupcheck').click(function () {
+                            if ($(this).is(':checked')) {
+                                $('#groupfromitem').prop('readonly', true);
+                                $('#groupfromitem').val('');
+                                $('#grouptoitem').prop('readonly', true);
+                                $('#grouptoitem').val('');
+                                // alert("Checkbox is checked.");
+                            }
+                            else {
+
+                                $('#groupfromitem').prop('readonly', false);
+                                $('#groupfromitem').val('');
+
+                                $('#grouptoitem').prop('readonly', false);
+                                $('#grouptoitem').val('');
+                            }
+                        });
+
+                        $("#datewise").show();
+                        //$("#mawbtextbox").show();
+                        $("#freightpaymode").hide()
+                        $("#freighterwise").show();
+                        $("#cargotypeitemwise").hide();
+                        $("#agentwise").hide();
+                        // $("#cargotypeitemwisewihout").show();
+                        $("#groupwise").show();
+                        $("#destinationwise").hide();
+                        $("#btnsend").hide();
 
                     }
 
-                        else if (reportName == "DAILY REPORT-AGENT WISE") {
+                    else if (reportName == "DAILY REPORT-AGENT WISE") {
 
 
                         $('#customerallitemcheck').click(function () {
                             if ($(this).is(':checked')) {
                                 $('#customer').prop('readonly', true);
-                            
+
 
                                 // alert("Checkbox is checked.");
                             }
                             else {
 
                                 $('#customer').prop('readonly', false);
-                              
+
                             }
                         });
-                            $("#datewise").show();
-                            $("#agentwise").show();
-                            //$("#mawbtextbox").show();
-                            $("#cargotypeitemwise").show();
-                            // $("#cargotypeitemwisewihout").show();
-                            $("#groupwise").hide();
-                            $("#freighterwise").hide();
+
+                        $('#cargotypeallitemcheck').click(function () {
+                            if ($(this).is(':checked')) {
+                                $('#cargotypefromitem').prop('readonly', true);
+                                $('#cargotypefromitem').val('');
+                                $('#cargotypetoitem').prop('readonly', true);
+                                $('#cargotypetoitem').val('');
+                                // alert("Checkbox is checked.");
+                            }
+                            else {
+
+                                $('#cargotypefromitem').prop('readonly', false);
+                                $('#cargotypetoitem').prop('readonly', false);
+                                $('#cargotypefromitem').val('');
+                                $('#cargotypetoitem').val('');
+
+                            }
+                        });
+
+                        $('#allgroupcheck').click(function () {
+                            if ($(this).is(':checked')) {
+                                $('#groupfromitem').prop('readonly', true);
+                                $('#groupfromitem').val('');
+                                $('#grouptoitem').prop('readonly', true);
+                                $('#grouptoitem').val('');
+                                // alert("Checkbox is checked.");
+                            }
+                            else {
+
+                                $('#groupfromitem').prop('readonly', false);
+                                $('#groupfromitem').val('');
+
+                                $('#grouptoitem').prop('readonly', false);
+                                $('#grouptoitem').val('');
+                            }
+                        });
+                        $("#datewise").show();
+                        $("#agentwise").show();
+                        $("#freightpaymode").hide()
+                        //$("#mawbtextbox").show();
+                        $("#cargotypeitemwise").show();
+                        // $("#cargotypeitemwisewihout").show();
+                        $("#groupwise").show();
+                        $("#freighterwise").hide();
+                        $("#btnsend").show();
 
                     }
 
                     else if (reportName == "DESTINATION WISE-GROUP BY ITEM") {
 
+                        $('#destinationallitemcheck').click(function () {
+                            if ($(this).is(':checked')) {
+                                $('#destinationfromitem').prop('readonly', true);
+                                $('#destinationtoitem').prop('readonly', true);
+
+                                // alert("Checkbox is checked.");
+                            }
+                            else {
+
+                                $('#destinationfromitem').prop('readonly', false);
+                                $('#destinationtoitem').prop('readonly', false);
+                            }
+                        });
+
+
+
+                        $('#allgroupcheck').click(function () {
+                            if ($(this).is(':checked')) {
+                                $('#groupfromitem').prop('readonly', true);
+                                $('#groupfromitem').val('');
+                                $('#grouptoitem').prop('readonly', true);
+                                $('#grouptoitem').val('');
+                                // alert("Checkbox is checked.");
+                            }
+                            else {
+
+                                $('#groupfromitem').prop('readonly', false);
+                                $('#groupfromitem').val('');
+
+                                $('#grouptoitem').prop('readonly', false);
+                                $('#grouptoitem').val('');
+                            }
+                        });
+
+
                         $("#datewise").show();
                         $("#destinationwise").show()
+                        $("#freightpaymode").hide()
                         $("#agentwise").hide();
                         //$("#mawbtextbox").show();
                         $("#cargotypeitemwise").hide();
                         // $("#cargotypeitemwisewihout").show();
                         $("#groupwise").show();
                         $("#freighterwise").hide();
+                        $("#btnsend").hide();
 
                     }
                     else if (reportName == "DESTINATION WISE-WITHOUT GROUP") {
@@ -1040,11 +1937,13 @@
                         $("#datewise").show();
                         $("#destinationwise").show()
                         $("#agentwise").hide();
+                        $("#freightpaymode").hide()
                         //$("#mawbtextbox").show();
                         $("#cargotypeitemwise").hide();
                         // $("#cargotypeitemwisewihout").show();
                         $("#groupwise").hide();
-                        $("#freighterwise").hide()
+                        $("#freighterwise").hide();
+                        $("#btnsend").hide();
 
                     }
                     else if (reportName == "CONTINENT WISE-GROUP REPORT") {
@@ -1052,7 +1951,7 @@
                         alert("On Processing")
                         //$("#datewise").show();
                         //$("#agentwise").show();
-                        ////$("#mawbtextbox").show();
+                        ////$("#mawbtextbox").show();s
                         //$("#itemwise").show();
                         //// $("#cargotypeitemwisewihout").show();
                         //$("#groupwise").hide();

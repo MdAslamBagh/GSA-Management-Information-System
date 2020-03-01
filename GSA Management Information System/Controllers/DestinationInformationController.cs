@@ -49,8 +49,9 @@ namespace GSA_Management_Information_System.Controllers
           //  ViewBag.Entry_Date = today;
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
-            ViewBag.Continent_Code = new SelectList(db.ContinentInformations, "Continent_Code", "Long_Desc");
-            ViewBag.Country_Code = new SelectList(db.CountryInformations, "Country_Code", "Long_Desc");
+            //ViewBag.Continent_Code = new SelectList(db.ContinentInformations, "Continent_Code", "Long_Desc");
+            ViewBag.ContinentList = (db.ContinentInformations.Where(a => a.Continent_Code ==a.Continent_Code).ToList());
+            //ViewBag.Country_Code = new SelectList(db.CountryInformations, "Country_Code", "Long_Desc");
             return View();
         }
 
@@ -91,6 +92,24 @@ namespace GSA_Management_Information_System.Controllers
             }
 
             return View(destinationInformation);
+        }
+
+        public JsonResult Get_Country(int region)
+        {
+
+            //Report Name Must be Database Name
+            var country = (from c in db.CountryInformations.Where(a => a.Continent_Code == region)
+                           select new
+                           {
+                               c.Country_Code,
+                               CountryName=c.Long_Desc,
+                           }).ToList();
+            return Json(country, JsonRequestBehavior.AllowGet);
+            //var country = db.CountryInformations.Where(a => a.Continent_Code == region).ToList(); //Report Name Must be Database Name
+            ////return Json(Informations, JsonRequestBehavior.AllowGet);
+            //return Json(country, JsonRequestBehavior.AllowGet);
+          
+
         }
 
         // GET: DestinationInformation/Edit/5

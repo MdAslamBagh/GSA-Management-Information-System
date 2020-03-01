@@ -837,15 +837,75 @@ namespace GSA_Management_Information_System.Controllers
 
                 else if (stockIssueInformation.Transaction_Status == "Partially")
                     {
+
                     StockRecieveInformation stockRecieveInformation = new StockRecieveInformation();
                     stockRecieveInformation = db.StockRecieveInformations.Where(a => a.SRecieved_Code == stockIssueInformation.SRecieved_Code).FirstOrDefault();
+                    string srecieved_Code= stockRecieveInformation.SRecieved_Code;
+
+
+
+
+                    //StockRecieveInformation StockRecieveInformation = new StockRecieveInformation();
+                   // StockRecieveInformation stockRecieve = new StockRecieveInformation();
+                   // stockRecieveInformation = db.StockRecieveInformations.Where(a => a.SRecieved_Code == stockIssueInformation.SRecieved_Code).FirstOrDefault();
+                   // string receivecode = stockRecieveInformation.SRecieved_Code;
+                  
+                    ////StockRecieveInformation stockRecieveInformation = new StockRecieveInformation();
+                    //stockIssueInformation = db.StockIssueInformations.Where(a => a.SRecieved_Code ==a.SRecieved_Code ).ToList();
+
+                    //StockIssueInformation stockissuequantity = new StockIssueInformation();
+                   // stockissuequantity = db.StockIssueInformations.Where(a => a.SRecieved_Code==stockRecieveInformation).ToList();
                     if (stockIssueInformation.SRecieved_Code == stockRecieveInformation.SRecieved_Code)
                     {
-                        db.StockRecieveInformations.Attach(stockRecieveInformation);
-                        stockRecieveInformation.Issued = stockIssueInformation.Transaction_Status;
 
-                        //db.StockRecieveInformations.Attach(stockRecieveInformation);
-                        db.SaveChanges();
+
+                        var result = (from p in db.StockRecieveInformations
+                                      join o in db.StockIssueInformations on p.SRecieved_Code equals o.SRecieved_Code
+                                      where o.SRecieved_Code == srecieved_Code
+                                      select new
+                                      {
+                                          p.SRecieved_Code,
+                                          o.Stock_Type,
+                                          o.From_TicketNo,
+                                          o.To_TicketNo,
+                                          o.Ticket_Quantity,
+                                          //o.TotalAmount,
+                                          //o.OrderDate
+                                      }).ToList();
+
+                        int Issuequantity = 0;
+                        //int fromticektttt;
+
+                        foreach (var item in result)
+                        {
+
+                            Issuequantity += item.Ticket_Quantity;
+                            
+
+
+
+                        }
+                        Issuequantity += stockIssueInformation.Ticket_Quantity;
+
+                        if (stockRecieveInformation.Ticket_Quantity!= Issuequantity)
+                        {
+
+                            db.StockRecieveInformations.Attach(stockRecieveInformation);
+
+                            stockRecieveInformation.Issued = stockIssueInformation.Transaction_Status;
+
+                            //db.StockRecieveInformations.Attach(stockRecieveInformation);
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            db.StockRecieveInformations.Attach(stockRecieveInformation);
+
+                            stockRecieveInformation.Issued = "Issued";
+
+                            //db.StockRecieveInformations.Attach(stockRecieveInformation);
+                            db.SaveChanges();
+                        }
                     }
 
 

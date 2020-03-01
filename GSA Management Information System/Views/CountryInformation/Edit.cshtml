@@ -18,20 +18,21 @@
                 <div class="row">
                     <div class="form-group">
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="accessname" class="col-md-3 col-sm-5">Continent Code<font size="2px" color="red">*</font></label>
+                            <label for="accessname" class="col-md-3 col-sm-5">Region<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">
                                 @Html.DropDownList("Continent_Code", null, htmlAttributes: new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.Continent_Code, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Country<font size="2px" color="red">*</font></label>
+                            <label for="accessname" class="col-md-3 col-sm-5">Country Code<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">
-                                @Html.EditorFor(model => model.Country_Code, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.Editor("Country_Code", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 @Html.ValidationMessageFor(model => model.Country_Code, "", new { @class = "text-danger" })
                             </div>
                         </div>
+
+
                         <div class="form-group col-md-10 col-sm-12 ">
                             <label for="controllername" class="col-md-3 col-sm-5">Long Desc<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">

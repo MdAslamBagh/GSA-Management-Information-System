@@ -27,6 +27,60 @@ namespace GSA_Management_Information_System.Controllers
 
         }
 
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+           // String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
+            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
+           // ViewBag.Entry_Date = today;
+            var list = new List<string>() { "Active", "Inactive" };
+            ViewBag.list = list;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(CargoTypeInformation CargoTypeInformation)
+        {
+            var list = new List<string>() { "Active", "Inactive" };
+            ViewBag.list = list;
+
+            if (ModelState.IsValid)
+            {
+                var LogedInUser = User.Identity.Name;
+                CargoTypeInformation.Entry_By = LogedInUser;
+                CargoTypeInformation.Entry_Date = DateTime.Now;
+                db.CargoTypeInformations.Add(CargoTypeInformation);
+                db.CargoTypeInformations.Add(CargoTypeInformation);
+
+                if (CargoTypeInformation.Default_Code == false)
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+
+                }
+
+                else
+                {
+
+                    var CargoTypeList = db.CargoTypeInformations.Where(a => a.Cargo_Code != CargoTypeInformation.Cargo_Code).ToList();
+
+                    foreach (var item in CargoTypeList)
+                    {
+                        item.Default_Code = false;
+
+                    }
+                }
+                db.SaveChanges();
+                return RedirectToAction("Index");
+                //return Json(new { success = true, message = "Saved Successsfully" }, JsonRequestBehavior.AllowGet);
+            }
+            return View(CargoTypeInformation);
+
+        }
+
+
+
         [HttpGet]
         public ActionResult Add()
         {
@@ -134,10 +188,16 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CargoTypeId,Cargo_Code,Long_Desc,Status,Default_Code,Entry_Date")] CargoTypeInformation cargoTypeInformation)
+        public ActionResult Edit(CargoTypeInformation cargoTypeInformation)
         {
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                cargoTypeInformation.Entry_By = LogedInUser;
+                cargoTypeInformation.Entry_Date = DateTime.Now;
+                db.CargoTypeInformations.Add(cargoTypeInformation);
+                db.CargoTypeInformations.Add(cargoTypeInformation);
+
                 db.Entry(cargoTypeInformation).State = EntityState.Modified;
 
                 var list = db.CargoTypeInformations.Where(a => a.Cargo_Code != cargoTypeInformation.Cargo_Code).ToList();

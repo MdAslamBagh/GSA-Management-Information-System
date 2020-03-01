@@ -15,23 +15,49 @@
                 <div class="card-header bg-info" style="height: 4rem;">Destination Save</div>
                 <div class="row">
                     <div class="form-group">
+
                         <div class="form-group col-md-10 col-sm-12 ">
                             <label for="accessname" class="col-md-3 col-sm-5">Region<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">
-                                @Html.DropDownList("Continent_Code", null, htmlAttributes: new { @class = "form-control" })
+                                <select name="Continent_Code" id="region" class="form-control">
+                                    <option value="">Select Region  </option>
+                                    @foreach (var region in ViewBag.ContinentList)
+                                    {
+                                        <option value="@region.Continent_Code">@region.Long_Desc</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        @*<div class="form-group col-md-10 col-sm-12 ">
+                            <label for="accessname" class="col-md-3 col-sm-5">Region<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+                                @Html.DropDownList("Continent_Code", null, htmlAttributes: new { @class = "form-control",id="region" })
+                                @Html.ValidationMessageFor(model => model.Country_Code, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="accessname" class="col-md-3 col-sm-5">Country<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+                                <select name="Country_Code" id="country" class="form-control">
+                                    @*<option value="">Select Region  </option>*@
+                                 
+                                </select>
+                                @*@Html.EditorFor(model => model.Country_Code, new { htmlAttributes = new { @class = "form-control",id="country" } })*@
+                                @*@Html.DropDownList("Country_Code", null, htmlAttributes: new { @class = "form-control" ,id="country"})*@
                                 @Html.ValidationMessageFor(model => model.Country_Code, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="accessname" class="col-md-3 col-sm-5">Country Code<font size="2px" color="red">*</font></label>
+                            <label for="controllername" class="col-md-3 col-sm-5">Code<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">
-                                @Html.DropDownList("Country_Code", null, htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Country_Code, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.Dest_Code, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Dest_Code, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
+
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Destination<font size="2px" color="red">*</font></label>
+                            <label for="controllername" class="col-md-3 col-sm-5">Long Description<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">
                                 @Html.EditorFor(model => model.Long_Desc, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.Long_Desc, "", new { @class = "text-danger" })
@@ -72,24 +98,89 @@
     </div>
 }
 
-<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+
 
 @section scripts{
-    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    @*<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>*@
+    <!-- Load jQuery UI Main JS  -->
+
+
+
     <script>
-        $(function () {
-            $(".datepicker").datepicker({
-                dateFormat: "mm/dd/yy",
-                changemonth: true,
-                changeyear: true,
-                minDate: new Date(2018, 0, 1),
-                maxDate: new Date(2020, 0, 1),
-                showOn: "both",
-                buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-                buttonText: "Calender"
-            });
-        });
+
+
+
+
+
+
+                ///
+
+        $("#region").change(function () {
+
+
+            var regiondata = $("#region").val();
+            if (regiondata == null) {
+
+            }
+            else
+                var jsonData = { region: regiondata };
+
+            $.ajax({
+                type: "POST",
+                url: "/DestinationInformation/Get_Country",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(jsonData),
+                dataType: "json",
+                success: function (data) {
+                    var s = '<option value="-1">Select Country</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option value="' + data[i].Country_Code + '">' + data[i].CountryName + '</option>';
+
+                    }
+                    $("#country").html(s);
+                }
+            }); 
+            //$.ajax({
+            //    type: "POST",
+            //    url: "/DestinationInformation/Get_Country",
+            //    contentType: "application/json; charset=utf-8",
+            //    data: JSON.stringify(jsonData),
+            //    dataType: "json",
+            //    success: function (data) {
+
+            //        for (var i = 0; i < data.length; i++) {
+            //            s += '<option value="' + data[i].Country_Code + '">' + data[i].Long_Desc + '</option>'; 
+            //        //$.each(data, function (key, value) {
+            //            //alert("sss");
+            //            //alert(value.Country_Code);
+            //            //alert(value.Long_Desc);
+            //            //alert(data.CourseName + " " + data.CourseCredit);
+
+            //            $("#country").append('<option value=' + value.Country_Code + '>' + value.Long_Desc + '</option>');
+            //            //$("#country").append('<option value=' + value.Country_Code + '>' + value.Long_Desc + '</option>');
+
+            //        //});
+            //    }
+            //});
+
+
+        })
+            
     </script>
-    @Scripts.Render("~/bundles/jqueryval")
+
+
+
+
+
+
+
+
 
 }
+
+

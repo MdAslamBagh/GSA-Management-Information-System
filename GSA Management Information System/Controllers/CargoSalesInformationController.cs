@@ -408,7 +408,8 @@ namespace GSA_Management_Information_System.Controllers
 
             CargoRepository CargoRepo = new CargoRepository();
 
-
+            String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
+            ViewBag.Entry_Date = today;
 
             return View(CargoRepo.GetAllCargo().Find(Cargo => Cargo.CargoSalesId == id));
             //if (id == null)

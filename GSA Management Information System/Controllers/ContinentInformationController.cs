@@ -57,7 +57,7 @@ namespace GSA_Management_Information_System.Controllers
                 if (information == null)
                 {
                     ContinentInformation objcontinent = new ContinentInformation();
-                    int s = objcontinent.Continent_Code + 1;
+                    int s = objcontinent.Continent_Code + 8;
                     //ViewBag.ConsignorCode = information.Consignor_Code + 1;
                     ViewBag.Continent_Code = s.ToString();
                 }

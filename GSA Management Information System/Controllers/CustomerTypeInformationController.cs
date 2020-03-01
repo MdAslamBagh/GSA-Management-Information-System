@@ -8,6 +8,11 @@ using System.Web.Mvc;
 using CrystalDecisions.Web;
 using CrystalDecisions.CrystalReports.Engine;
 using System.IO;
+using ClosedXML.Excel;
+using System.Web;
+
+
+
 using GSA_Management_Information_System.Models;
 
 namespace GSA_Management_Information_System.Controllers
@@ -51,6 +56,46 @@ namespace GSA_Management_Information_System.Controllers
         }
 
 
+
+        //public FileResult Exportt()
+        //{
+        //    DataTable dt = new DataTable("cargo");
+        //    dt.Columns.AddRange(new DataColumn[2] { new DataColumn("MAWB"), new DataColumn("Airway_No") });
+        //    var ttt= db.CargoSalesInformations.Select(p => new
+        //    {
+        //        MAWB = p.MAWB,
+        //        Airway_No = p.Airway_No,
+
+        //    }).ToList();
+        //    using (XLWorkbook wb=new XLWorkbook())
+        //    {
+        //        wb.Worksheets.Add(dt);
+        //        using(MemoryStream stream =new MemoryStream())
+        //        {
+        //            wb.SaveAs(stream);
+        //            return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheet.sheet", "cargo.xlsx");
+        //        }
+        //    }
+
+
+        //    //ReportDocument rd = new ReportDocument();
+        //    ////D:\project\Software\GSA Management Information System\Reports\rptTest.rpt
+        //    //rd.Load(Path.Combine(Server.MapPath("~/Reports"), "gsacargoreport.rpt"));
+        //    //rd.SetDataSource(db.CargoSalesInformations.Select(p => new
+        //    //{
+        //    //    MAWB = p.MAWB,
+        //    //    Airway_No = p.Airway_No,
+
+        //    //}).ToList());
+        //    //Response.Buffer = false;
+        //    //Response.ClearContent();
+        //    //Response.ClearHeaders();
+        //    //Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+        //    //stream.Seek(0, SeekOrigin.Begin);
+        //    //return File("application/pdf", "ListProducts.pdf");
+        //  // return File(stream, "application/pdf");
+
+        //}
         [HttpGet]
         public ActionResult Create()
         {

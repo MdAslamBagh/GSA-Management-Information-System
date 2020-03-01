@@ -1,0 +1,408 @@
+﻿@model GSA_Management_Information_System.Models.CargoSalesReport
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+@using (Html.BeginForm("Create", "CargoSalesReport", FormMethod.Post, new { onSubmit = "return SubmitForm(this)" }))
+            {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        <div class="container">
+            <div class="card ">
+                <div class="card-header bg-info">Display Report Information </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="accessname" class="col-md-3 col-sm-5">Report Name<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+                                @*@Html.DropDownListFor(Model => Model.SubMenuId, new SelectList(ViewBag.SubMenuId), "Select Status", htmlAttributes: new { @class = "form-control" })*@
+                                @*@Html.DropDownList("SubMenuId", new SelectList(ViewBag.SubMenuId, "SubMenuId", "ReportName"))*@
+                                @Html.DropDownList("ReportId", null, "Select Status", htmlAttributes: new { @class = "form-control", id = "droplistID" })
+                                @Html.ValidationMessageFor(model => model.SubMenuId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+           
+                        
+                            @*<div class="form-group">
+                                <div class="col-md-6 col-sm-6">
+                                    <label>From Date</label>
+                                    @Html.EditorFor(model => model.FromDate, new { htmlAttributes = new { @class = "datepicker" } })*@
+                                    @*<input type="text" id="fromDate" class="datepicker form-control"
+                                          
+                                           readonly name="FromDate" placeholder="MM-DD-YYYY" />*@
+                                @*</div>
+                            </div>*@
+
+                            @*<div class="form-group">
+                                <div class="col-md-6 col-sm-6">
+                                    <label>To Date</label>
+                                    <input type="text" id="toDate" class="datepicker form-control" 
+                                           readonly name="ToDate" placeholder="MM-DD-YYYY" />
+                                </div>
+                            </div>*@
+                        <div id="alldate">
+                            <div class="form-group col-md-10 col-sm-12 ">
+                                <label for="accessname" class="col-md-3 col-sm-5">From Date<font size="2px" color="red">*</font></label>
+                            <div class="col-md-3">
+                                    <div class="input-group">
+                                        @*@Html.Editor("Ticket_Date", new { htmlAttributes = new { @class = "datepicker1" } })*@
+                                        <input type="text" class="form-control datepicker" id="DateFrom" placeholder="Date From" data-format="mm/dd/yyyy">
+                                        <div class="input-group-addon">
+                                            <a href="#"><i class="fa fa-calendar"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="col-md-3">
+                                    <div class="col-sm-1">
+                                        <div class="required">
+                                            <input id="checksscvat" type="checkbox" value="true" name="CheckSSCVat" />
+                                            <input type="hidden" value="false" name="CheckSSCVat" />
+                                            @*<input type="checkbox"  onkeyup="totalSub()" name="CheckSSCVat" id="checksscvat">*@
+                                        </div>
+                                    </div>
+                                    <label for="accessname" class="col-md-9 col-sm-9">Master Date<font size="2px" color="red">*</font></label>
+                                </div>
+                         
+                               </div>
+                            <div class="form-group col-md-10 col-sm-12 ">
+                                <label for="accessname" class="col-md-3 col-sm-5">To Date<font size="2px" color="red">*</font></label>
+                                <div class="col-md-3">
+                                    <div class="input-group">
+                                        @*@Html.Editor("Ticket_Date", new { htmlAttributes = new { @class = "datepicker1" } })*@
+                                        <input type="text" class="form-control datepicker" id="DateFrom" placeholder="To Date" data-format="mm/dd/yyyy">
+                                        <div class="input-group-addon">
+                                            <a href="#"><i class="fa fa-calendar"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="col-sm-1">
+                                        <div class="required">
+                                            <input id="checksscvat" type="checkbox" value="true" name="CheckSSCVat" />
+                                            <input type="hidden" value="false" name="CheckSSCVat" />
+                                            @*<input type="checkbox" onkeyup="totalSub()" name="CheckSSCVat" id="checksscvat">*@
+                                        </div>
+                                    </div>
+                                    <label for="accessname" class="col-md-9 col-sm-9">Flight Date<font size="2px" color="red">*</font></label>
+                                </div>
+                            </div>
+
+                      </div>
+                            
+                        <div id="itemwise">
+                            <div class="form-group  ">
+                                <div class="form-group col-md-10 col-sm-12 ">
+                                    <label for="accessname" class="col-md-3 col-sm-5">From Item<font size="2px" color="red">*</font></label>
+                                    <div class="col-md-6 col-sm-7">
+                                        @Html.EditorFor(model => model.MAWB, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                </div>
+                            </div>
+
+                           
+                                <div class="form-group  ">
+                                    <div class="form-group col-md-10 col-sm-12 ">
+                                        <label for="accessname" class="col-md-3 col-sm-5">To Item<font size="2px" color="red">*</font></label>
+                                        <div class="col-md-6 col-sm-7">
+                                            @Html.EditorFor(model => model.MAWB, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </div>
+                                </div>
+                           
+                        </div>
+                        <div id="groupwise">
+                                <div class="form-group  ">
+                                    <div class="form-group col-md-10 col-sm-12 ">
+                                        <label for="accessname" class="col-md-3 col-sm-5">From Group<font size="2px" color="red">*</font></label>
+                                        <div class="col-md-6 col-sm-7">
+                                            @Html.EditorFor(model => model.MAWB, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </div>
+                                </div>
+                           
+                            
+                                <div class="form-group  ">
+                                    <div class="form-group col-md-10 col-sm-12 ">
+                                        <label for="accessname" class="col-md-3 col-sm-5">To Group<font size="2px" color="red">*</font></label>
+                                        <div class="col-md-6 col-sm-7">
+                                            @Html.EditorFor(model => model.MAWB, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        <div class="form-group col-md-10 col-sm-12 ">
+                                <div class="col-md-10">
+                                    <div align="center">
+                                        @*<a class="btn btn-primary" style="margin-left:10px" onclick="location.href='@Url.Action("Index", "ReportInformation")'"><i class="fa fa-plus"></i>Back To List</a>*@
+                                        <input type="submit" value="Download PDF" class="btn btn-info" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    
+}
+
+
+
+@section scripts{
+@*<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />*@
+
+@*<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>*@
+<!-- Load jQuery UI Main JS  -->
+
+
+
+
+@*<script type="text/javascript">
+     $(function () {
+         $('#DateFrom').datetimepicker();
+     });
+</script>*@
+
+ @*<script type="text/javascript">
+         $("#DateTo").change(function () {
+             var DateFrom = $('#DateFrom').val();
+             //alert(DateFrom);
+             var DateTo = $('#DateTo').val();
+             if (DateFrom > DateTo) {
+                 //alert(DateTo);
+                 swal("Please Enter valid End Date!!!");
+                 $('#DateTo').val("");
+             }
+     });
+
+     </script>*@
+@*<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />*@
+
+
+@*<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+<script src="~/Scripts/jquery-3.0.0.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".date-picker").datepicker({
+            dateFormat: 'dd-M-yy'
+        });
+
+    });
+
+</script>*@
+
+
+
+
+
+
+
+
+
+
+
+@*<script>
+    $(document).ready(function () {
+        var date_input = $('input[name="FromDate"]'); //our date input has the name "date"
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input.datepicker({
+            format: 'dd/mm/yyyy',
+            container: container,
+            endDate: new Date(),
+            todayHighlight: true,
+            autoclose: true
+        })
+    })
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        var date_input = $('input[name="ToDate"]'); //our date input has the name "date"
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input.datepicker({
+            format: 'dd/mm/yyyy',
+            container: container,
+            endDate: new Date(),
+            defaultDate: new Date(),
+            autoclose: true
+        })
+    })
+</script>*@
+
+         <script type="text/javascript">
+         jQuery.noConflict()(function ($) {
+             $(function () {
+                 $("#mawbtextbox").hide()
+                 $("#alldate").hide()
+                 $("#itemwise").hide()
+                 $("#groupwise").hide()
+
+                 $("#droplistID").change(function () {
+                     var reportData = $("#droplistID").val();
+                     if (reportData == null) {
+
+                     }
+                     else
+                         var jsonData = { reportcode: reportData };
+                     $("#ReceivedIdErrorMessage").text("");
+
+                     $.ajax({
+                         type: "POST",
+                         url: "/CargoSalesReport/GetNameCodeById",
+                         contentType: "application/json; charset=utf-8", //Install-Package bootstrap -Version 4.1.1
+                         data: JSON.stringify(jsonData),
+                         dataType: "json",
+                         success: function (data) {
+                             // alert("Success ");
+                             //alert("ok")
+                             //alert(data.ReportName)
+                             if (data.ReportName == "Daily Report Date Item Group Wise (Group By Item)") {
+                                 $("#alldate").show();
+                                 $("#mawbtextbox").show();
+                                 $("#itemwise").show();
+                                 $("#groupwise").show();
+
+                             }
+                             // console.log(data)
+                             // alert(data)
+                             //alert(data.ReportName)
+                             //$("#droplistID").val(data.ReportName);
+                             //var t = $("#droplistID").val();
+                             //  $("#droplistID").val(data.ReportName);
+
+                         },
+                     });
+                     return false;
+                     //var t = $("#droplistID").val();
+                     //if ($(this).val() == '1101') {
+                     //  $("#mawbtextbox").show();
+                     // }
+                     //  $(this).val() == 'select' ? $("#mawbtextbox").hide() : $("#mawbtextbox").show();
+                 });
+             });
+         });
+    </script>
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+////////date picker cheeck
+
+@*@model IEnumerable<SearchRecord.Employee>*@
+
+@*@{
+    ViewBag.Title = "Index";
+}
+@section scripts {
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+    <link href="~/Content/bootstrap-datepicker.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <script type="text/javascript">
+
+        var $j = $.noConflict(true);
+    </script>
+    <script type="text/javascript">
+
+        $j("#datepicker").datepicker({
+            autoclose: true,
+            todayHighlight: true,
+            format: "dd/ mm/ yyyy"
+        });
+    </script>
+    <script type="text/javascript">
+
+        $j("#datepicker1").datepicker({
+            autoclose: true,
+            todayHighlight: true,
+            format: "dd/ mm/ yyyy"
+        });
+    </script>
+}
+<div>
+    <div class="row">
+        <div class="col-sm-12 btn btn-success">
+            How to search records between two dates using stored procedure ,Entity framework in Asp.net Mvc
+        </div>
+    </div>
+</div>
+<br /><br />
+<div class="container">
+    @using (Html.BeginForm("Index", "Search", FormMethod.Post))
+    {
+        <div class="row">
+            <div class="col-sm-2 text-lg-left"><label>From Date</label></div>
+            <div class="col-sm-3">
+
+                <input type="text" id="datepicker" name="From" class="form-control" placeholder="Select Date" />
+            </div>
+            <div class="col-sm-2"><label>To Date</label></div>
+            <div class="col-sm-3">
+
+                <input type="text" id="datepicker1" name="To" class="form-control" placeholder="Select Date" />
+            </div>
+            <div class="col-sm-2">
+                <input type="submit" value="Seach" class="btn btn-primary form-control" />
+            </div>
+            <br /><br />
+        </div>
+        <div class="row">
+            <table class="table table-bordered">
+                <tr>
+                    <th style="width:33%">
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th style="width:33%">
+                        @Html.DisplayNameFor(model => model.City)
+                    </th>
+                    <th style="width:33%">
+                        @Html.DisplayNameFor(model => model.JoiningDate)
+                    </th>
+                    @*<th></th>*@
+                @*</tr>*@
+
+                @*@foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.City)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.JoiningDate)
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    }*@
+@*</div>*@
+
+  
+
+///////

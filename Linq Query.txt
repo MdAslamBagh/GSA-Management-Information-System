@@ -1,0 +1,20 @@
+Linq Query Project working time:
+
+*Select User Type Value Query
+
+1.     var country = (from c in db.CountryInformations
+                           select new
+                           {
+                               c.Country_Code,
+                               c.Long_Desc,
+                           }).ToList();
+
+* Ajax post method passing variable selected value query
+
+2.       var country = (from c in db.CountryInformations.Where(a => a.Continent_Code == region)
+                           select new
+                           {
+                               c.Country_Code,
+                               c.Long_Desc,
+                           }).ToList();
+            return Json(country, JsonRequestBehavior.AllowGet);
