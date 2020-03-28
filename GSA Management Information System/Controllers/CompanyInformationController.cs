@@ -118,15 +118,19 @@ namespace GSA_Management_Information_System.Controllers
         public ActionResult Create()
         {
             //ViewBag.Branch_Name = new SelectList(db.CompanyInformations, "Branch_Name", "Branch_Name");
-           //var branchname = db.CompanyInformations.Where(a => a.Branch_Name == a.Branch_Name).FirstOrDefault();
-           // ViewBag.Branch_Name = branchname;
-            //List<CompanyInformation> Informations = db.CompanyInformations.ToList<CompanyInformation>();
-            //CompanyInformation informations = new CompanyInformation();
-            //informations = informations.FirstOrDefault();
-            //string f_Name = informations.Long_Desc;
-            //string f_Code = informations.Freighter_Code.ToString();
-           //ViewBag.Freighter_Name = f_Name;
-            //ViewBag.Freighter_Code = f_Code;
+            //var branchname = db.CompanyInformations.Where(a => a.Branch_Name == a.Branch_Name).FirstOrDefault();
+            // ViewBag.Branch_Name = branchname;
+            List<CompanyInformation> companyInformations = db.CompanyInformations.Where(a => a.Default_Code == true).ToList<CompanyInformation>();
+            CompanyInformation informations = new CompanyInformation();
+            informations = companyInformations.FirstOrDefault();
+            string Company_Name = informations.Company_Name;
+            string Company_Code = informations.Company_Code;
+            string Branch_Name = informations.Branch_Name;
+            string Branch_Code = informations.Branch_Code;
+            ViewBag.Company_Name = Company_Name;
+            ViewBag.Company_Code = Company_Code;
+            ViewBag.Branch_Name = Branch_Name;
+            ViewBag.Branch_Code = Branch_Code;
             return View();
         }
 
@@ -158,25 +162,26 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         //Company
-        //public JsonResult Get_Company_Name(string Prefix)
-        //{
-        //    ApplicationDbContext db = new ApplicationDbContext();
-        //    var Company_Name = (from c in db.CompanyInformations
-        //                       where c.Long_Desc.StartsWith(Prefix)
-        //                       select new { c.Long_Desc });
-        //    return Json(Company_Name, JsonRequestBehavior.AllowGet);
+        public JsonResult Get_Company_Name(string Prefix)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            var Company_Name = (from c in db.CompanyInformations
+                                where c.Company_Name.StartsWith(Prefix)
+                                select new { c.Company_Name });
+            return Json(Company_Name, JsonRequestBehavior.AllowGet);
 
-        //}
-        
-        //public JsonResult GetOriginCodeById(string originname)
-        //{
-        //    var origin_code = db.OriginInformations.Where(m => m.Long_Desc == originname).FirstOrDefault();
-        //    return Json(origin_code, JsonRequestBehavior.AllowGet);
-        //}
+        }
 
-       
-        //Branch search and create
-        public JsonResult Get_Branch_Name(string Prefix)
+
+        public JsonResult GetCompanyCodeById(string companyname)
+        {
+            var company_code = db.CompanyInformations.Where(m => m.Company_Name == companyname).FirstOrDefault();
+            return Json(company_code, JsonRequestBehavior.AllowGet);
+    }
+
+
+    //Branch search and create
+    public JsonResult Get_Branch_Name(string Prefix)
         {
             ApplicationDbContext db = new ApplicationDbContext();
             var Origin_Name = (from c in db.CompanyInformations

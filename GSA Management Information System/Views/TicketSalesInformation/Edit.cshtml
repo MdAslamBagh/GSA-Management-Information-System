@@ -1,198 +1,887 @@
-﻿@model GSA_Management_Information_System.Models.TicketSalesInformation
-
+﻿@model GSA_Management_Information_System.Models.TicketSalesViewModel
 @{
     ViewBag.Title = "Edit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="~/Gsa_Management_System_layout/assets/css/legendcss.css" rel="stylesheet" />
 
-<h2>Edit</h2>
 
-@using (Html.BeginForm())
-{
+@using (Html.BeginForm("Edit", "TicketSalesInformation", FormMethod.Post, new { onSubmit = "return SubmitForm(this)" }))
+            {
     @Html.AntiForgeryToken()
-    
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.TicketSalesId)
     <div class="form-horizontal">
-        <h4>TicketSalesInformation</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.TicketSalesId)
+        <div class="container">
+            <div class="card ">
+                <div class="card-header bg-info" style="height: 4rem;">Ticket Sales Edit</div>
+                <div class="card text-white  mb-1">
+                </div>
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Ticket Information</legend>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="FreighterName">
+                                            Airlines
+                                            <span id="txtFreighterName" style="color:#FF0000;">*</span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <div class="required">
+                                            @Html.EditorFor(model => model.Airlines_Name, new { htmlAttributes = new { @class = "form-control", id = "airlinesname" } })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Sales_Slno, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Sales_Slno, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Sales_Slno, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Airlines_Code, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Airlines_Code, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Airlines_Code, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                            @*<input id="airlinesname" name="Long_Desc" placeholder="Airlines" class="form-control" type="text">*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Ticket_Date, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Ticket_Date, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Ticket_Date, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="required">
+                                            @Html.EditorFor(model => model.Airlines_Code, new { htmlAttributes = new { @class = "form-control",id = "airlinescode" } })
+                                            @*@Html.EditorFor(model => model.Airlines_Code, new { htmlAttributes = new { @class = "form-control", id = "airlinescode" } })*@
+                                            @*<input id="airlinescode" name="Airlines_Code" placeholder="Code" class="form-control" type="text">*@
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="required">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Ticket_No, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Ticket_No, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Ticket_No, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                            @Html.Editor("Sales_Slno", new { htmlAttributes = new { @class = "hidden" } })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Customer_Code, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Customer_Code, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Customer_Code, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="Origin">
+                                            Customer
+                                            <span id="txtoriginname" style="color:#FF0000;">*</span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <div class="required">
+                                            @Html.EditorFor(model => model.Customer_Name, new { htmlAttributes = new { @class = "form-control", id = "customername" } })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Bank, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Bank, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Bank, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Exchange_Rate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Exchange_Rate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Exchange_Rate, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                            @*<input id="customername" name="Customer_Name" placeholder="Customer Name" class="form-control" type="text" value="@ViewBag.Customer_Name">*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Sales_Value_USD, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Sales_Value_USD, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Sales_Value_USD, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="required">
+                                            @Html.EditorFor(model => model.Customer_Code, new { htmlAttributes = new { @class = "form-control",id = "customercode" } })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Sales_Value_BDT, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Sales_Value_BDT, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Sales_Value_BDT, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Commison, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Commison, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Commison, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                            @*<input id="customercode" name="Customer_Code" placeholder="Code" class="form-control" type="text">*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Commison_Amount, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Commison_Amount, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Commison_Amount, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="FreighterName">
+                                            Payment
+                                            <span id="txtFreighterName" style="color:#FF0000;">*</span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <div class="required">
+                                            @Html.EditorFor(model => model.Payment_Name, new { htmlAttributes = new { @class = "form-control", id = "paymentname" } })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Emb_Tax, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Emb_Tax, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Emb_Tax, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Travel_Tax, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Travel_Tax, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Travel_Tax, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                            @*<input id="paymentname" name="Long_Desc" placeholder="Payment Name" class="form-control" type="text">*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Fuel_Charge, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Fuel_Charge, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Fuel_Charge, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="required">
+                                            @Html.EditorFor(model => model.Payment_Mode, new { htmlAttributes = new { @class = "form-control", id = "paymentmode" } })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Hk_Tax, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Hk_Tax, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Hk_Tax, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Xt_Charge, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Xt_Charge, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Xt_Charge, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                            @*<input id="paymentmode" name="Payment_Mode" placeholder="Mode" class="form-control" type="text">*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Other_Charge, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Other_Charge, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Other_Charge, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Net_Receivable_Amount, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Net_Receivable_Amount, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Net_Receivable_Amount, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="Origin">
+                                            Bank
+                                            <span id="txtoriginname" style="color:#FF0000;">*</span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <div class="required">
+                                            @Html.EditorFor(model => model.Bank_Name, new { htmlAttributes = new { @class = "form-control", id = "bankname" } })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Received_Amount, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Received_Amount, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Received_Amount, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Amount_In_PPRS, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Amount_In_PPRS, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Amount_In_PPRS, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                            @*<input id="bankname" name="Long_Desc" placeholder="Bank Name" class="form-control" type="text">*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Remarks, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="required">
+                                            @Html.EditorFor(model => model.Bank_Code, new { htmlAttributes = new { @class = "form-control",id = "bankcode" } })
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+
+                                            @*<input id="bankcode" name="Bank_Code" placeholder="Code" class="form-control" type="text">*@
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="FreighterName">
+                                            Ticket No
+                                            <span id="txtFreighterName" style="color:#FF0000;">*</span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="required">
+                                            @Html.EditorFor(model => model.Ticket_No, new { htmlAttributes = new { @class = "form-control",id = "Ticket_No" } })
+
+
+                                            @*<input id="Ticket_No" name="Ticket_No" placeholder="Ticket_No" class="form-control" type="text">*@
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="Origin">
+                                            Ticket Date
+                                            <span id="txtoriginname" style="color:#FF0000;">*</span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="required">
+                                            <input type="text" class="form-control datepicker" name="Ticket_Date" id="ticketdate" placeholder="Ticket Date" data-format="mm/dd/yyyy" value=@ViewBag.Ticket_Date>
+
+                                            @*@Html.Editor("Ticket_Date", new { htmlAttributes = new { @class = "datepicker1" } })*@
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </fieldset>
+
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Charge Information</legend>
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="ref1Name">
+                                            Exchange rate
+                                            <span id="txtReferenceName1Esteric" style="color:#FF0000;">*</span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="required">
+                                            @Html.EditorFor(model => model.Exchange_Rate, new { htmlAttributes = new { @class = "form-control", id = "exchangerate" } })
+
+
+                                            @*<input id="exchangerate" name="Exchange_Rate" class="form-control" type="text" value="@ViewBag.Exchange_Rate">*@
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-sm-4">
+                                        <label for="ref1Position">
+                                            sales value USD
+                                            <span id="txtReferencePosition1Esteric" style="color:#FF0000;"></span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="required">
+                                            @Html.EditorFor(model => model.Sales_Value_USD, new { htmlAttributes = new { @class = "form-control", id = "salesvalueusd", onkeyup = "sales()" } })
+
+
+                                            @*<input id="salesvalueusd" value="" type="text" onkeyup="sales()" class="form-control" name="Sales_Value_USD">*@
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-sm-4">
+                                        <label for="ref1Position">
+                                            Sales_Value_BDT
+                                            <span id="txtReferencePosition1Esteric" style="color:#FF0000;"></span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="required">
+                                            @Html.EditorFor(model => model.Sales_Value_BDT, new { htmlAttributes = new { @class = "form-control", id = "salesvaluebdt" } })
+
+
+                                            @*<input id="salesvaluebdt" name="Sales_Value_BDT" placeholder="BDT" class="form-control" type="text">*@
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-sm-4">
+                                        <label for="ref1Position">
+                                            Commison(%)
+                                            <span id="txtReferencePosition1Esteric" style="color:#FF0000;"></span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="required">
+                                            @Html.EditorFor(model => model.Commison, new { htmlAttributes = new { @class = "form-control", value = "7", id = "commison" } })
+
+
+                                            @*<input value="7" id="commison" name="Commison" placeholder="BDT" class="form-control" type="text">*@
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-sm-4">
+                                        <label for="ref1Position">
+                                            Commison Amount
+                                            <span id="txtReferencePosition1Esteric" style="color:#FF0000;"></span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="required">
+                                            @Html.EditorFor(model => model.Commison_Amount, new { htmlAttributes = new { @class = "form-control", id = "commisonamount" } })
+
+
+                                            @*<input id="commisonamount" name="Commison_Amount" placeholder="BDT" class="form-control" type="text">*@
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-sm-4">
+                                        <label for="ref1Position">
+                                            EMB TAX
+                                            <span id="txtReferencePosition1Esteric" style="color:#FF0000;"></span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="required">
+                                            @Html.EditorFor(model => model.Emb_Tax, new { htmlAttributes = new { @class = "form-control", id = "embtax", onkeyup = "embTax()" } })
+
+
+                                            @*<input id="embtax" value="" type="text" onkeyup="embTax()" placeholder="BDT" class="form-control" name="Emb_Tax">*@
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-sm-4">
+                                        <label for="ref1Position">
+                                            Travel TAX(UT)
+                                            <span id="txtReferencePosition1Esteric" style="color:#FF0000;"></span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="required">
+                                            @Html.EditorFor(model => model.Travel_Tax, new { htmlAttributes = new { @class = "form-control", id = "traveltax", onkeyup = "travelTax()" } })
+
+
+                                            @*<input id="traveltax" value="" type="text" onkeyup="travelTax()" placeholder="BDT" class="form-control" name="Travel_Tax">*@
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="col-sm-6">
+
+
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-sm-4">
+                                        <label for="ref2Position">
+                                            Fuel Charge(UR)
+                                            <span id="txtReferencePosition2Esteric" style="color:#FF0000;"></span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="required">
+                                            @Html.EditorFor(model => model.Fuel_Charge, new { htmlAttributes = new { @class = "form-control", id = "fuelcharge", onkeyup = "fuelCharge()" } })
+
+
+                                            @*<input id="fuelcharge" value="" type="text" onkeyup="fuelCharge()" placeholder="BDT" class="form-control" name="Fuel_Charge">*@
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-sm-4">
+                                        <label for="ref2Position">
+                                            HK TAX
+                                            <span id="txtReferencePosition2Esteric" style="color:#FF0000;"></span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="required">
+                                            @Html.EditorFor(model => model.Hk_Tax, new { htmlAttributes = new { @class = "form-control", id = "hktax", onkeyup = "hkTax()" } })
+
+
+                                            @*<input id="hktax" value="" type="text" onkeyup="hkTax()" placeholder="BDT" class="form-control" name="Hk_Tax">*@
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-sm-4">
+                                        <label for="ref2Position">
+                                            XT Charge
+                                            <span id="txtReferencePosition2Esteric" style="color:#FF0000;"></span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="required">
+                                            @Html.EditorFor(model => model.Xt_Charge, new { htmlAttributes = new { @class = "form-control", id = "xtcharge", onkeyup = "xtCharge()" } })
+
+
+                                            @*<input id="xtcharge" value="" type="text" onkeyup="xtCharge()" placeholder="BDT" class="form-control" name="Xt_Charge">*@
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-sm-4">
+                                        <label for="ref2Position">
+                                            Other Charge
+                                            <span id="txtReferencePosition2Esteric" style="color:#FF0000;"></span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="required">
+                                            @Html.EditorFor(model => model.Other_Charge, new { htmlAttributes = new { @class = "form-control", id = "othercharge", onkeyup = "otherCharge()" } })
+
+
+                                            @*<input id="othercharge" value="" type="text" onkeyup="otherCharge()" placeholder="BDT" class="form-control" name="Other_Charge">*@
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="required">
+                                            @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control", id = "discount", onkeyup = "disCount()" } })
+
+
+                                            @*<input id="discount" value="" type="text" onkeyup="disCount()" placeholder="BDT" class="form-control" name="Discount">*@
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-sm-4">
+                                        <label for="ref2Position">
+                                            NET Recvable Amt
+                                            <span id="txtReferencePosition2Esteric" style="color:#FF0000;"></span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="required">
+                                            @Html.EditorFor(model => model.Net_Receivable_Amount, new { htmlAttributes = new { @class = "form-control", id = "netreceiveable", onkeyup = "netreceiveableAmount()" } })
+
+
+                                            @*<input id="netreceiveable" value="" type="text" onkeyup="netreceiveableAmount()" placeholder="BDT" class="form-control" name="Net_Receivable_Amount">*@
+
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-sm-4">
+                                        <label for="ref1Position">
+                                            Receivable Amount
+                                            <span id="txtReferencePosition1Esteric" style="color:#FF0000;"></span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="required">
+                                            @Html.EditorFor(model => model.Received_Amount, new { htmlAttributes = new { @class = "form-control", id = "receivedamount", onkeyup = "receivedAmount()" } })
+
+
+                                            @*<input id="receivedamount" value="" type="text" onkeyup="receivedAmount()" placeholder="BDT" class="form-control" name="Received_Amount">*@
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-sm-4">
+                                        <label for="ref1Position">
+                                            Amount PPRS
+                                            <span id="txtReferencePosition1Esteric" style="color:#FF0000;"></span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="required">
+                                            @Html.EditorFor(model => model.Amount_In_PPRS, new { htmlAttributes = new { @class = "form-control", id = "amountinpprs" } })
+
+
+                                            @*<input id="amountinpprs" name="Amount_In_PPRS" placeholder="BDT" class="form-control" type="text">*@
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="Remarks" class="col-md-2 col-sm-2">Remarks<span class="required"></span></label>
+                            <div class="col-md-4 col-sm-5">
+                                @Html.TextAreaFor(model => model.Remarks, 2, 42, new { htmlAttributes = new { @class = "form-control", id = "remarks" } })
+
+
+                                @*<textarea id="remarks" rows="3" cols="30" name="Remarks" placeholder="Remarks" class="form-control" type="text"></textarea>*@
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <div class="col-md-12">
+                                <div align="center">
+                                    <input type="submit" value="submit" class="btn btn-primary" />
+                                    <input type="reset" value="reset" class="btn btn-warning" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </fieldset>
+</div>
+
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
+@section scripts{
+
+
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+    <!-- Load jQuery JS -->
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <!-- Load jQuery UI Main JS  -->
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
+
+    <script>
+        //<script src="~/Scripts/Validation.js">//
+        jQuery.noConflict()(function ($) {
+            $(function () {
+                $("#ticketdate").datepicker();
+                //$("#DateTo").datepicker();
+
+            });
+            $("#airlinesname").keyup(function () {
+                var airlinesdata = $("#airlinesname").val();
+                if (airlinesdata === '') {
+                    $('#airlinescode').val('');
+
+                }
+                else
+                    var jsonData = { airlinesname: airlinesdata };
+                $("#ReceivedIdErrorMessage").text("");
+                $.ajax({
+                    type: "POST",
+                    url: "/TicketSalesInformation/GetAirlinesCodeById",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(jsonData),
+                    dataType: "json",
+                    success: function (data) {
+                        //  alert("Success ");
+                        $("#airlinescode").val(data.Airlines_Code);
+
+                    },
+                });
+
+                return false;
+            });
+            $("#airlinesname").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/TicketSalesInformation/Get_Airlines_Name",
+                        type: "POST",
+                        dataType: "json",
+                        data: { Prefix: request.term },
+
+                        success: function (data) {
+
+                            response($.map(data, function (item) {
+
+                                return {
+                                    label: item.Long_Desc,
+                                    value: item.Long_Desc,
+
+
+                                };
+
+
+                            }))
+
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "",
+                    results: function (count) {
+                        return count + (count > 1 ? ' results' : ' result ') + ' found';
+                    }
+                }
+            })
+
+            $("#customername").keyup(function () {
+                var customerdata = $("#customername").val();
+                if (customerdata === '') {
+                    $('#customercode').val('');
+                    $("#customeraddress").val('');
+                }
+                else
+                    var jsonData = { customername: customerdata };
+                $("#ReceivedIdErrorMessage").text("");
+                $.ajax({
+                    type: "POST",
+                    url: "/TicketSalesInformation/GetCustomerCodeById",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(jsonData),
+                    dataType: "json",
+                    success: function (data) {
+                        //  alert("Success ");
+                        $("#customercode").val(data.Customer_Code);
+                        $("#customeraddress").val(data.Address);
+
+
+                    },
+                });
+
+                return false;
+
+            });
+            $("#customername").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/TicketSalesInformation/Get_Customer_Name",
+                        type: "POST",
+                        dataType: "json",
+                        data: { Prefix: request.term },
+
+                        success: function (data) {
+
+                            response($.map(data, function (item) {
+
+                                return {
+                                    label: item.Customer_Name,
+                                    value: item.Customer_Name,
+
+
+
+
+
+                                };
+
+
+                            }))
+
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "",
+                    results: function (count) {
+                        return count + (count > 1 ? ' results' : ' result ') + ' found';
+                    }
+                }
+
+            });
+
+            $("#paymentname").keyup(function () {
+                var paymentData = $("#paymentname").val();
+                if (paymentData === '') {
+                    $('#paymentmode').val('');
+                }
+                else
+                    var jsonData = { paymentname: paymentData };
+                $("#ReceivedIdErrorMessage").text("");
+                $.ajax({
+                    type: "POST",
+                    url: "/TicketSalesInformation/GetpaymentCodeById",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(jsonData),
+                    dataType: "json",
+                    success: function (data) {
+                        //  alert("Success ");
+                        $("#paymentmode").val(data.Payment_Mode);
+
+
+                    },
+                });
+
+                return false;
+
+            });
+            $("#paymentname").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/TicketSalesInformation/Get_payment_Name",
+                        type: "POST",
+                        dataType: "json",
+                        data: { Prefix: request.term },
+
+                        success: function (data) {
+
+                            response($.map(data, function (item) {
+
+                                return {
+                                    label: item.Long_Desc,
+                                    value: item.Long_Desc,
+
+
+
+
+
+                                };
+
+
+                            }))
+
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "",
+                    results: function (count) {
+                        return count + (count > 1 ? ' results' : ' result ') + ' found';
+                    }
+                }
+
+            });
+
+            $("#bankname").keyup(function () {
+                var bankdata = $("#bankname").val();
+                if (bankdata === '') {
+                    $('#bankcode').val('');
+                }
+                else
+                    var jsonData = { bankname: bankdata };
+                $("#ReceivedIdErrorMessage").text("");
+                $.ajax({
+                    type: "POST",
+                    url: "/TicketSalesInformation/GetBankCodeById",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(jsonData),
+                    dataType: "json",
+                    success: function (data) {
+                        //  alert("Success ");
+                        $("#bankcode").val(data.Bank_Code);
+
+
+                    },
+                });
+
+                return false;
+
+            });
+            $("#bankname").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/TicketSalesInformation/Get_Bank_Name",
+                        type: "POST",
+                        dataType: "json",
+                        data: { Prefix: request.term },
+
+                        success: function (data) {
+
+                            response($.map(data, function (item) {
+
+                                return {
+                                    label: item.Long_Desc,
+                                    value: item.Long_Desc,
+
+                                };
+
+
+                            }))
+
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "",
+                    results: function (count) {
+                        return count + (count > 1 ? ' results' : ' result ') + ' found';
+                    }
+                }
+
+            });
+
+        });
+    </script>
+
+
+
+
+
+    <script>
+
+        function sales() {
+            var salesusd = $("#salesvalueusd").val();
+            var exchangerate = $("#exchangerate").val();
+            var salesbdt = salesusd * exchangerate;
+            var commison = $("#commison").val();
+            var commisonresultfloat = (salesbdt * commison) / 100;
+            var commisonresult = parseInt(commisonresultfloat);
+            var commisonamnt = $("#commisonamount").val();
+            $('#salesvaluebdt').val(salesbdt);
+            $('#commisonamount').val(commisonresult);
+            netreceiveableAmount();
+
+        };
+
+        function embTax() {
+
+            var embtx = $('#embtax').val();
+            netreceiveableAmount();
+        };
+        function travelTax() {
+
+            var traveltx = $('#traveltax').val();
+            netreceiveableAmount();
+        };
+        function fuelCharge() {
+
+            var fuelcharge = $('#fuelcharge').val();
+            netreceiveableAmount();
+        };
+        function hkTax() {
+            var hktax = $('#hktax').val();
+            netreceiveableAmount();
+        };
+        function xtCharge() {
+            var xtcharge = $('#xtcharge').val();
+            netreceiveableAmount();
+        };
+        function otherCharge() {
+            var othercharge = $('#othercharge').val();
+            netreceiveableAmount();
+        };
+        function disCount() {
+            var discount = $('#discount').val();
+            netreceiveableAmount();
+        };
+        function netreceiveableAmount() {
+            var salesbdt = $('#salesvaluebdt').val();
+            var embtx = $('#embtax').val();
+            var traveltx = $('#traveltax').val();
+            var fuelcharge = $('#fuelcharge').val();
+            var hktax = $('#hktax').val();
+            var xtcharge = $('#xtcharge').val();
+            var othercharge = $('#othercharge').val();
+            var commisonrslt = $('#commisonamount').val();
+            var discount = $('#discount').val();
+            var receiveableammount = (((parseFloat(salesbdt) || 0) + (parseFloat(embtx) || 0) + (parseFloat(traveltx) || 0) + (parseFloat(fuelcharge) || 0) + (parseFloat(hktax) || 0) + (parseFloat(xtcharge) || 0) + (parseFloat(othercharge) || 0)) - ((parseFloat(commisonrslt) || 0) + (parseFloat(discount) || 0)));
+            $('#netreceiveable').val(receiveableammount);
+            $('#amountinpprs').val(receiveableammount);
+
+        };
+
+
+
+
+
+    </script>
+
+}

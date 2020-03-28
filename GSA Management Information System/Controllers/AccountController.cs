@@ -406,9 +406,9 @@ namespace GSA_Management_Information_System.Controllers
             if (ModelState.IsValid)
             {
                 //model.UserType="Admin";
-                model.Status = "Active";
+                //model.Status = "Active";//INACTIVE
                 //model.UserType = "User";
-                //model.Status = "Inactive";
+                model.Status = "Inactive";
                 var user = new ApplicationUser {UserName = model.UserName, Email = model.Email, FullName=model.FullName,  Status = model.Status };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -505,9 +505,9 @@ namespace GSA_Management_Information_System.Controllers
             if (ModelState.IsValid)
             {
                 //model.UserType="Admin";
-                model.Status = "Active";
+                //model.Status = "Active";
                 //model.UserType = "User";
-                //model.Status = "Inactive";
+                model.Status = "Inactive";
                 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, FullName = model.FullName, Status = model.Status,Company_Code=model.Company_Code,Branch_Code=model.Branch_Code };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -572,7 +572,7 @@ namespace GSA_Management_Information_System.Controllers
                 ViewBag.Branch_Name = b_Name;
                 ViewBag.Branch_Code = b_Code;
             }
-            
+
 
 
 
@@ -587,11 +587,12 @@ namespace GSA_Management_Information_System.Controllers
                 Email = user.Email,
                 //Company_Name = ViewBag.Company_Name,
                 //Company_Name = db.CompanyInformations.Where(a => a.Company_Code == user.Company_Code),
-                Company_Name= ViewBag.Company_Name,
-                Branch_Name= ViewBag.Branch_Name,
+                Company_Name = ViewBag.Company_Name,
+                Branch_Name = ViewBag.Branch_Name,
                 Company_Code = ViewBag.Company_Code,
                 //ViewBag.Company_Name = new SelectList(db.CompanyInformations, "Country_Code", "Long_Desc"),
                 Branch_Code = ViewBag.Branch_Code,
+                Status = user.Status,
                 Password=user.PasswordHash,
                 ConfirmPassword=user.PasswordHash,
 
@@ -601,6 +602,8 @@ namespace GSA_Management_Information_System.Controllers
                 //  Text = x.Company_Name,
                 //  Value = x.Company_Name
                 //}),
+
+               
 
 
                 RolesList = RoleManager.Roles.ToList().Select(x => new SelectListItem()
@@ -635,6 +638,9 @@ namespace GSA_Management_Information_System.Controllers
                 user.Email = editUser.Email;
                 user.Company_Code = editUser.Company_Code;
                 user.Branch_Code = editUser.Branch_Code;
+                user.Status = editUser.Status;
+                //user.PasswordHash = user.PasswordHash;
+                //user.ConfirmPassword = user.PasswordHash;
                 //user.GroupID = editUser.GroupID;
                 //UserManager.Update(user);
 

@@ -20,6 +20,13 @@ namespace GSA_Management_Information_System.Controllers
             return View(db.TicketSalesInformations.ToList());
         }
 
+        public ActionResult GetData()
+        {
+            List<TicketSalesInformation> Informations = db.TicketSalesInformations.ToList<TicketSalesInformation>();
+            return Json(new { data = Informations }, JsonRequestBehavior.AllowGet);
+
+        }
+
         // GET: TicketSalesInformation/Details/5
         public ActionResult Details(int? id)
         {
@@ -36,7 +43,7 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         // GET: TicketSalesInformation/Create
-        public ActionResult Add()
+        public ActionResult Create()
         {
             
             List<ExchangeInformation> exchangeInformations = db.ExchangeInformations.Where(a => a.Default_Code == true).ToList<ExchangeInformation>();
@@ -44,6 +51,8 @@ namespace GSA_Management_Information_System.Controllers
             exchange = exchangeInformations.FirstOrDefault();
             string e_Rate = exchange.Exchange_Rate.ToString();
             ViewBag.Exchange_Rate = e_Rate;
+            String time = DateTime.Now.ToString("MM/dd/yyyy");
+            ViewBag.Ticket_Date = time;
 
             List<TicketSalesInformation> Informations = db.TicketSalesInformations.OrderByDescending(a => a.TicketSalesId).ToList<TicketSalesInformation>();
 
@@ -77,10 +86,13 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add(TicketSalesInformation ticketSalesInformation)
+        public ActionResult Create(TicketSalesInformation ticketSalesInformation)
         {
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                ticketSalesInformation.Entry_By = LogedInUser;
+                ticketSalesInformation.Entry_Date = DateTime.Now;
                 db.TicketSalesInformations.Add(ticketSalesInformation);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -158,11 +170,70 @@ namespace GSA_Management_Information_System.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             TicketSalesInformation ticketSalesInformation = db.TicketSalesInformations.Find(id);
+            ViewBag.Ticket_Date = ticketSalesInformation.Ticket_Date;
             if (ticketSalesInformation == null)
             {
                 return HttpNotFound();
             }
-            return View(ticketSalesInformation);
+
+            //var ticketdata = from cargosales in db.CargoSalesInformations join AirlinesInformation in db.AirlinesInformations on cargosales.air equals AirlinesInformation.Airlines_Code
+            //                                                             join freighter in db.FreighterInformations on cargosales.Freighter_Code equals freighter.Freighter_Code
+            //                                                         select new {
+            //                                                          cargosales.MAWB,
+            //                                                          cargosales.Airway_No,
+            //                                                          origin.Long_Desc,
+            //                                                          Frieghter_Name=freighter.Long_Desc};
+
+
+            var ticketdata = (from ticketsales in db.TicketSalesInformations
+                             join airlines in db.AirlinesInformations on ticketsales.Airlines_Code equals airlines.Airlines_Code
+                             join bank in db.BankInformations on ticketsales.Bank_Code equals bank.Bank_Code
+                             join customer in db.CustomerInformations on ticketsales.Customer_Code equals customer.Customer_Code
+                             join payment in db.PaymentModeInformations on ticketsales.Payment_Mode equals payment.Payment_Mode
+                             where ticketsales.TicketSalesId== ticketSalesInformation.TicketSalesId
+                              select new 
+                             {
+                                 TicketSalesId=ticketSalesInformation.TicketSalesId,
+                                 Airlines = airlines.Long_Desc,
+                                 Bank = bank.Long_Desc,
+                                 Customer = customer.Customer_Name,
+                                 Payment = payment.Payment_Mode
+
+
+                             }).FirstOrDefault();
+
+
+            return View(new TicketSalesViewModel()
+            {
+                TicketSalesId = Convert.ToInt32(ticketdata.TicketSalesId),              
+                Airlines_Name=ticketdata.Airlines,
+                Bank_Name = ticketdata.Bank,
+                Payment_Name = ticketdata.Customer,
+                Customer_Name = ticketdata.Payment,
+                Airlines_Code= ticketSalesInformation.Airlines_Code,
+                Customer_Code= ticketSalesInformation.Customer_Code,
+                Payment_Mode= ticketSalesInformation.Payment_Mode,
+                Bank_Code= ticketSalesInformation.Bank_Code,
+                Ticket_No= ticketSalesInformation.Ticket_No,
+                //Ticket_Date= ticketSalesInformation.Ticket_Date,
+                
+                Exchange_Rate= ticketSalesInformation.Exchange_Rate,
+                Sales_Value_USD= ticketSalesInformation.Sales_Value_USD,
+                Sales_Value_BDT= ticketSalesInformation.Sales_Value_BDT,
+                Commison=ticketSalesInformation.Commison,
+                Commison_Amount= ticketSalesInformation.Commison_Amount,
+                Emb_Tax= ticketSalesInformation.Emb_Tax,
+                Travel_Tax= ticketSalesInformation.Travel_Tax,
+                Fuel_Charge= ticketSalesInformation.Fuel_Charge,
+                Hk_Tax= ticketSalesInformation.Hk_Tax,
+                Xt_Charge=ticketSalesInformation.Xt_Charge,
+                Other_Charge= ticketSalesInformation.Other_Charge,
+                Discount= ticketSalesInformation.Discount,
+                Net_Receivable_Amount= ticketSalesInformation.Net_Receivable_Amount,
+                Received_Amount=ticketSalesInformation.Received_Amount,
+                Amount_In_PPRS=ticketSalesInformation.Amount_In_PPRS,
+                Remarks=ticketSalesInformation.Remarks
+            });
         }
 
         // POST: TicketSalesInformation/Edit/5
@@ -170,10 +241,13 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TicketSalesId,Sales_Slno,Airlines_Code,Ticket_Date,Ticket_No,Customer_Code,Bank,Exchange_Rate,Sales_Value_USD,Sales_Value_BDT,Commison,Commison_Amount,Emb_Tax,Travel_Tax,Fuel_Charge,Hk_Tax,Xt_Charge,Other_Charge,Net_Receivable_Amount,Received_Amount,Amount_In_PPRS,Remarks")] TicketSalesInformation ticketSalesInformation)
+        public ActionResult Edit(TicketSalesInformation ticketSalesInformation)
         {
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                ticketSalesInformation.Entry_By = LogedInUser;
+                ticketSalesInformation.Entry_Date = DateTime.Now;
                 db.Entry(ticketSalesInformation).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

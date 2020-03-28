@@ -71,7 +71,7 @@
                                 { "data": "Access_Name"},
                                 { "data": "ReportName" },
                                 { "data": "ReportId", "render": function (data) {
-                                    return "<a class='btn btn-default btn-sm' onclick=location.href='@Url.Action("Edit", "ReportInformation")/" + data + "'><i class='fa fa-pencil'></i> Edit</a><a class='btn btn-danger btn-sm'style='margin-left:5px'onclick=Delete(" + data + ")><i class='fa fa-trash'></i> Delete</a>"
+                                    return "<a class='btn btn-default btn-sm' onclick=location.href='@Url.Action("Edit", "ReportInformation")/" + data + "'><i class='fa fa-pencil'></i> Edit</a>"
                                 },
                                 "orderable": false,
                                 "searchable": false,
@@ -121,7 +121,7 @@
 
 
 
-                    function Delete(id) {
+                    @*function Delete(id) {
 
                         if (confirm('Are you sure you want to delete this Report record ?'))
                         {
@@ -144,7 +144,7 @@
                                 }
                             });
                         }
-                    }
+                    }*@
 
                         </script>
 

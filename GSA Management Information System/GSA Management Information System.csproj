@@ -215,6 +215,9 @@
     <Compile Include="Controllers\AccessListInformationController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AirlinesInformationController.cs" />
+    <Compile Include="Controllers\CargoDueReceiptController.cs" />
+    <Compile Include="Controllers\CargoDueReportController.cs" />
+    <Compile Include="Controllers\PassengerReportController.cs" />
     <Compile Include="Controllers\BangladeshBankReportController.cs" />
     <Compile Include="Controllers\BankInformationController.cs" />
     <Compile Include="Controllers\BaseModuleInformationController.cs" />
@@ -604,6 +607,38 @@
     <Compile Include="Migrations\202002170438476_initial80.Designer.cs">
       <DependentUpon>202002170438476_initial80.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003081113452_initial81.cs" />
+    <Compile Include="Migrations\202003081113452_initial81.Designer.cs">
+      <DependentUpon>202003081113452_initial81.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003081734028_initial82.cs" />
+    <Compile Include="Migrations\202003081734028_initial82.Designer.cs">
+      <DependentUpon>202003081734028_initial82.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003090436415_initial83.cs" />
+    <Compile Include="Migrations\202003090436415_initial83.Designer.cs">
+      <DependentUpon>202003090436415_initial83.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003090844044_initial84.cs" />
+    <Compile Include="Migrations\202003090844044_initial84.Designer.cs">
+      <DependentUpon>202003090844044_initial84.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003100913473_initial85.cs" />
+    <Compile Include="Migrations\202003100913473_initial85.Designer.cs">
+      <DependentUpon>202003100913473_initial85.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003100924234_initial86.cs" />
+    <Compile Include="Migrations\202003100924234_initial86.Designer.cs">
+      <DependentUpon>202003100924234_initial86.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003180414180_initial87.cs" />
+    <Compile Include="Migrations\202003180414180_initial87.Designer.cs">
+      <DependentUpon>202003180414180_initial87.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003240419075_initial88.cs" />
+    <Compile Include="Migrations\202003240419075_initial88.Designer.cs">
+      <DependentUpon>202003240419075_initial88.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccessInformation.cs" />
     <Compile Include="Models\AccessListInformation.cs" />
@@ -614,8 +649,130 @@
     <Compile Include="Models\BankInfromation.cs" />
     <Compile Include="Models\BaseModuleInformation.cs" />
     <Compile Include="Models\Cargo Debit_Credit Note.cs" />
+    <Compile Include="Models\CargoDueReceipt.cs" />
     <Compile Include="Models\CargoFreightPaymodeInformation.cs" />
+    <Compile Include="Models\Reports\CargoDueReport.cs" />
+    <Compile Include="Models\Reports\PassengerReport.cs" />
+    <Compile Include="Models\Reports\Cargo\crpBangladeshBankReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crpBangladeshBankReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Models\Reports\Cargo\crpBankEnchasmentCertificateReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crpBankEnchasmentCertificateReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Models\Reports\Cargo\crpBankEnchasmentCertificateSummaryReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crpBankEnchasmentCertificateSummaryReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Models\Reports\Cargo\crpCargoSalesSummeryAgentwise.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crpCargoSalesSummeryAgentwise.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Models\Reports\Cargo\crpDateAndContinentWiseCargoSalesGroupReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crpDateAndContinentWiseCargoSalesGroupReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Models\Reports\Cargo\crpDateAndContinentWiseCargoSalesWithoutGroupReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crpDateAndContinentWiseCargoSalesWithoutGroupReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Models\Reports\Cargo\crpDateAndFreighterWiseCargoSalesGroupReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crpDateAndFreighterWiseCargoSalesGroupReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Models\Reports\Cargo\crpDateAndItemGroupWiseCustomerDetails.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crpDateAndItemGroupWiseCustomerDetails.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Models\Reports\Cargo\crpDateAndItemWiseCargoSalesGroupReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crpDateAndItemWiseCargoSalesGroupReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Models\Reports\Cargo\crpDateAndItemWiseCargoSalesWithoutGroupReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crpDateAndItemWiseCargoSalesWithoutGroupReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Models\Reports\Cargo\crpDatewiseCargoSalesStatement.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crpDatewiseCargoSalesStatement.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Models\Reports\Cargo\crpDestinationWiseGroupByItem.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crpDestinationWiseGroupByItem.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Models\Reports\Cargo\crpDestinationWiseWithoutGroupReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crpDestinationWiseWithoutGroupReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Models\Reports\Cargo\crpPrincipalReportCargoSalesGroupwise.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crpPrincipalReportCargoSalesGroupwise.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Models\Reports\Cargo\crpPrincipalReportCargoSalesWithoutGroup.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crpPrincipalReportCargoSalesWithoutGroup.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Models\Reports\Cargo\crpUpliftmentStatement.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crpUpliftmentStatement.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Models\Reports\Cargo\Title.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Title.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Models\Reports\Invoice.cs" />
+    <Compile Include="Models\Reports\Passenger\crpAirportSalesReport-ASR.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crpAirportSalesReport-ASR.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Reports\Passenger\crpAirportSalesSummaryReport-ASR.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crpAirportSalesSummaryReport-ASR.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Models\Reports\Passenger\crpPassengerSalesReport-PSR.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crpPassengerSalesReport-PSR.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Models\Reports\PrincipalReport.cs" />
     <Compile Include="Models\Reports\BangladeshBankReport.cs" />
     <Compile Include="Models\Reports\MISReport.cs" />
@@ -665,6 +822,23 @@
     <Compile Include="Models\UserInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs" />
+    <Compile Include="Reports\Cargo\CargoDueReceivedAgencyWise.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CargoDueReceivedAgencyWise.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Cargo\CargoDueReceivedMAWBWiseAgencySummary.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CargoDueReceivedMAWBWiseAgencySummary.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Cargo\CargoDueReceivedSummary.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CargoDueReceivedSummary.rpt</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Cargo\crpBangladeshBankReport.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -747,6 +921,24 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>crpUpliftmentStatement.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Passenger\crpAirportSalesReport-ASR.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crpAirportSalesReport-ASR.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Passenger\crpAirportSalesSummaryReport-ASR.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crpAirportSalesSummaryReport-ASR.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Passenger\crpPassengerSalesReport-PSR.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crpPassengerSalesReport-PSR.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Startup.cs" />
@@ -2747,7 +2939,7 @@
     <Content Include="Views\AirlinesInformation\Details.cshtml" />
     <Content Include="Views\AirlinesInformation\Edit.cshtml" />
     <Content Include="Views\AirlinesInformation\Index.cshtml" />
-    <Content Include="Views\BankInformation\Add.cshtml" />
+    <Content Include="Views\BankInformation\Create.cshtml" />
     <Content Include="Views\BankInformation\Delete.cshtml" />
     <Content Include="Views\BankInformation\Details.cshtml" />
     <Content Include="Views\BankInformation\Edit.cshtml" />
@@ -2892,7 +3084,7 @@
     <Content Include="Views\StockTypeInformation\Details.cshtml" />
     <Content Include="Views\StockTypeInformation\Edit.cshtml" />
     <Content Include="Views\StockTypeInformation\Index.cshtml" />
-    <Content Include="Views\TicketSalesInformation\Add.cshtml" />
+    <Content Include="Views\TicketSalesInformation\Create.cshtml" />
     <Content Include="Views\TicketSalesInformation\Delete.cshtml" />
     <Content Include="Views\TicketSalesInformation\Details.cshtml" />
     <Content Include="Views\TicketSalesInformation\Edit.cshtml" />
@@ -2964,7 +3156,6 @@
     <Content Include="Views\ContinentInformation\Create.cshtml" />
     <Content Include="Views\ExchangeInformation\Create.cshtml" />
     <Content Include="Views\CargoSalesInformation\Create.cshtml" />
-    <Content Include="Views\StockIssueInformation\Create - Copy.cshtml" />
     <Content Include="Views\PrincipalReport\Index - Copy %282%29.cshtml" />
     <Content Include="Views\PrincipalReport\Index.cshtml" />
     <Content Include="Views\MISReport\Index - Copy %282%29.cshtml" />
@@ -2977,6 +3168,23 @@
     <Content Include="Views\Home\Index - Copy %282%29.cshtml" />
     <Content Include="Views\CargoTypeInformation\Create.cshtml" />
     <Content Include="Views\FreighterInformation\Create - Copy.cshtml" />
+    <Content Include="Views\TicketSalesInformation\Create - Copy.cshtml" />
+    <Content Include="Views\TicketSalesInformation\Create - Copy %282%29.cshtml" />
+    <Content Include="Views\BankInformation\Create - Copy.cshtml" />
+    <Content Include="Views\TicketSalesInformation\Edit - Copy.cshtml" />
+    <Content Include="Views\TicketSalesInformation\Index - Copy.cshtml" />
+    <Content Include="Views\PassengerReport\Index - Copy %282%29.cshtml" />
+    <Content Include="Views\PassengerReport\Index.cshtml" />
+    <Content Include="Views\CargoDueReceipt\Create.cshtml" />
+    <Content Include="Views\CargoDueReceipt\Delete.cshtml" />
+    <Content Include="Views\CargoDueReceipt\Details.cshtml" />
+    <Content Include="Views\CargoDueReceipt\Edit.cshtml" />
+    <Content Include="Views\CargoDueReceipt\Index.cshtml" />
+    <Content Include="Views\CargoDueReport\Index - Copy %282%29.cshtml" />
+    <Content Include="Views\CargoDueReport\Index.cshtml" />
+    <Content Include="Views\StockIssueInformation\Create - Copy.cshtml" />
+    <Content Include="Views\CargoDueReceipt\Create - Copy.cshtml" />
+    <Content Include="Views\CargoDueReceipt\Create - Copy %282%29.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3250,6 +3458,122 @@
     <EmbeddedResource Include="Migrations\202002170438476_initial80.resx">
       <DependentUpon>202002170438476_initial80.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003081113452_initial81.resx">
+      <DependentUpon>202003081113452_initial81.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003081734028_initial82.resx">
+      <DependentUpon>202003081734028_initial82.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003090436415_initial83.resx">
+      <DependentUpon>202003090436415_initial83.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003090844044_initial84.resx">
+      <DependentUpon>202003090844044_initial84.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003100913473_initial85.resx">
+      <DependentUpon>202003100913473_initial85.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003100924234_initial86.resx">
+      <DependentUpon>202003100924234_initial86.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003180414180_initial87.resx">
+      <DependentUpon>202003180414180_initial87.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003240419075_initial88.resx">
+      <DependentUpon>202003240419075_initial88.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\Reports\Cargo\crpBangladeshBankReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crpBangladeshBankReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\Reports\Cargo\crpBankEnchasmentCertificateReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crpBankEnchasmentCertificateReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\Reports\Cargo\crpBankEnchasmentCertificateSummaryReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crpBankEnchasmentCertificateSummaryReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\Reports\Cargo\crpCargoSalesSummeryAgentwise.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crpCargoSalesSummeryAgentwise.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\Reports\Cargo\crpDateAndContinentWiseCargoSalesGroupReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crpDateAndContinentWiseCargoSalesGroupReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\Reports\Cargo\crpDateAndContinentWiseCargoSalesWithoutGroupReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crpDateAndContinentWiseCargoSalesWithoutGroupReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\Reports\Cargo\crpDateAndFreighterWiseCargoSalesGroupReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crpDateAndFreighterWiseCargoSalesGroupReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\Reports\Cargo\crpDateAndItemGroupWiseCustomerDetails.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crpDateAndItemGroupWiseCustomerDetails.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\Reports\Cargo\crpDateAndItemWiseCargoSalesGroupReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crpDateAndItemWiseCargoSalesGroupReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\Reports\Cargo\crpDateAndItemWiseCargoSalesWithoutGroupReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crpDateAndItemWiseCargoSalesWithoutGroupReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\Reports\Cargo\crpDatewiseCargoSalesStatement.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crpDatewiseCargoSalesStatement.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\Reports\Cargo\crpDestinationWiseGroupByItem.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crpDestinationWiseGroupByItem.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\Reports\Cargo\crpDestinationWiseWithoutGroupReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crpDestinationWiseWithoutGroupReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\Reports\Cargo\crpPrincipalReportCargoSalesGroupwise.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crpPrincipalReportCargoSalesGroupwise.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\Reports\Cargo\crpPrincipalReportCargoSalesWithoutGroup.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crpPrincipalReportCargoSalesWithoutGroup.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\Reports\Cargo\crpUpliftmentStatement.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crpUpliftmentStatement.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\Reports\Cargo\Title.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Title.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\Reports\Passenger\crpAirportSalesReport-ASR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crpAirportSalesReport-ASR.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\Reports\Passenger\crpAirportSalesSummaryReport-ASR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crpAirportSalesSummaryReport-ASR.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\Reports\Passenger\crpPassengerSalesReport-PSR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crpPassengerSalesReport-PSR.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Cargo\CargoDueReceivedAgencyWise.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CargoDueReceivedAgencyWise.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Cargo\CargoDueReceivedMAWBWiseAgencySummary.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CargoDueReceivedMAWBWiseAgencySummary.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Cargo\CargoDueReceivedSummary.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CargoDueReceivedSummary.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Cargo\crpBangladeshBankReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crpBangladeshBankReport.cs</LastGenOutput>
@@ -3305,6 +3629,18 @@
     <EmbeddedResource Include="Reports\Cargo\crpUpliftmentStatement.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crpUpliftmentStatement.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Passenger\crpAirportSalesReport-ASR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crpAirportSalesReport-ASR.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Passenger\crpAirportSalesSummaryReport-ASR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crpAirportSalesSummaryReport-ASR.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Passenger\crpPassengerSalesReport-PSR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crpPassengerSalesReport-PSR.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

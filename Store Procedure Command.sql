@@ -15,21 +15,27 @@
 	   --cargo.Entry_Date BETWEEN '2020-02-25' AND '2020-02-27'  
 	   --and cargotype.Long_Desc between 'ART WORK' and 'Garments' 
 	   --and customer.Group_Code between 'CASS' and 'NON-CASS'
-
-
-	   
+   
 	   --   WHERE
 	   --cargo.Entry_Date BETWEEN '2020-02-25' AND '2020-02-27'  
 	   --and cargotype.Long_Desc between 'ART WORK' and 'Garments' 
 	   --and (customer.Group_Code  like '%CASS%' OR  customer.Group_Code like '%NON-CASS%' )
 	   --RIGHT
-	 Execute vwCargoSalesDetails @From_Date = '2020-02-25 00:00:00.000', @To_Date = '2020-02-27 00:00:00.000',@Flight_From_Date=null,@Flight_To_Date=null,@CargoType_From_Item='%%',@CargoType_To_Item='%%',@FreighterType_From_Item='CX 2046',@FreighterType_To_Item='CX 2046',@Group_From_Item= 'NON-CASS',@Group_To_Item='NON-CASS'
+
+	   --Entry Date Wise
+	   	 Execute vwCargoSalesDetails @From_Date = '2020-02-25 00:00:00.000', @To_Date = '2020-03-27 00:00:00.000',@Flight_From_Date=null,@Flight_To_Date=null
+		-- Flight Date Wise
+		 Execute vwCargoSalesDetails @Flight_From_Date = '2020-02-25 00:00:00.000', @Flight_To_Date = '2020-03-27 00:00:00.000',@From_Date=null,@To_Date=null
+
+
+	   --CargoType Entry Date wise
+	 Execute vwCargoSalesDetails @From_Date = '2020-02-25 00:00:00.000', @To_Date = '2020-03-27 00:00:00.000',@Flight_From_Date=null,@Flight_To_Date=null,@CargoType_From_Item='%%',@CargoType_To_Item='%%',@Group_From_Item= '%%',@Group_To_Item='%%'
 		 
-		 --RIGHT entry date wise
-		 	 Execute vwCargoSalesDetails @Flight_From_Date = '2020-02-25 00:00:00.000', @Flight_To_Date = '2020-02-27 00:00:00.000',@From_Date=null,@To_Date=null,@CargoType_From_Item='Garments',@CargoType_To_Item='Garments',@FreighterType_From_Item='%%',@FreighterType_To_Item='%%',@Group_From_Item= 'CASS',@Group_To_Item='NON-CASS'
+		 --CargoType Flight Date Wise
+	 Execute vwCargoSalesDetails @Flight_From_Date = '2020-02-25 00:00:00.000', @Flight_To_Date = '2020-02-27 00:00:00.000',@From_Date=null,@To_Date=null,@CargoType_From_Item='Garments',@CargoType_To_Item='Garments',@Group_From_Item= 'CASS',@Group_To_Item='NON-CASS'
 
-			 --right freighter entry date wise
 
+		--right freighter entry date wise
 	   Execute vwCargoSalesDetails @Flight_From_Date = '2020-02-25 00:00:00.000', @Flight_To_Date = '2020-02-27 00:00:00.000',@From_Date=null,@To_Date=null,@FreighterType_From_Item='CX 2046',@FreighterType_To_Item='CX 2046'
 
 	 
@@ -38,6 +44,12 @@
 
 		 --Destination wise entry date
 		 Execute vwCargoSalesDetails @From_Date = '2020-02-25 00:00:00.000', @To_Date = '2020-02-27 00:00:00.000',@Flight_From_Date=null,@Flight_To_Date=null,@Destination_From_Item='Dhaka',@Destination_To_Item='Dhaka',@Group_From_Item= '%%',@Group_To_Item='%%'
+		 --continent wise
+		 
+		 Execute vwCargoSalesDetails @From_Date = '2020-02-25 00:00:00.000', @To_Date = '2020-02-27 00:00:00.000',@Flight_From_Date=null,@Flight_To_Date=null,@Destination='kashmir',@Destination_From_Item='%%',@Destination_To_Item='%%',@Group_From_Item= '%%',@Group_To_Item='%%'
+
+	      Execute vwCargoSalesDetails @From_Date = '2020-02-25 00:00:00.000', @To_Date = '2020-02-27 00:00:00.000',@Flight_From_Date=null,@Flight_To_Date=null,@FreighterType_From_Item='%%',@FreighterType_To_Item='%%',@Region='Dhaka',@Country='%%',@Destination='%%',@Destination_From_Item='%%',@Destination_To_Item='%%',@Group_From_Item= '%%',@Group_To_Item='%%'
+
 
 
 --//Create Procedure command start

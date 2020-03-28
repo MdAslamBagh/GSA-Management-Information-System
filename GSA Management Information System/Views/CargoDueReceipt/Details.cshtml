@@ -1,0 +1,106 @@
+﻿@model GSA_Management_Information_System.Models.CargoDueReceipt
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>CargoDueReceipt</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.SalesSlno)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.SalesSlno)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Airway_No)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Airway_No)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Customer_Code)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Customer_Code)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Document_Type)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Document_Type)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Receipt_No)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Receipt_No)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Receipt_Date)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Receipt_Date)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Receipt_Amount)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Receipt_Amount)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Remarks)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Remarks)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Entry_Date)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Entry_Date)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Entry_By)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Entry_By)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.CargoDueReceiptId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

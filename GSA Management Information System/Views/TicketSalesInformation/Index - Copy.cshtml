@@ -1,0 +1,150 @@
+﻿@model IEnumerable<GSA_Management_Information_System.Models.TicketSalesInformation>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Sales_Slno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Airlines_Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ticket_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ticket_No)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer_Code)
+        </th>
+    
+        <th>
+            @Html.DisplayNameFor(model => model.Exchange_Rate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sales_Value_USD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sales_Value_BDT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Commison)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Commison_Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Emb_Tax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Travel_Tax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fuel_Charge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hk_Tax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Xt_Charge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Other_Charge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Net_Receivable_Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Received_Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount_In_PPRS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sales_Slno)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Airlines_Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ticket_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ticket_No)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer_Code)
+        </td>
+  
+        <td>
+            @Html.DisplayFor(modelItem => item.Exchange_Rate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sales_Value_USD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sales_Value_BDT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Commison)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Commison_Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Emb_Tax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Travel_Tax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fuel_Charge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hk_Tax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Xt_Charge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Other_Charge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Net_Receivable_Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Received_Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount_In_PPRS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remarks)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TicketSalesId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TicketSalesId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TicketSalesId })
+        </td>
+    </tr>
+}
+
+</table>

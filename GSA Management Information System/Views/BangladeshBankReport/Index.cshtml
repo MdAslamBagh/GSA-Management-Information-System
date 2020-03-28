@@ -17,11 +17,11 @@
                         <div class="form-group col-md-10 col-sm-12 ">
                             <label for="accessname" class="col-md-3 col-sm-5">Report Name<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">
-                                <select name="ReportName" id="reportname" class="form-control">
+                                <select name="ReportName" id="reportid" class="form-control">
                                     <option value="">Select Report Name </option>
-                                    @foreach (var student in ViewBag.ReportList)
+                                    @foreach (var report in ViewBag.ReportList)
                                     {
-                                        <option value="@student.ReportName">@student.ReportName</option>
+                                        <option value="@report.ReportId">@report.ReportName</option>
                                     }
                                 </select>
                             </div>
@@ -131,7 +131,8 @@
             //$.post("@Url.Action("Export", "BangladeshBankReport")",
             var fromdate = $('#DateFrom').val();
             var todate = $('#DateTo').val();
-            var reportname = $('#reportname').val();
+           // var reportname = $('#reportname').val();
+            var reportid = $('#reportid').val();
             var clickbtn = clicked_id;
 
 
@@ -154,58 +155,55 @@
                 $("#checkmasterdate").prop("checked", false);
                 //alert("Checkbox is checked.");
             }
-            if (reportname == "BANGLADESH BANK REPORT-DATE WISE") {
 
-                @*$.post("@Url.Action("Export", "BangladeshBankReport")",
-                    {
-                        fromdate: $('#DateFrom').val(),
-                        todate: $('#DateTo').val(),
-                        reportname: $('#reportname').val(),
-                        checkdate: $("#checkmasterdate").val(),
-                        clickbtn: clicked_id
+            //reportname == "BANGLADESH BANK REPORT-DATE WISE"
 
-                    },
-                    function (result) {
-                        alert("test");
-                        console.log(result);
-                        if (result.success == true) {
+            if (reportid == "17") {
 
-                            $("#Statuss").html('<font color="Green">Ticket Available ! You Can take it</font>');
-                            $('#toTicket').css("border-color", "Green");
-                        }
-                        else {
-                            //console.log(result.rejectList);
-                            //alert(result.rejectList.length);
-                            if (result.rejectList.length > 1) {
-                                $("#Statuss").html('<font color="Red">Ticket No ' + result.rejectList + ' already received.Please try another.</font > ');
-                                $('#toTicket').css("border-color", "Red");
-                            }
-                            else {
-                                $("#Statuss").html('<font color="Red">Ending ticket already received. Please try another.</font>');
-                                $('#toTicket').css("border-color", "Red");
-                            }
+                allgroupcheck = 'false';
+                groupfromitem = '';
+                grouptoitem = '';
+
+                cargotypeallitemcheck = 'false';
+                cargotypefromitem = '';
+                cargotypetoitem = '';
+
+                freightertypeallitemcheck = 'false';
+                freightertypefromitem = '';
+                freightertypetoitem = '';
+
+                customerallitemcheck = 'false';
+                customer = '';
+
+                freightpaymodeallitemcheck = 'false';
+                freightpaymodefromitem = '';
+                freightpaymodetoitem = '';
+
+                destinationallitemcheck = 'false';
+                destinationfromitem = '';
+                destinationtoitem = '';
 
 
-                        }
-                    },
-                    "json"
-                );*@
+                regionallitemcheck = 'false';
+                region = '';
+
+                countryallitemcheck = 'false'
+                country = '';
+
+                destinationitemcheck = 'false';
+                continentdestination = '';
+
+            }
+            window.open('/BangladeshBankReport/Export?fromdate=' + fromdate + '&todate=' + todate + ' &reportid=' + reportid + '&checkdate=' + checkdate + ' &cargotypefromitem=' + cargotypefromitem + ' &cargotypetoitem=' + cargotypetoitem + ' &cargotypeallitemcheck=' + cargotypeallitemcheck + '&freightertypefromitem=' + freightertypefromitem + ' &freightertypetoitem=' + freightertypetoitem + ' &freightertypeallitemcheck=' + freightertypeallitemcheck + ' &customerallitemcheck=' + customerallitemcheck + ' &customer=' + customer + ' &freightpaymodefromitem=' + freightpaymodefromitem + ' &freightpaymodetoitem=' + freightpaymodetoitem + ' &freightpaymodeallitemcheck=' + freightpaymodeallitemcheck + ' &allgroupcheck=' + allgroupcheck + ' &groupfromitem=' + groupfromitem + ' &grouptoitem=' + grouptoitem + '&destinationallitemcheck=' + destinationallitemcheck + ' &destinationfromitem=' + destinationfromitem + ' &destinationtoitem=' + destinationtoitem + '&regionallitemcheck=' + regionallitemcheck + '&countryallitemcheck=' + countryallitemcheck + ' &destinationitemcheck=' + destinationitemcheck + '&region=' + region + '&country=' + country + ' &continentdestination=' + continentdestination + ' &clickbtn=' + clickbtn + '',
+                {
 
 
-
-                window.open('/BangladeshBankReport/Export?fromdate=' + fromdate + '&todate=' + todate + ' &reportname=' + reportname + '&checkdate=' + checkdate + '&clickbtn=' + clickbtn + ' ',
-
-                   {
-                //        // fromdate: $('#DateFrom').val(),
-                //        // todate: $('#DateTo').val()
-                //        //toDataa: $('#toticketNo').val()
-
-                    },
+                },
                    )
 
             }
 
-        }
+        
 
 
 
@@ -228,9 +226,10 @@
                 $("#datewise").hide()
 
 
-                $("#reportname").change(function () {
-                    var reportName = $("#reportname").val();
-                    if (reportName == null) {
+                $("#reportid").change(function () {
+                   // var reportName = $("#reportname").val();
+                    var reportid = $("#reportid").val();
+                    if (reportid == null) {
 
                     }
                     else
@@ -250,7 +249,9 @@
                         }
                     });
 
-                    if (reportName == "BANGLADESH BANK REPORT-DATE WISE") {
+
+                    //reportName == "BANGLADESH BANK REPORT-DATE WISE"
+                    if (reportid == "17") {
 
                         $("#datewise").show();
                        

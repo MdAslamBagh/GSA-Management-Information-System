@@ -4,6 +4,7 @@
     ViewBag.Title = "Create";
 }
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="~/Gsa_Management_System_layout/assets/css/legendcss.css" rel="stylesheet" />
 
 @using (Html.BeginForm("Create", "CompanyInformation", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -13,8 +14,9 @@
         <div class="container">
             <div class="card ">
                 <div class="card-header bg-info">Company Configuration</div>
-             
-                <div class="form-group">
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border"></legend>
+                    <div class="form-group">
                         <div class="row">
                             <div class="form-group">
                                 <div class="col-sm-6">
@@ -29,7 +31,7 @@
                                             <div class="col-sm-8">
                                                 <div class="required">
 
-                                                    <input id="company" name="Company_Name" placeholder="Company Name" class="form-control" type="text">
+                                                    <input id="companyname" name="Company_Name" placeholder="Company Name" class="form-control" type="text" value="@ViewBag.Company_Name">
 
                                                 </div>
                                             </div>
@@ -50,7 +52,7 @@
                                             <div class="col-sm-8">
                                                 <div class="required">
 
-                                                    <input id="companycode" name="Company_Code" placeholder="Company Code" class="form-control" type="text">
+                                                    <input id="companycode" name="Company_Code" placeholder="Company Code" class="form-control" type="text" value="@ViewBag.Company_Code">
 
                                                 </div>
                                             </div>
@@ -94,7 +96,7 @@
                                         <div class="col-sm-8">
                                             <div class="required">
 
-                                                <input id="branchcode" name="Branch_Code" placeholder="Branch Code" class="form-control" type="text">
+                                                <input id="branchcode" name="Branch_Code" placeholder="Branch Code" class="form-control" type="text" value="@ViewBag.Branch_Code">
 
                                             </div>
                                         </div>
@@ -104,20 +106,63 @@
 
                         </div>
                         <div class="row">
-                        <div class="form-group">
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label for="FreighterName">
+                                                    Company Tin
+                                                    <span id="txtFreighterName" style="color:#FF0000;">*</span>
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="required">
+
+                                                    <input id="companytin" name="Company_Tin" placeholder="Company Tin" class="form-control" type="text">
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label for="Origin">
+                                                    Company Address
+                                                    <span id="txtoriginname" style="color:#FF0000;">*</span>
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="required">
+
+                                                    <input id="companyaddress" name="Company_Address" placeholder="Company_Address" class="form-control" type="text">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <label for="FreighterName">
-                                                Company Tin
+                                                Postcode
                                                 <span id="txtFreighterName" style="color:#FF0000;">*</span>
                                             </label>
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="required">
 
-                                                <input id="companytin" name="Company_Tin" placeholder="Company Tin" class="form-control" type="text">
+                                                <input id="companypostcode" name="Company_Postcode" placeholder="Company Postcode" class="form-control" type="text">
 
                                             </div>
                                         </div>
@@ -131,73 +176,30 @@
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <label for="Origin">
-                                                Company Address
+                                                City
                                                 <span id="txtoriginname" style="color:#FF0000;">*</span>
                                             </label>
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="required">
 
-                                                <input id="companyaddress" name="Company_Address" placeholder="Company_Address" class="form-control" type="text">
+                                                <input id="companycity" name="Company_City" placeholder="Company City" class="form-control" type="text">
 
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                        <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <label for="FreighterName">
-                                            Company_Postcode
-                                            <span id="txtFreighterName" style="color:#FF0000;">*</span>
-                                        </label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div class="required">
-
-                                            <input id="companypostcode" name="Company_Postcode" placeholder="Company Postcode" class="form-control" type="text">
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <label for="Origin">
-                                            Company City
-                                            <span id="txtoriginname" style="color:#FF0000;">*</span>
-                                        </label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div class="required">
-
-                                            <input id="companycity" name="Company_City" placeholder="Company City" class="form-control" type="text">
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                         </div>
                         <div class="row">
-                        
+
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <label for="Country">
-                                                Company Country
+                                                Country
                                                 <span id="txtFreighterName" style="color:#FF0000;">*</span>
                                             </label>
                                         </div>
@@ -232,133 +234,135 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>     
+                        </div>
                         <div class="row">
 
-                        <div class="col-sm-6">
-                            <div class="form-group">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label for="FreighterName">
+                                                Dialogue
+                                                <span id="txtFreighterName" style="color:#FF0000;">*</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="required">
+
+                                                @*<input id="companypostcode" name="Company_Fax" placeholder="Fax" class="form-control" type="text">*@
+                                                @Html.EditorFor(model => model.Company_Dialogue, new { htmlAttributes = new { @class = "form-control" } })
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label for="Origin">
+                                                Email
+                                                <span id="txtoriginname" style="color:#FF0000;">*</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="required">
+
+                                                <input id="companycity" name="Company_Email" placeholder="Email " class="form-control" type="text">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+
+                            <div class="col-sm-6">
+
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <label for="FreighterName">
-                                           Company Dialogue
+                                            Company web
                                             <span id="txtFreighterName" style="color:#FF0000;">*</span>
                                         </label>
                                     </div>
                                     <div class="col-sm-8">
                                         <div class="required">
 
-                                            @*<input id="companypostcode" name="Company_Fax" placeholder="Fax" class="form-control" type="text">*@
-                                            @Html.EditorFor(model => model.Company_Dialogue, new { htmlAttributes = new { @class = "form-control" } })
-                                       
+                                            <input id="companydialouge" name="Company_Web" placeholder="Web" class="form-control" type="text">
 
                                         </div>
                                     </div>
 
                                 </div>
+
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label for="Origin">
+                                                Image Upload
+                                                <span id="txtoriginname" style="color:#FF0000;">*</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="required">
+
+                                                <input type="file" name="Company_ImageUpload" required>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <div class="row">
 
-                        <div class="col-sm-6">
-                            <div class="form-group">
+                            <div class="col-sm-6">
+
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <label for="Origin">
-                                            Email
-                                            <span id="txtoriginname" style="color:#FF0000;">*</span>
+                                        <label for="FreighterName">
+                                            Default Code
+                                            <span id="txtFreighterName" style="color:#FF0000;">*</span>
                                         </label>
                                     </div>
                                     <div class="col-sm-8">
                                         <div class="required">
-
-                                            <input id="companycity" name="Company_Email" placeholder="Email " class="form-control" type="text">
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                        <div class="row">
-
-                        <div class="col-sm-6">
-
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <label for="FreighterName">
-                                        Company web
-                                        <span id="txtFreighterName" style="color:#FF0000;">*</span>
-                                    </label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <div class="required">
-
-                                        <input id="companydialouge" name="Company_Web" placeholder="Web" class="form-control" type="text">
-
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <label for="Origin">
-                                            Image Upload
-                                            <span id="txtoriginname" style="color:#FF0000;">*</span>
-                                        </label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div class="required">
-
-                                            <input type="file" name="Company_ImageUpload" required>
+                                            <div class="checkbox">
+                                                @Html.EditorFor(model => model.Default_Code)
+                                                @Html.ValidationMessageFor(model => model.Default_Code, "", new { @class = "text-danger" })
+                                            </div>
+                                            @*<input id="companydialouge" name="Company_Web" placeholder="Web" class="form-control" type="text">*@
 
                                         </div>
                                     </div>
+
                                 </div>
+
                             </div>
-                        </div>
-                    </div>
-                        <div class="row">
-
-                        <div class="col-sm-6">
-
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <label for="FreighterName">
-                                        Default Code
-                                        <span id="txtFreighterName" style="color:#FF0000;">*</span>
-                                    </label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <div class="required">
-                                        <div class="checkbox">
-                                            @Html.EditorFor(model => model.Default_Code)
-                                            @Html.ValidationMessageFor(model => model.Default_Code, "", new { @class = "text-danger" })
-                                        </div>
-                                        @*<input id="companydialouge" name="Company_Web" placeholder="Web" class="form-control" type="text">*@
-
+                            <div class="form-group col-md-10 col-sm-12 ">
+                                <div class="col-md-10">
+                                    <div align="center">
+                                        <a class="btn btn-primary" style="margin-left:10px" onclick="location.href='@Url.Action("Index", "CompanyInformation")'"><i class="fa fa-plus"></i>Back To List</a>
+                                        <input type="submit" value="submit" class="btn btn-info" />
                                     </div>
                                 </div>
-
                             </div>
-
                         </div>
+
                     </div>
-                        <div class="form-group col-md-10 col-sm-12 ">
-                            <div class="col-md-10">
-                                <div align="center">
-                                    <a class="btn btn-primary" style="margin-left:10px" onclick="location.href='@Url.Action("Index", "CompanyInformation")'"><i class="fa fa-plus"></i>Back To List</a>
-                                    <input type="submit" value="submit" class="btn btn-info" />
-                                </div>
-                            </div>
-                        </div>
-                        </div>              
-                </div>
+                    </fieldset>
+</div>
                 </div>
             </div>
        
@@ -378,6 +382,66 @@
 
         //Branch Search
         jQuery.noConflict()(function ($) {
+
+            $("#companyname").keyup(function () {
+                var companyData = $("#companyname").val();
+                if (companyData === '') {
+                    $('#companycode').val('');
+
+                }
+                var jsonData = { companyname: companyData };
+                $("#ReceivedIdErrorMessage").text("");
+                $.ajax({
+                    type: "POST",
+                    url: "/CompanyInformation/GetCompanyCodeById",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(jsonData),
+                    dataType: "json",
+                    success: function (data) {
+                        //  alert("Success ");
+                        $("#companycode").val(data.Company_Code);
+
+                    },
+                });
+
+                return false;
+            });
+            $("#companyname").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/CompanyInformation/Get_Company_Name",
+                        type: "POST",
+                        dataType: "json",
+                        data: { Prefix: request.term },
+
+                        success: function (data) {
+
+                            response($.map(data, function (item) {
+
+                                return {
+                                    label: item.Company_Name,
+                                    value: item.Company_Name,
+
+
+
+
+
+                                };
+
+
+                            }))
+
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "",
+                    results: function (count) {
+                        return count + (count > 1 ? ' results' : ' result ') + ' found';
+                    }
+                }
+            });
+
             $("#branchname").keyup(function () {
                 var branchData = $("#branchname").val();
                 if (branchData === '') {

@@ -1,3 +1,42 @@
+Store Procedure Using for Crstal Report
+
+
+Report Title--------------------  store Procedure
+.................................................
+CargoSales Report -             vwCargoSalesDetails
+
+Principal Report---             vwCargoSalesDetails
+
+Bangladesh Bank Report--        wCargoSalesDetails
+
+MIS Report----------            wCargoSalesDetails
+
+Invoice----------
+
+Passenger Report------           vwPATicketSales_Information
+
+Cargo Due Report---              vwCargo_Due_Receipt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Linq Query Project working time:
 
 *Select User Type Value Query

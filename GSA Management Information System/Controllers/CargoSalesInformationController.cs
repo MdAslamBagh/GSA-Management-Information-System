@@ -529,6 +529,7 @@ namespace GSA_Management_Information_System.Controllers
  
                 return RedirectToAction("Index");
             }
+            ModelState.AddModelError("", "Invalid login attempt.");
             return View(cargoedit);
         }
 

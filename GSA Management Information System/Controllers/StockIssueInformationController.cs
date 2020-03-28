@@ -607,18 +607,18 @@ namespace GSA_Management_Information_System.Controllers
         }
 
 
-        [HttpPost]
-        public JsonResult GetCustomer(string Prefix)
-        {
-            ApplicationDbContext db = new ApplicationDbContext();
-            var Customer_Code = (from c in db.CustomerInformations
-                                 where c.Customer_Name.StartsWith(Prefix)
-                                 select new { c.Customer_Code, c.Customer_Name, c.CustomerId });
-            return Json(Customer_Code, JsonRequestBehavior.AllowGet);
+        //[HttpPost]
+        //public JsonResult GetCustomer(string Prefix)
+        //{
+        //    ApplicationDbContext db = new ApplicationDbContext();
+        //    var Customer_Code = (from c in db.CustomerInformations
+        //                         where c.Customer_Name.StartsWith(Prefix)
+        //                         select new { c.Customer_Code, c.Customer_Name, c.CustomerId });
+        //    return Json(Customer_Code, JsonRequestBehavior.AllowGet);
 
-            //var Countries = db.CustomerInformations.Select(x => x.Customer_Name).ToList();
-            //return Json(Countries, JsonRequestBehavior.AllowGet);
-        }
+        //    //var Countries = db.CustomerInformations.Select(x => x.Customer_Name).ToList();
+        //    //return Json(Countries, JsonRequestBehavior.AllowGet);
+        //}
 
 
         //public JsonResult Getairlinesbyreceivedcode(int Airlines_Code)
@@ -647,11 +647,34 @@ namespace GSA_Management_Information_System.Controllers
             return View(stockIssueInformation);
         }
 
+
+        public JsonResult Get_Customer_Name(string Prefix)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            var Customer_Name = (from c in db.CustomerInformations
+                                 where c.Customer_Name.StartsWith(Prefix)
+                                 select new { c.Customer_Name });
+            return Json(Customer_Name, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetCustomerCodeById(string customername)
+        {
+            var customer_code = db.CustomerInformations.Where(m => m.Customer_Name == customername).FirstOrDefault();
+            return Json(customer_code, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: StockIssueInformation/Create
         public ActionResult Create()
 
         {
 
+            List<CustomerInformation> customerInformations = db.CustomerInformations.Where(a => a.Default_Code == true).ToList<CustomerInformation>();
+            CustomerInformation customer = new CustomerInformation();
+            customer = customerInformations.FirstOrDefault();
+            string c_Name = customer.Customer_Name;
+            string c_Code = customer.Customer_Code;
+            ViewBag.Customer_Name = c_Name;
+            ViewBag.Customer_Code = c_Code;
             //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
             //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
             //ViewBag.Entry_Date = today;
@@ -775,6 +798,7 @@ namespace GSA_Management_Information_System.Controllers
 
             return View();
         }
+
 
 
 

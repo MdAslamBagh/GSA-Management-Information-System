@@ -66,7 +66,7 @@ namespace GSA_Management_Information_System.Models
                              Customer_Code = Convert.ToString(dr["Customer_Code"]),
                              Customer = Convert.ToString(dr["Customer"]),
                              Cargo_Code = Convert.ToString(dr["Cargo_Code"]),
-                             CargoType = Convert.ToString(dr["CargoType"]),
+                             CargoType = Convert.ToString(dr["Cargo_Type"]),
                              UType_Code = Convert.ToInt32(dr["UType_Code"]),
                              Upliment = Convert.ToString(dr["Upliment"]),
 

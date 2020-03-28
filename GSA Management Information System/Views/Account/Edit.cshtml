@@ -96,6 +96,26 @@
                 @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
             </div>
         </div>
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="controllername" class="col-md-3 col-sm-5">Status<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+                                
+                                @if (Model.Status == "Active")
+                                {
+                                    @Html.RadioButtonFor(model => model.Status, "Active", new { @checked = true })
+                                    @Html.Label("Active")
+                                    @Html.RadioButtonFor(model => model.Status, "Inactive")
+                                    @Html.Label("Inactive")
+                                }
+                                else
+                                {
+                                    @Html.RadioButtonFor(model => model.Status, "Active")
+                                    @Html.Label("Active")
+                                    @Html.RadioButtonFor(model => model.Status, "Inactive", new { @checked = true })
+                                    @Html.Label("Inactive")
+                                }
+                            </div>
+                        </div>
 
 
     <div class="form-group col-md-10 col-sm-12 ">

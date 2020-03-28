@@ -31,6 +31,7 @@
                         <tr>
                             <th>UserName</th>
                             <th>Email</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -70,6 +71,7 @@
                             "columns": [
                                 { "data": "UserName" },
                                 { "data": "Email" },
+                                { "data": "Status" },
                                 { "data": "Id", "render": function (data) {
                                     return "<a class='btn btn-default btn-sm' onclick=location.href='@Url.Action("Edit", "Account")/" + data + "'><i class='fa fa-pencil'></i> Edit</a><a class='btn btn-danger btn-sm'style='margin-left:5px'onclick=Delete(" + data + ")><i class='fa fa-trash'></i> Delete</a>"
                                 },

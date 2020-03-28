@@ -118,7 +118,8 @@
                                 </div>
                                 <div class="col-sm-2">
                                     @*@Html.Editor("SalesSlno", new { htmlAttributes = new { @class = "hidden" } })*@
-                                    <input name="SalesSlno" textbox id="salesslno" type="hidden" value="@ViewBag.SalesSlno" class="form-control" readonly="readonly" onkeyup="changeEstericColor(this.id);">
+                                    @Html.EditorFor(model => model.SalesSlno, new { htmlAttributes = new { @class = "hidden", id = "salesslno" } })
+                                    @*<input name="SalesSlno" textbox id="salesslno" type="hidden" value="@ViewBag.SalesSlno" class="form-control" readonly="readonly" onkeyup="changeEstericColor(this.id);">*@
                                 </div>
                             </div>
                         </div>

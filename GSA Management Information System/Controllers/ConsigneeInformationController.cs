@@ -65,7 +65,7 @@ namespace GSA_Management_Information_System.Controllers
                 }
                 else
                 {
-                    ConsignorInformation informations = new ConsignorInformation();
+                    ConsigneeInformation informations = new ConsigneeInformation();
 
                     information = Informations.FirstOrDefault();
                     string code = information.Consignee_Code;

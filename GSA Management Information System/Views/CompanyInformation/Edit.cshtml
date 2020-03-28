@@ -4,6 +4,7 @@
     ViewBag.Title = "Create";
 }
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="~/Gsa_Management_System_layout/assets/css/legendcss.css" rel="stylesheet" />
 
 @using (Html.BeginForm("Edit", "CompanyInformation", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -14,26 +15,73 @@
         <div class="container">
             <div class="card ">
                 <div class="card-header bg-info">Company Update</div>
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border"></legend>
+                    <div class="form-group">
 
-                <div class="form-group">
 
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label for="FreighterName">
+                                                    Company Name
+                                                    <span id="txtFreighterName" style="color:#FF0000;">*</span>
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="required">
 
-                    <div class="row">
-                        <div class="form-group">
+                                                    @Html.EditorFor(model => model.Company_Name, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.Company_Name, "", new { @class = "text-danger" })
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label for="Origin">
+                                                    Company Code
+                                                    <span id="txtoriginname" style="color:#FF0000;">*</span>
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="required">
+
+                                                    @Html.EditorFor(model => model.Company_Code, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.Company_Code, "", new { @class = "text-danger" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <label for="FreighterName">
-                                                Company Name
+                                                Branch Name
                                                 <span id="txtFreighterName" style="color:#FF0000;">*</span>
                                             </label>
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="required">
 
-                                                @Html.EditorFor(model => model.Company_Name, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.Company_Name, "", new { @class = "text-danger" })
+                                                @Html.EditorFor(model => model.Branch_Name, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Branch_Name, "", new { @class = "text-danger" })
 
                                             </div>
                                         </div>
@@ -47,83 +95,124 @@
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <label for="Origin">
-                                                Company Code
+                                                Branch Code
                                                 <span id="txtoriginname" style="color:#FF0000;">*</span>
                                             </label>
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="required">
-
-                                                @Html.EditorFor(model => model.Company_Code, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.Company_Code, "", new { @class = "text-danger" })
+                                                @Html.EditorFor(model => model.Branch_Code, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Branch_Code, "", new { @class = "text-danger" })
 
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
-                    </div>
-                    <div class="row">
-
-                        <div class="col-sm-6">
+                        <div class="row">
                             <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <label for="FreighterName">
-                                            Branch Name
-                                            <span id="txtFreighterName" style="color:#FF0000;">*</span>
-                                        </label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div class="required">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label for="FreighterName">
+                                                    Company Tin
+                                                    <span id="txtFreighterName" style="color:#FF0000;">*</span>
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="required">
+                                                    @Html.EditorFor(model => model.Company_Tin, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.Company_Tin, "", new { @class = "text-danger" })
 
-                                            @Html.EditorFor(model => model.Branch_Name, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.Branch_Name, "", new { @class = "text-danger" })
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <label for="Origin">
-                                            Branch Code
-                                            <span id="txtoriginname" style="color:#FF0000;">*</span>
-                                        </label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div class="required">
-                                            @Html.EditorFor(model => model.Branch_Code, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.Branch_Code, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
 
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label for="Origin">
+                                                    Company Address
+                                                    <span id="txtoriginname" style="color:#FF0000;">*</span>
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="required">
+                                                    @Html.EditorFor(model => model.Company_Address, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.Company_Address, "", new { @class = "text-danger" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="form-group">
+                        <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <label for="FreighterName">
-                                                Company Tin
+                                                Postcode
                                                 <span id="txtFreighterName" style="color:#FF0000;">*</span>
                                             </label>
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="required">
-                                                @Html.EditorFor(model => model.Company_Tin, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.Company_Tin, "", new { @class = "text-danger" })
+                                                @Html.EditorFor(model => model.Company_Postcode, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Company_Postcode, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label for="Origin">
+                                                City
+                                                <span id="txtoriginname" style="color:#FF0000;">*</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="required">
+
+                                                @Html.EditorFor(model => model.Company_City, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Company_City, "", new { @class = "text-danger" })
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label for="Country">
+                                                Country
+                                                <span id="txtFreighterName" style="color:#FF0000;">*</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="required">
+                                                @Html.EditorFor(model => model.Company_Country, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Company_Country, "", new { @class = "text-danger" })
 
                                             </div>
                                         </div>
@@ -137,14 +226,14 @@
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <label for="Origin">
-                                                Company Address
+                                                Contact No
                                                 <span id="txtoriginname" style="color:#FF0000;">*</span>
                                             </label>
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="required">
-                                                @Html.EditorFor(model => model.Company_Address, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.Company_Address, "", new { @class = "text-danger" })
+                                                @Html.EditorFor(model => model.Company_ContacNo, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Company_ContacNo, "", new { @class = "text-danger" })
 
                                             </div>
                                         </div>
@@ -152,197 +241,154 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
+
+                        <div class="row">
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label for="FreighterName">
+                                                Dialogue
+                                                <span id="txtFreighterName" style="color:#FF0000;">*</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="required">
+                                                @Html.EditorFor(model => model.Company_Dialogue, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Company_Dialogue, "", new { @class = "text-danger" })
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label for="Origin">
+                                                Email
+                                                <span id="txtoriginname" style="color:#FF0000;">*</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="required">
+                                                @Html.EditorFor(model => model.Company_Email, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Company_Email, "", new { @class = "text-danger" })
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label for="FreighterName">
+                                                Company web
+                                                <span id="txtFreighterName" style="color:#FF0000;">*</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="required">
+                                                @Html.EditorFor(model => model.Company_Web, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Company_Web, "", new { @class = "text-danger" })
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            @*<div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label for="Origin">
+                                                Image Upload
+                                                <span id="txtoriginname" style="color:#FF0000;">*</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="required">
+
+                                                <input type="file" name="Company_ImageUpload" required>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>*@
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label for="Origin">
+                                                Image Upload
+                                                <span id="txtoriginname" style="color:#FF0000;">*</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="required">
+                                                @Html.EditorFor(model => model.Company_ImagePath, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Company_ImagePath, "", new { @class = "text-danger" })
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-sm-6">
+
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <label for="FreighterName">
-                                            Company_Postcode
+                                            Default Code
                                             <span id="txtFreighterName" style="color:#FF0000;">*</span>
                                         </label>
                                     </div>
                                     <div class="col-sm-8">
                                         <div class="required">
-                                            @Html.EditorFor(model => model.Company_Postcode, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.Company_Postcode, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <label for="Origin">
-                                            Company City
-                                            <span id="txtoriginname" style="color:#FF0000;">*</span>
-                                        </label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div class="required">
-
-                                            @Html.EditorFor(model => model.Company_City, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.Company_City, "", new { @class = "text-danger" })
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row">
-
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <label for="Country">
-                                            Company Country
-                                            <span id="txtFreighterName" style="color:#FF0000;">*</span>
-                                        </label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div class="required">
-                                            @Html.EditorFor(model => model.Company_Country, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.Company_Country, "", new { @class = "text-danger" })
+                                            <div class="checkbox">
+                                                @Html.EditorFor(model => model.Default_Code)
+                                                @Html.ValidationMessageFor(model => model.Default_Code, "", new { @class = "text-danger" })
+                                            </div>
+                                            @*<input id="companydialouge" name="Company_Web" placeholder="Web" class="form-control" type="text">*@
 
                                         </div>
                                     </div>
 
                                 </div>
+
                             </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <label for="Origin">
-                                            Contact No
-                                            <span id="txtoriginname" style="color:#FF0000;">*</span>
-                                        </label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div class="required">
-                                            @Html.EditorFor(model => model.Company_ContacNo, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.Company_ContacNo, "", new { @class = "text-danger" })
-
-                                        </div>
+                            <div class="form-group col-md-10 col-sm-12 ">
+                                <div class="col-md-10">
+                                    <div align="center">
+                                        <a class="btn btn-primary" style="margin-left:10px" onclick="location.href='@Url.Action("Index", "CompanyInformation")'"><i class="fa fa-plus"></i>Back To List</a>
+                                        <input type="submit" value="submit" class="btn btn-info" />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row">
 
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <label for="FreighterName">
-                                            Fax
-                                            <span id="txtFreighterName" style="color:#FF0000;">*</span>
-                                        </label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div class="required">
-                                            @Html.EditorFor(model => model.Company_Fax, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.Company_Fax, "", new { @class = "text-danger" })
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <label for="Origin">
-                                            Email
-                                            <span id="txtoriginname" style="color:#FF0000;">*</span>
-                                        </label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div class="required">
-                                            @Html.EditorFor(model => model.Company_Email, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.Company_Email, "", new { @class = "text-danger" })
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="row">
-
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <label for="FreighterName">
-                                            Company web
-                                            <span id="txtFreighterName" style="color:#FF0000;">*</span>
-                                        </label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div class="required">
-                                            @Html.EditorFor(model => model.Company_Web, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.Company_Web, "", new { @class = "text-danger" })
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <label for="Origin">
-                                            Image Upload
-                                            <span id="txtoriginname" style="color:#FF0000;">*</span>
-                                        </label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div class="required">
-                                            @Html.EditorFor(model => model.Company_ImagePath, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.Company_ImagePath, "", new { @class = "text-danger" })
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-10 col-sm-12 ">
-                            <div class="col-md-10">
-                                <div align="center">
-                                    <a class="btn btn-primary" style="margin-left:10px" onclick="location.href='@Url.Action("Index", "CompanyInformation")'"><i class="fa fa-plus"></i>Back To List</a>
-                                    <input type="submit" value="submit" class="btn btn-info" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-
-
-
-            </div>
+</fieldset>
+</div>
         </div>
     </div>
 

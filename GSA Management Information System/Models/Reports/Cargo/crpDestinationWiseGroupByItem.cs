@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GSA_Management_Information_System.Reports.Cargo {
+namespace GSA_Management_Information_System.Models.Reports.Cargo {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -16,14 +16,14 @@ namespace GSA_Management_Information_System.Reports.Cargo {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class crpDateAndItemWiseCargoSalesGroupReport : ReportClass {
+    public class crpDestinationWiseGroupByItem : ReportClass {
         
-        public crpDateAndItemWiseCargoSalesGroupReport() {
+        public crpDestinationWiseGroupByItem() {
         }
         
         public override string ResourceName {
             get {
-                return "crpDateAndItemWiseCargoSalesGroupReport.rpt";
+                return "crpDestinationWiseGroupByItem.rpt";
             }
             set {
                 // Do nothing
@@ -41,8 +41,8 @@ namespace GSA_Management_Information_System.Reports.Cargo {
         
         public override string FullResourceName {
             get {
-                return "GSA_Management_Information_System.Reports.Cargo.crpDateAndItemWiseCargoSalesGroup" +
-                    "Report.rpt";
+                return "GSA_Management_Information_System.Models.Reports.Cargo.crpDestinationWiseGroupByI" +
+                    "tem.rpt";
             }
             set {
                 // Do nothing
@@ -91,7 +91,7 @@ namespace GSA_Management_Information_System.Reports.Cargo {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section DetailSection1 {
+        public CrystalDecisions.CrystalReports.Engine.Section GroupFooterSection1 {
             get {
                 return this.ReportDefinition.Sections[5];
             }
@@ -99,7 +99,7 @@ namespace GSA_Management_Information_System.Reports.Cargo {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section GroupFooterSection1 {
+        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
             get {
                 return this.ReportDefinition.Sections[6];
             }
@@ -107,17 +107,9 @@ namespace GSA_Management_Information_System.Reports.Cargo {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
-            get {
-                return this.ReportDefinition.Sections[7];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public CrystalDecisions.CrystalReports.Engine.Section Section5 {
             get {
-                return this.ReportDefinition.Sections[8];
+                return this.ReportDefinition.Sections[7];
             }
         }
         
@@ -155,9 +147,9 @@ namespace GSA_Management_Information_System.Reports.Cargo {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedcrpDateAndItemWiseCargoSalesGroupReport : Component, ICachedReport {
+    public class CachedcrpDestinationWiseGroupByItem : Component, ICachedReport {
         
-        public CachedcrpDateAndItemWiseCargoSalesGroupReport() {
+        public CachedcrpDestinationWiseGroupByItem() {
         }
         
         [Browsable(false)]
@@ -194,7 +186,7 @@ namespace GSA_Management_Information_System.Reports.Cargo {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            crpDateAndItemWiseCargoSalesGroupReport rpt = new crpDateAndItemWiseCargoSalesGroupReport();
+            crpDestinationWiseGroupByItem rpt = new crpDestinationWiseGroupByItem();
             rpt.Site = this.Site;
             return rpt;
         }

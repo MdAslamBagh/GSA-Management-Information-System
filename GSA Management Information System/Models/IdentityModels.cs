@@ -126,6 +126,8 @@ namespace GSA_Management_Information_System.Models
 
         public System.Data.Entity.DbSet<GSA_Management_Information_System.Models.ReportInformation> Reports { get; set; }
 
+        public System.Data.Entity.DbSet<GSA_Management_Information_System.Models.CargoDueReceipt> CargoDueReceipts { get; set; }
+
         //public System.Data.Entity.DbSet<GSA_Management_Information_System.Models.CargoSalesReport> CargoSalesReports { get; set; }
 
         //public System.Data.Entity.DbSet<GSA_Management_Information_System.Models.CargoSalesReport> CargoSalesReports { get; set; }

@@ -27,11 +27,9 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         [HttpGet]
-        public ActionResult Add()
+        public ActionResult Create()
         {
-            String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
-            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
-            ViewBag.Entry_Date = today;
+        
 
             List<BankInformation> Informations = db.BankInformations.OrderByDescending(a => a.BankId).ToList<BankInformation>();
 
@@ -63,13 +61,16 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(BankInformation bankInformation)
+        public ActionResult Create(BankInformation bankInformation)
         {
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
 
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                bankInformation.Entry_By = LogedInUser;
+                bankInformation.Entry_Date = DateTime.Now;
                 db.BankInformations.Add(bankInformation);
 
                 if (bankInformation.Default_Code == false)
@@ -113,7 +114,7 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         // GET: BankInformation/Create
-        public ActionResult Create()
+        public ActionResult Add()
         {
             return View();
         }
@@ -123,7 +124,7 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BankId,Bank_Code,Long_Desc,Status,Default_Code,Entry_Date")] BankInformation bankInformation)
+        public ActionResult Add([Bind(Include = "BankId,Bank_Code,Long_Desc,Status,Default_Code,Entry_Date")] BankInformation bankInformation)
         {
             if (ModelState.IsValid)
             {
@@ -157,10 +158,13 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BankId,Bank_Code,Long_Desc,Status,Default_Code,Entry_Date")] BankInformation bankInformation)
+        public ActionResult Edit(BankInformation bankInformation)
         {
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                bankInformation.Entry_By = LogedInUser;
+                bankInformation.Entry_Date = DateTime.Now;
                 db.Entry(bankInformation).State = EntityState.Modified;
 
                 var list = db.BankInformations.Where(a => a.Bank_Code != bankInformation.Bank_Code).ToList();
