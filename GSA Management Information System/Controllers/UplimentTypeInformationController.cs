@@ -30,7 +30,7 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         [HttpGet]
-        public ActionResult Add()
+        public ActionResult Create()
         {
             //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
             //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
@@ -65,7 +65,7 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(UplimentTypeInformation objupliment)
+        public ActionResult Create(UplimentTypeInformation objupliment)
         {
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
@@ -102,37 +102,37 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         // GET: UplimentTypeInformation/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
 
-        // POST: UplimentTypeInformation/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create( UplimentTypeInformation uplimentTypeInformation)
-        {
-            if (ModelState.IsValid)
-            {
-                var LogedInUser = User.Identity.Name;
-                uplimentTypeInformation.Entry_By = LogedInUser;
-                uplimentTypeInformation.Entry_Date = DateTime.Now;
-                db.UplimentTypeInformations.Add(uplimentTypeInformation);
-                var uplimentList = db.UplimentTypeInformations.Where(a => a.UType_Code != uplimentTypeInformation.UType_Code).ToList();
+        //// POST: UplimentTypeInformation/Create
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create( UplimentTypeInformation uplimentTypeInformation)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var LogedInUser = User.Identity.Name;
+        //        uplimentTypeInformation.Entry_By = LogedInUser;
+        //        uplimentTypeInformation.Entry_Date = DateTime.Now;
+        //        db.UplimentTypeInformations.Add(uplimentTypeInformation);
+        //        var uplimentList = db.UplimentTypeInformations.Where(a => a.UType_Code != uplimentTypeInformation.UType_Code).ToList();
 
-                foreach (var item in uplimentList)
-                {
-                    item.Default_Code = false;
+        //        foreach (var item in uplimentList)
+        //        {
+        //            item.Default_Code = false;
 
-                }
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        //        }
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
 
-            return View(uplimentTypeInformation);
-        }
+        //    return View(uplimentTypeInformation);
+        //}
 
         // GET: UplimentTypeInformation/Edit/5
         public ActionResult Edit(int? id)

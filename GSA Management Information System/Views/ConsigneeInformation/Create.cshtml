@@ -16,37 +16,45 @@
                 <div class="row">
                     <div class="form-group">
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="accessname" class="col-md-3 col-sm-5">Consignee Code<font size="2px" color="red">*</font></label>
+                            <label for="accessname" class="col-md-3 col-sm-5">Code<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">
-                                @Html.Editor("Consignee_Code", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                @Html.ValidationMessageFor(model => model.Consignee_Code, "", new { @class = "text-danger" })
-                            </div>
+                                
+                                    @Html.Editor("Consignee_Code", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.Consignee_Code, "", new { @class = "text-danger" })
+                                
+                                </div>
                         </div>
 
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Consignee Name<font size="2px" color="red">*</font></label>
+                            <label for="controllername" class="col-md-3 col-sm-5">Consignee<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">
-                                @Html.EditorFor(model => model.Consignee_Name, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Consignee_Name, "", new { @class = "text-danger" })
-                            </div>
+                                
+                                    @Html.EditorFor(model => model.Consignee_Name, new { htmlAttributes = new { @class = "form-control",required = "required" } })
+                                    @Html.ValidationMessageFor(model => model.Consignee_Name, "", new { @class = "text-danger" })
+                                   
+                                </div>
                         </div>
                         <div class="form-group col-md-10 col-sm-12 ">
                             <label for="controllername" class="col-md-3 col-sm-5">Address<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">
-                                @Html.TextAreaFor(model => model.Consignee_Address, 2, 52, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Consignee_Address, "", new { @class = "text-danger" })
-                            </div>
+                                
+                                    @Html.TextAreaFor(model => model.Consignee_Address, 2, 52, new { htmlAttributes = new {@class = "form-control", required = "required" } })
+                                    @Html.ValidationMessageFor(model => model.Consignee_Address, "", new { @class = "text-danger" })
+                                
+                                </div>
                         </div>
                      
                         <div class="form-group col-md-10 col-sm-12 ">
                             <label for="controllername" class="col-md-3 col-sm-5">Email<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">
-                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                            </div>
+                                <div class="required">
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                                </div>
                         </div>
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Status<font size="2px" color="red">*</font></label>
+                            <label for="controllername" class="col-md-3 col-sm-5">Status</label>
                             <div class="col-md-6 col-sm-7">
                                 @Html.DropDownListFor(Model => Model.Status, new SelectList(ViewBag.list), htmlAttributes: new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
@@ -54,7 +62,7 @@
                         </div>
 
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Default Code<font size="2px" color="red">*</font></label>
+                            <label for="controllername" class="col-md-3 col-sm-5">Default</label>
                             <div class="col-md-6 col-sm-7">
                                 <div class="checkbox">
                                     @Html.EditorFor(model => model.Default_Code)

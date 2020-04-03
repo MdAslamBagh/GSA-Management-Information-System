@@ -28,11 +28,11 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         [HttpGet]
-        public ActionResult Add()
+        public ActionResult Create()
         {
-            String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
-            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
-            ViewBag.Entry_Date = today;
+            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
+            ////String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
+            //ViewBag.Entry_Date = today;
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
             List<PaymentModeInformation> Informations = db.PaymentModeInformations.OrderByDescending(a => a.PaymentModeId).ToList<PaymentModeInformation>();
@@ -59,13 +59,16 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(PaymentModeInformation PaymentModeInformation)
+        public ActionResult Create(PaymentModeInformation PaymentModeInformation)
         {
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
 
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                PaymentModeInformation.Entry_By = LogedInUser;
+                PaymentModeInformation.Entry_Date = DateTime.Now;
                 db.PaymentModeInformations.Add(PaymentModeInformation);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -87,36 +90,6 @@ namespace GSA_Management_Information_System.Controllers
             {
                 return HttpNotFound();
             }
-            return View(paymentModeInformation);
-        }
-
-        // GET: PaymentModeInformation/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: PaymentModeInformation/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PaymentModeId,Payment_Code,Payment_Mode,Long_Desc,Status,Default_Code,Entry_Date")] PaymentModeInformation paymentModeInformation)
-        {
-            if (ModelState.IsValid)
-            {
-                db.PaymentModeInformations.Add(paymentModeInformation);
-                var paymentList = db.PaymentModeInformations.Where(a => a.Payment_Code != paymentModeInformation.Payment_Code).ToList();
-
-                foreach (var item in paymentList)
-                {
-                    item.Default_Code = false;
-
-                }
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
             return View(paymentModeInformation);
         }
 
@@ -142,10 +115,13 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PaymentModeId,Payment_Code,Payment_Mode,Long_Desc,Status,Default_Code,Entry_Date")] PaymentModeInformation paymentModeInformation)
+        public ActionResult Edit(PaymentModeInformation paymentModeInformation)
         {
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                paymentModeInformation.Entry_By = LogedInUser;
+                paymentModeInformation.Entry_Date = DateTime.Now;
                 db.Entry(paymentModeInformation).State = EntityState.Modified;
                 var list = db.PaymentModeInformations.Where(a => a.Payment_Code != paymentModeInformation.Payment_Code).ToList();
 

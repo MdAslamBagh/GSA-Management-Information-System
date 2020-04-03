@@ -26,11 +26,14 @@
         <div class="card " style="margin-left: 15px; margin-right: 15px">
             <div class="row" style="margin-left: 10px; margin-right: 10px">
                 <table id="example" class="table table-striped table-bordered table-sm " cellspacing="0"
-                       width="1550">
+                       width="950">
                     <thead>
                         <tr>
-                            <th>Dest Code</th>
-                            <th>Long Description</th>
+                            <th>Id</th>
+                            <th>Region</th>
+                            <th>Country</th>
+                            <th>Code</th>
+                            <th>Destination</th>
                             <th>Status</th>
                             <th>Default</th>
                             <th>Action</th>
@@ -69,7 +72,10 @@
 
                         },
 
-                        "columns": [
+                            "columns": [
+                                { "data": "DestinationId","visible": false },
+                            { "data": "Region" },
+                            { "data": "Country" },
                             { "data": "Dest_Code" },
                             { "data": "Long_Desc" },
                             { "data": "Status" },

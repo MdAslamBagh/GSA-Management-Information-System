@@ -14,5 +14,6 @@ namespace GSA_Management_Information_System.Models
         public string ReportName { get; set; }
         //public DateTime Entry_Date { get; set; }
         public string Entry_By { get; set; }
+        public DateTime Entry_Date { get; set; }
     }
 }

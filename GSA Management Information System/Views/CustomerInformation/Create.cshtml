@@ -1,167 +1,512 @@
 ﻿@model GSA_Management_Information_System.Models.CustomerInformation
+
 @{
     ViewBag.Title = "Create";
 }
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="~/Gsa_Management_System_layout/assets/css/legendcss.css" rel="stylesheet" />
 
 @using (Html.BeginForm("Create", "CustomerInformation", FormMethod.Post, new { onSubmit = "return SubmitForm(this)" }))
-            {
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-horizontal">
         <div class="container">
             <div class="card ">
-                <div class="card-header bg-info" style="height: 4rem;">Customer Save</div>
-                <div class="row">
+                <div class="card-header bg-info">Customer Information</div>
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border"></legend>
                     <div class="form-group">
-    <div class="form-group col-md-10 col-sm-12 ">
-        <label for="accessname" class="col-md-3 col-sm-5">Customer Code<font size="2px" color="red">*</font></label>
-        <div class="col-md-6 col-sm-7">
-            @Html.Editor("Customer_Code", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-            @Html.ValidationMessageFor(model => model.Customer_Code, "", new { @class = "text-danger" })
-        </div>
-    </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label for="CustomerCode">
+                                                    Code
+                                                    <span id="txtCustomerCode" style="color:#FF0000;">*</span>
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="required">
+                                                    @Html.Editor("Customer_Code", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", required = "required" } })
+                                                    @Html.ValidationMessageFor(model => model.Customer_Code, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-    <div class="form-group col-md-10 col-sm-12 ">
-        <label for="controllername" class="col-md-3 col-sm-5">BP_Code<font size="2px" color="red">*</font></label>
-        <div class="col-md-6 col-sm-7">
-            @Html.EditorFor(model => model.Bp_Code, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Bp_Code, "", new { @class = "text-danger" })
-        </div>
-    </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label for="Origin">
+                                                    Sage Code
+                                                    <span id="txtoriginname" style="color:#FF0000;">*</span>
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="required">
+                                                    @Html.EditorFor(model => model.Sage_Code, new { htmlAttributes = new { @class = "form-control", required = "required"} })
+                                                    @Html.ValidationMessageFor(model => model.Sage_Code, "", new { @class = "text-danger" })
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
 
-    <div class="form-group col-md-10 col-sm-12 ">
-        <label for="controllername" class="col-md-3 col-sm-5">Customer Name<font size="2px" color="red">*</font></label>
-        <div class="col-md-6 col-sm-7">
-            @Html.EditorFor(model => model.Customer_Name, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Customer_Name, "", new { @class = "text-danger" })
-        </div>
-    </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label for="CustomerName">
+                                                Customer
+                                                <span id="txtCustomerName" style="color:#FF0000;">*</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="required">
 
-    <div class="form-group col-md-10 col-sm-12 ">
-        <label for="controllername" class="col-md-3 col-sm-5">Customer Type<font size="2px" color="red">*</font></label>
-        <div class="col-md-6 col-sm-7">
-            @Html.DropDownList("Type_Code", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Type_Code, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group col-md-10 col-sm-12 ">
-        <label for="controllername" class="col-md-3 col-sm-5">Customer Group<font size="2px" color="red">*</font></label>
-        <div class="col-md-6 col-sm-7">
-            @Html.DropDownList("Group_Code", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Group_Code, "", new { @class = "text-danger" })
-        </div>
-    </div>
-                        <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Address<font size="2px" color="red">*</font></label>
-                            <div class="col-md-6 col-sm-7">
-                                @Html.TextAreaFor(model => model.Address, 2, 52, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                                @Html.EditorFor(model => model.Customer_Name, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                                @Html.ValidationMessageFor(model => model.Customer_Name, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label for="Origin">
+                                                BP Code
+                                                <span id="txtoriginname" style="color:#FF0000;">*</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="required">
+
+                                                @Html.EditorFor(model => model.Bp_Code, new { htmlAttributes = new { @class = "form-control",required = "required" } })
+                                                @Html.ValidationMessageFor(model => model.Bp_Code, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label for="Type_Code">
+                                                    Type
+                                                    @*<span id="txtTypeCode" style="color:#FF0000;">*</span>*@
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="required">
+
+                                                    @Html.DropDownList("Type_Code", null, htmlAttributes: new { @class = "form-control", required = "required" })
+                                                    @Html.ValidationMessageFor(model => model.Type_Code, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label for="Origin">
+                                                    Group
+                                                    @*<span id="txtoriginname" style="color:#FF0000;">*</span>*@
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="required">
+                                                    @Html.DropDownList("Group_Code", null, htmlAttributes: new { @class = "form-control", required = "required" })
+                                                    @Html.ValidationMessageFor(model => model.Group_Code, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-    <div class="form-group col-md-10 col-sm-12 ">
-        <label for="controllername" class="col-md-3 col-sm-5">Country<font size="2px" color="red">*</font></label>
-        <div class="col-md-6 col-sm-7">
-            @Html.DropDownList("Country_Code", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Country_Code, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group col-md-10 col-sm-12 ">
-        <label for="controllername" class="col-md-3 col-sm-5">City<font size="2px" color="red">*</font></label>
-        <div class="col-md-6 col-sm-7">
-            @Html.DropDownList("City_Code", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.City_Code, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group col-md-10 col-sm-12 ">
-        <label for="controllername" class="col-md-3 col-sm-5">Contact No<font size="2px" color="red">*</font></label>
-        <div class="col-md-6 col-sm-7">
-            @Html.EditorFor(model => model.Contact_No, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Contact_No, "", new { @class = "text-danger" })
-        </div>
-    </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label for="FreighterName">
+                                                Address
+                                                @*<span id="txtFreighterName" style="color:#FF0000;">*</span>*@
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="required">
+                                                @Html.TextAreaFor(model => model.Address, 1, 40, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label for="Origin">
+                                                Contact
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                           
+                                                @Html.EditorFor(model => model.Contact_No, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Contact_No, "", new { @class = "text-danger" })
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label for="Country">
+                                                Country
+                                                @*<span id="txtFreighterName" style="color:#FF0000;">*</span>*@
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="required">
+                                                @Html.DropDownList("Country_Code", null, htmlAttributes: new { @class = "form-control", required = "required" })
+                                                @Html.ValidationMessageFor(model => model.Country_Code, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label for="Origin">
+                                                City
+                                                @*<span id="txtoriginname" style="color:#FF0000;">*</span>*@
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="required">
+                                                @Html.DropDownList("City_Code", null, htmlAttributes: new { @class = "form-control", required = "required" })
+                                                @Html.ValidationMessageFor(model => model.City_Code, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label for="FreighterName">
+                                                Web
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            
+                                                @Html.EditorFor(model => model.Web, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Web, "", new { @class = "text-danger" })
+                                                @*<input id="companypostcode" name="Company_Fax" placeholder="Fax" class="form-control" type="text">*@
+                                                @*@Html.EditorFor(model => model.Company_Dialogue, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label for="Origin">
+                                                Email
+                                                <span id="txtoriginname" style="color:#FF0000;">*</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-8">   
+                                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })                                       
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
 
+                        </div>
+                        <div class="row">
 
-                        <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Fax<font size="2px" color="red">*</font></label>
-                            <div class="col-md-6 col-sm-7">
-                                @Html.EditorFor(model => model.Fax, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Fax, "", new { @class = "text-danger" })
+                            <div class="col-sm-6">
+
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="FreighterName">
+                                            Contact Person
+                                            
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-8">
+ 
+                                            @Html.EditorFor(model => model.Contact_Person, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Contact_Person, "", new { @class = "text-danger" })
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label for="Origin">
+                                                Fax
+                                                @*<span id="txtoriginname" style="color:#FF0000;">*</span>*@
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            @Html.EditorFor(model => model.Fax, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Fax, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Email<font size="2px" color="red">*</font></label>
-                            <div class="col-md-6 col-sm-7">
-                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        <div class="row">
+
+                            <div class="col-sm-6">
+
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="FreighterName">
+                                            Status
+                                            @*<span id="txtFreighterName" style="color:#FF0000;">*</span>*@
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="required">
+                                            @Html.DropDownListFor(Model => Model.Status, new SelectList(ViewBag.list), htmlAttributes: new { @class = "form-control", required = "required" })
+                                            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                                            @*<input id="companydialouge" name="Company_Web" placeholder="Web" class="form-control" type="text">*@
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
                             </div>
-                        </div>
-                        <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Web<font size="2px" color="red">*</font></label>
-                            <div class="col-md-6 col-sm-7">
-                                @Html.EditorFor(model => model.Web, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Web, "", new { @class = "text-danger" })
+                            <div class="col-sm-6">
+
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="FreighterName">
+                                            Default Code
+                                            @*<span id="txtFreighterName" style="color:#FF0000;">*</span>*@
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        
+                                            <div class="checkbox">
+                                                @Html.EditorFor(model => model.Default_Code)
+                                                @Html.ValidationMessageFor(model => model.Default_Code, "", new { @class = "text-danger" })
+                                            </div>
+                                            @*<input id="companydialouge" name="Company_Web" placeholder="Web" class="form-control" type="text">*@
+
+                                    </div>
+
+                                </div>
+
                             </div>
-                        </div>
-                        <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Contact Person<font size="2px" color="red">*</font></label>
-                            <div class="col-md-6 col-sm-7">
-                                @Html.EditorFor(model => model.Contact_Person, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Contact_Person, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Status<font size="2px" color="red">*</font></label>
-                            <div class="col-md-6 col-sm-7">
-                                @Html.DropDownListFor(Model => Model.Status, new SelectList(ViewBag.list), htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Default<font size="2px" color="red">*</font></label>
-                            <div class="col-md-6 col-sm-7">
-                                @Html.EditorFor(model => model.Default_Code)
-                                @Html.ValidationMessageFor(model => model.Default_Code, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group col-md-10 col-sm-12 ">
-                            <div class="col-md-10">
-                                <div align="center">
-                                    <a class="btn btn-primary" style="margin-left:10px" onclick="location.href='@Url.Action("Index", "CustomerInformation")'"><i class="fa fa-plus"></i>Back To List</a>
-                                    <input type="submit" value="submit" class="btn btn-info" />
+
+                            <div class="form-group col-md-10 col-sm-12 ">
+                                <div class="col-md-10">
+                                    <div align="center">
+                                        <a class="btn btn-primary" style="margin-left:10px" onclick="location.href='@Url.Action("Index", "CustomerInformation")'"><i class="fa fa-plus"></i>Back To List</a>
+                                        <input type="submit" value="submit" class="btn btn-info" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-
                     </div>
-
-                   
-                </div>
+                </fieldset>
             </div>
         </div>
     </div>
+
+
 }
 
-<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+
 
 @section scripts{
-    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+    <!-- Load jQuery JS -->
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <!-- Load jQuery UI Main JS  -->
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
     <script>
-        $(function () {
-            $(".datepicker").datepicker({
-                dateFormat: "mm/dd/yy",
-                changemonth: true,
-                changeyear: true,
-                minDate: new Date(2018, 0, 1),
-                maxDate: new Date(2020, 0, 1),
-                showOn: "both",
-                buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-                buttonText: "Calender"
+
+
+        //Branch Search
+        jQuery.noConflict()(function ($) {
+
+            $("#companyname").keyup(function () {
+                var companyData = $("#companyname").val();
+                if (companyData === '') {
+                    $('#companycode').val('');
+
+                }
+                var jsonData = { companyname: companyData };
+                $("#ReceivedIdErrorMessage").text("");
+                $.ajax({
+                    type: "POST",
+                    url: "/CompanyInformation/GetCompanyCodeById",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(jsonData),
+                    dataType: "json",
+                    success: function (data) {
+                        //  alert("Success ");
+                        $("#companycode").val(data.Company_Code);
+
+                    },
+                });
+
+                return false;
+            });
+            $("#companyname").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/CompanyInformation/Get_Company_Name",
+                        type: "POST",
+                        dataType: "json",
+                        data: { Prefix: request.term },
+
+                        success: function (data) {
+
+                            response($.map(data, function (item) {
+
+                                return {
+                                    label: item.Company_Name,
+                                    value: item.Company_Name,
+
+
+
+
+
+                                };
+
+
+                            }))
+
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "",
+                    results: function (count) {
+                        return count + (count > 1 ? ' results' : ' result ') + ' found';
+                    }
+                }
+            });
+
+            $("#branchname").keyup(function () {
+                var branchData = $("#branchname").val();
+                if (branchData === '') {
+                    $('#branchcode').val('');
+
+                }
+                var jsonData = { branchname: branchData };
+                $("#ReceivedIdErrorMessage").text("");
+                $.ajax({
+                    type: "POST",
+                    url: "/CompanyInformation/GetBranchCodeById",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(jsonData),
+                    dataType: "json",
+                    success: function (data) {
+                        //  alert("Success ");
+                        $("#branchcode").val(data.Branch_Code);
+
+                    },
+                });
+
+                return false;
+            });
+            $("#branchname").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/CompanyInformation/Get_Branch_Name",
+                        type: "POST",
+                        dataType: "json",
+                        data: { Prefix: request.term },
+
+                        success: function (data) {
+
+                            response($.map(data, function (item) {
+
+                                return {
+                                    label: item.Branch_Name,
+                                    value: item.Branch_Name,
+
+
+
+
+
+                                };
+
+
+                            }))
+
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "",
+                    results: function (count) {
+                        return count + (count > 1 ? ' results' : ' result ') + ' found';
+                    }
+                }
             });
         });
+
+
     </script>
+
     @Scripts.Render("~/bundles/jqueryval")
 
 }

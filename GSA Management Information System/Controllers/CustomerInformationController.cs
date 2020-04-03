@@ -62,7 +62,7 @@ namespace GSA_Management_Information_System.Controllers
                 if (information == null)
                 {
                     int seq = 1;
-                    string ss = string.Format("CRGO-{0}", seq.ToString("D6"));
+                    string ss = string.Format("CRGO-{0}", seq.ToString("D5"));
 
                     ViewBag.Customer_Code = ss;
                     //CustomerInformation objinformations = new CustomerInformation();
@@ -79,11 +79,11 @@ namespace GSA_Management_Information_System.Controllers
                     string code = information.Customer_Code;
 
                     string mystring = code;
-                    mystring = mystring.Substring(mystring.Length - 6);
+                    mystring = mystring.Substring(mystring.Length - 5);
                     int codeee = Int32.Parse(mystring) + 1;
                    // string todaydate = DateTime.Now.ToString("yyMM");
 
-                    string ss = string.Format("CRGO-{0}", codeee.ToString("D6"));
+                    string ss = string.Format("CRGO-{0}", codeee.ToString("D5"));
 
                     ViewBag.Customer_Code = ss;
                     //int code = information.Customer_Code + 1;
@@ -175,15 +175,17 @@ namespace GSA_Management_Information_System.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit( CustomerInformation customerInformation)
         {
+            var list = new List<string>() { "Active", "Inactive" };
+            ViewBag.list = list;
             var LogedInUser = User.Identity.Name;
             customerInformation.Entry_By = LogedInUser;
             customerInformation.Entry_Date = DateTime.Now;
             if (ModelState.IsValid)
             {
                 db.Entry(customerInformation).State = EntityState.Modified;
-                var list = db.CustomerInformations.Where(a => a.Customer_Code != customerInformation.Customer_Code).ToList();
+                var listt = db.CustomerInformations.Where(a => a.Customer_Code != customerInformation.Customer_Code).ToList();
 
-                foreach (var item in list)
+                foreach (var item in listt)
                 {
                     item.Default_Code = false;
 

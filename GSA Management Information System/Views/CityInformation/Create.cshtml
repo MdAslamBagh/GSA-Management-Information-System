@@ -1,0 +1,149 @@
+﻿@model GSA_Management_Information_System.Models.CityInformation
+@{
+    ViewBag.Title = "Create";
+}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+@using (Html.BeginForm("Create", "CityInformation", FormMethod.Post, new { onSubmit = "return SubmitForm(this)" }))
+            {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        @*<input type="hidden" name="ConsigneeCode" value="@ViewBag.ConsigneeCode" />*@
+        <div class="container">
+            <div class="card ">
+                <div class="card-header bg-info" style="height: 4rem;">City Save</div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="accessname" class="col-md-3 col-sm-5">Code<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+                                @Html.EditorFor(model => model.City_Code, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.City_Code, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="controllername" class="col-md-3 col-sm-5">City<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+                                @Html.EditorFor(model => model.Long_Desc, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.Long_Desc, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="accessname" class="col-md-3 col-sm-5">Country<font size="2px" color="red">*</font></label>
+                            <div class="col-md-4 col-sm-7">
+                                <select id="country" required="required" class="form-control">
+                                    <option value="">Select Country  </option>
+                                    @foreach (var country in ViewBag.CountryList)
+                                    {
+                                        <option value="@country.Long_Desc">@country.Long_Desc</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-2 col-sm-7">
+                                @Html.EditorFor(model => model.Country_Code, new { htmlAttributes = new { @class = "form-control", required = "required",id="countrycode", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.Country_Code, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="controllername" class="col-md-3 col-sm-5">Status</label>
+                            <div class="col-md-6 col-sm-7">
+                                @Html.DropDownListFor(Model => Model.Status, new SelectList(ViewBag.list), htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="controllername" class="col-md-3 col-sm-5">Default</label>
+                            <div class="col-md-6 col-sm-7">
+                                <div class="checkbox">
+                                    @Html.EditorFor(model => model.Default_Code)
+                                    @Html.ValidationMessageFor(model => model.Default_Code, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <div class="col-md-10">
+                                <div align="center">
+                                    <a class="btn btn-primary" style="margin-left:10px" onclick="location.href='@Url.Action("Index", "CityInformation")'"><i class="fa fa-plus"></i>Back To List</a>
+                                    <input type="submit" value="submit" class="btn btn-info" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@section scripts{
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    @*<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>*@
+    <!-- Load jQuery UI Main JS  -->
+
+
+
+    <script>
+
+
+
+
+
+
+        ///
+
+        $("#country").change(function () {
+
+
+            var countrydata = $("#country").val();
+            if (countrydata == null) {
+
+            }
+            else
+                var jsonData = { country: countrydata };
+
+            $.ajax({
+                type: "POST",
+                url: "/CityInformation/GetCountryCodeById",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(jsonData),
+                dataType: "json",
+                success: function (data) {
+                    //alert(data);
+                    //alert("ok");
+                    //alert(data.Country_Code);
+                    $("#countrycode").val(data.Country_Code);
+
+
+                }
+
+            })
+
+
+
+        })
+
+    </script>
+
+
+
+
+
+
+
+
+
+}

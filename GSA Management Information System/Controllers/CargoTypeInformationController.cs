@@ -51,7 +51,7 @@ namespace GSA_Management_Information_System.Controllers
                 CargoTypeInformation.Entry_By = LogedInUser;
                 CargoTypeInformation.Entry_Date = DateTime.Now;
                 db.CargoTypeInformations.Add(CargoTypeInformation);
-                db.CargoTypeInformations.Add(CargoTypeInformation);
+               
 
                 if (CargoTypeInformation.Default_Code == false)
                 {

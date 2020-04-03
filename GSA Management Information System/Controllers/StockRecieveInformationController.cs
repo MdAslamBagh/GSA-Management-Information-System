@@ -22,8 +22,17 @@ namespace GSA_Management_Information_System.Controllers
 
         public ActionResult GetData()
         {
-            List<StockRecieveInformation> Informations = db.StockRecieveInformations.ToList<StockRecieveInformation>();
-            return Json(new { data = Informations }, JsonRequestBehavior.AllowGet);
+
+            var Informations = from stockreceive in db.StockRecieveInformations join customer in db.CustomerInformations on stockreceive.Customer_Code equals customer.Customer_Code join airlines in db.AirlinesInformations on stockreceive.Airlines_Code equals airlines.Airlines_Code
+                               select new {stockreceive.SRecievedId, stockreceive.SRecieved_Code,stockreceive.SR_Type,
+                               stockreceive.Airlines_Code,
+                                   Airlines=airlines.Long_Desc,
+                                   stockreceive.From_TicketNo, stockreceive.To_TicketNo,
+                                   stockreceive.Ticket_Quantity,
+                                   customer.Customer_Name,stockreceive.Customer_Code,stockreceive.Remarks,stockreceive.Issued };
+
+            //    List<StockRecieveInformation> Informations = db.StockRecieveInformations.ToList<StockRecieveInformation>();
+               return Json(new { data = Informations }, JsonRequestBehavior.AllowGet);
 
         }
 
@@ -275,6 +284,22 @@ namespace GSA_Management_Information_System.Controllers
             }
         }
 
+
+        public JsonResult Get_Customer_Name(string Prefix)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            var Customer_Name = (from c in db.CustomerInformations
+                                 where c.Customer_Name.StartsWith(Prefix)
+                                 select new { c.Customer_Name });
+            return Json(Customer_Name, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetCustomerCodeById(string customername)
+        {
+            var customer_code = db.CustomerInformations.Where(m => m.Customer_Name == customername).FirstOrDefault();
+            return Json(customer_code, JsonRequestBehavior.AllowGet);
+        }
+
         //[HttpPost]
         //public JsonResult EndingTicketData(int fromDataa, int toDataa)
         //{
@@ -282,38 +307,38 @@ namespace GSA_Management_Information_System.Controllers
         //    var searchData = db.StockRecieveInformations.OrderByDescending(a => a.SRecievedId).ToList();
 
 
-            //        foreach (var item in searchData)
-            //    {
-            //        if (searchData != null)
-            //   {
+        //        foreach (var item in searchData)
+        //    {
+        //        if (searchData != null)
+        //   {
 
-            //        return Json(1);
-            //    }
-            //    else
-            //    {
-            //        return Json(0);
-            //    }
-            //}
-
-
+        //        return Json(1);
+        //    }
+        //    else
+        //    {
+        //        return Json(0);
+        //    }
+        //}
 
 
 
 
 
-            //public JsonResult Betweencheck(int x)
-            //{
-            //    var searchData = db.StockRecieveInformations.Where(x => x.From_TicketNo >= x  || x>=x.To_TicketNo).SingleOrDefault();
-            //    if (searchData != null)
-            //    {
 
-            //        return Json(1);
-            //    }
-            //    else
-            //    {
-            //        return Json(0);
-            //    }
-            //}
+
+        //public JsonResult Betweencheck(int x)
+        //{
+        //    var searchData = db.StockRecieveInformations.Where(x => x.From_TicketNo >= x  || x>=x.To_TicketNo).SingleOrDefault();
+        //    if (searchData != null)
+        //    {
+
+        //        return Json(1);
+        //    }
+        //    else
+        //    {
+        //        return Json(0);
+        //    }
+        //}
 
         [HttpPost]
         public JsonResult GetCustomer(string Prefix)
@@ -424,7 +449,13 @@ namespace GSA_Management_Information_System.Controllers
             ViewBag.Airlines_Code = new SelectList(db.AirlinesInformations, "Airlines_Code", "Long_Desc");
             //ViewBag.Customer_Code = new SelectList(db.CustomerInformations, "Customer_Code", "Customer_Name");
 
-
+            List<CustomerInformation> customerInformations = db.CustomerInformations.Where(a => a.Default_Code == true).ToList<CustomerInformation>();
+            CustomerInformation customer = new CustomerInformation();
+            customer = customerInformations.FirstOrDefault();
+            string c_Name = customer.Customer_Name;
+            string c_Code = customer.Customer_Code;
+            ViewBag.Customer_Name = c_Name;
+            ViewBag.Customer_Code = c_Code;
 
 
             return View();
@@ -474,6 +505,9 @@ namespace GSA_Management_Information_System.Controllers
             return View(stockRecieveInformation);
         }
 
+
+
+
         // GET: StockRecieveInformation/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -496,7 +530,47 @@ namespace GSA_Management_Information_System.Controllers
             ViewBag.list3 = list3;
             ViewBag.Airlines_Code = new SelectList(db.AirlinesInformations, "Airlines_Code", "Long_Desc");
             //ViewBag.Customer_Code = new SelectList(db.CustomerInformations, "Customer_Code", "Customer_Name");
-            return View(stockRecieveInformation);
+            var stockreceivedata = (from stockreceive in db.StockRecieveInformations
+                                    join customer in db.CustomerInformations on stockreceive.Customer_Code equals customer.Customer_Code
+                                    join airlines in db.AirlinesInformations on stockreceive.Airlines_Code equals airlines.Airlines_Code
+                                    where
+stockreceive.SRecievedId == id
+                                    select new
+                                    {
+                                        stockreceive.SRecievedId,
+                                        stockreceive.SRecieved_Code,
+                                        stockreceive.SR_Type,
+                                        stockreceive.Trans_Date,
+                                        stockreceive.Airlines_Code,
+                                        Airlines = airlines.Long_Desc,
+                                        stockreceive.From_TicketNo,
+                                        stockreceive.To_TicketNo,
+                                        stockreceive.Ticket_Quantity,
+                                        customer.Customer_Name,
+                                        stockreceive.Customer_Code,
+                                        stockreceive.Remarks,
+                                        stockreceive.Issued
+                                    }).FirstOrDefault();
+
+
+            return View(new EditStockReceiveEditViewModel()
+            {
+                SRecievedId=stockreceivedata.SRecievedId,
+                SRecieved_Code = stockreceivedata.SRecieved_Code,
+                SR_Type = stockreceivedata.SR_Type,
+                Trans_Date = stockreceivedata.Trans_Date,
+                Airlines_Code = stockreceivedata.Airlines_Code,
+                Airlines = stockreceivedata.Airlines,
+                From_TicketNo = stockreceivedata.From_TicketNo,
+                To_TicketNo = stockreceivedata.To_TicketNo,
+                Ticket_Quantity = stockreceivedata.Ticket_Quantity,
+                Customer_Name = stockreceivedata.Customer_Name,
+                Customer_Code = stockreceivedata.Customer_Code,
+                Remarks = stockreceivedata.Remarks,
+                Issued = stockreceivedata.Issued,
+                
+
+            });
         }
 
         // POST: StockRecieveInformation/Edit/5
@@ -504,18 +578,30 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(StockRecieveInformation stockRecieveInformation)
+        public ActionResult Edit(EditStockReceiveEditViewModel editrecieve)
         {
             if (ModelState.IsValid)
             {
+                StockRecieveInformation stockRecieveInformation = db.StockRecieveInformations.Find(editrecieve.SRecievedId);
+                //var stockRecieveInformation = db.StockRecieveInformations.Where(a => a.SRecievedId == a.SRecievedId).FirstOrDefault();
                 var LogedInUser = User.Identity.Name;
                 stockRecieveInformation.Entry_By = LogedInUser;
                 stockRecieveInformation.Entry_Date = DateTime.Now;
+                stockRecieveInformation.SRecieved_Code = editrecieve.SRecieved_Code;
+                stockRecieveInformation.SR_Type = editrecieve.SR_Type;
+                stockRecieveInformation.Airlines_Code = editrecieve.Airlines_Code;
+                stockRecieveInformation.From_TicketNo = editrecieve.From_TicketNo;
+                stockRecieveInformation.To_TicketNo = editrecieve.To_TicketNo;
+                stockRecieveInformation.Ticket_Quantity = editrecieve.Ticket_Quantity;
+                stockRecieveInformation.Trans_Date = editrecieve.Trans_Date;
+                stockRecieveInformation.Remarks = editrecieve.Remarks;
+                stockRecieveInformation.Issued = editrecieve.Issued;                
+                stockRecieveInformation.Customer_Code = editrecieve.Customer_Code;
                 db.Entry(stockRecieveInformation).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(stockRecieveInformation);
+            return View(editrecieve);
         }
 
         // GET: StockRecieveInformation/Delete/5

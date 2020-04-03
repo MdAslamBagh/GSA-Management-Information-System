@@ -29,11 +29,11 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         [HttpGet]
-        public ActionResult Add()
+        public ActionResult Create()
         {
-            String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
-            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
-            ViewBag.Entry_Date = today;
+            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
+            ////String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
+            //ViewBag.Entry_Date = today;
 
             List<CargoFreightPaymodeInformation> Informations = db.CargoFreightPaymodeInformations.OrderByDescending(a => a.CFPaymodeId).ToList<CargoFreightPaymodeInformation>();
 
@@ -65,13 +65,16 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(CargoFreightPaymodeInformation CargoFreightPaymodeInformation)
+        public ActionResult Create(CargoFreightPaymodeInformation CargoFreightPaymodeInformation)
         {
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
 
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                CargoFreightPaymodeInformation.Entry_By = LogedInUser;
+                CargoFreightPaymodeInformation.Entry_Date = DateTime.Now;
                 db.CargoFreightPaymodeInformations.Add(CargoFreightPaymodeInformation);
 
                 if (CargoFreightPaymodeInformation.Default_Code == false)
@@ -115,28 +118,7 @@ namespace GSA_Management_Information_System.Controllers
             return View(cargoFreightPaymodeInformation);
         }
 
-        // GET: CargoFreightPaymodeInformation/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: CargoFreightPaymodeInformation/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CFPaymodeId,CFPaymode_Code,Long_Desc,Status,Default_Code,Entry_Date")] CargoFreightPaymodeInformation cargoFreightPaymodeInformation)
-        {
-            if (ModelState.IsValid)
-            {
-                db.CargoFreightPaymodeInformations.Add(cargoFreightPaymodeInformation);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(cargoFreightPaymodeInformation);
-        }
+    
 
         // GET: CargoFreightPaymodeInformation/Edit/5
         public ActionResult Edit(int? id)
@@ -160,10 +142,13 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CFPaymodeId,CFPaymode_Code,Long_Desc,Status,Default_Code,Entry_Date")] CargoFreightPaymodeInformation cargoFreightPaymodeInformation)
+        public ActionResult Edit(CargoFreightPaymodeInformation cargoFreightPaymodeInformation)
         {
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                cargoFreightPaymodeInformation.Entry_By = LogedInUser;
+                cargoFreightPaymodeInformation.Entry_Date = DateTime.Now;
                 db.Entry(cargoFreightPaymodeInformation).State = EntityState.Modified;
 
                 var list = db.CargoFreightPaymodeInformations.Where(a => a.CFPaymode_Code != cargoFreightPaymodeInformation.CFPaymode_Code).ToList();

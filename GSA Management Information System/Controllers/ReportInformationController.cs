@@ -26,7 +26,7 @@ namespace GSA_Management_Information_System.Controllers
         {
 
             //List<ReportInformation> Informations = db.Reports.ToList<ReportInformation>();
-            var reportlist = from submenu in db.SubMenuInformations join report in db.Reports on submenu.SubMenuId equals report.SubMenuId select new {submenu.Access_Name, report.ReportName };
+            var reportlist = from submenu in db.SubMenuInformations join report in db.Reports on submenu.SubMenuId equals report.SubMenuId select new {report.ReportId,submenu.Access_Name, report.ReportName };
             return Json(new { data = reportlist }, JsonRequestBehavior.AllowGet);
 
         }
@@ -71,7 +71,7 @@ namespace GSA_Management_Information_System.Controllers
             {
                 var LogedInUser = User.Identity.Name;
                 reportInformation.Entry_By = LogedInUser;
-                //reportInformation.Entry_Date = DateTime.Now;
+                reportInformation.Entry_Date = DateTime.Now;
                 db.Reports.Add(reportInformation);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -92,6 +92,8 @@ namespace GSA_Management_Information_System.Controllers
             {
                 return HttpNotFound();
             }
+            var menuId = db.MenuInformations.Where(a => a.Menu_Name == "Reports").FirstOrDefault().MenuItemId;
+            ViewBag.SubMenuId = new SelectList(db.SubMenuInformations.Where(a => a.MenuItemId == menuId), "SubMenuId", "Access_Name");
             return View(reportInformation);
         }
 
@@ -100,10 +102,13 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ReportId,SubMenuId,ReportName,Entry_Date,Entry_By")] ReportInformation reportInformation)
+        public ActionResult Edit(ReportInformation reportInformation)
         {
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                reportInformation.Entry_By = LogedInUser;
+                reportInformation.Entry_Date = DateTime.Now;
                 db.Entry(reportInformation).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

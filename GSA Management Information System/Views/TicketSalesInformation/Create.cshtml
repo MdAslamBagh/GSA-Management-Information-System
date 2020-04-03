@@ -30,14 +30,14 @@
                                     <div class="col-sm-5">
                                         <div class="required">
 
-                                            <input id="airlinesname" name="Long_Desc" placeholder="Airlines" class="form-control" type="text">
+                                            <input id="airlinesname" name="Long_Desc" placeholder="Airlines" class="form-control" value="@ViewBag.Airlines" type="text"  required>
 
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="required">
 
-                                            <input id="airlinescode" name="Airlines_Code" placeholder="Code" class="form-control" type="text">
+                                            <input id="airlinescode" name="Airlines_Code" placeholder="Code" class="form-control" value="@ViewBag.Airlines_Code" type="text" required readonly>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -59,17 +59,17 @@
                                             <span id="txtoriginname" style="color:#FF0000;">*</span>
                                         </label>
                                     </div>
-                                    <div class="col-sm-5">
+                                    <div class="col-sm-4">
                                         <div class="required">
 
-                                            <input id="customername" name="Customer_Name" placeholder="Customer Name" class="form-control" type="text" value="@ViewBag.Customer_Name">
+                                            <input id="customername" name="Customer_Name" placeholder="Customer Name" class="form-control" type="text" value="@ViewBag.Customer_Name" required>
 
                                         </div>
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <div class="required">
 
-                                            <input id="customercode" name="Customer_Code" placeholder="Code" class="form-control" type="text">
+                                            <input id="customercode" name="Customer_Code" placeholder="Code" class="form-control" value="@ViewBag.Customer_Code" type="text" required readonly>
 
                                         </div>
                                     </div>
@@ -90,14 +90,14 @@
                                     <div class="col-sm-5">
                                         <div class="required">
 
-                                            <input id="paymentname" name="Long_Desc" placeholder="Payment Name" class="form-control" type="text">
+                                            <input id="paymentname" name="Long_Desc" placeholder="Payment Name" class="form-control" type="text" value="@ViewBag.Payment_Name" required>
 
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="required">
 
-                                            <input id="paymentmode" name="Payment_Mode" placeholder="Mode" class="form-control" type="text">
+                                            <input id="paymentmode" name="Payment_Mode" placeholder="Mode" class="form-control" type="text" readonly value="@ViewBag.Payment_Mode" required>
 
                                         </div>
                                     </div>
@@ -114,17 +114,17 @@
                                             <span id="txtoriginname" style="color:#FF0000;">*</span>
                                         </label>
                                     </div>
-                                    <div class="col-sm-5">
+                                    <div class="col-sm-4">
                                         <div class="required">
 
-                                            <input id="bankname" name="Long_Desc" placeholder="Bank Name" class="form-control" type="text">
+                                            <input id="bankname" name="Long_Desc" placeholder="Bank Name" class="form-control" type="text" value="@ViewBag.Bank_Name" required>
 
                                         </div>
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <div class="required">
 
-                                            <input id="bankcode" name="Bank_Code" placeholder="Code" class="form-control" type="text">
+                                            <input id="bankcode" name="Bank_Code" placeholder="Code" class="form-control" type="text" readonly value="@ViewBag.Bank_Code" required>
 
                                         </div>
                                     </div>
@@ -148,7 +148,7 @@
                                     <div class="col-sm-8">
                                         <div class="required">
 
-                                            <input id="Ticket_No" name="Ticket_No" placeholder="Ticket_No" class="form-control" type="text">
+                                            <input id="Ticket_No" name="Ticket_No" placeholder="Ticket_No" class="form-control" type="text" required>
 
                                         </div>
                                     </div>
@@ -198,7 +198,7 @@
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="required">
-                                                <input id="exchangerate" name="Exchange_Rate" class="form-control" type="text" value="@ViewBag.Exchange_Rate">
+                                                <input id="exchangerate" name="Exchange_Rate" class="form-control" type="text" value="@ViewBag.Exchange_Rate" readonly>
 
                                             </div>
                                         </div>
@@ -395,7 +395,7 @@
                                         <div class="col-sm-4">
                                             <div class="required">
 
-                                                <input id="discount" value="" type="text" onkeyup="disCount()" placeholder="BDT" class="form-control" name="Discount">
+                                                <input id="discount" value="" type="text" onkeyup="disCount()" placeholder="Discount" class="form-control" name="Discount">
 
                                             </div>
                                         </div>

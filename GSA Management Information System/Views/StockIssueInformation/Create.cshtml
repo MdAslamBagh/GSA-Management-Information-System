@@ -13,128 +13,123 @@
         <input type="hidden" name="SIssuedCode" value="@ViewBag.SIssuedCode" />
 
         <div class="container">
-            <div class="card " style="margin-left: 150px; margin-right: 130px">
-                <div class="card-header bg-info" style="margin-left: 2px; margin-right: 2px;height: 4rem" ;>Stock Issue Information</div>
+            <div class="card ">
+                <div class="card-header bg-info" style="height: 4rem;">Stock Issue Information</div>
                 <div class="row">
                     <div class="form-group">
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">SIssued_Code<font size="2px" color="red">*</font></label>
-                            <div class="col-md-8 col-sm-7">
+                            <label for="controllername" class="col-md-3 col-sm-5">Issued Code<font size="2px" color="red">*</font></label>
+                            <div class="col-md-5 col-sm-7">
                                 @Html.Editor("SIssued_Code", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 @Html.ValidationMessageFor(model => model.SIssued_Code, "", new { @class = "text-danger" })
                             </div>
-                        </div>
-
-                        <div class="form-group col-md-10 col-sm-12 ">
-                            @Html.LabelFor(model => model.Stock_Type, htmlAttributes: new { @class = "hidden" })
-                            <div class="col-md-8 col-sm-7">
+                            <div class="col-md-3 col-sm-7">
                                 @Html.Editor("Issue_Date", new { htmlAttributes = new { @class = "hidden" } })
                                 @Html.ValidationMessageFor(model => model.Issue_Date, "", new { @class = "text-danger" })
                             </div>
                         </div>
+
+                        @*<div class="form-group col-md-10 col-sm-12 ">
+                            @Html.LabelFor(model => model.Stock_Type, htmlAttributes: new { @class = "hidden" })
+                            <div class="col-md-6 col-sm-7">
+                                @Html.Editor("Issue_Date", new { htmlAttributes = new { @class = "hidden" } })
+                                @Html.ValidationMessageFor(model => model.Issue_Date, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
                         <div class="form-group col-md-10 col-sm-12 ">
                             <label for="controllername" class="col-md-3 col-sm-5">Airlines<font size="2px" color="red">*</font></label>
-                            <div class="col-md-8 col-sm-7">
+                            <div class="col-md-5 col-sm-7">
                                 @Html.DropDownList("Airlines_Code", null, htmlAttributes: new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.Airlines_Code, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="accessname" class="col-md-3 col-sm-5">SRecieved Code <font size="2px" color="red">*</font></label>
-                            <div class="col-md-8 col-sm-7">
-                                @Html.Editor("SRecieved_Code", new { htmlAttributes = new { @class = "form-control" } })
+                            <label for="accessname" class="col-md-3 col-sm-5">Recieved Code <font size="2px" color="red">*</font></label>
+                            <div class="col-md-5 col-sm-7">
+                                @Html.Editor("SRecieved_Code", new { htmlAttributes = new { @class = "form-control", @placeholder="Search Received Code" } })
                                 @Html.ValidationMessageFor(model => model.SRecieved_Code, "", new { @class = "text-danger" })
                             </div>
-                        </div>
-
-                        <div class="form-group col-md-10 col-sm-12 ">
-                            @Html.LabelFor(model => model.Stock_Type, htmlAttributes: new { @class = "hidden" })
-                            <div class="col-md-8 col-sm-7">
+                            <div class="col-md-3 col-sm-7">
                                 @Html.DropDownListFor(Model => Model.Stock_Type, new SelectList(ViewBag.list), htmlAttributes: new { @class = "hidden" })
                                 @*@Html.DropDownListFor(Model => Model.SR_Type, new SelectList(ViewBag.list), htmlAttributes: new { @class = "form-control" })*@
                                 @Html.ValidationMessageFor(model => model.Stock_Type, "", new { @class = "text-danger" })
                             </div>
-
                         </div>
+
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">From_TicketNo<font size="2px" color="red">*</font></label>
-                            <div class="col-md-8 col-sm-7">
-                                @Html.EditorFor(model => model.From_TicketNo, new { htmlAttributes = new { @class = "form-control", id = "fromticketNo", @maxlength = "7", onchange = "StartingTicketcheck()" } })
+                            <label for="controllername" class="col-md-3 col-sm-5">From Ticket<font size="2px" color="red">*</font></label>
+                            <div class="col-md-5 col-sm-7">
+                                @Html.EditorFor(model => model.From_TicketNo, new { htmlAttributes = new { @class = "form-control", id = "fromticketNo", @maxlength = "7", onchange = "StartingTicketcheck()", @placeholder = "From Ticket" } })
                                 @Html.ValidationMessageFor(model => model.From_TicketNo, "", new { @class = "text-danger" })
                             </div>
+                            <div class="col-md-4 col-sm-7">
+                                <p id="Status" />
+                            </div>
                         </div>
-                        <div class="form-group col-md-10 col-sm-6 ">
+                        @*<div class="form-group col-md-10 col-sm-6 ">
                             <label class="col-sm-3"></label>
                             <div class="col-md-6 col-sm-7">
                                 <p id="Status" />
                             </div>
-                        </div>
+                        </div>*@
 
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">To_TicketNo<font size="2px" color="red">*</font></label>
-                            <div class="col-md-8 col-sm-7">
-                                @Html.EditorFor(model => model.To_TicketNo, new { htmlAttributes = new { @class = "form-control", id = "toticketNo", @maxlength = "7", onkeyup = "EndingTicketCheck()" } })
+                            <label for="controllername" class="col-md-3 col-sm-5">To Ticket<font size="2px" color="red">*</font></label>
+                            <div class="col-md-5 col-sm-7">
+                                @Html.EditorFor(model => model.To_TicketNo, new { htmlAttributes = new { @class = "form-control", id = "toticketNo", @maxlength = "7", onkeyup = "EndingTicketCheck()" , @placeholder = "To Ticket" } })
                                 @Html.ValidationMessageFor(model => model.To_TicketNo, "", new { @class = "text-danger" })
                             </div>
+                            <div class="col-md-4 col-sm-7">
+                                <p id="Statuss" />
+                            </div>
                         </div>
-                        <div class="form-group col-md-10 col-sm-6 ">
+                        @*<div class="form-group col-md-10 col-sm-6 ">
                             <label class="col-sm-3"></label>
                             <div class="col-md-6 col-sm-7">
                                 <p id="Statuss" />
                             </div>
-                        </div>
+                        </div>*@
 
 
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Ticket_Quantity<font size="2px" color="red">*</font></label>
-                            <div class="col-md-8 col-sm-7">
-                                @Html.EditorFor(model => model.Ticket_Quantity, new { htmlAttributes = new { @class = "form-control", id = "ticketquantity", onkeyup = "QuantityTicketcheck()" } })
+                            <label for="controllername" class="col-md-3 col-sm-5">Quantity<font size="2px" color="red">*</font></label>
+                            <div class="col-md-5 col-sm-7">
+                                @Html.EditorFor(model => model.Ticket_Quantity, new { htmlAttributes = new { @class = "form-control", id = "ticketquantity", onkeyup = "QuantityTicketcheck()",@readonly="readonly", @placeholder = "Quantity" } })
                                 @Html.ValidationMessageFor(model => model.Ticket_Quantity, "", new { @class = "text-danger" })
                             </div>
 
                         </div>
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="accessname" class="col-md-3 col-sm-5">Customer<font size="2px" color="red">*</font></label>
-                            <div class="col-md-8 col-sm-7">
-                                <input id="customername" name="Customer_Name" placeholder="Customer Name" class="form-control" type="text" value="@ViewBag.Customer_Name">
-
+                            <label for="controllername" class="col-md-3 col-sm-5">Customer<font size="2px" color="red">*</font></label>
+                            <div class="col-md-5 col-sm-7">
+                                @Html.TextBoxFor(model => model.Customer_Code, htmlAttributes: new { @class = "form-control", id = "customercode", @placeholder = "Customer Code" })
+                                @Html.ValidationMessageFor(model => model.Customer_Code, "", new { @class = "text-danger" })
                             </div>
-                            <div class="col-md-4 col-sm-7">
-                                <input id="customercode" name="Customer_Code" placeholder="Customer Code" class="form-control" type="hidden"  value="@ViewBag.Customer_Code" readonly="readonly">
-                            </div>
-
-
-
                         </div>
 
 
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Transaction_Status<font size="2px" color="red">*</font></label>
-                            <div class="col-md-8 col-sm-7">
-                                @Html.EditorFor(model => model.Transaction_Status, new { htmlAttributes = new { @class = "form-control" } })
+                            <label for="controllername" class="col-md-3 col-sm-5">Transaction Status<font size="2px" color="red">*</font></label>
+                            <div class="col-md-5 col-sm-7">
+                                @Html.EditorFor(model => model.Transaction_Status, new { htmlAttributes = new { @class = "form-control", @placeholder = "Transaction Status" } })
                                 @Html.ValidationMessageFor(model => model.Transaction_Status, "", new { @class = "text-danger" })
                             </div>
-                        </div>
-
-                        <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Remarks<font size="2px" color="red">*</font></label>
-                            <div class="col-md-6 col-sm-7">
-                                @Html.TextAreaFor(model => model.Remarks, 2, 48, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group col-md-10 col-sm-12 ">
-                            @Html.LabelFor(model => model.Confirm_Status, htmlAttributes: new { @class = "hidden" })
-                            <div class="col-md-6 col-sm-7">
+                            <div class="col-md-3 col-sm-7">
                                 @Html.DropDownListFor(Model => Model.Confirm_Status, new SelectList(ViewBag.list2), htmlAttributes: new { @class = "hidden" })
                                 @*@Html.DropDownListFor(Model => Model.Transaction_Status, new SelectList(ViewBag.list2), htmlAttributes: new { @class = "form-control" })*@
                                 @Html.ValidationMessageFor(model => model.Confirm_Status, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
-
-
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="controllername" class="col-md-3 col-sm-5">Remarks</label>
+                            <div class="col-md-5 col-sm-7">
+                                @Html.TextAreaFor(model => model.Remarks, 1, 42, new { htmlAttributes = new { @class = "form-control", @placeholder = "Remarks" } })
+                                @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                   
                         <div class="form-group col-md-10 col-sm-12 ">
                             <div class="col-md-10">
                                 <div align="center">
@@ -247,38 +242,11 @@
                     }
                 }
             });
-            //Customer
-            $("#customername").keyup(function () {
-                var customerdata = $("#customername").val();
-                if (customerdata === '') {
-                    $('#customercode').val('');
-                    $("#customeraddress").val('');
-                }
-                else
-                    var jsonData = { customername: customerdata };
-                $("#ReceivedIdErrorMessage").text("");
-                $.ajax({
-                    type: "POST",
-                    url: "/CargoSalesInformation/GetCustomerCodeById",
-                    contentType: "application/json; charset=utf-8",
-                    data: JSON.stringify(jsonData),
-                    dataType: "json",
-                    success: function (data) {
-                        //  alert("Success ");
-                        $("#customercode").val(data.Customer_Code);
-                        $("#customeraddress").val(data.Address);
-
-
-                    },
-                });
-
-                return false;
-
-            });
-            $("#customername").autocomplete({
+            $("#customercode").autocomplete({
                 source: function (request, response) {
                     $.ajax({
-                        url: "/CargoSalesInformation/Get_Customer_Name",
+
+                        url: "/StockIssueInformation/GetCustomer",
                         type: "POST",
                         dataType: "json",
                         data: { Prefix: request.term },
@@ -288,8 +256,10 @@
                             response($.map(data, function (item) {
 
                                 return {
+
+                                    label: item.Customer_Code,
+                                    value: item.Customer_Code,
                                     label: item.Customer_Name,
-                                    value: item.Customer_Name,
 
 
 
@@ -309,10 +279,29 @@
                         return count + (count > 1 ? ' results' : ' result ') + ' found';
                     }
                 }
-
             });
 
-            
+            //$("#submit").click(function () {
+
+            //    var regNo = $("#registrationId").val();
+            //    if (regNo == "") {
+            //        $("#regErrorMessage").text("Select Your Registration No");
+            //        return false;
+            //    }
+
+            //    var courseId = $("#courseId").val();
+            //    if (courseId == "") {
+            //        $("#courseErrorMessage").text("Select Course");
+            //        return false;
+            //    }
+
+            //    var grade = $("#gradeName").val();
+            //    if (grade == "") {
+            //        $("#gradeErrorMessage").text("Select Grade");
+            //        return false;
+            //    }
+
+            //    });
         });
 
 
@@ -490,7 +479,7 @@
                     //alert(result.rejectList.length);
                     else {
 
-                        $("#Status").html('<font color="Red">Starting ticket already issued. Pease try another."</font>');
+                        $("#Status").html('<font color="Red">Starting ticket already issued."</font>');
                         $('#fromTicket').css("border-color", "Red");
                         //$('#fromTicket').val('');
 
@@ -538,7 +527,7 @@
                     //console.log(result.rejectList);
                     //alert(result.rejectList.length);
                     if (result.rejectList.length > 0) {
-                        $("#Statuss").html('<font color="Red">Ticket No ' + result.rejectList + ' already Issued.</font > ');
+                        $("#Statuss").html('<font color="Red">Ticket: ' + result.rejectList + ' already Issued.</font > ');
                         $('#toticketNo').css("border-color", "Red");
                     }
                     else {

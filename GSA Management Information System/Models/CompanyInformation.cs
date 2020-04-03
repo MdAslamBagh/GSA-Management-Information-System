@@ -37,6 +37,7 @@ namespace GSA_Management_Information_System.Models
         public string Company_Country { get; set; }
         public string Company_ContacNo { get; set; }
         public string Company_Fax { get; set; }
+        [Required(ErrorMessage = "This field can not be empty.")]
         public string Company_Email { get; set; }
         public string Company_Web { get; set; }
         public string Company_Dialogue { get; set; }

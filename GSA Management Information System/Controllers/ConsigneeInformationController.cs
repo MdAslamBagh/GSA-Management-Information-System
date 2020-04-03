@@ -218,6 +218,8 @@ namespace GSA_Management_Information_System.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ConsigneeId,Consignee_Code,Consignee_Name,Consignee_Address,Email,Status,Default_Code,Entry_Date,Entry_By")] ConsigneeInformation objconsignee)
         {
+            var list = new List<string>() { "Active", "Inactive" };
+            ViewBag.list = list;
             if (ModelState.IsValid)
             {
                 var LogedInUser = User.Identity.Name;
@@ -225,9 +227,9 @@ namespace GSA_Management_Information_System.Controllers
                 objconsignee.Entry_Date = DateTime.Now;
                 db.Entry(objconsignee).State = EntityState.Modified;
 
-                var list = db.ConsigneeInformations.Where(a => a.Consignee_Code != objconsignee.Consignee_Code).ToList();
+                var consigneedefault = db.ConsigneeInformations.Where(a => a.Consignee_Code != objconsignee.Consignee_Code).ToList();
 
-                foreach (var item in list)
+                foreach (var item in consigneedefault)
                 {
                     item.Default_Code = false;
 

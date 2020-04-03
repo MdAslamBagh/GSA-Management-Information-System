@@ -18,7 +18,7 @@
                         <div class="form-group col-md-10 col-sm-12 ">
                             <label for="accessname" class="col-md-3 col-sm-5">Menu Name<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">
-                                @Html.EditorFor(model => model.Menu_Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.EditorFor(model => model.Menu_Name, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                                 @Html.ValidationMessageFor(model => model.Menu_Name, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -27,7 +27,7 @@
                         <div class="form-group col-md-10 col-sm-12 ">
                             <label for="controllername" class="col-md-3 col-sm-5">Module Name<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">
-                                @Html.EditorFor(model => model.ModuleIcon, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.EditorFor(model => model.ModuleIcon, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                                 @Html.ValidationMessageFor(model => model.ModuleIcon, "", new { @class = "text-danger" })
                             </div>
                         </div>

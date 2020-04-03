@@ -31,7 +31,7 @@
                                     </div>
                                     <div class="col-sm-5">
                                         <div class="required">
-                                            @Html.EditorFor(model => model.Airlines_Name, new { htmlAttributes = new { @class = "form-control", id = "airlinesname" } })
+                                            @Html.EditorFor(model => model.Airlines_Name, new { htmlAttributes = new { @class = "form-control", id = "airlinesname", required = "required" } })
 
 
                                             @*<input id="airlinesname" name="Long_Desc" placeholder="Airlines" class="form-control" type="text">*@
@@ -40,7 +40,7 @@
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="required">
-                                            @Html.EditorFor(model => model.Airlines_Code, new { htmlAttributes = new { @class = "form-control",id = "airlinescode" } })
+                                            @Html.EditorFor(model => model.Airlines_Code, new { htmlAttributes = new { @class = "form-control",id = "airlinescode",@readonly="readonly", required = "required" } })
                                             @*@Html.EditorFor(model => model.Airlines_Code, new { htmlAttributes = new { @class = "form-control", id = "airlinescode" } })*@
                                             @*<input id="airlinescode" name="Airlines_Code" placeholder="Code" class="form-control" type="text">*@
                                         </div>
@@ -64,18 +64,18 @@
                                             <span id="txtoriginname" style="color:#FF0000;">*</span>
                                         </label>
                                     </div>
-                                    <div class="col-sm-5">
+                                    <div class="col-sm-4">
                                         <div class="required">
-                                            @Html.EditorFor(model => model.Customer_Name, new { htmlAttributes = new { @class = "form-control", id = "customername" } })
+                                            @Html.EditorFor(model => model.Customer_Name, new { htmlAttributes = new { @class = "form-control", id = "customername", required = "required" } })
 
 
                                             @*<input id="customername" name="Customer_Name" placeholder="Customer Name" class="form-control" type="text" value="@ViewBag.Customer_Name">*@
 
                                         </div>
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <div class="required">
-                                            @Html.EditorFor(model => model.Customer_Code, new { htmlAttributes = new { @class = "form-control",id = "customercode" } })
+                                            @Html.EditorFor(model => model.Customer_Code, new { htmlAttributes = new { @class = "form-control",id = "customercode", @readonly = "readonly", required = "required" } })
 
 
                                             @*<input id="customercode" name="Customer_Code" placeholder="Code" class="form-control" type="text">*@
@@ -98,7 +98,7 @@
                                     </div>
                                     <div class="col-sm-5">
                                         <div class="required">
-                                            @Html.EditorFor(model => model.Payment_Name, new { htmlAttributes = new { @class = "form-control", id = "paymentname" } })
+                                            @Html.EditorFor(model => model.Payment_Name, new { htmlAttributes = new { @class = "form-control", id = "paymentname", required = "required" } })
 
 
                                             @*<input id="paymentname" name="Long_Desc" placeholder="Payment Name" class="form-control" type="text">*@
@@ -107,7 +107,7 @@
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="required">
-                                            @Html.EditorFor(model => model.Payment_Mode, new { htmlAttributes = new { @class = "form-control", id = "paymentmode" } })
+                                            @Html.EditorFor(model => model.Payment_Mode, new { htmlAttributes = new { @class = "form-control", id = "paymentmode", @readonly = "readonly", required = "required" } })
 
 
                                             @*<input id="paymentmode" name="Payment_Mode" placeholder="Mode" class="form-control" type="text">*@
@@ -127,18 +127,18 @@
                                             <span id="txtoriginname" style="color:#FF0000;">*</span>
                                         </label>
                                     </div>
-                                    <div class="col-sm-5">
+                                    <div class="col-sm-4">
                                         <div class="required">
-                                            @Html.EditorFor(model => model.Bank_Name, new { htmlAttributes = new { @class = "form-control", id = "bankname" } })
+                                            @Html.EditorFor(model => model.Bank_Name, new { htmlAttributes = new { @class = "form-control", id = "bankname", required = "required" } })
 
 
                                             @*<input id="bankname" name="Long_Desc" placeholder="Bank Name" class="form-control" type="text">*@
 
                                         </div>
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <div class="required">
-                                            @Html.EditorFor(model => model.Bank_Code, new { htmlAttributes = new { @class = "form-control",id = "bankcode" } })
+                                            @Html.EditorFor(model => model.Bank_Code, new { htmlAttributes = new { @class = "form-control",id = "bankcode", @readonly = "readonly", required = "required" } })
 
 
                                             @*<input id="bankcode" name="Bank_Code" placeholder="Code" class="form-control" type="text">*@
@@ -163,7 +163,7 @@
                                     </div>
                                     <div class="col-sm-8">
                                         <div class="required">
-                                            @Html.EditorFor(model => model.Ticket_No, new { htmlAttributes = new { @class = "form-control",id = "Ticket_No" } })
+                                            @Html.EditorFor(model => model.Ticket_No, new { htmlAttributes = new { @class = "form-control",id = "Ticket_No", required = "required" } })
 
 
                                             @*<input id="Ticket_No" name="Ticket_No" placeholder="Ticket_No" class="form-control" type="text">*@
@@ -216,7 +216,7 @@
                                     </div>
                                     <div class="col-sm-8">
                                         <div class="required">
-                                            @Html.EditorFor(model => model.Exchange_Rate, new { htmlAttributes = new { @class = "form-control", id = "exchangerate" } })
+                                            @Html.EditorFor(model => model.Exchange_Rate, new { htmlAttributes = new { @class = "form-control", id = "exchangerate",@readonly="readonly", required = "required" } })
 
 
                                             @*<input id="exchangerate" name="Exchange_Rate" class="form-control" type="text" value="@ViewBag.Exchange_Rate">*@

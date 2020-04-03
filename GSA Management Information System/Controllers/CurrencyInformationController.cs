@@ -28,24 +28,27 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         [HttpGet]
-        public ActionResult Add()
+        public ActionResult Create()
         {
-            String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
-            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
-            ViewBag.Entry_Date = today;
+            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
+            ////String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
+            //ViewBag.Entry_Date = today;
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
             return View();
         }
 
         [HttpPost]
-        public ActionResult Add(CurrencyInformation CurrencyInformation)
+        public ActionResult Create(CurrencyInformation CurrencyInformation)
         {
-            var list = new List<string>() { "Active", "Inactive" };
-            ViewBag.list = list;
+            //var list = new List<string>() { "Active", "Inactive" };
+            //ViewBag.list = list;
 
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                CurrencyInformation.Entry_By = LogedInUser;
+                CurrencyInformation.Entry_Date = DateTime.Now;
                 db.CurrencyInformations.Add(CurrencyInformation);
                 db.SaveChanges();
                 //ViewBag.Message = "Currency Saved Successfully.";
@@ -74,27 +77,27 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         // GET: CurrencyInformation/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
 
         // POST: CurrencyInformation/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CurrencyId,Currency_Code,Long_Desc,Short_Desc,Status,Default_Code,Entry_Date")] CurrencyInformation currencyInformation)
-        {
-            if (ModelState.IsValid)
-            {
-                db.CurrencyInformations.Add(currencyInformation);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "CurrencyId,Currency_Code,Long_Desc,Short_Desc,Status,Default_Code,Entry_Date")] CurrencyInformation currencyInformation)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.CurrencyInformations.Add(currencyInformation);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
 
-            return View(currencyInformation);
-        }
+        //    return View(currencyInformation);
+        //}
 
         // GET: CurrencyInformation/Edit/5
         public ActionResult Edit(int? id)
@@ -118,10 +121,14 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CurrencyId,Currency_Code,Long_Desc,Short_Desc,Status,Default_Code,Entry_Date")] CurrencyInformation currencyInformation)
+        public ActionResult Edit(CurrencyInformation currencyInformation)
         {
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                currencyInformation.Entry_By = LogedInUser;
+                currencyInformation.Entry_Date = DateTime.Now;
+
                 db.Entry(currencyInformation).State = EntityState.Modified;
                 var list = db.CurrencyInformations.Where(a => a.Currency_Code != currencyInformation.Currency_Code).ToList();
 

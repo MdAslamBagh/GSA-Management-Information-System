@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="col-sm-8">
                                     <div class="required">
-                                        @Html.EditorFor(model => model.MAWB, new { htmlAttributes = new { @class = "form-control", id = "mawb" } })
+                                        @Html.EditorFor(model => model.MAWB, new { htmlAttributes = new { @class = "form-control", id = "mawb",required="required" } })
                                         @*<input  name="MAWB" textbox id="mawb" placeholder="MAWB" class="form-control" type="text">*@
                                         @*<input id="mawb"  name="MAWB" type="text" class="form-control" maxlength="50" onkeyup="changeEstericColor(this.id);" placeholder="MAWB">*@
                                     </div>

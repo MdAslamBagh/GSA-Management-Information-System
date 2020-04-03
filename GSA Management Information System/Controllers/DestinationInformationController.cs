@@ -21,8 +21,16 @@ namespace GSA_Management_Information_System.Controllers
         }
         public ActionResult GetData()
         {
-            List<DestinationInformation> Informations = db.DestinationInformations.ToList<DestinationInformation>();
+            var Informations = from destination in db.DestinationInformations join region in db.ContinentInformations on destination.Continent_Code equals region.Continent_Code join country in db.CountryInformations on
+                               destination.Country_Code equals country.Country_Code select new {
+                                   destination.DestinationId,
+                                   Region=region.Long_Desc,
+                                   Country=country.Long_Desc, destination.Dest_Code, destination.Long_Desc, destination.Status, destination.Default_Code};
+            //var s = submenulist.ToList();
+            // List<SubMenuInformation> sebmenu = db.SubMenuInformations.ToList<SubMenuInformation>();
             return Json(new { data = Informations }, JsonRequestBehavior.AllowGet);
+            //List<DestinationInformation> Informations = db.DestinationInformations.ToList<DestinationInformation>();
+            //return Json(new { data = Informations }, JsonRequestBehavior.AllowGet);
 
         }
 
@@ -126,7 +134,9 @@ namespace GSA_Management_Information_System.Controllers
             }
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
-            ViewBag.Continent_Code = new SelectList(db.ContinentInformations, "Continent_Code", "Long_Desc");
+            ViewBag.ContinentList = (db.ContinentInformations.Where(a => a.Continent_Code == a.Continent_Code).ToList());
+
+            //ViewBag.Continent_Code = new SelectList(db.ContinentInformations, "Continent_Code", "Long_Desc");
             ViewBag.Country_Code = new SelectList(db.CountryInformations, "Country_Code", "Long_Desc");
             return View(destinationInformation);
         }

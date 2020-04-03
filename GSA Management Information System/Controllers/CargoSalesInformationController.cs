@@ -349,7 +349,7 @@ namespace GSA_Management_Information_System.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CargoSalesInformation cargoSalesInformation)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid || ModelState.IsValid)
             {
 
 
@@ -454,7 +454,7 @@ namespace GSA_Management_Information_System.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(CargoViewModel cargoedit)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid || ModelState.IsValid)
             {
 
                 CargoSalesInformation cargo = new CargoSalesInformation();
@@ -667,7 +667,7 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         public JsonResult Get_Customer_Name(string Prefix)
-        {
+       {
             ApplicationDbContext db = new ApplicationDbContext();
             var Customer_Name = (from c in db.CustomerInformations
                                   where c.Customer_Name.StartsWith(Prefix)

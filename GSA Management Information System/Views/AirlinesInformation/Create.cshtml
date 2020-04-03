@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="form-group">
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="accessname" class="col-md-3 col-sm-5">Airlines Code<font size="2px" color="red">*</font></label>
+                            <label for="accessname" class="col-md-3 col-sm-5">Airlines Code</label>
                             <div class="col-md-6 col-sm-7">
                                 @Html.Editor("Airlines_Code", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 @Html.ValidationMessageFor(model => model.Airlines_Code, "", new { @class = "text-danger" })
@@ -26,14 +26,14 @@
                         <div class="form-group col-md-10 col-sm-12 ">
                             <label for="controllername" class="col-md-3 col-sm-5">Airlines<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">
-                                @Html.EditorFor(model => model.Long_Desc, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.EditorFor(model => model.Long_Desc, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                                 @Html.ValidationMessageFor(model => model.Long_Desc, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
                
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Status<font size="2px" color="red">*</font></label>
+                            <label for="controllername" class="col-md-3 col-sm-5">Status</label>
                             <div class="col-md-6 col-sm-7">
                                 @Html.DropDownListFor(Model => Model.Status, new SelectList(ViewBag.list), htmlAttributes: new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
@@ -41,7 +41,7 @@
                         </div>
 
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Default Code<font size="2px" color="red">*</font></label>
+                            <label for="controllername" class="col-md-3 col-sm-5">Default Code</label>
                             <div class="col-md-6 col-sm-7">
                                 <div class="checkbox">
                                     @Html.EditorFor(model => model.Default_Code)

@@ -1,4 +1,7 @@
 
+
+<div class="required">
+
 git bash here:
 aslam@DHKLTINWASLAM MINGW64 /d/Project/Software (master)
 $ git push -u origin master
@@ -57,6 +60,8 @@ git remote add origin https://github.com/MdAslamBagh/GSA-MANAGEMENT-INFORMATION-
 git push -u origin master
 ...
 
+
+vpn password:Asdf1234
 
 
 

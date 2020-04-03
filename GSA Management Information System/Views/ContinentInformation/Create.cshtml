@@ -9,24 +9,24 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-horizontal">
-        <input type="hidden" name="ConsigneeCode" value="@ViewBag.ConsigneeCode" />
+        <input type="hidden" name="ContinentCode" value="@ViewBag.ContinentCode" />
         <div class="container">
             <div class="card ">
                 <div class="card-header bg-info" style="height: 4rem;">Continent Save</div>
                 <div class="row">
                     <div class="form-group">
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="accessname" class="col-md-3 col-sm-5">Continent<font size="2px" color="red">*</font></label>
+                            <label for="accessname" class="col-md-3 col-sm-5">Code<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">
-                                @Html.Editor("Continent_Code", new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.Editor("Continent_Code", new { htmlAttributes = new { @class = "form-control",required = "required", @readonly = "readonly" } })
                                 @Html.ValidationMessageFor(model => model.Continent_Code, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Long Description<font size="2px" color="red">*</font></label>
+                            <label for="controllername" class="col-md-3 col-sm-5">Continent<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">
-                                @Html.EditorFor(model => model.Long_Desc, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.EditorFor(model => model.Long_Desc, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                                 @Html.ValidationMessageFor(model => model.Long_Desc, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -34,7 +34,7 @@
                         <div class="form-group col-md-10 col-sm-12 ">
                             <label for="controllername" class="col-md-3 col-sm-5">FSC Charge<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">
-                                @Html.EditorFor(model => model.FSC_Charge, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.EditorFor(model => model.FSC_Charge, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                                 @Html.ValidationMessageFor(model => model.FSC_Charge, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -42,13 +42,13 @@
                         <div class="form-group col-md-10 col-sm-12 ">
                             <label for="controllername" class="col-md-3 col-sm-5">ISS Charge<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">
-                                @Html.EditorFor(model => model.ISS_Charge, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.EditorFor(model => model.ISS_Charge, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                                 @Html.ValidationMessageFor(model => model.ISS_Charge, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Status<font size="2px" color="red">*</font></label>
+                            <label for="controllername" class="col-md-3 col-sm-5">Status</label>
                             <div class="col-md-6 col-sm-7">
                                 @Html.DropDownListFor(Model => Model.Status, new SelectList(ViewBag.list), htmlAttributes: new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
@@ -56,7 +56,7 @@
                         </div>
 
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Default Code<font size="2px" color="red">*</font></label>
+                            <label for="controllername" class="col-md-3 col-sm-5">Default</label>
                             <div class="col-md-6 col-sm-7">
                                 <div class="checkbox">
                                     @Html.EditorFor(model => model.Default_Code)

@@ -45,7 +45,7 @@ namespace GSA_Management_Information_System.Controllers
         // GET: TicketSalesInformation/Create
         public ActionResult Create()
         {
-            
+
             List<ExchangeInformation> exchangeInformations = db.ExchangeInformations.Where(a => a.Default_Code == true).ToList<ExchangeInformation>();
             ExchangeInformation exchange = new ExchangeInformation();
             exchange = exchangeInformations.FirstOrDefault();
@@ -53,6 +53,36 @@ namespace GSA_Management_Information_System.Controllers
             ViewBag.Exchange_Rate = e_Rate;
             String time = DateTime.Now.ToString("MM/dd/yyyy");
             ViewBag.Ticket_Date = time;
+
+            List<CustomerInformation> customerInformations = db.CustomerInformations.Where(a => a.Default_Code == true).ToList<CustomerInformation>();
+            CustomerInformation customer = new CustomerInformation();
+            customer = customerInformations.FirstOrDefault();
+            string c_Name = customer.Customer_Name;
+            string c_Code = customer.Customer_Code;
+            ViewBag.Customer_Name = c_Name;
+            ViewBag.Customer_Code = c_Code;
+            List<PaymentModeInformation> paymentmodeInformations = db.PaymentModeInformations.Where(a => a.Default_Code == true).ToList<PaymentModeInformation>();
+            PaymentModeInformation paymentmode = new PaymentModeInformation();
+            paymentmode = paymentmodeInformations.FirstOrDefault();
+            string pm_Name = paymentmode.Long_Desc;
+            string pm_mode = paymentmode.Payment_Mode;
+            ViewBag.Payment_Name = pm_Name;
+            ViewBag.Payment_Mode = pm_mode;
+            List<BankInformation> bankInformations = db.BankInformations.Where(a => a.Default_Code == true).ToList<BankInformation>();
+            BankInformation bank = new BankInformation();
+            bank = bankInformations.FirstOrDefault();
+            string b_Name = bank.Long_Desc;
+            string b_code = bank.Bank_Code.ToString();
+            ViewBag.Bank_Name = b_Name;
+            ViewBag.Bank_code = b_code;
+
+            List<AirlinesInformation> airlinesInformations = db.AirlinesInformations.Where(a => a.Default_Code == true).ToList<AirlinesInformation>();
+            AirlinesInformation airlines = new AirlinesInformation();
+            airlines = airlinesInformations.FirstOrDefault();
+            string airlines_name = airlines.Long_Desc;
+            string airlines_Code = airlines.Airlines_Code.ToString();
+            ViewBag.Airlines = airlines_name;
+            ViewBag.Airlines_Code = airlines_Code;
 
             List<TicketSalesInformation> Informations = db.TicketSalesInformations.OrderByDescending(a => a.TicketSalesId).ToList<TicketSalesInformation>();
 
@@ -88,7 +118,7 @@ namespace GSA_Management_Information_System.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(TicketSalesInformation ticketSalesInformation)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid ||ModelState.IsValid)
             {
                 var LogedInUser = User.Identity.Name;
                 ticketSalesInformation.Entry_By = LogedInUser;
@@ -104,8 +134,8 @@ namespace GSA_Management_Information_System.Controllers
         {
             ApplicationDbContext db = new ApplicationDbContext();
             var Airlines_Name = (from c in db.AirlinesInformations
-                                  where c.Long_Desc.StartsWith(Prefix)
-                                  select new { c.Long_Desc });
+                                 where c.Long_Desc.StartsWith(Prefix)
+                                 select new { c.Long_Desc });
             return Json(Airlines_Name, JsonRequestBehavior.AllowGet);
 
         }
@@ -150,8 +180,8 @@ namespace GSA_Management_Information_System.Controllers
         {
             ApplicationDbContext db = new ApplicationDbContext();
             var bank_Name = (from c in db.BankInformations
-                                where c.Long_Desc.StartsWith(Prefix)
-                                select new { c.Long_Desc });
+                             where c.Long_Desc.StartsWith(Prefix)
+                             select new { c.Long_Desc });
             return Json(bank_Name, JsonRequestBehavior.AllowGet);
 
         }
@@ -186,53 +216,58 @@ namespace GSA_Management_Information_System.Controllers
 
 
             var ticketdata = (from ticketsales in db.TicketSalesInformations
-                             join airlines in db.AirlinesInformations on ticketsales.Airlines_Code equals airlines.Airlines_Code
-                             join bank in db.BankInformations on ticketsales.Bank_Code equals bank.Bank_Code
-                             join customer in db.CustomerInformations on ticketsales.Customer_Code equals customer.Customer_Code
-                             join payment in db.PaymentModeInformations on ticketsales.Payment_Mode equals payment.Payment_Mode
-                             where ticketsales.TicketSalesId== ticketSalesInformation.TicketSalesId
-                              select new 
-                             {
-                                 TicketSalesId=ticketSalesInformation.TicketSalesId,
-                                 Airlines = airlines.Long_Desc,
-                                 Bank = bank.Long_Desc,
-                                 Customer = customer.Customer_Name,
-                                 Payment = payment.Payment_Mode
+                              join airlines in db.AirlinesInformations on ticketsales.Airlines_Code equals airlines.Airlines_Code
+                              join bank in db.BankInformations on ticketsales.Bank_Code equals bank.Bank_Code
+                              join customer in db.CustomerInformations on ticketsales.Customer_Code equals customer.Customer_Code
+                              join payment in db.PaymentModeInformations on ticketsales.Payment_Mode equals payment.Payment_Mode
+                              where ticketsales.TicketSalesId == ticketSalesInformation.TicketSalesId
+                              select new
+                              {
+                                  Airlines = airlines.Long_Desc,
+                                  Bank = bank.Long_Desc,
+                                  Customer = customer.Customer_Name,
+                                  Payment = payment.Long_Desc
 
 
-                             }).FirstOrDefault();
+                              }).FirstOrDefault();
 
 
             return View(new TicketSalesViewModel()
             {
-                TicketSalesId = Convert.ToInt32(ticketdata.TicketSalesId),              
-                Airlines_Name=ticketdata.Airlines,
+                TicketSalesId = ticketSalesInformation.TicketSalesId,
+
+                Airlines_Name = ticketdata.Airlines,
+                Airlines_Code = ticketSalesInformation.Airlines_Code,
+
                 Bank_Name = ticketdata.Bank,
-                Payment_Name = ticketdata.Customer,
-                Customer_Name = ticketdata.Payment,
-                Airlines_Code= ticketSalesInformation.Airlines_Code,
-                Customer_Code= ticketSalesInformation.Customer_Code,
-                Payment_Mode= ticketSalesInformation.Payment_Mode,
-                Bank_Code= ticketSalesInformation.Bank_Code,
-                Ticket_No= ticketSalesInformation.Ticket_No,
-                //Ticket_Date= ticketSalesInformation.Ticket_Date,
-                
-                Exchange_Rate= ticketSalesInformation.Exchange_Rate,
-                Sales_Value_USD= ticketSalesInformation.Sales_Value_USD,
-                Sales_Value_BDT= ticketSalesInformation.Sales_Value_BDT,
-                Commison=ticketSalesInformation.Commison,
-                Commison_Amount= ticketSalesInformation.Commison_Amount,
-                Emb_Tax= ticketSalesInformation.Emb_Tax,
-                Travel_Tax= ticketSalesInformation.Travel_Tax,
-                Fuel_Charge= ticketSalesInformation.Fuel_Charge,
-                Hk_Tax= ticketSalesInformation.Hk_Tax,
-                Xt_Charge=ticketSalesInformation.Xt_Charge,
-                Other_Charge= ticketSalesInformation.Other_Charge,
-                Discount= ticketSalesInformation.Discount,
-                Net_Receivable_Amount= ticketSalesInformation.Net_Receivable_Amount,
-                Received_Amount=ticketSalesInformation.Received_Amount,
-                Amount_In_PPRS=ticketSalesInformation.Amount_In_PPRS,
-                Remarks=ticketSalesInformation.Remarks
+                Bank_Code = ticketSalesInformation.Bank_Code,
+
+
+                Payment_Name = ticketdata.Payment,
+                Payment_Mode = ticketSalesInformation.Payment_Mode,
+
+                Customer_Name = ticketdata.Customer,
+                Customer_Code = ticketSalesInformation.Customer_Code,
+          
+                Ticket_No = ticketSalesInformation.Ticket_No,
+                Ticket_Date= ticketSalesInformation.Ticket_Date,
+
+                Exchange_Rate = ticketSalesInformation.Exchange_Rate,
+                Sales_Value_USD = ticketSalesInformation.Sales_Value_USD,
+                Sales_Value_BDT = ticketSalesInformation.Sales_Value_BDT,
+                Commison = ticketSalesInformation.Commison,
+                Commison_Amount = ticketSalesInformation.Commison_Amount,
+                Emb_Tax = ticketSalesInformation.Emb_Tax,
+                Travel_Tax = ticketSalesInformation.Travel_Tax,
+                Fuel_Charge = ticketSalesInformation.Fuel_Charge,
+                Hk_Tax = ticketSalesInformation.Hk_Tax,
+                Xt_Charge = ticketSalesInformation.Xt_Charge,
+                Other_Charge = ticketSalesInformation.Other_Charge,
+                Discount = ticketSalesInformation.Discount,
+                Net_Receivable_Amount = ticketSalesInformation.Net_Receivable_Amount,
+                Received_Amount = ticketSalesInformation.Received_Amount,
+                Amount_In_PPRS = ticketSalesInformation.Amount_In_PPRS,
+                Remarks = ticketSalesInformation.Remarks
             });
         }
 
@@ -241,44 +276,59 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(TicketSalesInformation ticketSalesInformation)
+        public ActionResult Edit(TicketSalesViewModel ticketSalesInformation)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid ||ModelState.IsValid)
             {
+                TicketSalesInformation ticketInformation = db.TicketSalesInformations.Find(ticketSalesInformation.TicketSalesId);
+
                 var LogedInUser = User.Identity.Name;
-                ticketSalesInformation.Entry_By = LogedInUser;
-                ticketSalesInformation.Entry_Date = DateTime.Now;
-                db.Entry(ticketSalesInformation).State = EntityState.Modified;
+                ticketInformation.Entry_By = LogedInUser;
+                ticketInformation.Entry_Date = DateTime.Now;
+
+                ticketInformation.Airlines_Code = ticketSalesInformation.Airlines_Code;
+                ticketInformation.Customer_Code = ticketSalesInformation.Customer_Code;
+                ticketInformation.Payment_Mode = ticketSalesInformation.Payment_Mode;
+                ticketInformation.Bank_Code = ticketSalesInformation.Bank_Code;
+                ticketInformation.Ticket_No = ticketSalesInformation.Ticket_No;
+                ticketInformation.Ticket_Date = ticketSalesInformation.Ticket_Date;
+                ticketInformation.Exchange_Rate = ticketSalesInformation.Exchange_Rate;
+                ticketInformation.Sales_Value_USD = ticketSalesInformation.Sales_Value_USD;
+                ticketInformation.Sales_Value_BDT = ticketSalesInformation.Sales_Value_BDT;
+                ticketInformation.Commison = ticketSalesInformation.Commison;
+                ticketInformation.Commison_Amount = ticketSalesInformation.Commison_Amount;
+                ticketInformation.Emb_Tax = ticketSalesInformation.Emb_Tax;
+                ticketInformation.Travel_Tax = ticketSalesInformation.Travel_Tax;
+                ticketInformation.Fuel_Charge = ticketSalesInformation.Fuel_Charge;
+                ticketInformation.Hk_Tax = ticketSalesInformation.Hk_Tax;
+                ticketInformation.Xt_Charge = ticketSalesInformation.Xt_Charge;
+                ticketInformation.Other_Charge = ticketSalesInformation.Other_Charge;
+                ticketInformation.Discount = ticketSalesInformation.Discount;
+                ticketInformation.Net_Receivable_Amount = ticketSalesInformation.Net_Receivable_Amount;
+                ticketInformation.Received_Amount = ticketSalesInformation.Received_Amount;
+                ticketInformation.Amount_In_PPRS = ticketSalesInformation.Amount_In_PPRS;
+                ticketInformation.Remarks = ticketSalesInformation.Remarks;
+             
+
+
+                db.Entry(ticketInformation).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(ticketSalesInformation);
         }
 
-        // GET: TicketSalesInformation/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            TicketSalesInformation ticketSalesInformation = db.TicketSalesInformations.Find(id);
-            if (ticketSalesInformation == null)
-            {
-                return HttpNotFound();
-            }
-            return View(ticketSalesInformation);
-        }
 
-        // POST: TicketSalesInformation/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        [HttpPost]
+        public ActionResult Delete(int id)
         {
-            TicketSalesInformation ticketSalesInformation = db.TicketSalesInformations.Find(id);
-            db.TicketSalesInformations.Remove(ticketSalesInformation);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                TicketSalesInformation ticketInformations = db.TicketSalesInformations.Where(x => x.TicketSalesId == id).FirstOrDefault<TicketSalesInformation>();
+                db.TicketSalesInformations.Remove(ticketInformations);
+                db.SaveChanges();
+                return Json(new { success = true, message = "Deleted Successfully" }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         protected override void Dispose(bool disposing)

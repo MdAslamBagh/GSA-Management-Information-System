@@ -43,11 +43,9 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         // GET: ExchangeInformation/Create
-        public ActionResult Add()
+        public ActionResult Create()
         {
-            String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
-            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
-            ViewBag.Entry_Date = today;
+           
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
             ViewBag.Currency_Code = new SelectList(db.CurrencyInformations, "Currency_Code", "Long_Desc");
@@ -59,16 +57,20 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add([Bind(Include = "ExchangeId,Currency_Code,Long_Desc,Exchange_Rate,Status,Default_Code,Entry_Date")] ExchangeInformation exchangeInformation)
+        public ActionResult Create(ExchangeInformation exchangeInformation)
         {
-            
+            var list = new List<string>() { "Active", "Inactive" };
+            ViewBag.list = list;
             //objconsignee = Informations.FirstOrDefault();
             //ViewBag.ConsignorCode = information.Consignor_Code + 1;
             //int code = objconsignee.Consignee_Code + 1;
-           // exchangeInformation.Exchange_Code = ViewBag.Currency_Code;//.PadLeft(4,
+            // exchangeInformation.Exchange_Code = ViewBag.Currency_Code;//.PadLeft(4,
 
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                exchangeInformation.Entry_By = LogedInUser;
+                exchangeInformation.Entry_Date = DateTime.Now;
                 db.ExchangeInformations.Add(exchangeInformation);
                 var exchangeList = db.ExchangeInformations.Where(a => a.ExchangeId != exchangeInformation.ExchangeId).ToList();
 
@@ -107,13 +109,18 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ExchangeId,Currency_Code,Long_Desc,Exchange_Rate,Status,Default_Code,Entry_Date")] ExchangeInformation exchangeInformation)
+        public ActionResult Edit(ExchangeInformation exchangeInformation)
         {
+            var list = new List<string>() { "Active", "Inactive" };
+            ViewBag.list = list;
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                exchangeInformation.Entry_By = LogedInUser;
+                exchangeInformation.Entry_Date = DateTime.Now;
                 db.Entry(exchangeInformation).State = EntityState.Modified;
-                var list = db.ExchangeInformations.Where(a => a.ExchangeId != exchangeInformation.ExchangeId).ToList();
-                foreach (var item in list)
+                var exchangedefault = db.ExchangeInformations.Where(a => a.ExchangeId != exchangeInformation.ExchangeId).ToList();
+                foreach (var item in exchangedefault)
                 {
                     item.Default_Code = false;
 

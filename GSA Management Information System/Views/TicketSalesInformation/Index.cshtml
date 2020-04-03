@@ -29,10 +29,14 @@
                        width="1550">
                     <thead>
                         <tr>
-                            <th>Sales_Slno</th>
-                            <th>Airlines_Code</th>
-                            <th>Ticket_No</th>
-                            <th>Customer_Code</th>
+                            <th>Ticket Id</th>
+                            <th>Slno</th>
+                            <th>Airlines</th>
+                            <th>Ticket No</th>
+                            <th>Exchange Rate</th>
+                            <th>Sales USD</th>
+                            <th>Sales BDT</th>
+                            <th>Commison</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -69,11 +73,15 @@
 
                         },
 
-                        "columns": [
+                            "columns": [
+                            { "data": "TicketSalesId", "visible":false },
                             { "data": "Sales_Slno" },
                             { "data": "Airlines_Code" },
                             { "data": "Ticket_No" },
-                            { "data": "Customer_Code" },
+                            { "data": "Exchange_Rate" },
+                            { "data": "Sales_Value_USD" },
+                            { "data": "Sales_Value_BDT" },
+                            { "data": "Commison" },
                             {
                                 "data": "TicketSalesId", "render": function (data) {
                                     return "<a class='btn btn-default btn-sm' onclick=location.href='@Url.Action("Edit", "TicketSalesInformation")/" + data + "'><i class='fa fa-pencil'></i> Edit</a><a class='btn btn-danger btn-sm'style='margin-left:5px'onclick=Delete(" + data + ")><i class='fa fa-trash'></i> Delete</a>"
@@ -128,7 +136,7 @@
 
                     function Delete(id) {
 
-                        if (confirm('Are you sure you want to delete this Cargo Type record ?'))
+                        if (confirm('Are you sure you want to delete this Ticket record ?'))
                         {
                             $.ajax({
                                 type: "post",

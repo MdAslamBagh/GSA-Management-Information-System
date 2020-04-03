@@ -29,11 +29,11 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <div class="required">
+                                                @*<div class="required">*@
 
-                                                    <input id="companyname" name="Company_Name" placeholder="Company Name" class="form-control" type="text" value="@ViewBag.Company_Name">
+                                                    <input id="companyname" name="Company_Name" placeholder="Company Name" class="form-control" type="text"  required="required" value="@ViewBag.Company_Name">
 
-                                                </div>
+                                                @*</div>*@
                                             </div>
 
                                         </div>
@@ -50,11 +50,11 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <div class="required">
+                                                @*<div class="required">*@
 
-                                                    <input id="companycode" name="Company_Code" placeholder="Company Code" class="form-control" type="text" value="@ViewBag.Company_Code">
+                                                    <input id="companycode" name="Company_Code" placeholder="Company Code" readonly class="form-control" type="text" required value="@ViewBag.Company_Code">
 
-                                                </div>
+                                                @*</div>*@
                                             </div>
                                         </div>
                                     </div>
@@ -73,11 +73,11 @@
                                             </label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <div class="required">
+                                            @*<div class="required">*@
 
-                                                <input id="branchname" name="Branch_Name" placeholder="Branch Name" class="form-control" type="text" value="@ViewBag.Branch_Name">
+                                                <input id="branchname" name="Branch_Name" placeholder="Branch Name" class="form-control" type="text" required="required" value="@ViewBag.Branch_Name">
 
-                                            </div>
+                                            @*</div>*@
                                         </div>
 
                                     </div>
@@ -96,7 +96,7 @@
                                         <div class="col-sm-8">
                                             <div class="required">
 
-                                                <input id="branchcode" name="Branch_Code" placeholder="Branch Code" class="form-control" type="text" value="@ViewBag.Branch_Code">
+                                                <input id="branchcode" name="Branch_Code" placeholder="Branch Code" readonly class="form-control" type="text" required="required" value="@ViewBag.Branch_Code">
 
                                             </div>
                                         </div>
@@ -117,11 +117,11 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <div class="required">
+                                                @*<div class="required">*@
 
                                                     <input id="companytin" name="Company_Tin" placeholder="Company Tin" class="form-control" type="text">
 
-                                                </div>
+                                                @*</div>*@
                                             </div>
 
                                         </div>
@@ -138,11 +138,11 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <div class="required">
+                                                @*<div class="required">*@
 
                                                     <input id="companyaddress" name="Company_Address" placeholder="Company_Address" class="form-control" type="text">
 
-                                                </div>
+                                                @*</div>*@
                                             </div>
                                         </div>
                                     </div>
@@ -160,11 +160,11 @@
                                             </label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <div class="required">
+                                            @*<div class="required">*@
 
                                                 <input id="companypostcode" name="Company_Postcode" placeholder="Company Postcode" class="form-control" type="text">
 
-                                            </div>
+                                            @*</div>*@
                                         </div>
 
                                     </div>
@@ -181,11 +181,11 @@
                                             </label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <div class="required">
+                                            @*<div class="required">*@
 
                                                 <input id="companycity" name="Company_City" placeholder="Company City" class="form-control" type="text">
 
-                                            </div>
+                                            @*</div>*@
                                         </div>
                                     </div>
                                 </div>
@@ -204,11 +204,11 @@
                                             </label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <div class="required">
+                                            @*<div class="required">*@
 
                                                 <input id="companycountry" name="Company_Country" placeholder="Country" class="form-control" type="text">
 
-                                            </div>
+                                            @*</div>*@
                                         </div>
 
                                     </div>
@@ -225,11 +225,11 @@
                                             </label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <div class="required">
+                                            @*<div class="required">*@
 
-                                                <input id="companycontact" name="Company_ContacNo" placeholder="Contact No" class="form-control" type="text">
+                                                <input id="companycontact" name="Company_ContacNo" placeholder="Contact No" class="form-control"  type="text">
 
-                                            </div>
+                                            @*</div>*@
                                         </div>
                                     </div>
                                 </div>
@@ -247,13 +247,13 @@
                                             </label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <div class="required">
+                                            @*<div class="required">*@
 
                                                 @*<input id="companypostcode" name="Company_Fax" placeholder="Fax" class="form-control" type="text">*@
                                                 @Html.EditorFor(model => model.Company_Dialogue, new { htmlAttributes = new { @class = "form-control" } })
 
 
-                                            </div>
+                                            @*</div>*@
                                         </div>
 
                                     </div>
@@ -270,11 +270,13 @@
                                             </label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <div class="required">
+                                            @*<div class="required">*@
 
-                                                <input id="companycity" name="Company_Email" placeholder="Email " class="form-control" type="text">
+                                                <input id="companycity" name="Company_Email" placeholder="Email " class="form-control" type="text" required="required">
+                                            @Html.ValidationMessageFor(model => model.Company_Email, "", new { @class = "text-danger" })
 
-                                            </div>
+
+                                            @*</div>*@
                                         </div>
                                     </div>
                                 </div>
@@ -294,11 +296,11 @@
                                         </label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <div class="required">
+                                        @*<div class="required">*@
 
                                             <input id="companydialouge" name="Company_Web" placeholder="Web" class="form-control" type="text">
 
-                                        </div>
+                                        @*</div>*@
                                     </div>
 
                                 </div>
@@ -315,11 +317,11 @@
                                             </label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <div class="required">
+                                            @*<div class="required">*@
 
                                                 <input type="file" name="Company_ImageUpload" required>
 
-                                            </div>
+                                            @*</div>*@
                                         </div>
                                     </div>
                                 </div>
@@ -332,7 +334,7 @@
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <label for="FreighterName">
-                                            Default Code
+                                            Default
                                             <span id="txtFreighterName" style="color:#FF0000;">*</span>
                                         </label>
                                     </div>

@@ -41,11 +41,11 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         // GET: RouteInformation/Create
-        public ActionResult Add()
+        public ActionResult Create()
         {
-            String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
-            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
-            ViewBag.Entry_Date = today;
+            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
+            ////String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
+            //ViewBag.Entry_Date = today;
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
 
@@ -65,15 +65,17 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add([Bind(Include = "RouteId,Route_Code,Long_Desc,Type_Code,Customer_Type,Status,Default_Code,Entry_Date")] RouteInformation routeInformation)
+        public ActionResult Create(RouteInformation routeInformation)
         {
 
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                routeInformation.Entry_By = LogedInUser;
+                routeInformation.Entry_Date = DateTime.Now;
 
-             
                 //check if values is duplicate
                 int count = DuplicateCount(routeInformation);
                 if (count > 0)
@@ -133,10 +135,13 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RouteId,Route_Code,Long_Desc,Type_Code,Customer_Type,Status,Default_Code,Entry_Date")] RouteInformation routeInformation)
+        public ActionResult Edit(RouteInformation routeInformation)
         {
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                routeInformation.Entry_By = LogedInUser;
+                routeInformation.Entry_Date = DateTime.Now;
                 db.Entry(routeInformation).State = EntityState.Modified;
                 var list = db.RouteInformations.Where(a => a.Route_Code != routeInformation.Route_Code).ToList();
 

@@ -21,7 +21,27 @@ namespace GSA_Management_Information_System.Controllers
         }
         public ActionResult GetData()
         {
-            List<CountryInformation> Informations = db.CountryInformations.ToList<CountryInformation>();
+           var Informations = (from country in db.CountryInformations
+             join region in db.ContinentInformations on country.Continent_Code equals region.Continent_Code
+           
+         
+             select new
+             {
+
+                 //TicketSalesId = ticketSalesInformation.TicketSalesId,
+                 CountryId=country.CountryId,
+                 Region = region.Long_Desc,
+                 country.Country_Code,
+                 country.Long_Desc,
+                 country.Status,
+                 country.Default_Code
+                 //Bank = bank.Long_Desc,
+                 //Customer = customer.Customer_Name,
+                 //Payment = payment.Payment_Mode
+
+
+             }).ToList();
+            //List<CountryInformation> Informations = db.CountryInformations.ToList<CountryInformation>();
             return Json(new { data = Informations }, JsonRequestBehavior.AllowGet);
 
         }
@@ -73,7 +93,9 @@ namespace GSA_Management_Information_System.Controllers
             }
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
-            ViewBag.Continent_Code = new SelectList(db.ContinentInformations, "Continent_Code", "Long_Desc");
+            ViewBag.ContinentList = (db.ContinentInformations.Where(a => a.Continent_Code == a.Continent_Code).ToList());
+
+            //ViewBag.Continent_Code = new SelectList(db.ContinentInformations, "Continent_Code", "Long_Desc");
             return View();
         }
 
@@ -118,9 +140,18 @@ namespace GSA_Management_Information_System.Controllers
             return View(countryInformation);
         }
 
+        //
+        public JsonResult GetRegionCodeById(string region)
+        {
+
+            var region_code = db.ContinentInformations.Where(m => m.Long_Desc == region).FirstOrDefault();
+            return Json(region_code, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: CountryInformation/Edit/5
         public ActionResult Edit(int? id)
         {
+            ViewBag.ContinentList = (db.ContinentInformations.Where(a => a.Continent_Code == a.Continent_Code).ToList());
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -132,7 +163,7 @@ namespace GSA_Management_Information_System.Controllers
             }
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
-            ViewBag.Continent_Code = new SelectList(db.ContinentInformations, "Continent_Code", "Long_Desc");
+            //ViewBag.Continent_Code = new SelectList(db.ContinentInformations, "Continent_Code", "Long_Desc");
             return View(countryInformation);
         }
 

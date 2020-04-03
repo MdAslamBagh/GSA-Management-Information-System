@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 @using (Html.BeginForm("Create", "StockRecieveInformation", FormMethod.Post, new { @id = "stockFormId", @class = "form-horizontal", role = "form" }))
@@ -24,89 +25,98 @@
                 <div class="row">
                     <div class="form-group">
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Recieved_Code<font size="2px" color="red">*</font></label>
-                            <div class="col-md-6 col-sm-7">
-                                @Html.Editor("SRecieved_Code", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                            <label for="controllername" class="col-md-3 col-sm-5">Code</label>
+                            <div class="col-md-5 col-sm-7">
+                                @Html.Editor("SRecieved_Code", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", required = "required" } })
                                 @Html.ValidationMessageFor(model => model.SRecieved_Code, "", new { @class = "text-danger" })
                             </div>
+                            
+                                <div class="col-md-3 col-sm-7">
+                                    @Html.DropDownListFor(Model => Model.SR_Type, new SelectList(ViewBag.list), htmlAttributes: new { @class = "hidden" })
+                                    @*@Html.DropDownListFor(Model => Model.SR_Type, new SelectList(ViewBag.list), htmlAttributes: new { @class = "form-control" })*@
+                                    @Html.ValidationMessageFor(model => model.SR_Type, "", new { @class = "hidden" })
+                                </div>
+                            
                         </div>
 
+                      
+
+
+                       
+
                         <div class="form-group col-md-10 col-sm-12 ">
-                            @Html.LabelFor(model => model.SR_Type, htmlAttributes: new { @class = "hidden" })
-                            <div class="col-md-6 col-sm-7">
-                                @Html.DropDownListFor(Model => Model.SR_Type, new SelectList(ViewBag.list), htmlAttributes: new { @class = "hidden" })
-                                @*@Html.DropDownListFor(Model => Model.SR_Type, new SelectList(ViewBag.list), htmlAttributes: new { @class = "form-control" })*@
-                                @Html.ValidationMessageFor(model => model.SR_Type, "", new { @class = "text-danger" })
+                            <label for="controllername" class="col-md-3 col-sm-5">Airlines<font size="2px" color="red">*</font></label>
+                            <div class="col-md-5 col-sm-7">
+                                @Html.DropDownList("Airlines_Code", null, htmlAttributes: new { @class = "form-control", required = "required" })
+                                @Html.ValidationMessageFor(model => model.Airlines_Code, "", new { @class = "text-danger" })
                             </div>
-                        </div>
-
-
-                        <div class="form-group col-md-10 col-sm-12 ">
-                            @Html.LabelFor(model => model.Trans_Date, htmlAttributes: new { @class = "hidden" })
-                            <div class="col-md-6 col-sm-7">
+                            <div class="col-md-3 col-sm-7">
                                 @Html.Editor("Trans_Date", new { htmlAttributes = new { @class = "hidden" } })
                                 @Html.ValidationMessageFor(model => model.Trans_Date, "", new { @class = "hidden" })
                             </div>
                         </div>
 
-                        <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Airlines<font size="2px" color="red">*</font></label>
-                            <div class="col-md-6 col-sm-7">
-                                @Html.DropDownList("Airlines_Code", null, htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Airlines_Code, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
                      
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">From_TicketNo<font size="2px" color="red">*</font></label>
-                            <div class="col-md-6 col-sm-7">
-                                @Html.EditorFor(model => model.From_TicketNo, new { htmlAttributes = new { @class = "form-control", id = "fromTicket", @maxlength = "7", onchange = "StartingTicketcheck()" } })
+                            <label for="controllername" class="col-md-3 col-sm-5">From Ticket<font size="2px" color="red">*</font></label>
+                            <div class="col-md-5 col-sm-7">
+                                @Html.EditorFor(model => model.From_TicketNo, new { htmlAttributes = new { @class = "form-control", id = "fromTicket", @maxlength = "7", onchange = "StartingTicketcheck()", required = "required", @placeholder = "From Ticket" } })
                                 @Html.ValidationMessageFor(model => model.From_TicketNo, "", new { @class = "text-danger" })
                             </div>
-                        </div>
-                        <div class="form-group col-md-10 col-sm-6 ">
-                            <label class="col-sm-3"></label>
-                            <div class="col-md-6 col-sm-7">
+                            <div class="col-md-4 col-sm-7">
                                 <p id="Status" />
                             </div>
                         </div>
+                       
 
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">To_TicketNo<font size="2px" color="red">*</font></label>
-                            <div class="col-md-6 col-sm-7">
-                                @Html.EditorFor(model => model.To_TicketNo, new { htmlAttributes = new { @class = "form-control", id = "toTicket", @maxlength = "7", onchange = "EndingTicketCheck()" } })
+                            <label for="controllername" class="col-md-3 col-sm-5">To Ticket<font size="2px" color="red">*</font></label>
+                            <div class="col-md-5 col-sm-7">
+                                @Html.EditorFor(model => model.To_TicketNo, new { htmlAttributes = new { @class = "form-control", id = "toTicket", @maxlength = "7", onchange = "EndingTicketCheck()", required = "required", @placeholder = "To Ticket" } })
                                 @Html.ValidationMessageFor(model => model.To_TicketNo, "", new { @class = "text-danger" })
                             </div>
+                            <div class="col-md-4 col-sm-7">
+                                <p id="Statuss" />
+                            </div>
                         </div>
-                        <div class="form-group col-md-10 col-sm-6 ">
+                        @*<div class="form-group col-md-10 col-sm-6 ">
                             <label class="col-sm-3"></label>
                             <div class="col-md-6 col-sm-7">
                                 <p id="Statuss" />
                             </div>
-                        </div>
+                        </div>*@
 
 
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Ticket_Quantity<font size="2px" color="red">*</font></label>
-                            <div class="col-md-6 col-sm-7">
-                                @Html.EditorFor(model => model.Ticket_Quantity, new { htmlAttributes = new { @class = "form-control", id = "ticketQuantity", @readonly = "readonly" } })
+                            <label for="controllername" class="col-md-3 col-sm-5">Quantity<font size="2px" color="red">*</font></label>
+                            <div class="col-md-5 col-sm-7">
+                                @Html.EditorFor(model => model.Ticket_Quantity, new { htmlAttributes = new { @class = "form-control", id = "ticketQuantity", @readonly = "readonly", required = "required" } })
                                 @Html.ValidationMessageFor(model => model.Ticket_Quantity, "", new { @class = "text-danger" })
                             </div>
 
                         </div>
                         <div class="form-group col-md-10 col-sm-12 ">
                             <label for="controllername" class="col-md-3 col-sm-5">Customer<font size="2px" color="red">*</font></label>
-                            <div class="col-md-6 col-sm-7">
-                                @Html.TextBoxFor(model => model.Customer_Code, htmlAttributes: new { @class = "form-control", id = "customercode", @Value = "CRGO-000001" })
+                            <div class="col-md-3 col-sm-7">
+                                <div class="required">
+                                    <input id="customername" name="Customer_Name" placeholder="Customer Name" class="form-control" type="text" value="@ViewBag.Customer_Name" ,required="required">
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-9">
+                                @*@Html.EditorFor(model => model.Customer_Code, new { htmlAttributes = new { @class = "form-control", id = "customercode", value = "@ViewBag.Customer_Code", @readonly= "readonly", required = "required" } })*@
+
+
+                                <input id="customercode" name="Customer_Code" placeholder="Customer Code" class="form-control" type="text" value="@ViewBag.Customer_Code" readonly="readonly",required = "required">
+
+                                @*@Html.TextBoxFor(model => model.Customer_Code, htmlAttributes: new { @class = "form-control", id = "customercode", @Value = "CRGO-000001" })*@
                                 @Html.ValidationMessageFor(model => model.Customer_Code, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Remarks<font size="2px" color="red">*</font></label>
-                            <div class="col-md-6 col-sm-7">
-                                @Html.TextAreaFor(model => model.Remarks, 2, 52, new { htmlAttributes = new { @class = "form-control" } })
+                            <label for="controllername" class="col-md-3 col-sm-5">Remarks</label>
+                            <div class="col-md-5 col-sm-7">
+                                @Html.TextAreaFor(model => model.Remarks, 1, 43, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -123,7 +133,7 @@
                         <div class="form-group col-md-10 col-sm-12 ">
                             <div class="col-md-10">
                                 <div align="center">
-                                    <a class="btn btn-primary" style="margin-left:10px" onclick="location.href='@Url.Action("Index", "StockIssueInformation")'"><i class="fa fa-plus"></i>Back To List</a>
+                                    <a class="btn btn-primary" style="margin-left:10px" onclick="location.href='@Url.Action("Index", "StockRecieveInformation")'"><i class="fa fa-plus"></i>Back To List</a>
                                     <input type="button" onclick="checkingFrom()" value="submit" class="btn btn-info" />
                                 </div>
                             </div>
@@ -286,7 +296,7 @@
                 }
                 else {
 
-                    $("#Status").html('<font color="Red">Starting ticket already received. Pease try another."</font>');
+                    $("#Status").html('<font color="Red">Starting ticket already received"</font>');
                     $('#fromTicket').css("border-color", "Red");
                     //$('#fromTicket').val('');
 
@@ -317,11 +327,11 @@
                     //console.log(result.rejectList);
                     //alert(result.rejectList.length);
                     if (result.rejectList.length > 1) {
-                        $("#Statuss").html('<font color="Red">Ticket No ' + result.rejectList + ' already received.Please try another.</font > ');
+                        $("#Statuss").html('<font color="Red">Ticket No ' + result.rejectList + ' already received</font > ');
                         $('#toTicket').css("border-color", "Red");
                     }
                     else {
-                        $("#Statuss").html('<font color="Red">Ending ticket already received. Please try another.</font>');
+                        $("#Statuss").html('<font color="Red">Ending ticket already received</font>');
                         $('#toTicket').css("border-color", "Red");
                     }
 
@@ -405,7 +415,81 @@
          }
 
 
+      
+        
+
+
+
 </script>
+
+<script>
+         jQuery.noConflict()(function ($) {
+             //Customer
+             $("#customername").keyup(function () {
+                 var customerdata = $("#customername").val();
+                 if (customerdata === '') {
+                     $('#customercode').val('');
+                    
+                 }
+                 else
+                     var jsonData = { customername: customerdata };
+                 $("#ReceivedIdErrorMessage").text("");
+                 $.ajax({
+                     type: "POST",
+                     url: "/StockRecieveInformation/GetCustomerCodeById",
+                     contentType: "application/json; charset=utf-8",
+                     data: JSON.stringify(jsonData),
+                     dataType: "json",
+                     success: function (data) {
+                         //  alert("Success ");
+                         $("#customercode").val(data.Customer_Code);
+                       
+
+
+                     },
+                 });
+
+                 return false;
+
+             });
+             $("#customername").autocomplete({
+                 source: function (request, response) {
+                     $.ajax({
+                         url: "/StockRecieveInformation/Get_Customer_Name",
+                         type: "POST",
+                         dataType: "json",
+                         data: { Prefix: request.term },
+
+                         success: function (data) {
+
+                             response($.map(data, function (item) {
+
+                                 return {
+                                     label: item.Customer_Name,
+                                     value: item.Customer_Name,
+
+
+
+
+
+                                 };
+
+
+                             }))
+
+                         }
+                     })
+                 },
+                 messages: {
+                     noResults: "",
+                     results: function (count) {
+                         return count + (count > 1 ? ' results' : ' result ') + ' found';
+                     }
+                 }
+
+             });
+         })
+    </script>
 
 
 

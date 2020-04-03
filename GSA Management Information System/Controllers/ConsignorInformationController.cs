@@ -184,6 +184,8 @@ namespace GSA_Management_Information_System.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ConsignorInformation consignorInformation)
         {
+            var list = new List<string>() { "Active", "Inactive" };
+            ViewBag.list = list;
             if (ModelState.IsValid)
             {
                 var LogedInUser = User.Identity.Name;
@@ -191,9 +193,9 @@ namespace GSA_Management_Information_System.Controllers
                 consignorInformation.Entry_Date = DateTime.Now;
                 db.Entry(consignorInformation).State = EntityState.Modified;
 
-                var list = db.ConsignorInformations.Where(a => a.Consignor_Code != consignorInformation.Consignor_Code).ToList();
+                var consignordefault = db.ConsignorInformations.Where(a => a.Consignor_Code != consignorInformation.Consignor_Code).ToList();
 
-                foreach (var item in list)
+                foreach (var item in consignordefault)
                 {
                     item.Default_Code = false;
 

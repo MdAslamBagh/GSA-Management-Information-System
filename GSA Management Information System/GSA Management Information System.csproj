@@ -639,6 +639,90 @@
     <Compile Include="Migrations\202003240419075_initial88.Designer.cs">
       <DependentUpon>202003240419075_initial88.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003291327509_initial89.cs" />
+    <Compile Include="Migrations\202003291327509_initial89.Designer.cs">
+      <DependentUpon>202003291327509_initial89.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003291436318_initial90.cs" />
+    <Compile Include="Migrations\202003291436318_initial90.Designer.cs">
+      <DependentUpon>202003291436318_initial90.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003291442299_initial91.cs" />
+    <Compile Include="Migrations\202003291442299_initial91.Designer.cs">
+      <DependentUpon>202003291442299_initial91.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003291506539_initial92.cs" />
+    <Compile Include="Migrations\202003291506539_initial92.Designer.cs">
+      <DependentUpon>202003291506539_initial92.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003291519516_initial93.cs" />
+    <Compile Include="Migrations\202003291519516_initial93.Designer.cs">
+      <DependentUpon>202003291519516_initial93.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003291528103_initial94.cs" />
+    <Compile Include="Migrations\202003291528103_initial94.Designer.cs">
+      <DependentUpon>202003291528103_initial94.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003291611558_initial95.cs" />
+    <Compile Include="Migrations\202003291611558_initial95.Designer.cs">
+      <DependentUpon>202003291611558_initial95.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003291838423_initial96.cs" />
+    <Compile Include="Migrations\202003291838423_initial96.Designer.cs">
+      <DependentUpon>202003291838423_initial96.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003300055443_initial97.cs" />
+    <Compile Include="Migrations\202003300055443_initial97.Designer.cs">
+      <DependentUpon>202003300055443_initial97.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003300118041_initial98.cs" />
+    <Compile Include="Migrations\202003300118041_initial98.Designer.cs">
+      <DependentUpon>202003300118041_initial98.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003300223407_initial99.cs" />
+    <Compile Include="Migrations\202003300223407_initial99.Designer.cs">
+      <DependentUpon>202003300223407_initial99.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003300334251_initial100.cs" />
+    <Compile Include="Migrations\202003300334251_initial100.Designer.cs">
+      <DependentUpon>202003300334251_initial100.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003300346538_initial101.cs" />
+    <Compile Include="Migrations\202003300346538_initial101.Designer.cs">
+      <DependentUpon>202003300346538_initial101.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003310324224_initial102.cs" />
+    <Compile Include="Migrations\202003310324224_initial102.Designer.cs">
+      <DependentUpon>202003310324224_initial102.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003311217436_initial103.cs" />
+    <Compile Include="Migrations\202003311217436_initial103.Designer.cs">
+      <DependentUpon>202003311217436_initial103.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004010332569_initial104.cs" />
+    <Compile Include="Migrations\202004010332569_initial104.Designer.cs">
+      <DependentUpon>202004010332569_initial104.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004011050206_initial105.cs" />
+    <Compile Include="Migrations\202004011050206_initial105.Designer.cs">
+      <DependentUpon>202004011050206_initial105.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004020015157_initial106.cs" />
+    <Compile Include="Migrations\202004020015157_initial106.Designer.cs">
+      <DependentUpon>202004020015157_initial106.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004021310052_initial107.cs" />
+    <Compile Include="Migrations\202004021310052_initial107.Designer.cs">
+      <DependentUpon>202004021310052_initial107.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004021448075_initial108.cs" />
+    <Compile Include="Migrations\202004021448075_initial108.Designer.cs">
+      <DependentUpon>202004021448075_initial108.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004030236512_initial109.cs" />
+    <Compile Include="Migrations\202004030236512_initial109.Designer.cs">
+      <DependentUpon>202004030236512_initial109.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccessInformation.cs" />
     <Compile Include="Models\AccessListInformation.cs" />
@@ -2965,7 +3049,7 @@
     <Content Include="Views\Cargo_Debit_Credit_Note\Details.cshtml" />
     <Content Include="Views\Cargo_Debit_Credit_Note\Edit.cshtml" />
     <Content Include="Views\Cargo_Debit_Credit_Note\Index.cshtml" />
-    <Content Include="Views\CityInformation\Add.cshtml" />
+    <Content Include="Views\CityInformation\Create.cshtml" />
     <Content Include="Views\CityInformation\Delete.cshtml" />
     <Content Include="Views\CityInformation\Details.cshtml" />
     <Content Include="Views\CityInformation\Edit.cshtml" />
@@ -3481,6 +3565,69 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003240419075_initial88.resx">
       <DependentUpon>202003240419075_initial88.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003291327509_initial89.resx">
+      <DependentUpon>202003291327509_initial89.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003291436318_initial90.resx">
+      <DependentUpon>202003291436318_initial90.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003291442299_initial91.resx">
+      <DependentUpon>202003291442299_initial91.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003291506539_initial92.resx">
+      <DependentUpon>202003291506539_initial92.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003291519516_initial93.resx">
+      <DependentUpon>202003291519516_initial93.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003291528103_initial94.resx">
+      <DependentUpon>202003291528103_initial94.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003291611558_initial95.resx">
+      <DependentUpon>202003291611558_initial95.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003291838423_initial96.resx">
+      <DependentUpon>202003291838423_initial96.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003300055443_initial97.resx">
+      <DependentUpon>202003300055443_initial97.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003300118041_initial98.resx">
+      <DependentUpon>202003300118041_initial98.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003300223407_initial99.resx">
+      <DependentUpon>202003300223407_initial99.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003300334251_initial100.resx">
+      <DependentUpon>202003300334251_initial100.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003300346538_initial101.resx">
+      <DependentUpon>202003300346538_initial101.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003310324224_initial102.resx">
+      <DependentUpon>202003310324224_initial102.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003311217436_initial103.resx">
+      <DependentUpon>202003311217436_initial103.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004010332569_initial104.resx">
+      <DependentUpon>202004010332569_initial104.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004011050206_initial105.resx">
+      <DependentUpon>202004011050206_initial105.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004020015157_initial106.resx">
+      <DependentUpon>202004020015157_initial106.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004021310052_initial107.resx">
+      <DependentUpon>202004021310052_initial107.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004021448075_initial108.resx">
+      <DependentUpon>202004021448075_initial108.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004030236512_initial109.resx">
+      <DependentUpon>202004030236512_initial109.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Models\Reports\Cargo\crpBangladeshBankReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

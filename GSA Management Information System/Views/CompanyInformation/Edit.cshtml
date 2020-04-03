@@ -34,7 +34,7 @@
                                             <div class="col-sm-8">
                                                 <div class="required">
 
-                                                    @Html.EditorFor(model => model.Company_Name, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.EditorFor(model => model.Company_Name, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                                                     @Html.ValidationMessageFor(model => model.Company_Name, "", new { @class = "text-danger" })
 
                                                 </div>
@@ -56,7 +56,7 @@
                                             <div class="col-sm-8">
                                                 <div class="required">
 
-                                                    @Html.EditorFor(model => model.Company_Code, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.EditorFor(model => model.Company_Code, new { htmlAttributes = new { @class = "form-control", required = "required",@readonly="readonly" } })
                                                     @Html.ValidationMessageFor(model => model.Company_Code, "", new { @class = "text-danger" })
 
                                                 </div>
@@ -80,7 +80,7 @@
                                         <div class="col-sm-8">
                                             <div class="required">
 
-                                                @Html.EditorFor(model => model.Branch_Name, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.EditorFor(model => model.Branch_Name, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                                                 @Html.ValidationMessageFor(model => model.Branch_Name, "", new { @class = "text-danger" })
 
                                             </div>
@@ -101,7 +101,7 @@
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="required">
-                                                @Html.EditorFor(model => model.Branch_Code, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.EditorFor(model => model.Branch_Code, new { htmlAttributes = new { @class = "form-control", required = "required", @readonly = "readonly" } })
                                                 @Html.ValidationMessageFor(model => model.Branch_Code, "", new { @class = "text-danger" })
 
                                             </div>
@@ -123,11 +123,9 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <div class="required">
                                                     @Html.EditorFor(model => model.Company_Tin, new { htmlAttributes = new { @class = "form-control" } })
                                                     @Html.ValidationMessageFor(model => model.Company_Tin, "", new { @class = "text-danger" })
 
-                                                </div>
                                             </div>
 
                                         </div>
@@ -144,11 +142,9 @@
                                                 </label>
                                             </div>
                                             <div class="col-sm-8">
-                                                <div class="required">
                                                     @Html.EditorFor(model => model.Company_Address, new { htmlAttributes = new { @class = "form-control" } })
                                                     @Html.ValidationMessageFor(model => model.Company_Address, "", new { @class = "text-danger" })
 
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -166,10 +162,8 @@
                                             </label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <div class="required">
                                                 @Html.EditorFor(model => model.Company_Postcode, new { htmlAttributes = new { @class = "form-control" } })
                                                 @Html.ValidationMessageFor(model => model.Company_Postcode, "", new { @class = "text-danger" })
-                                            </div>
                                         </div>
 
                                     </div>
@@ -210,11 +204,9 @@
                                             </label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <div class="required">
                                                 @Html.EditorFor(model => model.Company_Country, new { htmlAttributes = new { @class = "form-control" } })
                                                 @Html.ValidationMessageFor(model => model.Company_Country, "", new { @class = "text-danger" })
 
-                                            </div>
                                         </div>
 
                                     </div>
@@ -231,11 +223,9 @@
                                             </label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <div class="required">
                                                 @Html.EditorFor(model => model.Company_ContacNo, new { htmlAttributes = new { @class = "form-control" } })
                                                 @Html.ValidationMessageFor(model => model.Company_ContacNo, "", new { @class = "text-danger" })
 
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -254,11 +244,9 @@
                                             </label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <div class="required">
                                                 @Html.EditorFor(model => model.Company_Dialogue, new { htmlAttributes = new { @class = "form-control" } })
                                                 @Html.ValidationMessageFor(model => model.Company_Dialogue, "", new { @class = "text-danger" })
 
-                                            </div>
                                         </div>
 
                                     </div>
@@ -275,11 +263,9 @@
                                             </label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <div class="required">
-                                                @Html.EditorFor(model => model.Company_Email, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.EditorFor(model => model.Company_Email, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                                                 @Html.ValidationMessageFor(model => model.Company_Email, "", new { @class = "text-danger" })
 
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -299,11 +285,9 @@
                                             </label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <div class="required">
                                                 @Html.EditorFor(model => model.Company_Web, new { htmlAttributes = new { @class = "form-control" } })
                                                 @Html.ValidationMessageFor(model => model.Company_Web, "", new { @class = "text-danger" })
 
-                                            </div>
                                         </div>
 
                                     </div>
@@ -338,11 +322,9 @@
                                             </label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <div class="required">
                                                 @Html.EditorFor(model => model.Company_ImagePath, new { htmlAttributes = new { @class = "form-control" } })
                                                 @Html.ValidationMessageFor(model => model.Company_ImagePath, "", new { @class = "text-danger" })
 
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -357,19 +339,17 @@
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <label for="FreighterName">
-                                            Default Code
+                                            Default
                                             <span id="txtFreighterName" style="color:#FF0000;">*</span>
                                         </label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <div class="required">
                                             <div class="checkbox">
                                                 @Html.EditorFor(model => model.Default_Code)
                                                 @Html.ValidationMessageFor(model => model.Default_Code, "", new { @class = "text-danger" })
                                             </div>
                                             @*<input id="companydialouge" name="Company_Web" placeholder="Web" class="form-control" type="text">*@
 
-                                        </div>
                                     </div>
 
                                 </div>

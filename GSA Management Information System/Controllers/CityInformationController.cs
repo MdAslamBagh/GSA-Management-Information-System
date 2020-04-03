@@ -42,14 +42,16 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         // GET: CityInformation/Create
-        public ActionResult Add()
+        public ActionResult Create()
         {
-            String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
-            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
-            ViewBag.Entry_Date = today;
+            //String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
+            ////String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
+            //ViewBag.Entry_Date = today;
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
-            ViewBag.Country_Code = new SelectList(db.CountryInformations, "Country_Code", "Long_Desc");
+            ViewBag.CountryList = (db.CountryInformations.Where(a => a.Country_Code == a.Country_Code).ToList());
+
+            //ViewBag.Country_Code = new SelectList(db.CountryInformations, "Country_Code", "Long_Desc");
             return View();
         }
 
@@ -58,13 +60,15 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add([Bind(Include = "CityId,City_Code,Long_Desc,Country_Code,Status,Default_Code,Entry_Date")] CityInformation cityInformation)
+        public ActionResult Create(CityInformation cityInformation)
         {
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
             if (ModelState.IsValid)
             {
-
+                var LogedInUser = User.Identity.Name;
+                cityInformation.Entry_By = LogedInUser;
+                cityInformation.Entry_Date = DateTime.Now;
 
                 //var defaulltcode = db.CityInformations.Where(a => a.Default_Code).ToList();
                 //foreach(var item in defaulltcode)
@@ -97,6 +101,13 @@ namespace GSA_Management_Information_System.Controllers
             return View(cityInformation);
         }
 
+        public JsonResult GetCountryCodeById(string country)
+        {
+
+            var country_code = db.CountryInformations.Where(m => m.Long_Desc == country).FirstOrDefault();
+            return Json(country_code, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: CityInformation/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -111,7 +122,8 @@ namespace GSA_Management_Information_System.Controllers
             }
             var list = new List<string>() { "Active", "Inactive" };
             ViewBag.list = list;
-            ViewBag.Country_Code = new SelectList(db.CountryInformations, "Country_Code", "Long_Desc");
+            ViewBag.CountryList = (db.CountryInformations.Where(a => a.Country_Code == a.Country_Code).ToList());
+            //ViewBag.Country_Code = new SelectList(db.CountryInformations, "Country_Code", "Long_Desc");
             return View(cityInformation);
         }
 
@@ -120,10 +132,13 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CityId,City_Code,Long_Desc,Country_Code,Status,Default_Code,Entry_Date")] CityInformation cityInformation)
+        public ActionResult Edit( CityInformation cityInformation)
         {
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                cityInformation.Entry_By = LogedInUser;
+                cityInformation.Entry_Date = DateTime.Now;
                 db.Entry(cityInformation).State = EntityState.Modified;
 
                 var list = db.CityInformations.Where(a => a.City_Code != cityInformation.City_Code).ToList();
