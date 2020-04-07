@@ -1,26 +1,27 @@
 ﻿@model GSA_Management_Information_System.Models.CommonSetupInformation
-
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Create";
 }
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-@using (Html.BeginForm("Edit", "CommonSetupInformation", FormMethod.Post, new { onSubmit = "return SubmitForm(this)" }))
+@using (Html.BeginForm("Create", "CommonSetupInformation", FormMethod.Post, new { onSubmit = "return SubmitForm(this)" }))
             {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.CommonId)
     <div class="form-horizontal">
+        <input type="hidden" name="SerialNo" value="@ViewBag.SerialNo" />
         <div class="container">
             <div class="card ">
-                <div class="card-header bg-info" style="height: 4rem;">Common Information Edit</div>
+                <div class="card-header bg-info" style="height: 4rem;">Common Setup Inforamtion</div>
                 <div class="row">
                     <div class="form-group">
                         <div class="form-group col-md-10 col-sm-12 ">
                             <label for="accessname" class="col-md-3 col-sm-5">Serial No</label>
                             <div class="col-md-6 col-sm-7">
-                                @Html.EditorFor(model => model.SerialNo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                @Html.Editor("SerialNo", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 @Html.ValidationMessageFor(model => model.SerialNo, "", new { @class = "text-danger" })
+
                             </div>
                         </div>
 
@@ -31,8 +32,9 @@
                                 @Html.ValidationMessageFor(model => model.Particulars, "", new { @class = "text-danger" })
                             </div>
                         </div>
+
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Description</label>
+                            <label for="controllername" class="col-md-3 col-sm-5">Description<font size="2px" color="red">*</font></label>
                             <div class="col-md-6 col-sm-7">
                                 @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
@@ -42,27 +44,20 @@
                         <div class="form-group col-md-10 col-sm-12 ">
                             <label for="controllername" class="col-md-3 col-sm-5">Parti. Value</label>
                             <div class="col-md-6 col-sm-7">
-                                @Html.EditorFor(model => model.Particular_Value, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                @Html.EditorFor(model => model.Particular_Value, new { htmlAttributes = new { @class = "form-control"} })
                                 @Html.ValidationMessageFor(model => model.Particular_Value, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
-                        <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Parti. Value<font size="2px" color="red">*</font></label>
-                            <div class="col-md-6 col-sm-7">
-                                @Html.EditorFor(model => model.Particular_Value, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Particular_Value, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
+                        
 
                         <div class="form-group col-md-10 col-sm-12 ">
-                            <label for="controllername" class="col-md-3 col-sm-5">Min. Value<font size="2px" color="red">*</font></label>
+                            <label for="controllername" class="col-md-3 col-sm-5">Min. Value</label>
                             <div class="col-md-6 col-sm-7">
-                                @Html.EditorFor(model => model.Minimum_Value, new { htmlAttributes = new { @class = "form-control"} })
+                                @Html.EditorFor(model => model.Minimum_Value, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.Minimum_Value, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                       
 
 
                         <div class="form-group col-md-10 col-sm-12 ">

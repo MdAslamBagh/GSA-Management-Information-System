@@ -98,7 +98,7 @@
                                 //{ "data": "Default_Code" },
                             {
                                 "data": "CargoDueReceiptId", "render": function (data) {
-                                    return "<a class='btn btn-default btn-sm' onclick=location.href='@Url.Action("Edit", "CargoDueReceipt")/" + data + "'><i class='fa fa-pencil'></i> Edit</a><a class='btn btn-danger btn-sm'style='margin-left:5px'onclick=Delete(" + data + ")><i class='fa fa-trash'></i> Delete</a>"
+                                    return "<a class='btn btn-default btn-sm' onclick=location.href='@Url.Action("Index", "CargoDueReceipt")/" + data + "'><i class='fa fa-pencil'></i> Cancel</a>"
                                 },
                                 "orderable": false,
                                 "searchable": false,
@@ -154,7 +154,7 @@
                         {
                             $.ajax({
                                 type: "post",
-                                url: '@Url.Action("Delete", "CargoDueReceipt")/' + id,
+                                url: '@Url.Action("Index", "CargoDueReceipt")/' + id,
                                 success: function (data) {
 
                                     if (data.success) {

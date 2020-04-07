@@ -188,6 +188,39 @@ namespace GSA_Management_Information_System.Controllers
             var LogedInUser = User.Identity.Name;
             ViewBag.Entry_By = LogedInUser;
 
+            //THC
+            var thc= (from common in db.CommonSetupInformations
+                     where common.Particulars == "THC"
+                     select common.Minimum_Value).FirstOrDefault();
+            ViewBag.THC = thc;
+
+            //AGENT COMMISION MINIMUM
+            var agentcommison_minimum = (from common in db.CommonSetupInformations
+                       where common.Particulars == "AGC"
+                       select common.Minimum_Value).FirstOrDefault();
+            ViewBag.Agentcommison_Minimum = agentcommison_minimum;
+
+            //AGENT COMMISON
+            var agentcommison = (from common in db.CommonSetupInformations
+                       where common.Particulars == "AGC"
+                       select common.Particular_Value).FirstOrDefault();
+            ViewBag.AgentCommison = agentcommison;
+
+            //AIT
+            var ait = (from common in db.CommonSetupInformations
+                       where common.Particulars == "AIT"
+                       select common.Particular_Value).FirstOrDefault();
+            ViewBag.Ait = ait;
+
+            //SSC_VALUE
+
+            var ssc_value = (from common in db.CommonSetupInformations
+                       where common.Particulars == "SSC"
+                       select common.Particular_Value).FirstOrDefault();
+            ViewBag.SSC_Value = ssc_value;
+
+            //var thc=db.CommonSetupInformations.Select(a=>a.Minimum_Value==a.Minimum_Value).Where()
+
             List<CargoSalesInformation> Informations = db.CargoSalesInformations.OrderByDescending(a => a.SalesSlno).ToList<CargoSalesInformation>();
 
             try
@@ -245,8 +278,16 @@ namespace GSA_Management_Information_System.Controllers
             continent = continentInformations.FirstOrDefault();
             string ci_Name = continent.Long_Desc;
             string ci_Code = continent.Continent_Code.ToString();
+            string fsc_value = continent.FSC_Charge.ToString();
+            string iss_value = continent.ISS_Charge.ToString();
+            
+
+
             ViewBag.Continent_Name = ci_Name;
             ViewBag.Continent_Code = ci_Code;
+            ViewBag.Fsc_Value = fsc_value;
+            ViewBag.Iss_Value = iss_value;
+
 
             //Payment mode
             List<PaymentModeInformation> paymentmodeInformations = db.PaymentModeInformations.Where(a => a.Default_Code == true).ToList<PaymentModeInformation>();
@@ -352,7 +393,35 @@ namespace GSA_Management_Information_System.Controllers
             if (!ModelState.IsValid || ModelState.IsValid)
             {
 
+                //var ttt = db.CargoSalesInformations.Where(a => a.CargoSalesId == a.CargoSalesId).ToList();
+                //foreach(var t in ttt)
+                //{
 
+                //   if(t.MAWB == cargoSalesInformation.MAWB)
+                //    {
+
+                //        Console.WriteLine("already exist");
+                //    }
+                //    //var ttt = from s in db.StockIssueDetailInformations join c in db.CargoSalesInformations on s.SIssued_Code equals c.
+                //     var sss= db.StockIssueDetailInformations.Where(s => s.SDetailsId == s.SDetailsId).ToList();
+                //    foreach(var s in sss)
+                //    {
+                //        if (s.Ticket_No.ToString() == cargoSalesInformation.MAWB)
+                //        {
+                //            Console.WriteLine("save");
+
+                //        }
+                //        else
+                //        {
+                //            Console.WriteLine("not save");
+
+                //        }
+                //    }
+                //    else
+                //    {
+                //        Console.WriteLine("ok");
+                //    }
+                //}
 
                 //return ("GetCargoBackup");
                 CargoRepository CargoRepo = new CargoRepository();
@@ -410,6 +479,52 @@ namespace GSA_Management_Information_System.Controllers
 
             String today = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
             ViewBag.Entry_Date = today;
+            //THC
+            var thc = (from common in db.CommonSetupInformations
+                       where common.Particulars == "THC"
+                       select common.Minimum_Value).FirstOrDefault();
+            ViewBag.THC = thc;
+
+            //AGENT COMMISION MINIMUM
+            var agentcommison_minimum = (from common in db.CommonSetupInformations
+                                         where common.Particulars == "AGC"
+                                         select common.Minimum_Value).FirstOrDefault();
+            ViewBag.Agentcommison_Minimum = agentcommison_minimum;
+
+            //AGENT COMMISON
+            var agentcommison = (from common in db.CommonSetupInformations
+                                 where common.Particulars == "AGC"
+                                 select common.Particular_Value).FirstOrDefault();
+            ViewBag.AgentCommison = agentcommison;
+
+            //AIT
+            var ait = (from common in db.CommonSetupInformations
+                       where common.Particulars == "AIT"
+                       select common.Particular_Value).FirstOrDefault();
+            ViewBag.Ait = ait;
+
+            //SSC_VALUE
+
+            var ssc_value = (from common in db.CommonSetupInformations
+                             where common.Particulars == "SSC"
+                             select common.Particular_Value).FirstOrDefault();
+            ViewBag.SSC_Value = ssc_value;
+
+            //Continent
+            List<ContinentInformation> continentInformations = db.ContinentInformations.Where(a => a.Default_Code == true).ToList<ContinentInformation>();
+            ContinentInformation continent = new ContinentInformation();
+            continent = continentInformations.FirstOrDefault();
+            string ci_Name = continent.Long_Desc;
+            string ci_Code = continent.Continent_Code.ToString();
+            string fsc_value = continent.FSC_Charge.ToString();
+            string iss_value = continent.ISS_Charge.ToString();
+
+
+
+            ViewBag.Continent_Name = ci_Name;
+            ViewBag.Continent_Code = ci_Code;
+            ViewBag.Fsc_Value = fsc_value;
+            ViewBag.Iss_Value = iss_value;
 
             return View(CargoRepo.GetAllCargo().Find(Cargo => Cargo.CargoSalesId == id));
             //if (id == null)
@@ -495,6 +610,7 @@ namespace GSA_Management_Information_System.Controllers
                 cargo.THC = cargoedit.THC;
                 cargo.SSC = cargoedit.SSC;
                 cargo.SSC_VAT = cargoedit.SSC_VAT;
+                cargo.IsSSCVAT = cargoedit.IsSSCVAT;
                 cargo.FSC_Charge = cargoedit.FSC_Charge;
                 cargo.ISS_Charge = cargoedit.ISS_Charge;
                 cargo.Total_USD = cargoedit.Total_USD;

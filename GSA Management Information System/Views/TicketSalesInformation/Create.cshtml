@@ -252,7 +252,7 @@
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="required">
-                                                <input value="7" id="commison" name="Commison" placeholder="BDT" class="form-control" type="text">
+                                                <input id="commison" name="Commison" placeholder="BDT" class="form-control" type="text", value="@ViewBag.Commison">
                                             </div>
                                         </div>
 
@@ -269,7 +269,7 @@
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="required">
-                                                <input id="commisonamount" name="Commison_Amount" placeholder="BDT" class="form-control" type="text">
+                                                <input id="commisonamount" name="Commison_Amount" placeholder="BDT" class="form-control" type="text" >
                                             </div>
                                         </div>
 
@@ -473,13 +473,11 @@
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="form-group col-md-10 col-sm-12 ">
-                                <div class="col-md-12">
-                                    <div align="center">
-                                        <input type="submit" value="submit" class="btn btn-primary" />
-                                        <input type="reset" value="reset" class="btn btn-warning" />
-                                    </div>
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <div class="col-md-10">
+                                <div align="center">
+                                    <a class="btn btn-primary" style="margin-left:10px" onclick="location.href='@Url.Action("Index", "TicketSalesInformation")'"><i class="fa fa-plus"></i>Back To List</a>
+                                    <input type="submit" value="submit" class="btn btn-info" />
                                 </div>
                             </div>
                         </div>

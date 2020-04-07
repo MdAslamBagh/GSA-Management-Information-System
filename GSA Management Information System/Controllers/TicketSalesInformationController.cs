@@ -84,6 +84,12 @@ namespace GSA_Management_Information_System.Controllers
             ViewBag.Airlines = airlines_name;
             ViewBag.Airlines_Code = airlines_Code;
 
+            //commison
+            var commison = (from common in db.CommonSetupInformations
+                       where common.Particulars == "COMS"
+                       select common.Particular_Value).FirstOrDefault();
+            ViewBag.Commison = commison;
+
             List<TicketSalesInformation> Informations = db.TicketSalesInformations.OrderByDescending(a => a.TicketSalesId).ToList<TicketSalesInformation>();
 
             try
@@ -201,6 +207,11 @@ namespace GSA_Management_Information_System.Controllers
             }
             TicketSalesInformation ticketSalesInformation = db.TicketSalesInformations.Find(id);
             ViewBag.Ticket_Date = ticketSalesInformation.Ticket_Date;
+            //commison
+            var commison = (from common in db.CommonSetupInformations
+                            where common.Particulars == "COMS"
+                            select common.Particular_Value).FirstOrDefault();
+            ViewBag.Commison = commison;
             if (ticketSalesInformation == null)
             {
                 return HttpNotFound();

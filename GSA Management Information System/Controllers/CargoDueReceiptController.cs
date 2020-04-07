@@ -272,6 +272,16 @@ namespace GSA_Management_Information_System.Controllers
             {
                 return HttpNotFound();
             }
+            var DocumentType = new List<string>() { "EXP", "ENC" };
+            ViewBag.DocumentType = DocumentType;
+
+            String time = DateTime.Now.ToString("MM/dd/yyyy");
+            ViewBag.Receipt_Date = time;
+
+            String fromtime = DateTime.Now.ToString("MM/dd/yyyy");
+            ViewBag.From_Date = fromtime;
+            String totime = DateTime.Now.ToString("MM/dd/yyyy");
+            ViewBag.To_Date = totime;
             return View(cargoDueReceipt);
         }
 

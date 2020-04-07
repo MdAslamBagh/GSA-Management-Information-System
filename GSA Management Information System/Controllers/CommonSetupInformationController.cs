@@ -42,7 +42,7 @@ namespace GSA_Management_Information_System.Controllers
         }
 
         // GET: CommonSetupInformation/Create
-        public ActionResult Add()
+        public ActionResult Create()
         {
             List<CommonSetupInformation> Informations = db.CommonSetupInformations.OrderByDescending(a => a.CommonId).ToList<CommonSetupInformation>();
 
@@ -77,16 +77,15 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add([Bind(Include = "CommonId,SerialNo,Particulars,Description,Particular_Value,Minimum_Value,Entry_Date")] CommonSetupInformation commonSetupInformation)
+        public ActionResult Create(CommonSetupInformation commonSetupInformation)
         {
-            if (ModelState.IsValid)
-            {
+           
+                var LogedInUser = User.Identity.Name;
+                commonSetupInformation.Entry_By = LogedInUser;
+                commonSetupInformation.Entry_Date = DateTime.Now;
                 db.CommonSetupInformations.Add(commonSetupInformation);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
-
-            return View(commonSetupInformation);
         }
 
         // GET: CommonSetupInformation/Edit/5
@@ -109,10 +108,13 @@ namespace GSA_Management_Information_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CommonId,SerialNo,Particulars,Description,Particular_Value,Minimum_Value,Entry_Date")] CommonSetupInformation commonSetupInformation)
+        public ActionResult Edit(CommonSetupInformation commonSetupInformation)
         {
             if (ModelState.IsValid)
             {
+                var LogedInUser = User.Identity.Name;
+                commonSetupInformation.Entry_By = LogedInUser;
+                commonSetupInformation.Entry_Date = DateTime.Now;
                 db.Entry(commonSetupInformation).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -120,7 +122,9 @@ namespace GSA_Management_Information_System.Controllers
             return View(commonSetupInformation);
         }
 
-        // GET: CommonSetupInformation/Delete/5
+
+        // post: CommonSetupInformation/Delete/5
+        [HttpPost]
         public ActionResult Delete(int id)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())

@@ -771,10 +771,14 @@
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <div class="required">
-                                                        @Html.EditorFor(model => model.Agent_Commission, new { htmlAttributes = new { @class = "form-control", id = "agentcommison", onkeyup = "totalSub()" } })
+                                                        @Html.EditorFor(model => model.Agent_Commission, new { htmlAttributes = new { @class = "form-control", id = "agentcommison", onkeyup = "totalSub()"  } })
                                                         @*<input id="agentcommison" name="Agent_Commission" onkeyup="totalSub()" placeholder="Agent_Commission" class="form-control" type="text">*@
                                                     </div>
+                                                    <input id="agentcommison_minimum" type="hidden" name="Agentcommison_Minimum" placeholder="Freighter" class="form-control" type="text" value="@ViewBag.Agentcommison_Minimum">
+                                                    <input id="agentcommisondefault" type="hidden"  name="ISS_Value" placeholder="ISS VALUE" class="form-control" type="text" value="@ViewBag.AgentCommison">
+
                                                 </div>
+
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -785,6 +789,8 @@
                                                 <div class="col-sm-8">
                                                     <div class="required">
                                                         @Html.EditorFor(model => model.AIT, new { htmlAttributes = new { @class = "form-control", id = "ait", onkeyup = "totalSub()" } })
+                                                        <input id="aitdefault" type="hidden" name="ISS_Value" placeholder="ISS VALUE" class="form-control" type="text" value=@ViewBag.AIT>
+
                                                         @*<input id="ait" name="AIT" placeholder="AIT" class="form-control" type="text">*@
                                                     </div>
                                                 </div>
@@ -807,7 +813,7 @@
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <div class="required">
-                                                            @Html.EditorFor(model => model.THC, new { htmlAttributes = new { @class = "form-control", id = "thc", onkeyup = "totalSub()" } })
+                                                            @Html.EditorFor(model => model.THC, new { htmlAttributes = new { @class = "form-control", id = "thc", onkeyup = "totalSub()", value = "@ViewBag.THC" } })
                                                             @*<input id="thc" name="THC" onkeyup="totalSub()" placeholder="THC" class="form-control" type="text" readonly="readonly">*@
                                                         </div>
                                                     </div>
@@ -827,6 +833,8 @@
                                                             @Html.EditorFor(model => model.SSC, new { htmlAttributes = new { @class = "form-control", id = "ssc", onkeyup = "totalSub()" } })
                                                             @*<input id="ssc" name="SSC" onkeyup="totalSub()" placeholder="SSC" class="form-control" type="text" readonly="readonly">*@
                                                         </div>
+                                                        <input id="sscvalue" name="SSC_Value" type="hidden" onkeyup="totalSub()" placeholder="SSC" class="form-control" type="text" readonly="readonly" value="@ViewBag.SSC_Value">
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -883,6 +891,8 @@
                                                             @Html.EditorFor(model => model.FSC_Charge, new { htmlAttributes = new { @class = "form-control", id = "fsc", onkeyup = "totalSub()" } })
                                                             @*<input id="fsc" name="FSC_Charge" onkeyup="totalSub()" placeholder="FSC Charge" class="form-control" type="text" readonly="readonly">*@
                                                         </div>
+                                                        <input id="fscvalue" name="FSC_Value" type="hidden" placeholder="Freighter" class="form-control" type="text" value="@ViewBag.FSC_Value">
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -900,6 +910,7 @@
                                                             @Html.EditorFor(model => model.ISS_Charge, new { htmlAttributes = new { @class = "form-control", id = "iss", onkeyup = "totalSub()" } })
                                                             @*<input id="iss" name="ISS_Charge" onkeyup="totalSub()" placeholder="ISS" class="form-control" type="text" readonly="readonly">*@
                                                         </div>
+                                                        <input id="issvalue" type="hidden" name="ISS_Value" placeholder="ISS VALUE" class="form-control" type="text" value="@ViewBag.ISS_Value">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1066,13 +1077,11 @@
                                     </div>
 
                                 </div>
-                                <div class="row">
-                                    <div class="form-group col-md-10 col-sm-12 ">
-                                        <div class="col-md-12">
-                                            <div align="center">
-                                                <input type="submit" value="submit" class="btn btn-primary" />
-                                                <input type="reset" value="reset" class="btn btn-warning" />
-                                            </div>
+                                <div class="form-group col-md-10 col-sm-12 ">
+                                    <div class="col-md-10">
+                                        <div align="center">
+                                            <a class="btn btn-primary" style="margin-left:10px" onclick="location.href='@Url.Action("Index", "CargoSalesInformation")'"><i class="fa fa-plus"></i>Back To List</a>
+                                            <input type="submit" value="submit" class="btn btn-info" />
                                         </div>
                                     </div>
                                 </div>
@@ -1484,6 +1493,9 @@
                     success: function (data) {
                         // alert("Success ");
                         $("#continentcode").val(data.Continent_Code);
+                        $("#fscvalue").val(data.FSC_Charge);
+                        $("#issvalue").val(data.ISS_Charge);
+
 
                     },
                 });
@@ -2028,114 +2040,172 @@
         });
     </script>
 
-    <script>
-        $('#totalusd').val(2.10.toFixed(2));
-        //$('#receiveableamountbdt').val(175.88);
-        $('#thc').val(2.10.toFixed(2));
-        //Calculate THC,SSC,ISS
-        function totalSub() {
-            var hds = $("#hds").val();
-            var others = $("#others").val();
-            var ams = $("#ams").val();
-            var ratecharge = $("#ratecharge").val();
-            var agentcommison_minimum = 0.9500;
-            var agentcommison = 5.0000;
-            var ait = 0.3000;
+  <script>
+          //$('#totalusd').val(2.10.toFixed(2));
+          //$('#receiveableamountbdt').val(175.88);
+          //$('#thc').val();
+          //alert($('#thc').val());
+          //Calculate THC,SSC,ISS
 
-            //$('#ratecharge').keyup(function () {
-            var bbrate = (ratecharge / agentcommison_minimum);
-            $('#bbrate').val(bbrate.toFixed(2));
-            var bbrate = $("#bbrate").val();
-            var agentcommison = (bbrate * (agentcommison / 100));
-            $('#agentcommison').val(agentcommison.toFixed(4));
-            var agentcommison = $("#agentcommison").val();
-            var ait = (agentcommison * ait) / 100;
-            $('#ait').val(ait.toFixed(4));
-
-            //  });
-
-            var agentcommison = $("#agentcommison").val();
-            var ait = $("#ait").val();
-
-            var thc = $("#thc").val();
-            var ssc = $("#ssc").val();
-            var fsc = $("#fsc").val();
-            var iss = $("#iss").val();
-            var grossweight = $("#grossweight").val();
-            var sscwithvat = $("#sscwithvat").val();
-            $('#chargeableweight').val(grossweight);
-            var chargeableweight = $("#grossweight").val();
-            var ratecharge = $("#ratecharge").val();
-            var exchangerate = $("#exchangerate").val();
+          var hds = $("#hds").val();
+          var others = $("#others").val();
+          var ams = $("#ams").val();
 
 
-            var totalusd = 2.10;
-            var receivableamountbdt = 175.88;
-            var thc = 2.10;
-            var ssc_value = 0.0600;
-            var fsc_value = 0.8100;
-            var iss_value = 0.100;
-            var ssc = grossweight * ssc_value;
-            var ssc_15_perc_vat = ((ssc * 15) / 100);
-            $('#checksscvat').click(function () {
-                if ($(this).is(':checked')) {
-                    sscwithvat = ssc + ssc_15_perc_vat;
-                    $('#sscwithvat').val(sscwithvat.toFixed(2));
-                    totalSub();
+          var grossweight = $("#grossweight").val();
+          $('#chargeableweight').val(grossweight);
+          var chargeableweight = $("#grossweight").val();
+          var ratecharge = $("#ratecharge").val();
+          var exchangerate = $("#exchangerate").val();
 
-                    //return confirm("Are you sure?");
-                }
-                else {
+          var thc = $("#thc").val();
+          var ssc = $("#ssc").val();
+          var fsc = $("#fsc").val();
+          var iss = $("#iss").val();
 
-                    $('#sscwithvat').val(0.00);
-                    totalSub();
-                }
-            });
-
-            var sscwithvat = $("#sscwithvat").val();
-            $('#ssc').val(ssc);
-            var fsc = (parseFloat(chargeableweight) || 0) * fsc_value;
-            $('#fsc').val(fsc.toFixed(2));
-            var iss = (parseFloat(chargeableweight) || 0) * iss_value;
-            $('#iss').val(iss.toFixed(2));
+          receivableamountbdt = ((((parseFloat(chargeableweight) || 0) * (parseFloat(ratecharge) || 0)) + (parseFloat(hds) || 0) + (parseFloat(others) || 0) + (parseFloat(ams) || 0) + (parseFloat(thc) || 0) + (parseFloat(fsc) || 0) + (parseFloat(iss) || 0)) * (parseFloat(exchangerate) || 0));
+          $("#receiveableamountbdt").val(receivableamountbdt.toFixed(2));
+          totalusd = (((parseFloat(chargeableweight) || 0) * (parseFloat(ratecharge) || 0)) + (parseFloat(hds) || 0) + (parseFloat(others) || 0) + (parseFloat(ams) || 0) + (parseFloat(thc) || 0) + (parseFloat(ssc) || 0) + (parseFloat(fsc) || 0) + (parseFloat(iss) || 0))
+          //$("#totalusd").val(totalusd.toFixed(2));
+          $("#totalusd").val(totalusd);
+          totalusdwithsscvat = (((parseFloat(chargeableweight) || 0) * (parseFloat(ratecharge) || 0)) + (parseFloat(hds) || 0) + (parseFloat(others) || 0) + (parseFloat(ams) || 0) + (parseFloat(thc) || 0) + (parseFloat(sscwithvat) || 0) + (parseFloat(fsc) || 0) + (parseFloat(iss) || 0));
+          //$("#totalusdwithsscvat").val(totalusdwithsscvat.toFixed(2));
+          $("#totalusdwithsscvat").val(totalusdwithsscvat);
 
 
 
-            //if (hds.length > 0) {
-            //    totalUSD += parseFloat(hds);
-            //}
-            //if (others.length > 0) {
-            //    totalUSD += parseFloat(others);
-            //}
-            //if (ams.length > 0) {
-            //    totalUSD += parseFloat(ams);
-            //}
-            //if (chargeableweight.length > 0) {
-            //    totalUSD += parseFloat(chargeableweight);
-            //}
-            //if (ratecharge.length > 0) {
-            //    totalUSD += parseFloat(ratecharge);
-            //}
-            // var totalUSD = 2.1;
-
-            totalusd = (((parseFloat(chargeableweight) || 0) * (parseFloat(ratecharge) || 0)) + (parseFloat(hds) || 0) + (parseFloat(others) || 0) + (parseFloat(ams) || 0) + thc + (parseFloat(ssc) || 0) + (parseFloat(fsc) || 0) + (parseFloat(iss) || 0));
-            totalusdwithsscvat = (((parseFloat(chargeableweight) || 0) * (parseFloat(ratecharge) || 0)) + (parseFloat(hds) || 0) + (parseFloat(others) || 0) + (parseFloat(ams) || 0) + (parseFloat(thc) || 0) + (parseFloat(sscwithvat) || 0) + (parseFloat(fsc) || 0) + (parseFloat(iss) || 0));
-            //receivableamountbdt = ((((parseFloat(chargeableweight) || 0) * (parseFloat(ratecharge) || 0)) + (parseFloat(hds) || 0) + (parseFloat(others) || 0) + (parseFloat(ams) || 0) + (parseFloat(thc) || 0) + (parseFloat(ssc) || 0) + (parseFloat(fsc) || 0) + (parseFloat(iss) || 0)) * (parseFloat(exchangerate) || 0));
-            receivableamountbdt = ((((parseFloat(chargeableweight) || 0) * (parseFloat(ratecharge) || 0)) + (parseFloat(hds) || 0) + (parseFloat(others) || 0) + (parseFloat(ams) || 0) + (parseFloat(thc) || 0) + (parseFloat(fsc) || 0) + (parseFloat(iss) || 0)) * (parseFloat(exchangerate) || 0));
-            receivableamountwithsscvat = ((((parseFloat(chargeableweight) || 0) * (parseFloat(ratecharge) || 0)) + (parseFloat(hds) || 0) + (parseFloat(others) || 0) + (parseFloat(ams) || 0) + (parseFloat(thc) || 0) + (parseFloat(sscwithvat) || 0) + (parseFloat(fsc) || 0) + (parseFloat(iss) || 0)) * (parseFloat(exchangerate) || 0));
-            // Me.txtReceivableAmountBDT.Text = Format(Val(Val(Val(Me.txtChargeableWeight.Text) * Val(Me.txtRateCharge.Text)) + Val(Me.txtHDS.Text) + Val(Me.txtOthers.Text) + Val(Me.txtAMS.Text) + Val(Me.lblTHC.Text) + Val(Me.lblSSC.Text) + Val(Me.lblFSCCharge.Text) + Val(Me.lblISSCharge.Text)) * Val(Me.lblExchangeRate.Text), "0.00")
-            //Me.lblTotalUSDWithSSCVAT.Text = Format(Val(Val(Me.txtChargeableWeight.Text) * Val(Me.txtRateCharge.Text)) + Val(Me.txtHDS.Text) + Val(Me.txtOthers.Text) + Val(Me.txtAMS.Text) + Val(Me.lblTHC.Text) + Val(Me.lblSSCWithVAT.Text) + Val(Me.lblFSCCharge.Text) + Val(Me.lblISSCharge.Text), "0.00")
-
-            $("#totalusd").val(totalusd.toFixed(2));
-            $("#totalusdwithsscvat").val(totalusdwithsscvat.toFixed(2));
-            $("#receiveableamountbdt").val(receivableamountbdt.toFixed(2));
-            $("#receivableamountwithsscvat").val(receivableamountwithsscvat.toFixed(2));
+          function totalSub() {
+              var hds = $("#hds").val();
+              var others = $("#others").val();
+              var ams = $("#ams").val();
+              var ratecharge = $("#ratecharge").val();
+              var agentcommison_minimum = $("#agentcommison_minimum").val();//hidden textbox
+              //var agentcommison_minimum = 0.9500;
+              var agentcommison = $("#agentcommisondefault").val();
+              var ait = $("#aitdefault").val();
 
 
-            //Me.lblTotalUSD.Text = Format(Val(Val(Me.txtChargeableWeight.Text) * Val(Me.txtRateCharge.Text))  + Val(Me.lblTHC.Text) + Val(Me.lblSSC.Text) + Val(Me.lblFSCCharge.Text) + Val(Me.lblISSCharge.Text), "0.00")
-            //Me.lblTotalUSD.Text = Format(Val(Val(Me.txtChargeableWeight.Text) * Val(Me.txtRateCharge.Text)) + Val(Me.txtHDS.Text) + Val(Me.txtOthers.Text) + Val(Me.txtAMS.Text) + Val(Me.lblTHC.Text) + Val(Me.lblSSC.Text) + Val(Me.lblFSCCharge.Text) + Val(Me.lblISSCharge.Text), "0.00")
-        };
-    </script>
+              // var agentcommison = 5.0000;
+              //var ait = 0.3000;
+
+              //$('#ratecharge').keyup(function () {
+              if (ratecharge != "") {
+                  var bbrate = (ratecharge / agentcommison_minimum);
+                  $('#bbrate').val(bbrate.toFixed(2));
+                  var bbrate = $("#bbrate").val();
+                  var agentcommison = (bbrate * (agentcommison / 100));
+                  $('#agentcommison').val(agentcommison.toFixed(4));
+                  var agentcommison = $("#agentcommison").val();
+                  var ait = (agentcommison * ait) / 100;
+                  $('#ait').val(ait.toFixed(4));
+              }
+
+              else {
+
+                  $('#bbrate').val('');
+
+                  $('#agentcommison').val('');
+
+                  $('#ait').val('');
+              }
+
+
+              //  });
+
+
+
+              var thc = $("#thc").val();
+              var ssc = $("#ssc").val();
+              var fsc = $("#fsc").val();
+              var iss = $("#iss").val();
+              var grossweight = $("#grossweight").val();
+              var sscwithvat = $("#sscwithvat").val();
+              $('#chargeableweight').val(grossweight);
+              var chargeableweight = $("#grossweight").val();
+              var ratecharge = $("#ratecharge").val();
+              var exchangerate = $("#exchangerate").val();
+
+
+              // var totalusd = 2.10;
+              //var receivableamountbdt = 175.88;
+             // var thc = $('#thc').val();
+              //var thc = 2.10;
+              // var ssc_value = 0.0600;
+              var ssc_value = $("#sscvalue").val();//hidden textbox
+
+              //var fsc_value = 0.8100;
+              //var iss_value = 0.100;
+              var fsc_value = $("#fscvalue").val();//hidden textbox
+              var iss_value = $("#issvalue").val();//hidden textbox
+
+              var ssc = grossweight * ssc_value;
+
+              var ssc_15_perc_vat = ((ssc * 15) / 100);
+
+
+              $('#checksscvat').click(function () {
+                  if ($(this).is(':checked')) {
+                      //$('#checksscvat').val(1);
+                      sscwithvat = ssc + ssc_15_perc_vat;
+                      $('#sscwithvat').val(sscwithvat.toFixed(2));
+                      totalSub();
+
+                      //return confirm("Are you sure?");
+                  }
+                  else {
+                      //$('#checksscvat').val(0);
+                      sscwithvat = ssc - ssc_15_perc_vat;
+                      $('#sscwithvat').val(0.00);
+                      totalSub();
+                  }
+              });
+
+              var sscwithvat = $("#sscwithvat").val();
+              $('#ssc').val(ssc);
+              var fsc = (parseFloat(chargeableweight) || 0) * fsc_value;
+              $('#fsc').val(fsc.toFixed(2));
+              var iss = (parseFloat(chargeableweight) || 0) * iss_value;
+              $('#iss').val(iss.toFixed(2));
+
+
+
+              //if (hds.length > 0) {
+              //    totalUSD += parseFloat(hds);
+              //}
+              //if (others.length > 0) {
+              //    totalUSD += parseFloat(others);
+              //}
+              //if (ams.length > 0) {
+              //    totalUSD += parseFloat(ams);
+              //}
+              //if (chargeableweight.length > 0) {
+              //    totalUSD += parseFloat(chargeableweight);
+              //}
+              //if (ratecharge.length > 0) {
+              //    totalUSD += parseFloat(ratecharge);
+              //}
+              // var totalUSD = 2.1;   
+
+              totalusd = (((parseFloat(chargeableweight) || 0) * (parseFloat(ratecharge) || 0)) + (parseFloat(hds) || 0) + (parseFloat(others) || 0) + (parseFloat(ams) || 0) + (parseFloat(thc) || 0) + (parseFloat(ssc) || 0) + (parseFloat(fsc) || 0) + (parseFloat(iss) || 0));
+              totalusdwithsscvat = (((parseFloat(chargeableweight) || 0) * (parseFloat(ratecharge) || 0)) + (parseFloat(hds) || 0) + (parseFloat(others) || 0) + (parseFloat(ams) || 0) + (parseFloat(thc) || 0) + (parseFloat(sscwithvat) || 0) + (parseFloat(fsc) || 0) + (parseFloat(iss) || 0));
+              //receivableamountbdt = ((((parseFloat(chargeableweight) || 0) * (parseFloat(ratecharge) || 0)) + (parseFloat(hds) || 0) + (parseFloat(others) || 0) + (parseFloat(ams) || 0) + (parseFloat(thc) || 0) + (parseFloat(ssc) || 0) + (parseFloat(fsc) || 0) + (parseFloat(iss) || 0)) * (parseFloat(exchangerate) || 0));
+              receivableamountbdt = ((((parseFloat(chargeableweight) || 0) * (parseFloat(ratecharge) || 0)) + (parseFloat(hds) || 0) + (parseFloat(others) || 0) + (parseFloat(ams) || 0) + (parseFloat(thc) || 0) + (parseFloat(fsc) || 0) + (parseFloat(iss) || 0)) * (parseFloat(exchangerate) || 0));
+              receivableamountwithsscvat = ((((parseFloat(chargeableweight) || 0) * (parseFloat(ratecharge) || 0)) + (parseFloat(hds) || 0) + (parseFloat(others) || 0) + (parseFloat(ams) || 0) + (parseFloat(thc) || 0) + (parseFloat(sscwithvat) || 0) + (parseFloat(fsc) || 0) + (parseFloat(iss) || 0)) * (parseFloat(exchangerate) || 0));
+              // Me.txtReceivableAmountBDT.Text = Format(Val(Val(Val(Me.txtChargeableWeight.Text) * Val(Me.txtRateCharge.Text)) + Val(Me.txtHDS.Text) + Val(Me.txtOthers.Text) + Val(Me.txtAMS.Text) + Val(Me.lblTHC.Text) + Val(Me.lblSSC.Text) + Val(Me.lblFSCCharge.Text) + Val(Me.lblISSCharge.Text)) * Val(Me.lblExchangeRate.Text), "0.00")
+              //Me.lblTotalUSDWithSSCVAT.Text = Format(Val(Val(Me.txtChargeableWeight.Text) * Val(Me.txtRateCharge.Text)) + Val(Me.txtHDS.Text) + Val(Me.txtOthers.Text) + Val(Me.txtAMS.Text) + Val(Me.lblTHC.Text) + Val(Me.lblSSCWithVAT.Text) + Val(Me.lblFSCCharge.Text) + Val(Me.lblISSCharge.Text), "0.00")
+
+              $("#totalusd").val(totalusd.toFixed(2));
+              /// $("#totalusd").val(totalusd);
+              $("#totalusdwithsscvat").val(totalusdwithsscvat.toFixed(2));
+              $("#receiveableamountbdt").val(receivableamountbdt.toFixed(2));
+              $("#receivableamountwithsscvat").val(receivableamountwithsscvat.toFixed(2));
+
+
+              //Me.lblTotalUSD.Text = Format(Val(Val(Me.txtChargeableWeight.Text) * Val(Me.txtRateCharge.Text))  + Val(Me.lblTHC.Text) + Val(Me.lblSSC.Text) + Val(Me.lblFSCCharge.Text) + Val(Me.lblISSCharge.Text), "0.00")
+              //Me.lblTotalUSD.Text = Format(Val(Val(Me.txtChargeableWeight.Text) * Val(Me.txtRateCharge.Text)) + Val(Me.txtHDS.Text) + Val(Me.txtOthers.Text) + Val(Me.txtAMS.Text) + Val(Me.lblTHC.Text) + Val(Me.lblSSC.Text) + Val(Me.lblFSCCharge.Text) + Val(Me.lblISSCharge.Text), "0.00")
+          };
+</script>
+
 }
 
 

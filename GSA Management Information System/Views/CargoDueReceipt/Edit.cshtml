@@ -1,117 +1,384 @@
 ﻿@model GSA_Management_Information_System.Models.CargoDueReceipt
-
 @{
-    Layout = null;
+    ViewBag.Title = "Edit";
 }
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!DOCTYPE html>
+@using (Html.BeginForm("Edit", "CargoDueReceipt", FormMethod.Post, new { onSubmit = "return SubmitForm(this)" }))
+            {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.CargoDueReceiptId)
+    <div class="form-horizontal">
+        <div class="container">
+            <div class="card ">
+                <div class="card-header bg-info" style="height: 4rem;">Cargo Due Edit</div>
+                <div class="row">
+                    <div class="form-group">
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Edit</title>
-</head>
-<body>
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        
-        <div class="form-horizontal">
-            <h4>CargoDueReceipt</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.CargoDueReceiptId)
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.SalesSlno, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.SalesSlno, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.SalesSlno, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.Airway_No, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Airway_No, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Airway_No, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.Customer_Code, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Customer_Code, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Customer_Code, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.Document_Type, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Document_Type, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Document_Type, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.Receipt_No, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Receipt_No, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Receipt_No, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.Receipt_Date, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Receipt_Date, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Receipt_Date, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.Receipt_Amount, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Receipt_Amount, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Receipt_Amount, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.Remarks, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.Entry_Date, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Entry_Date, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Entry_Date, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.Entry_By, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Entry_By, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Entry_By, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <div class="col-md-3">
+                                <div class="col-sm-1">
+                                    <div class="required">
+                                        <input id="checkmasterdate" type="radio" value="MasterDate" checked="checked" name="Entry_Date" />
+                                        @*<input type="hidden" value="false" name="CheckSSCVat" />*@
+                                        @*<input type="checkbox"  onkeyup="totalSub()" name="CheckSSCVat" id="checksscvat">*@
+                                    </div>
+                                </div>
+                                <label for="accessname" class="col-md-1 col-sm-9">From<font size="2px" color="red"></font></label>
+                            </div>
+                            <div class="col-md-3 col-sm-7">
+                                <div class="input-group">
+                                    @*@Html.Editor("Ticket_Date", new { htmlAttributes = new { @class = "datepicker1" } })*@
+                                    <input type="text" class="form-control datepicker" name="FromDate" id="DateFrom" placeholder="Date From" data-format="mm/dd/yyyy" value=@ViewBag.From_Date>
+                                    <div class="input-group-addon">
+                                        <a href="#"><i class="fa fa-calendar"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <label for="accessname" class="col-md-1 col-sm-3">To<font size="2px" color="red"></font></label>
+
+                            <div class="col-md-3 col-sm-7">
+                                <div class="input-group">
+                                    @*@Html.Editor("Ticket_Date", new { htmlAttributes = new { @class = "datepicker1" } })*@
+                                    <input type="text" class="form-control datepicker" name="ToDate" id="DateTo" placeholder="To Date" data-format="mm/dd/yyyy" value=@ViewBag.To_Date>
+                                    <div class="input-group-addon">
+                                        <a href="#"><i class="fa fa-calendar"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-1">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                            @Html.LabelFor(model => model.SalesSlno, htmlAttributes: new { @class = "hidden" })
+                                        </div>
+                                        <div class="col-sm-2">
+                                            @*@Html.Editor("SalesSlno", new { htmlAttributes = new { @class = "hidden" } })*@
+                                            <input name="SalesSlno" textbox id="salesslno" type="hidden" value="@ViewBag.SalesSlno" class="form-control" readonly="readonly" onkeyup="changeEstericColor(this.id);">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="accessname" class="col-md-3 col-sm-5">Agency<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+                                <input id="customername" name="Customer_Name" placeholder="Agency" class="form-control" type="text">
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="accessname" class="col-md-3 col-sm-5">Airway No<font size="2px" color="red">*</font></label>
+                            <div class="col-md-3 col-sm-7">
+                                <select class="form-control" name="Airway_No" id="airwayno" type="text"> <option value="">Select Airway No</option></select>
+
+                                @*@Html.EditorFor(model => model.MAWB, new { htmlAttributes = new { @class = "form-control", id = "mawb" } })*@
+                                @*@Html.ValidationMessageFor(model => model.MAWB, "", new { @class = "text-danger" })*@
+                            </div>
+                            <div class="col-md-3 col-sm-7">
+                                <select class="form-control" name="Customer_Code" id="customercode" readonly="readonly"></select>
+
+                                @*<input id="customercode" name="Customer_Code" placeholder="Customer Code" class="form-control" type="text" readonly="readonly">*@
+                            </div>
+
+                        </div>
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="accessname" class="col-md-3 col-sm-5">Receipt No<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+                                @Html.Editor("Receipt_No", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.Receipt_No, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="accessname" class="col-md-3 col-sm-5">Receipt_Date<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+
+                                @*@Html.Editor("Flight_Date", new { htmlAttributes = new { @class = "form-control", id = "flightdate" } })*@
+                                <input type="text" class="form-control datepicker" name="Receipt_Date" id="receiptdate" placeholder="Receipt Date" data-format="mm/dd/yyyy" value=@ViewBag.Receipt_Date>
+                                @*<div class="input-group-addon">
+                    <a href="#"><i class="fa fa-calendar"></i></a>
+                    </div>*@
+                                @Html.ValidationMessageFor(model => model.Receipt_Date, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="controllername" class="col-md-3 col-sm-5">Document<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+                                @Html.DropDownListFor(Model => Model.Document_Type, new SelectList(ViewBag.DocumentType), htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Document_Type, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="accessname" class="col-md-3 col-sm-5">Receipt Amount<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+                                @Html.EditorFor(model => model.Receipt_Amount, new { htmlAttributes = new { @class = "form-control", id = "receiptammount" } })
+                                @Html.ValidationMessageFor(model => model.Receipt_Amount, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="controllername" class="col-md-3 col-sm-5">Remarks<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+                                @Html.TextAreaFor(model => model.Remarks, 2, 52, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <div class="col-md-10">
+                                <div align="center">
+                                    <a class="btn btn-primary" style="margin-left:10px" onclick="location.href='@Url.Action("Index", "CargueDueReceipt")'"><i class="fa fa-plus"></i>Back To List</a>
+                                    <input type="submit" value="submit" class="btn btn-info" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    }
-    
-    <div>
-        @Html.ActionLink("Back to List", "Index")
     </div>
-</body>
-</html>
+}
+
+
+@section Scripts{
+    @*<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
+
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+    <!-- Load jQuery JS -->
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <!-- Load jQuery UI Main JS  -->
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
+
+
+
+    <script>
+
+        jQuery.noConflict()(function ($) {
+
+            //flightdate
+            $(function () {
+                $("#DateFrom").datepicker();
+                $("#DateTo").datepicker();
+
+            });
+            var fromdate = $('#DateFrom').val();
+            var todate = $('#DateTo').val();
+
+            $(function () {
+                $("#entrydate").datepicker();
+                //$("#DateTo").datepicker();
+
+            });
+
+
+
+            //Customer
+            $("#customername").keyup(function () {
+                var customerdata = $("#customername").val();
+                if (customerdata === '') {
+                    $('#customercode').val('');
+                    $('#airwayno').val('');
+
+
+                }
+                else
+                    var jsonData = { customername: customerdata };
+                $("#ReceivedIdErrorMessage").text("");
+                //$("#airwayno").append('<option value=0>Select Airway No</option>');
+                $.ajax({
+                    type: "POST",
+                    url: '/CargoDueReceipt/GetCustomerCodeById?fromdate=' + $("#DateFrom").val() + ' &todate=' + $("#DateTo").val() + '',
+
+                    //url: "/CargoDueReceipt/GetCustomerCodeById",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(jsonData),
+                    dataType: "json",
+                    success: function (data) {
+
+                        //  alert("Success ");
+                        //$("#customercode").val(data.Customer_Code);
+                        //$("#mawb").val(data.MAWB);
+                        $.each(data, function (key, value) {
+
+                            // $("#mawb").append('<option value=' + value.Id + '>' + value.MAWB + '</option>');
+                            $("#airwayno").append('<option value=' + value.Airway_No + '>' + value.Airway_No + '</option>');
+                            $("#customercode").append('<option value=' + value.Customer_Code + '>' + value.Customer_Code + '</option>');
+
+
+                            //$("#customercode").val(data.Customer_Code);
+                        });
+
+
+
+
+                    },
+                });
+
+                return false;
+
+            });
+            //var fromdate = $("#DateFrom").val();
+            //var todate = $("#DateTo").val();
+
+            $("#customername").autocomplete({
+
+                source: function (request, response) {
+                    $.ajax({
+                        url: '/CargoDueReceipt/Get_Customer_Name?fromdate=' + $("#DateFrom").val() + ' &todate=' + $("#DateTo").val() + '',
+                        type: "POST",
+                        dataType: "json",
+                        data: { Prefix: request.term, },
+
+                        success: function (data) {
+
+                            response($.map(data, function (item) {
+
+                                return {
+                                    label: item.Customer_Name,
+                                    value: item.Customer_Name
+                                    //label: item.Customer_Code,
+                                    //value:item.Customer_Code
+
+
+
+
+
+
+                                };
+
+
+                            }))
+
+                        }
+                    })
+                },
+
+
+                messages: {
+                    noResults: "",
+                    results: function (count) {
+                        return count + (count > 1 ? ' results' : ' result ') + ' found';
+                    }
+                }
+
+            });
+
+
+
+
+
+
+            $("#airwayno").change(function () {
+
+                //    alert(this.value);
+                // $("#Airway_No").keyup(function () {
+                // $('#airwayno option:selected').text();
+
+                //alert($('#airwayno option:selected').text());
+
+                var airwayno = $('#airwayno option:selected').text();
+
+                //var airwayno = $('#airwayno').find(":selected").text();
+                // var Airway_No = airwayno.tostring() ;
+
+
+                // var airwayno = $("#airwayno").val();
+                if (airwayno === '') {
+                    $("#receiptammount").val('');
+                    //$("#toticketNo").val('');
+                    //$("#ticketquantity").val('');
+                    //$("#customercode").val('');
+                    //$('#Transaction_Status').val('');
+                }
+
+                var jsonData = { airway: airwayno };
+                $("#ReceivedIdErrorMessage").text("");
+                $.ajax({
+                    type: "POST",
+                    url: "/CargoDueReceipt/GetAirwayById",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(jsonData),
+                    dataType: "json",
+                    success: function (data) {
+
+                        //alert(data.TotalFreightCharge);
+                        //alert(data.Airway_No);
+                        //$.each(data, function (key, value) {
+
+                        //$("#airwayno").val(value.Airway_No);
+
+                        alert(data.TotalFreightCharge);
+                        if (data.TotalFreightCharge == 0) {
+
+                            $("#receiptammount").val("Receipt Completed");
+                            $('#receiptammount').prop('readonly', true);
+
+
+                        }
+                        else
+
+                            $("#receiptammount").val(data.TotalFreightCharge);
+                        $('#receiptammount').prop('readonly', false);
+                        $("#airwayno").val(data.Airway_No);
+
+                        //alert(value1.CourseId + " " + value1.CourseCode);
+                        //$("#airwayno").append('<option value=' + value.Airway_No + '>' + value.Airway_No + '</option>');
+
+
+                        //    $("#toticketNo").val(value.To_TicketNo);
+                        //    $("#ticketquantity").val(value.Ticket_Quantity);
+                        //    $("#customercode").val(value.Customer_Code);
+                        //    $('#Transaction_Status').val("Issued");
+                        //    ticketQuantity = value.Ticket_Quantity;
+                        //    FromTicketNoo = value.From_TicketNo;
+                        //Airway_No = value.Airway_No;
+                        //alert(airwayno);
+                        //});
+
+                        // $("#receiptammount").val(data.TotalFreightCharge);
+                        //$("#airwayno").val(data.Airway_No);
+                        //$('#airwayno').find(":selected").text();
+
+
+
+
+
+                    },
+                });
+
+                return false;
+            });
+        });
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+}
