@@ -10,17 +10,58 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
+using System.IO;
+using System.Net;
+using System.Net.Mail;
+using System.Configuration;
+using System.Net.Configuration;
 using GSA_Management_Information_System.Models;
+
+
 
 namespace GSA_Management_Information_System
 {
     public class EmailService : IIdentityMessageService
     {
-        public Task SendAsync(IdentityMessage message)
+        public async Task SendAsync(IdentityMessage message)
         {
             // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+
+            var mailMessage = new MailMessage
+                ("mdaslam45@outlook.com", message.Destination, message.Subject, message.Body);
+
+            mailMessage.IsBodyHtml = true;
+            SmtpSection secObj = (SmtpSection)ConfigurationManager.GetSection("system.net/mailSettings/smtp");
+            using (var client = new SmtpClient())
+            {
+
+                client.Host = secObj.Network.Host; //---- SMTP Host Details. 
+                 client.EnableSsl = secObj.Network.EnableSsl; //---- Specify whether host accepts SSL Connections or not.
+                NetworkCredential NetworkCred = new NetworkCredential(secObj.Network.UserName, secObj.Network.Password);
+                //---Your Email and password
+                client.UseDefaultCredentials = true;
+                client.Credentials = NetworkCred;
+                client.Port = 587; //---- SMTP Server port number. This varies from host to host. 
+
+
+
+                try
+                {
+                    await client.SendMailAsync(mailMessage);
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+
+            }
         }
+        //public Task SendAsync(IdentityMessage message)
+        //{
+        //    // Plug in your email service here to send an email.
+        //    return Task.FromResult(0);
+        //}
     }
 
     public class SmsService : IIdentityMessageService

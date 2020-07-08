@@ -393,7 +393,7 @@ namespace GSA_Management_Information_System.Controllers
             if (reportid == 15)
             {
                 //D:\project\Software\GSA Management Information System\Reports\rptTest.rpt
-                rd.Load(Path.Combine(Server.MapPath("~/Reports/Cargo"), "crpPrincipalReportCargoSalesGroupwise.rpt.rpt"));
+                rd.Load(Path.Combine(Server.MapPath("~/Reports/Cargo"), "crpPrincipalReportCargoSalesGroupwise.rpt"));
 
                 if (freightpaymodeallitemcheck == true)
                 {

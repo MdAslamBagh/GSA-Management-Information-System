@@ -32,7 +32,6 @@ namespace GSA_Management_Information_System.Models
         public int Ticket_Quantity { get; set; }
         [Required(ErrorMessage = "This field can not be empty.")]
         public string Customer_Code { get; set; }
-        [Required(ErrorMessage = "This field can not be empty.")]
       
         public string Remarks { get; set; }
         public string Transaction_Status { get; set; }

@@ -1,0 +1,122 @@
+﻿@model GSA_Management_Information_System.Models.EmailContentInformation
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>EmailContentInformation</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.From)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.From)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.To)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.To)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CC)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CC)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.BCC)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.BCC)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Subject)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Subject)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Body)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Body)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.HostServer)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.HostServer)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.UserEmail)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.UserEmail)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.UserPassword)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.UserPassword)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.SmtpPort)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.SmtpPort)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Entry_Date)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Entry_Date)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Entry_By)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Entry_By)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.EmailId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

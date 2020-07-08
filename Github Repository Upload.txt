@@ -60,8 +60,55 @@ git remote add origin https://github.com/MdAslamBagh/GSA-MANAGEMENT-INFORMATION-
 git push -u origin master
 ...
 
-
 vpn password:Asdf1234
+
+vpn Mahedi vai username:Mehadi
+Pass: Abc@2141
+
+Abc@2141
+
+
+Git Username: aslam
+password:IWL@1234
+http://aslam@192.168.51.111:7990/scm/sol/sol-app.git
+
+
+
+BIT BUCKET url:http://192.168.51.111:7990/login
+XINJIRA url: http://192.168.51.111:8080/login.jsp
+
+Live Application Db Context:
+Data Source=192.168.51.128;Initial Catalog=GSAMISDB;Persist Security Info=True;User ID=sa;Password=Addmin123INW
+
+<add name="DataContext" connectionString="Data Source=myserver.com;Initial Catalog=MyDataBase;Persist Security Info=True;User ID=username;Password=password"  providerName="System.Data.SqlClient" />
+
+
+ip:http://192.168.0.1
+wififipasswordtend:admin112233
+
+VPN:
+Username:  aslam 
+Password: Iwl@4312
+
+
+SOL PROJECT RUN: Command promt:
+
+C:\Users\Aslam>cd ..
+
+C:\Users>cd ..
+
+C:\>cd tomcat-server\apache-tomcat-7.0.104\bin
+
+C:\tomcat-server\apache-tomcat-7.0.104\bin>startup.bat
+localhost:
+localhost:8080/grp2/reports/hdsFormatReport.html
+
+
+
+
+
+
+
 
 
 

@@ -10,6 +10,25 @@
   exce vwCargoSalesDetails @From_Date = '2020-01-15 00:00:00.000', @To_Date = '2020-02-18 00:00:00.000',@Flight_From_Date=null,@Flight_To_Date=null,
 
 
+  --Check in Crystal Report 
+  
+  parameter:
+  fromdate =3-3-2020
+  todate =5-4-2-2020
+  flightfromdate=null
+  flighttodate=null
+  cargo_type_from_item=ART WORK
+  cargo_type_to_item=ART WORK
+  Group_from_item=cass
+  group_to_item=cass
+  customer=%%
+  freightertypefromitem=%%
+  frieghttypetoitem=%%
+
+  all parameter must be %%.
+
+
+
 
     --   WHERE
 	   --cargo.Entry_Date BETWEEN '2020-02-25' AND '2020-02-27'  

@@ -578,7 +578,7 @@ namespace GSA_Management_Information_System.Controllers
                 var LogedInUser = User.Identity.Name;
                 cargo.Entry_By = LogedInUser;
 
-                cargo.Entry_Date = DateTime.Now;
+                cargo.Entry_Date = cargoedit.Entry_Date;
 
                 cargo.MAWB = cargoedit.MAWB;
                 cargo.SalesSlno = cargoedit.SalesSlno;

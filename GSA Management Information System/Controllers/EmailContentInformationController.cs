@@ -10,108 +10,120 @@ using GSA_Management_Information_System.Models;
 
 namespace GSA_Management_Information_System.Controllers
 {
-    public class AccessListInformationController : Controller
+    public class EmailContentInformationController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: AccessListInformation
+        // GET: EmailContentInformation
         public ActionResult Index()
         {
-            return View(db.AccessLists.ToList());
+            return View(db.EmailContentInformations.ToList());
         }
 
-        // GET: AccessListInformation/Details/5
+        // GET: EmailContentInformation/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AccessListInformation accessListInformation = db.AccessLists.Find(id);
-            if (accessListInformation == null)
+            EmailContentInformation emailContentInformation = db.EmailContentInformations.Find(id);
+            if (emailContentInformation == null)
             {
                 return HttpNotFound();
             }
-            return View(accessListInformation);
+            return View(emailContentInformation);
         }
 
-        // GET: AccessListInformation/Create
-        public ActionResult Add()
+        // GET: EmailContentInformation/Create
+        public ActionResult Create()
         {
-            ViewBag.BaseModule = new SelectList(db.BaseModuleLists, "BaseModuleId", "BaseModule");
             return View();
         }
 
-        // POST: AccessListInformation/Create
+        // POST: EmailContentInformation/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add([Bind(Include = "AccessId,AccessName,BaseModuleId,Controller,Action")] AccessListInformation accessListInformation)
+        public ActionResult Create( EmailContentInformation emailContentInformation)
         {
+            var from = emailContentInformation.From;
+
+            var to = emailContentInformation.To;
+            var cc = emailContentInformation.Cc;
+            var bcc = emailContentInformation.Bcc;
+            var subject = emailContentInformation.Subject;
+            var body = emailContentInformation.Body;
+            var useremail = emailContentInformation.UserEmail;
+            var password = emailContentInformation.UserPassword;
+            var hostserver = emailContentInformation.HostServer;
+            var smtpport = emailContentInformation.SmtpPort;
+
+
             if (ModelState.IsValid)
             {
-                db.AccessLists.Add(accessListInformation);
+                db.EmailContentInformations.Add(emailContentInformation);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(accessListInformation);
+            return View(emailContentInformation);
         }
 
-        // GET: AccessListInformation/Edit/5
+        // GET: EmailContentInformation/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AccessListInformation accessListInformation = db.AccessLists.Find(id);
-            if (accessListInformation == null)
+            EmailContentInformation emailContentInformation = db.EmailContentInformations.Find(id);
+            if (emailContentInformation == null)
             {
                 return HttpNotFound();
             }
-            return View(accessListInformation);
+            return View(emailContentInformation);
         }
 
-        // POST: AccessListInformation/Edit/5
+        // POST: EmailContentInformation/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AccessId,AccessName,BaseModule,Controller,Action")] AccessListInformation accessListInformation)
+        public ActionResult Edit([Bind(Include = "EmailId,From,To,CC,BCC,Subject,Body,HostServer,UserEmail,UserPassword,SmtpPort,Entry_Date,Entry_By")] EmailContentInformation emailContentInformation)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(accessListInformation).State = EntityState.Modified;
+                db.Entry(emailContentInformation).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(accessListInformation);
+            return View(emailContentInformation);
         }
 
-        // GET: AccessListInformation/Delete/5
+        // GET: EmailContentInformation/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AccessListInformation accessListInformation = db.AccessLists.Find(id);
-            if (accessListInformation == null)
+            EmailContentInformation emailContentInformation = db.EmailContentInformations.Find(id);
+            if (emailContentInformation == null)
             {
                 return HttpNotFound();
             }
-            return View(accessListInformation);
+            return View(emailContentInformation);
         }
 
-        // POST: AccessListInformation/Delete/5
+        // POST: EmailContentInformation/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            AccessListInformation accessListInformation = db.AccessLists.Find(id);
-            db.AccessLists.Remove(accessListInformation);
+            EmailContentInformation emailContentInformation = db.EmailContentInformations.Find(id);
+            db.EmailContentInformations.Remove(emailContentInformation);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

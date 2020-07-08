@@ -1,0 +1,111 @@
+﻿@model GSA_Management_Information_System.Models.EmailContentInformation
+@{
+    ViewBag.Title = "Edit";
+}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+@using (Html.BeginForm("Edit", "EmailContentInformation", FormMethod.Post, new { onSubmit = "return SubmitForm(this)" }))
+            {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.EmailId)
+    <div class="form-horizontal">
+        <div class="container">
+            <div class="card ">
+                <div class="card-header bg-info" style="height: 4rem;">Email Content Edit</div>
+                <div class="row">
+                    <div class="form-group">
+                       
+
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="controllername" class="col-md-3 col-sm-5">From<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+
+                                @Html.EditorFor(model => model.From, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.From, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="controllername" class="col-md-3 col-sm-5">To<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+
+                                @Html.EditorFor(model => model.To, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.To, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="controllername" class="col-md-3 col-sm-5">Cc<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+
+                                @Html.EditorFor(model => model.Cc, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.Cc, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="controllername" class="col-md-3 col-sm-5">Bcc<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+
+                                @Html.EditorFor(model => model.Bcc, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.Bcc, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="controllername" class="col-md-3 col-sm-5">Subject<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+
+                                @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <label for="controllername" class="col-md-3 col-sm-5">Body<font size="2px" color="red">*</font></label>
+                            <div class="col-md-6 col-sm-7">
+
+                                @Html.TextAreaFor(model => model.Body, 2, 52, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-10 col-sm-12 ">
+                            <div class="col-md-10">
+                                <div align="center">
+                                    <a class="btn btn-primary" style="margin-left:10px" onclick="location.href='@Url.Action("Index", "ConsigneeInformation")'"><i class="fa fa-plus"></i>Back To List</a>
+                                    <input type="submit" value="submit" class="btn btn-info" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+
+@section scripts{
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script>
+        $(function () {
+            $(".datepicker").datepicker({
+                dateFormat: "mm/dd/yy",
+                changemonth: true,
+                changeyear: true,
+                minDate: new Date(2018, 0, 1),
+                maxDate: new Date(2020, 0, 1),
+                showOn: "both",
+                buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+                buttonText: "Calender"
+            });
+        });
+    </script>
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

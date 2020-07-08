@@ -2,6 +2,46 @@
     ViewBag.Title = "Home Page";
 
 }
+
+<style>
+    html {
+        font-family: verdana;
+        font-size: 10pt;
+        line-height: 25px;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 1000px;
+        overflow-x: scroll;
+        display: block;
+    }
+
+    thead {
+        background-color: #EFEFEF;
+    }
+
+    thead,
+    tbody {
+        display: block;
+    }
+
+    tbody {
+        overflow-y: scroll;
+        overflow-x: hidden;
+        height: 400px;
+    }
+
+    td,
+    th {
+        min-width: 125px;
+        height: 25px;
+        border: dashed 1px lightblue;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100px;
+    }
+</style>
 <div class="row">
     <div class="col-xl-3 col-sm-6 mb-3">
         <div class="card text-white bg-primary o-hidden h-100">
@@ -146,8 +186,8 @@
 
 
 
-<div class="input-group" id="search">
-    <input type="text" id="search" name="q" class="form-control input-sm" placeholder="Stock Issue No..." onkeyup="getMaster()">
+<div class="input-group" id="searchdiv">
+    <input type="text" id="search" name="q" class="form-control input-sm" placeholder="Search..." >
     <span class="input-group-btn">
         <button class="btn btn-primary btn-sm masterButton" type="button">
             <span class="glyphicon glyphicon-search"></span> Search
@@ -155,79 +195,67 @@
     </span>
 </div>
 
+@*<input class="form-control input-sm" id="myInput" type="text" placeholder="Search..">*@
 
-   <div class="card">
-        <div id="waitingissueTable" style="display:none">
-            <table class="table no-margin table-striped">
-                <thead>
-                    <tr>
 
-                        <th>tsdasds</th>
-                        @*<th>Airlines</th>*@
-                        <th>asdasas</th>
-                        <th>asdsad</th>
-                        <th>aasds</th>
-                        @*<th>Airlines</th>*@
-                        <th>adas Ticket</th>
-                        <th>sadds Ticket</th>
 
-                        <th>Code</th>
-                        @*<th>Airlines</th>*@
-                        <th>From Ticket</th>
-                        <th>To Ticket</th>
-                        <th>Quantity</th>
-                        <th>Customer Code</th>
-                        <th>Remarks</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var d in ViewBag.waitingissuedData)
-            {
-                        <tr>
-
-                            <td>@d.SRecieved_Code</td>
-                            @*<td>@d.Airlines_Code</td>*@
-                            <td>@d.From_TicketNo</td>
-                            <td>@d.To_TicketNo</td>
-                            <td>@d.Ticket_Quantity</td>
-                            <td>@d.Customer_Code</td>
-                            <td>@d.Remarks</td>
-
-                            <td>@d.SRecieved_Code</td>
-                            @*<td>@d.Airlines_Code</td>*@
-                            <td>@d.From_TicketNo</td>
-                            <td>@d.To_TicketNo</td>
-                            <td>@d.Ticket_Quantity</td>
-                            <td>@d.Customer_Code</td>
-                            <td>@d.Remarks</td>
-                        </tr>
-                            }
-                </tbody>
-            </table>
-        </div>
-
-    </div>
-
-            
-    <div class="card">
-    <div id="alreadyissuedTable" style="display:none">
-        <table class="table no-margin table-striped">
+    
+    <div id="waitingissueTable" style="display:none">
+        <table>
             <thead>
                 <tr>
-                    @*<th>Action</th>*@
                     <th>Code</th>
-                    @*<th>Airlines_Code</th>*@
+                    <th>Type</th>
+                    <th>Airlines</th>
                     <th>From Ticket</th>
                     <th>To Ticket</th>
                     <th>Quantity</th>
                     <th>Customer Code</th>
+                    <th>Issued</th>
+                    
+                </tr>
+            </thead>
+            <tbody id="myTable">
+                @foreach (var d in ViewBag.waitingissuedData)
+            {
+                    <tr>
+
+                        <td>@d.SRecieved_Code</td>
+                        <td>@d.SR_Type</td>
+                        <td>@d.Airlines_Code</td>
+                        <td>@d.From_TicketNo</td>
+                        <td>@d.To_TicketNo</td>
+                        <td>@d.Ticket_Quantity</td>
+                        <td>@d.Customer_Code</td>
+                        <td>@d.Issued</td>
+                       
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+    <div id="alreadyissuedTable" style="display:none">
+        <table>
+            <thead>
+                <tr>
+                    <th>Issue Code</th>
+                    <th>Receive Code</th>
+                    <th>Airlines</th>
+                    <th>From Ticket</th>
+                    <th>To Ticket</th>
+                    <th>Quantity</th>
+                    <th>Customer Code</th>
+                    <th>Transaction Status</th>
                     <th>Remarks</th>
-                    @*<th>Status</th>
-                        <th>Issued Date</th>*@
 
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="myTable">
                 @foreach (var d in ViewBag.alreadyissuedData)
             {
                     <tr>
@@ -251,53 +279,55 @@
                                     </ul>
                                 </div>
                             </td>*@
-                        <td>@d.SIssued_Code</td>
-                        @*<td>@d.Airlines_Code</td>*@
-                        <td>@d.From_TicketNo</td>
-                        <td>@d.To_TicketNo</td>
-                        <td>@d.Ticket_Quantity</td>
-                        <td>@d.Customer_Code</td>
-                        <td>@d.Remarks</td>
-                        @*<td>@d.Transaction_Status</td>
-                            <td>@d.Issue_Date</td>*@
+                        <td style="width: 4%;">@d.SIssued_Code</td>
+                        <td style="width: 4%;">@d.SRecieved_Code</td>
+                        <td style="width: 4%;">@d.Airlines_Code</td>
+                        <td style="width: 4%;">@d.From_TicketNo</td>
+                        <td style="width: 4%;">@d.To_TicketNo</td>
+                        <td style="width: 4%;">@d.Ticket_Quantity</td>
+                        <td style="width: 4%;">@d.Customer_Code</td>
+                        <td style="width: 4%;">@d.Transaction_Status</td>
+                        <td style="width: 4%;">@d.Remarks</td>
                     </tr>
-                                    }
+                }
             </tbody>
         </table>
     </div>
-</div>     
+
+
+     
         
-  <div class="card">
+  
                 <div id="confirmedissuedTable" style="display:none">
-                    <table class="table no-margin table-striped">
+                    <table>
                         <thead>
                             <tr>
-                                <th>Code</th>
+                                <th>Issue Code</th>
+                                <th>Receive Code</th>
                                 <th>Airlines</th>
                                 <th>From Ticket</th>
                                 <th>To Ticket</th>
                                 <th>Quantity</th>
                                 <th>Customer Code</th>
-                                <th>Remarks</th>
                                 <th>Status</th>
+                                <th>Remarks</th>
                                 @*<th>Confirm Date</th>*@
 
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="myTable">
                             @foreach (var d in ViewBag.confirmedissuedData)
             {
                                 <tr>
-
-
-                                    <td>@d.SIssued_Code</td>
-                                    <td>@d.Airlines_Code</td>
-                                    <td>@d.From_TicketNo</td>
-                                    <td>@d.To_TicketNo</td>
-                                    <td>@d.Ticket_Quantity</td>
-                                    <td>@d.Customer_Code</td>
-                                    <td>@d.Remarks</td>
-                                    <td>@d.Confirm_Status</td>
+                                    <td style="width: 4%;">@d.SIssued_Code</td>
+                                    <td style="width: 4%;">@d.SRecieved_Code</td>
+                                    <td style="width: 4%;">@d.Airlines_Code</td>
+                                    <td style="width: 4%;">@d.From_TicketNo</td>
+                                    <td style="width: 4%;">@d.To_TicketNo</td>
+                                    <td style="width: 4%;">@d.Ticket_Quantity</td>
+                                    <td style="width: 4%;">@d.Customer_Code</td>
+                                    <td style="width: 4%;">@d.Confirm_Status</td>
+                                    <td style="width: 4%;">@d.Remarks</td>
                                     @*<td>@d.Confirm_Date</td>*@
 
                                 </tr>
@@ -305,7 +335,8 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+           
+
             @*@section scripts{
                     <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
                     <script>
@@ -317,24 +348,45 @@
                     </script>
                 }*@
 
+
+
+@section scripts{
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script>
+        $(document).ready(function () {
+            $("#search").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+</script>
+
+<script>
+    $('table').on('scroll', function () {
+        $("table > *").width($("table").width() + $("table").scrollLeft());
+    });
+</script>
             <script>
-                $("#search").hide()
+                $("#search").show()
                 $("#waitingissueTable").css("display", "inline");
                 $("#waitingView").click(function () {
-                    $("#search").show()
+                    $("#searchdiv").show();
                     $("#waitingissueTable").css("display", "inline");
                     $("#alreadyissuedTable").css("display", "none");
                     $("#confirmedissuedTable").css("display", "none");
                 });
                 $("#alreadyIssued").click(function () {
-                    $("#search").show()
+                    $("#searchdiv").show();
                     $("#alreadyissuedTable").css("display", "inline");
                     $("#waitingissueTable").css("display", "none");
                     $("#confirmedissuedTable").css("display", "none");
                 });
 
                 $("#confirmedIssued").click(function () {
-                    $("#search").show()
+                    $("#searchdiv").show();
                     $("#confirmedissuedTable").css("display", "inline");
                     $("#waitingissueTable").css("display", "none");
                     $("#alreadyissuedTable").css("display", "none");
@@ -342,5 +394,8 @@
                 });
 
             </script>
+
+
+    }
             <!--/ stats -->
             <!--/ project charts -->

@@ -99,7 +99,6 @@ namespace GSA_Management_Information_System.Models
 
         public System.Data.Entity.DbSet<GSA_Management_Information_System.Models.BaseModuleInformation> BaseModuleLists { get; set; }
 
-        public System.Data.Entity.DbSet<GSA_Management_Information_System.Models.AccessListInformation> AccessLists { get; set; }
 
         public System.Data.Entity.DbSet<GSA_Management_Information_System.Models.LoginInformation> LoginInformations { get; set; }
 
@@ -127,6 +126,8 @@ namespace GSA_Management_Information_System.Models
         public System.Data.Entity.DbSet<GSA_Management_Information_System.Models.ReportInformation> Reports { get; set; }
 
         public System.Data.Entity.DbSet<GSA_Management_Information_System.Models.CargoDueReceipt> CargoDueReceipts { get; set; }
+
+        public System.Data.Entity.DbSet<GSA_Management_Information_System.Models.EmailContentInformation> EmailContentInformations { get; set; }
 
         //public System.Data.Entity.DbSet<GSA_Management_Information_System.Models.CargoSalesReport> CargoSalesReports { get; set; }
 

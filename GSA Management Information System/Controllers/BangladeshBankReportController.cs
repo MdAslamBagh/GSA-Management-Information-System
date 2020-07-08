@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
+//using CrystalDecisions.CrystalReports.Engine;
+//using CrystalDecisions.Shared;
 using System.IO;
 using GSA_Management_Information_System.Models;
 using System.Configuration;
@@ -542,6 +544,7 @@ namespace GSA_Management_Information_System.Controllers
 
         public ActionResult Export(DateTime fromdate, DateTime todate, int reportid, string checkdate, string cargotypefromitem, string cargotypetoitem, bool cargotypeallitemcheck, bool freightertypeallitemcheck, string freightertypefromitem, string freightertypetoitem, bool customerallitemcheck, string customer, string freightpaymodefromitem, string freightpaymodetoitem, bool freightpaymodeallitemcheck, bool allgroupcheck, string groupfromitem, string grouptoitem, bool destinationallitemcheck, string destinationfromitem, string destinationtoitem, bool regionallitemcheck, bool countryallitemcheck, bool destinationitemcheck, string region, string country, string continentdestination, string clickbtn)
         {
+            //ReportDocument cryRpt = new ReportDocument();
 
             ReportDocument rd = new ReportDocument();
             connection();

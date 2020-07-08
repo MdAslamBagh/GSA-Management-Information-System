@@ -26,6 +26,7 @@ namespace GSA_Management_Information_System.Controllers
 
         }
 
+        [CustomAuthorize]
         [HttpGet]
         public ActionResult Create()
         {

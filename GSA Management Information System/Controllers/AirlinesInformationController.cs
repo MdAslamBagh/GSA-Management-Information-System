@@ -50,8 +50,8 @@ namespace GSA_Management_Information_System.Controllers
                 if (information == null)
                 {
                     AirlinesInformation objairlines = new AirlinesInformation();
-                    int s = objairlines.Airlines_Code + 1;
-                    //ViewBag.ConsignorCode = information.Consignor_Code + 1;
+                    int s = objairlines.Airlines_Code + 160;
+                    
                     ViewBag.Airlines_Code = s.ToString();
                 }
                 else
